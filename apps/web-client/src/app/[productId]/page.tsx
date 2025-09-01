@@ -128,6 +128,16 @@ export default function ProductDetailPage() {
                             <div className="text-secondary">{product.type}</div>
                           </div>
                         )}
+                        {product?.lumens && (
+                          <div className="flex flex-col md:flex-row flex-wrap items-start md:items-end">
+                            <div className="pr-4 w-[11em] leading-5">
+                              Lúmenes:
+                            </div>{" "}
+                            <div className="text-secondary">
+                              {product.lumens}
+                            </div>
+                          </div>
+                        )}
                         {product?.contrastRatio && (
                           <div className="flex flex-col md:flex-row flex-wrap items-start md:items-end">
                             <div className="pr-4 w-[11em] leading-5">
@@ -200,16 +210,6 @@ export default function ProductDetailPage() {
                             Las lámparas del proyector contienen mercurio.
                           </div>
                         </div>
-                        {product?.imageBrightness && (
-                          <div className="flex flex-col md:flex-row flex-wrap items-start md:items-end">
-                            <div className="pr-4 w-[11em] leading-5 ">
-                              Brillo de la imagen :
-                            </div>{" "}
-                            <div className="text-secondary">
-                              {product.imageBrightness}
-                            </div>
-                          </div>
-                        )}
                         {product?.aspectRatio && (
                           <div className="flex flex-col md:flex-row flex-wrap items-start md:items-end">
                             <div className="pr-4 w-[11em] leading-5 ">

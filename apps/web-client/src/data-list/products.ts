@@ -12,7 +12,7 @@ export interface Product {
   model: string;
   name?: string;
   oldStock?: number;
-  units: number;
+  stock: number;
   description?: string;
   price: number;
   sub?: string;
@@ -21,7 +21,7 @@ export interface Product {
   media: MediaItem[];
   condition?: string;
   displayTechnology?: string;
-  imageBrightness?: string;
+  lumens?: string;
   brand?: string;
   type?: string;
   contrastRatio?: string;
@@ -46,7 +46,7 @@ export const products: Product[] = [
     model: "H687A",
     name: "Epson PowerLite 98H",
     oldStock: 12,
-    units: 4,
+    stock: 4,
     price: 600,
     badge: "Oferta",
     mainImage: "/images/98H/98h.jpg",
@@ -57,11 +57,11 @@ export const products: Product[] = [
       { type: "image", src: "/images/98H/4.jpg" },
       { type: "image", src: "/images/98H/5.jpg" },
     ],
-    condition: `Artículo usado / de exhibición, en excelente estado físico y con funcionamiento 100% garantizado. 
+    condition: `Artículo de exhibición, en excelente estado físico y con funcionamiento 100% garantizado. 
       Puede presentar ligeros signos de uso o detalles estéticos mínimos propios de la manipulación, pero no afectan en absoluto su rendimiento.
       Ideal para quienes buscan calidad a un precio más accesible.`,
     displayTechnology: "3LCD",
-    imageBrightness: "2700 lúmenes ANSI",
+    lumens: "2700 lúmenes ANSI",
     brand: "Epson",
     type: "Proyector",
     contrastRatio: "10,000:1",
@@ -89,7 +89,7 @@ export const products: Product[] = [
     id: "980W",
     model: "H866A",
     name: "Epson PowerLite 980W",
-    units: 5,
+    stock: 5,
     description: "Buena proyección, detalles estéticos",
     price: 1150,
     badge: "Top venta",
@@ -101,11 +101,11 @@ export const products: Product[] = [
       { type: "image", src: "/images/980W/4.png" },
       { type: "image", src: "/images/980W/5.png" },
     ],
-    condition: `Artículo usado / de exhibición, en excelente estado físico y con funcionamiento 100% garantizado. 
+    condition: `Artículo de exhibición, en excelente estado físico y con funcionamiento 100% garantizado. 
       Puede presentar ligeros signos de uso o detalles estéticos mínimos propios de la manipulación, pero no afectan en absoluto su rendimiento.
       Ideal para quienes buscan calidad a un precio más accesible.`,
     displayTechnology: "3LCD",
-    imageBrightness: "3800 lúmenes ANSI",
+    lumens: "3800 lúmenes ANSI",
     brand: "Epson",
     type: "Proyector",
     contrastRatio: "15,000:1",
@@ -130,7 +130,7 @@ export const products: Product[] = [
     id: "975W",
     model: "H835A",
     name: "Epson PowerLite 975W",
-    units: 3,
+    stock: 3,
     description: "Buena proyección, detalles estéticos",
     price: 1050,
     mainImage: "/images/975W/975w.jpg",
@@ -141,11 +141,11 @@ export const products: Product[] = [
       { type: "image", src: "/images/975W/4.jpg" },
       { type: "image", src: "/images/975W/5.jpg" },
     ],
-    condition: `Artículo usado / de exhibición, en excelente estado físico y con funcionamiento 100% garantizado. 
+    condition: `Artículo de exhibición, en excelente estado físico y con funcionamiento 100% garantizado. 
       Puede presentar ligeros signos de uso o detalles estéticos mínimos propios de la manipulación, pero no afectan en absoluto su rendimiento.
       Ideal para quienes buscan calidad a un precio más accesible.`,
     displayTechnology: "3LCD",
-    imageBrightness: "3600 lúmenes ANSI",
+    lumens: "3600 lúmenes ANSI",
     brand: "Epson",
     type: "Proyector",
     contrastRatio: "15,000:1",
@@ -168,9 +168,9 @@ export const products: Product[] = [
     id: "1925W",
     model: "V11H314020",
     name: "Epson PowerLite 1925W",
-    units: 1,
+    stock: 1,
     description: "Buena proyección, detalles estéticos",
-    price: 1150,
+    price: 1050,
     mainImage: "/images/1925W/1925w.jpg",
     media: [
       { type: "image", src: "/images/1925W/2.jpg" },
@@ -179,11 +179,11 @@ export const products: Product[] = [
       { type: "image", src: "/images/1925W/4.jpg" },
       { type: "image", src: "/images/1925W/5.jpg" },
     ],
-    condition: `Artículo usado / de exhibición, en excelente estado físico y con funcionamiento 100% garantizado. 
+    condition: `Artículo de exhibición, en excelente estado físico y con funcionamiento 100% garantizado. 
       Puede presentar ligeros signos de uso o detalles estéticos mínimos propios de la manipulación, pero no afectan en absoluto su rendimiento.
       Ideal para quienes buscan calidad a un precio más accesible.`,
     displayTechnology: "3LCD",
-    imageBrightness: "4,000 lúmenes ANSI",
+    lumens: "4000 lúmenes ANSI",
     brand: "Epson",
     type: "Proyector",
     contrastRatio: "2.000:1",
@@ -205,7 +205,7 @@ export const products: Product[] = [
     id: "970",
     model: "H865A",
     name: "Epson PowerLite 970",
-    units: 1,
+    stock: 1,
     description: "Bajo brillo, detalles estéticos",
     price: 1000,
     badge: "Oferta",
@@ -217,11 +217,11 @@ export const products: Product[] = [
       { type: "image", src: "/images/970/4.jpg" },
       { type: "image", src: "/images/970/5.jpg" },
     ],
-    condition: `Artículo usado / de exhibición, en excelente estado físico y con funcionamiento 100% garantizado. 
+    condition: `Artículo de exhibición, en excelente estado físico y con funcionamiento 100% garantizado. 
       Puede presentar ligeros signos de uso o detalles estéticos mínimos propios de la manipulación, pero no afectan en absoluto su rendimiento.
       Ideal para quienes buscan calidad a un precio más accesible.`,
     displayTechnology: "3LCD",
-    imageBrightness: "4000 lúmenes ANSI",
+    lumens: "4000 lúmenes ANSI",
     brand: "Epson",
     type: "Proyector",
     contrastRatio: "15,000:1",
@@ -244,7 +244,7 @@ export const products: Product[] = [
     id: "119W",
     model: "H985A",
     name: "Epson PowerLite 119W",
-    units: 1,
+    stock: 1,
     description: "Buena proyección, detalles estéticos",
     price: 1150,
     badge: "Top venta",
@@ -256,11 +256,11 @@ export const products: Product[] = [
       { type: "image", src: "/images/119W/4.jpg" },
       { type: "image", src: "/images/119W/5.jpg" },
     ],
-    condition: `Artículo usado / de exhibición, en excelente estado físico y con funcionamiento 100% garantizado. 
+    condition: `Artículo de exhibición, en excelente estado físico y con funcionamiento 100% garantizado. 
       Puede presentar ligeros signos de uso o detalles estéticos mínimos propios de la manipulación, pero no afectan en absoluto su rendimiento.
       Ideal para quienes buscan calidad a un precio más accesible.`,
     displayTechnology: "3LCD",
-    imageBrightness: "4000 lúmenes ANSI",
+    lumens: "4000 lúmenes ANSI",
     brand: "Epson",
     type: "Proyector",
     contrastRatio: "16.000:1",
@@ -284,9 +284,8 @@ export const products: Product[] = [
     id: "108",
     model: "H860A",
     name: "Epson PowerLite 108",
-    units: 4,
+    stock: 4,
     price: 1000,
-    sub: "Desde S/ 700 por volumen",
     badge: "Oferta",
     mainImage: "/images/108/108.jpg",
     media: [
@@ -296,11 +295,11 @@ export const products: Product[] = [
       { type: "image", src: "/images/108/4.jpg" },
       { type: "image", src: "/images/108/5.jpg" },
     ],
-    condition: `Artículo usado / de exhibición, en excelente estado físico y con funcionamiento 100% garantizado. 
+    condition: `Artículo de exhibición, en excelente estado físico y con funcionamiento 100% garantizado. 
       Puede presentar ligeros signos de uso o detalles estéticos mínimos propios de la manipulación, pero no afectan en absoluto su rendimiento.
       Ideal para quienes buscan calidad a un precio más accesible.`,
     displayTechnology: "3LCD",
-    imageBrightness: "3700 lúmenes ANSI",
+    lumens: "3700 lúmenes ANSI",
     brand: "Epson",
     type: "Proyector",
     contrastRatio: "15000:1",

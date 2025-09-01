@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Product } from "@/data-list/products";
+import { twMerge } from "tailwind-merge"
 
 interface Props {
   product: Product;
@@ -11,7 +12,7 @@ export const ProductCard = ({ product }: Props) => {
   return (
     <article
       key={product.model}
-      className="keen-slider__slide flex flex-col h-full group rounded-2xl p-5 shadow-sm hover:shadow-md border-solid border-1 border-gray-400/40 bg-white"
+      className={twMerge("keen-slider__slide flex flex-col h-full group rounded-2xl p-5 shadow-sm hover:shadow-md border-solid border-1 border-gray-400/40 bg-white",`${product?.classification === "premium" && "border-primary"}`)}
     >
       <div className="mb-3">
         <div className="relative w-full h-48 rounded-xl overflow-hidden bg-white">
@@ -39,9 +40,9 @@ export const ProductCard = ({ product }: Props) => {
             {product.brand}
           </span>
         )}
-        {product?.imageBrightness && (
+        {product?.lumens && (
           <span className="px-3 py-[.4em] rounded-full font-semibold text-[.6em] shadow-sm focus:outline-none bg-white/90 text-secondary border border-secondary/40">
-            {product.imageBrightness}
+            {product.lumens}
           </span>
         )}
         {product?.throwRatio && (
@@ -52,7 +53,7 @@ export const ProductCard = ({ product }: Props) => {
       </div>
       {/* Stock */}
       <p className="mt-1 text-sm text-secondary/70">
-        Cantidad: {product.units} {product.units === 1 ? "unidad" : "unidades"}
+        Cantidad: {product.stock} {product.stock === 1 ? "unidad" : "unidades"}
         {product?.oldStock && (
           <>
             {" "}

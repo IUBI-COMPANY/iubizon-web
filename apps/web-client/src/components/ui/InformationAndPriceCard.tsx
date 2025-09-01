@@ -17,7 +17,7 @@ export const InformationAndPriceCard = ({
   const options = [
     product?.brand,
     product?.model,
-    product?.imageBrightness,
+    product?.lumens,
     product?.contrastRatio,
     product?.nativeResolution,
     product?.aspectRatio,
@@ -79,12 +79,12 @@ export const InformationAndPriceCard = ({
           </div>
         )}
         <ul className="mb-7 space-y-4 list-style-none">
-          {product?.units && (
+          {product?.stock && (
             <li className="my-3">
               <span className="text-sm text-secondary/90">
                 <p className="mt-1 text-sm text-secondary/70">
-                  Cantidad: {product.units}{" "}
-                  {product.units === 1 ? "unidad" : "unidades"}
+                  Cantidad: {product.stock}{" "}
+                  {product.stock === 1 ? "unidad" : "unidades"}
                   {product?.oldStock && (
                     <>
                       {" "}
