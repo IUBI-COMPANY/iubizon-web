@@ -42,7 +42,7 @@ export default function Home() {
   const quantityProjectors = products
     .filter((product) => product.type === "Proyector")
     .reduce((acc, product) => {
-      return acc + product.units;
+      return acc + product.stock;
     }, 0);
 
   return (
