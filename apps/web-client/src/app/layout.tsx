@@ -20,6 +20,75 @@ export const metadata: Metadata = {
   title: "iubizon - Tu mundo multimedia",
   description:
     "De todo multimedia a precios accesibles para mayoristas y minoristas.",
+  alternates: {
+    canonical: "/",
+  },
+  authors: [{ name: "iubizon", url: "https://www.iubizon.com" }],
+  creator: "iubizon",
+  category: "technology",
+  keywords: [
+    //Generic words
+    "venta de proyectores",
+    "venta de proyectores epson",
+    "proyectores de segunda",
+    "proyectores epson",
+    "proyectores multimedia",
+    "proyectores usados",
+    "proyectores de segunda mano",
+    "compra proyectores",
+    "ofertas de proyectores epson",
+    "descuentos de proyectores epson",
+    "remates de proyectores epson",
+    "venta de productos multimedia",
+    "venta de proyectores baratos",
+    "proyectores a bajos precios",
+
+    //By model
+    "epson powerlite 98h",
+    "epson powerlite 980w",
+    "epson powerlite 119w",
+    "epson powerlite 970",
+    "epson powerlite 1925w",
+    "epson powerlite 975w",
+    "epson powerlite 108",
+
+    //By location
+    "comprar proyectores en lima",
+    "venta de proyectores epson en lima",
+    "venta de proyectores epson en san isidro",
+    "venta de proyectores epson en miraflores",
+    "venta de proyectores epson en barranco",
+    "venta de proyectores epson en surco",
+    "venta de proyectores epson en la molina",
+    "venta de proyectores epson en san borja",
+    "venta de proyectores epson en jesús maría",
+    "venta de proyectores epson en magdalena del mar",
+    "venta de proyectores epson en lince",
+    "venta de proyectores epson en san miguel",
+    "venta de proyectores epson en callao",
+    "venta de proyectores epson en pueblo libre",
+    "venta de proyectores epson en breña",
+    "venta de proyectores epson en rimac",
+    "venta de proyectores epson en san juan de lurigancho",
+    "venta de proyectores epson en surquillo",
+    "venta de proyectores epson en la victoria",
+    "venta de proyectores epson en lurin",
+    "venta de proyectores epson en ancón",
+    "venta de proyectores epson en ate",
+    "tienda de proyectores en lima",
+    "venta de proyectores en todo el Perú",
+    "envío de proyectores a provincia",
+  ],
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+    },
+  },
   openGraph: {
     type: "website",
     url: "https://www.iubizon.com",
@@ -31,6 +100,26 @@ export const metadata: Metadata = {
         url: "https://storage.googleapis.com/iubi-website.appspot.com/resources/seo-banner.jpg",
       },
     ],
+    siteName: "iubizon - Tu mundo multimedia",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "iubizon - Tu mundo multimedia",
+    description:
+      "De todo multimedia a precios accesibles para mayoristas y minoristas.",
+    images: [
+      {
+        url: "https://storage.googleapis.com/iubi-website.appspot.com/resources/seo-banner.jpg",
+      },
+    ],
+  },
+  facebook: {
+    appId: "1176594967865528",
+  },
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
   },
 };
 
