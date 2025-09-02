@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 export type Classification =
   | "premium"
   | "standard"
@@ -32,7 +30,7 @@ export interface Product {
   throwRatio?: string;
   category?: string[];
   classification: Classification;
-  note?: string | ReactNode;
+  note?: string;
 }
 
 export interface MediaItem {

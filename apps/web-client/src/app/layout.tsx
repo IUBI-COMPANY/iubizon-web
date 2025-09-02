@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
-  authors: [{ name: "iubizon", url: "https://www.iubizon.com" }],
+  authors: [{ name: "iubi", url: "https://www.iubi.pe" }],
   creator: "iubizon",
   category: "technology",
   keywords: [
