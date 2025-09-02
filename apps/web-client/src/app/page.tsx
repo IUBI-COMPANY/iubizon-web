@@ -74,7 +74,7 @@ export default function Home() {
             />
           </div>
         </header>
-        <div className="w-full h-svh lg:h-[31em] m-auto flex justify-center flex-wrap text-center text-white relative">
+        <div className="w-full h-auto min-h-svh sm:min-h-[31em] m-auto flex justify-center flex-wrap items-center lg:items-stretch text-center text-white relative">
           <div className="items m-[2em] relative flex flex-col items-center lg:items-start justify-center text-center lg:text-left pt-20 lg:pt-0">
             <span className="flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-sm backdrop-blur">
               <BadgePercent className="h-4 w-4" /> Descuentos por volumen
@@ -107,7 +107,7 @@ export default function Home() {
               alt="pet iubizon"
               width={500}
               height={500}
-              className="relative top-[1em] lg:top-[1em] right-[1em] w-full h-auto md:w-[22em] mx-auto"
+              className="relative top-[1em] lg:top-[1em] right-[1em] w-[80%] h-auto sm:w-[22em] mx-auto"
             />
           </div>
         </div>
