@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   description:
     "De todo multimedia a precios accesibles para mayoristas y minoristas.",
   alternates: {
-    canonical: "/",
+    canonical: "https://www.iubizon.com",
   },
   authors: [{ name: "iubi", url: "https://www.iubi.pe" }],
   creator: "iubizon",

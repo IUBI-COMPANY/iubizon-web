@@ -65,12 +65,13 @@ export default function MediaCarousel({ product }: Props) {
                     ref={(el) => {
                       videoRefs.current[i] = el;
                     }}
-                    src={m.src}
                     width={1000}
                     height={1000}
                     controls
                     className="w-full h-full object-contain relative z-10"
-                  />
+                  >
+                    <source src={m.src} type="video/mp4" />
+                  </video>
                 </div>
               )}
             </div>
