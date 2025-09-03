@@ -5,6 +5,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { FooterLayout } from "@/components/ui/FooterLayout";
+import { HeaderLayout } from "@/components/ui/HeaderLayout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -161,6 +162,7 @@ export default function RootLayout({
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
+        <HeaderLayout />
         {children}
         <SpeedInsights />
         <Analytics />
