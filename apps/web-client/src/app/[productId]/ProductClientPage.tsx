@@ -48,7 +48,7 @@ export default function ProductDetailPage({ product }: Props) {
                   width={144}
                   height={40}
                   alt="iubizon logo"
-                  className="w-[9em] h-auto object-contain m-auto"
+                  className="w-[9em] min-h-[3em] h-auto object-contain m-auto"
                 />
               </Link>
             </div>

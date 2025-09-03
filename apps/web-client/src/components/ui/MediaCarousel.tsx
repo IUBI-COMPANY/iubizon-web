@@ -48,6 +48,7 @@ export default function MediaCarousel({ product }: Props) {
                   src={m.src}
                   width={1000}
                   height={1000}
+                  priority
                   alt="Imagen del producto"
                   className="w-full h-full object-cover relative z-10"
                 />
