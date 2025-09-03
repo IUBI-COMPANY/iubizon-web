@@ -23,12 +23,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
+  const title = `${product.name ?? "Producto"} | ${product.lumens ?? ""} | iubizon`;
+
   return {
-    title: `${product.name ?? "Producto"} | ${product.lumens ?? ""} | iubizon`,
+    title: title,
     description: product.note ?? "Detalles del producto en iubizon",
     openGraph: {
+      type: "website",
       title: `${product.name ?? "Producto"} ${product.lumens ?? ""}`,
       url: `https://www.iubizon.com/${product.id ?? ""}`,
+      description: product.note ?? "Detalles del producto en iubizon",
+      images: product.media?.length
+        ? product.media.map((media_) => media_.src)
+        : ["/images/product-not-found.png"],
+      siteName: `${product.name ?? "Producto"} ${product.lumens ?? ""} - iubizon`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: title,
       description: product.note ?? "Detalles del producto en iubizon",
       images: product.media?.length
         ? product.media.map((media_) => media_.src)
