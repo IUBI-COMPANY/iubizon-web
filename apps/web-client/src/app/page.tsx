@@ -63,17 +63,6 @@ export default function Home() {
           <source src="./videos/education-projectors.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        <header className="top-header absolute top-2 left-0 w-full p-4">
-          <div className="item-logo">
-            <Image
-              width={300}
-              height={100}
-              src="/images/logo.png"
-              alt="iubizon logo"
-              className="w-[9em] h-auto object-contain m-auto"
-            />
-          </div>
-        </header>
         <div className="w-full h-auto min-h-svh sm:min-h-[31em] m-auto flex justify-center flex-wrap items-center lg:items-stretch text-center text-white relative">
           <div className="items m-[2em] relative flex flex-col items-center lg:items-start justify-center text-center lg:text-left pt-20 lg:pt-0">
             <span className="flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-sm backdrop-blur">

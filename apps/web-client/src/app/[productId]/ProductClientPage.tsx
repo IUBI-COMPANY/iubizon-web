@@ -39,21 +39,7 @@ export default function ProductDetailPage({ product }: Props) {
     `}
       </style>
       <div className="min-h-screen h-auto flex flex-col w-full bg-white">
-        <header className="relative overflow-hidden bg-gradient-to-r from-secondary/90 via-secondary/100 to-secondary/90">
-          <div className="top-header w-full p-4">
-            <div className="item-logo flex justify-center">
-              <Link href="/">
-                <Image
-                  src="/images/logo.png"
-                  width={144}
-                  height={40}
-                  alt="iubizon logo"
-                  className="w-[9em] min-h-[3em] h-auto object-contain m-auto"
-                />
-              </Link>
-            </div>
-          </div>
-        </header>
+
         {!product ? (
           <NoFoundComponent />
         ) : (
