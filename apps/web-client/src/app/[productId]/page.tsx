@@ -11,8 +11,9 @@ type Props = {
 // 🔹 Dynamic Metada
 // ==========================
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { productId } = await params;
   const product: Product | undefined = products.find(
-    (product) => product.id === params.productId,
+    (product) => product.id === productId,
   );
 
   if (!product) {
@@ -39,8 +40,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 // ==========================
 // 🔹 Página principal (Server)
 // ==========================
-export default function Page({ params }: Props) {
-  const product = products.find((p) => p.id === params.productId);
+export default async function Page({ params }: Props) {
+  const { productId } = await params;
+
+  const product = products.find((p) => p.id === productId);
 
   if (!product) return <NoFoundComponent />;
 
