@@ -68,18 +68,18 @@ export const ProductCard = ({ product }: Props) => {
         )}
       </p>
       {/* Precio */}
-      <div className="bg-orange-50 rounded-lg py-2 px-4 my-3 text-center">
-        <div className="flex items-end justify-center gap-1">
-          <p className="text-base font-bold text-primary flex justify-center items-start gap-1">
-            <span className="text-[.7em]">S/</span>
-            <span className="text-2xl">{product.price}</span>
-          </p>
-          <span className="text-secondary text-sm font-light ml-1">c/u</span>
-        </div>
-        {product?.sub && (
-          <p className="text-xs text-secondary/80">{product.sub}</p>
-        )}
-      </div>
+      {/*<div className="bg-orange-50 rounded-lg py-2 px-4 my-3 text-center">*/}
+      {/*  <div className="flex items-end justify-center gap-1">*/}
+      {/*    <p className="text-base font-bold text-primary flex justify-center items-start gap-1">*/}
+      {/*      <span className="text-[.7em]">S/</span>*/}
+      {/*      <span className="text-2xl">{product.price}</span>*/}
+      {/*    </p>*/}
+      {/*    <span className="text-secondary text-sm font-light ml-1">c/u</span>*/}
+      {/*  </div>*/}
+      {/*  {product?.sub && (*/}
+      {/*    <p className="text-xs text-secondary/80">{product.sub}</p>*/}
+      {/*  )}*/}
+      {/*</div>*/}
       {/* Descuento */}
       <div className="flex items-center mt-3 text-sm text-gray-600 mb-1">
         <svg

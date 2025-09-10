@@ -50,13 +50,13 @@ export const InformationAndPriceCard = ({
           <div className="w-full h-auto my-7">
             <div className="flex flex-wrap gap-7 mb-3">
               <div className="flex items-center justify-start gap-1">
-                <p className="text-base font-bold text-primary flex justify-center items-start gap-1">
-                  <span className="text-[1em]">S/</span>
-                  <span className="text-3xl">{product.price}</span>
-                </p>
-                <span className="text-secondary text-lg font-light ml-1">
-                  c/u
-                </span>
+                {/*<p className="text-base font-bold text-primary flex justify-center items-start gap-1">*/}
+                {/*  <span className="text-[1em]">S/</span>*/}
+                {/*  <span className="text-3xl">{product.price}</span>*/}
+                {/*</p>*/}
+                {/*<span className="text-secondary text-lg font-light ml-1">*/}
+                {/*  c/u*/}
+                {/*</span>*/}
               </div>
               {product?.badge && (
                 <div
