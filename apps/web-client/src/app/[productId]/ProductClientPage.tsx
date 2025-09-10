@@ -240,7 +240,7 @@ export default function ProductDetailPage({ product }: Props) {
             {product?.note && (
               <div className="w-full h-auto m-auto py-10 md:py-5 mb-0 md:mb-10">
                 <div className="text-2xl mb-3 text-secondary font-bold">
-                  Nota:
+                  Descripción del artículo:
                 </div>
                 <p className="pre-line text-base text-black/90">
                   {product.note}
