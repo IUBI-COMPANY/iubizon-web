@@ -3,39 +3,23 @@ import { BadgePercent, MapPin } from "lucide-react";
 import { products } from "@/data-list/products";
 import { ProductCard } from "@/components/ui/ProductCard";
 import Image from "next/image";
-import { classifications } from "@/data-list/classifications";
+import { productsCondition } from "@/data-list/productsCondition";
 
 export default function Home() {
-  const productsByClassification = {
-    premium: {
-      ...classifications.premium,
+  const productsByCondition = {
+    new: {
+      ...productsCondition.new,
+      products: products.filter((products) => products.condition === "new"),
+    },
+    exhibition: {
+      ...productsCondition.exhibition,
       products: products.filter(
-        (products) => products.classification === "premium",
+        (products) => products.condition === "exhibition",
       ),
     },
-    standard: {
-      ...classifications.standard,
-      products: products.filter(
-        (products) => products.classification === "standard",
-      ),
-    },
-    budget: {
-      ...classifications.budget,
-      products: products.filter(
-        (products) => products.classification === "budget",
-      ),
-    },
-    clearance: {
-      ...classifications.clearance,
-      products: products.filter(
-        (products) => products.classification === "clearance",
-      ),
-    },
-    wholesale: {
-      ...classifications.wholesale,
-      products: products.filter(
-        (products) => products.classification === "wholesale",
-      ),
+    used: {
+      ...productsCondition.used,
+      products: products.filter((products) => products.condition === "used"),
     },
   };
 
@@ -120,157 +104,121 @@ export default function Home() {
         </div>
       </div>
       <main id="lista" className="mx-auto max-w-[1370px] px-6 py-10">
-        {productsByClassification.premium.products.length > 0 && (
+        {productsByCondition.new.products.length > 0 && (
           <div className="!mt-10 !mb-[5em]">
             <div className="mt-6 mb-6 flex items-end justify-between">
               <div>
                 <h2 className="text-2xl font-bold text-primary">
-                  {productsByClassification.premium.name}
+                  {productsByCondition.new.name}
                 </h2>
                 <p className="text-sm text-secondary/70 max-w-[60em]">
-                  {productsByClassification.premium.description}
+                  {productsByCondition.new.description}
                 </p>
                 <p className="text-primary text-[.8em] mt-2">
-                  <span>Todos los productos salen probados</span>
+                  <span>Disponibles en stock</span>
                 </p>
               </div>
             </div>
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {productsByClassification.premium.products.map(
-                (product, index) => (
-                  <ProductCard key={index} product={product} />
-                ),
-              )}
+              {productsByCondition.new.products.map((product, index) => (
+                <ProductCard key={index} product={product} />
+              ))}
             </div>
           </div>
         )}
-        {productsByClassification.standard.products.length > 0 && (
+        {productsByCondition.exhibition.products.length > 0 && (
           <div className="!mt-10 !mb-[5em]">
             <div className="mt-6 mb-6 flex items-end justify-between">
               <div>
                 <h2 className="text-2xl font-bold text-secondary">
-                  {productsByClassification.standard.name}
+                  {productsByCondition.exhibition.name}
                 </h2>
                 <p className="text-sm text-secondary/70 max-w-[60em]">
-                  {productsByClassification.standard.description}
+                  {productsByCondition.exhibition.description}
                 </p>
-                <p className="text-primary text-[.8em] mt-2">
-                  <span>Todos los productos salen probados</span>
-                </p>
+                {productsByCondition.exhibition.products.length > 0 ? (
+                  <p className="text-primary text-[.8em] mt-2">
+                    <span>Todos los productos salen probados</span>
+                  </p>
+                ) : (
+                  <p className="text-red text-[.8em] mt-2">
+                    <span>
+                      <span>Disponibles en stock</span>
+                    </span>
+                  </p>
+                )}
               </div>
             </div>
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {productsByClassification.standard.products.map(
-                (product, index) => (
-                  <ProductCard key={index} product={product} />
-                ),
-              )}
+              {productsByCondition.exhibition.products.map((product, index) => (
+                <ProductCard key={index} product={product} />
+              ))}
             </div>
           </div>
         )}
-        {productsByClassification.budget.products.length > 0 && (
+        {productsByCondition.used.products.length > 0 && (
           <div className="!mt-10 !mb-[5em]">
             <div className="mt-6 mb-6 flex items-end justify-between">
               <div>
                 <h2 className="text-2xl font-bold text-secondary">
-                  {productsByClassification.budget.name}
+                  {productsByCondition.used.name}
                 </h2>
                 <p className="text-sm text-secondary/70 max-w-[60em]">
-                  {productsByClassification.budget.description}
+                  {productsByCondition.used.description}
                 </p>
-                <p className="text-primary text-[.8em] mt-2">
-                  <span>Todos los productos salen probados</span>
-                </p>
+                {productsByCondition.used.products.length > 0 ? (
+                  <p className="text-primary text-[.8em] mt-2">
+                    <span>Todos los productos salen probados</span>
+                  </p>
+                ) : (
+                  <p className="text-red text-[.8em] mt-2">
+                    <span>
+                      <span>Disponibles en stock</span>
+                    </span>
+                  </p>
+                )}
               </div>
             </div>
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {productsByClassification.budget.products.map(
-                (product, index) => (
-                  <ProductCard key={index} product={product} />
-                ),
-              )}
+              {productsByCondition.used.products.map((product, index) => (
+                <ProductCard key={index} product={product} />
+              ))}
             </div>
           </div>
         )}
-        {productsByClassification.clearance.products.length > 0 && (
-          <div className="!mt-10 !mb-[5em]">
-            <div className="mt-6 mb-6 flex items-end justify-between">
-              <div>
-                <h2 className="text-2xl font-bold text-secondary">
-                  {productsByClassification.clearance.name}
-                </h2>
-                <p className="text-sm text-secondary/70 max-w-[60em]">
-                  {productsByClassification.clearance.description}
-                </p>
-                <p className="text-primary text-[.8em] mt-2">
-                  <span>Todos los productos salen probados</span>
-                </p>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {productsByClassification.clearance.products.map(
-                (product, index) => (
-                  <ProductCard key={index} product={product} />
-                ),
-              )}
-            </div>
-          </div>
+        {quantityProjectors >= 3 && (
+          <section className="mt-10 rounded-2xl p-6 text-center shadow-sm text-white  bg-gradient-to-br from-secondary/90 via-secondary to-secondary/90 relative">
+            <Image
+              src="/images/pet-corriendo-izquierda.png"
+              alt="pet iubizon"
+              width={500}
+              height={500}
+              className="relative lg:absolute top-[1em] lg:top-[-8em] right-[1em] lg:right-[4em] w-[23em] mx-auto"
+            />
+            <h3 className="text-xl font-bold">
+              🔥 Oferta por compra por lotes
+            </h3>
+            <p className="mt-1 opaproducty-90">
+              Entre proyectores mixtos o del mismo modelo
+            </p>
+            <p className="mt-2 text-2xl font-extrabold text-primary">
+              A UN PRECIO ESPECIAL
+            </p>
+            <p className="text-sm opacity-95">
+              Entrega inmediata • Prueba de funcionamiento • Con garantía
+            </p>
+            <a
+              href="https://wa.me/51972300301?text=Hola%20iubizon,%20quiero%20el%20lote%20completo"
+              target="_blank"
+              className="mt-4 inline-flex rounded-full px-5 py-3 text-sm font-semibold shadow bg-primary"
+            >
+              Reservar ahora
+            </a>
+          </section>
         )}
-        {productsByClassification.wholesale.products.length > 0 && (
-          <div className="!mt-10 !mb-[5em]">
-            <div className="mt-6 mb-6 flex items-end justify-between">
-              <div>
-                <h2 className="text-2xl font-bold text-secondary">
-                  {productsByClassification.wholesale.name}
-                </h2>
-                <p className="text-sm text-secondary/70 max-w-[60em]">
-                  {productsByClassification.wholesale.description}
-                </p>
-                <p className="text-primary text-[.8em] mt-2">
-                  <span>Todos los productos salen probados</span>
-                </p>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {productsByClassification.wholesale.products.map(
-                (product, index) => (
-                  <ProductCard key={index} product={product} />
-                ),
-              )}
-            </div>
-          </div>
-        )}
-        <section className="mt-10 rounded-2xl p-6 text-center shadow-sm text-white  bg-gradient-to-br from-secondary/90 via-secondary to-secondary/90 relative">
-          <Image
-            src="/images/pet-corriendo-izquierda.png"
-            alt="pet iubizon"
-            width={500}
-            height={500}
-            className="relative lg:absolute top-[1em] lg:top-[-8em] right-[1em] lg:right-[4em] w-[23em] mx-auto"
-          />
-          <h3 className="text-xl font-bold">
-            🔥 Oferta por compra de lote Completo
-          </h3>
-          <p className="mt-1 opaproducty-90">
-            {quantityProjectors} proyectores mixtos
-          </p>
-          <p className="mt-2 text-2xl font-extrabold text-primary">
-            A UN PRECIO ESPECIAL
-          </p>
-          <p className="text-sm opacity-95">
-            Entrega inmediata • Incluye prueba de funcionamiento
-          </p>
-          <a
-            href="https://wa.me/51972300301?text=Hola%20iubizon,%20quiero%20el%20lote%20completo"
-            target="_blank"
-            className="mt-4 inline-flex rounded-full px-5 py-3 text-sm font-semibold shadow bg-primary"
-          >
-            Reservar ahora
-          </a>
-        </section>
-        <p className="mt-6 text-center text-xs text-secondary/70">
-          Todos los equipos son de exhibición verificada. Algunos productos
-          pueden tener detalles estéticos menores. Precios negociables.
+        <p className="mt-6 text-center text-sm text-secondary/70">
+          Todos los equipos son funcionales • Si viene a nuestro local, se hace
+          su respectiva prueba • Con garantía
         </p>
       </main>
     </div>
