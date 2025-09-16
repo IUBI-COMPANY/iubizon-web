@@ -1,6 +1,6 @@
 export type Phone = {
-  numberPhone: string;
-  phoneCode: string;
+  number: number;
+  countryCode: string;
 };
 
 export type ContactFormData = {
@@ -10,6 +10,6 @@ export type ContactFormData = {
   email: string;
   phone: Phone;
   message?: string;
-  agreeToPolicies: boolean;
-  host: "iubizon.com";
+  termsAndConditions: boolean;
+  hostname: string;
 };

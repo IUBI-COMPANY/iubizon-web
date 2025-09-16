@@ -1,53 +1,52 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import { ContactForm } from "@/components/ui/ContactForm";
 import { ContactFormData } from "./contact";
 
 export default function ContactClientPage() {
-  const [formData, setFormData] = useState<Partial<ContactFormData>>({});
+  const IUBI_SALES_API = "https://api-iubisales.web.app";
 
-  const onSetFormData = (newData: Partial<ContactFormData>) => {
-    setFormData((prev) => ({ ...prev, ...newData }));
-  };
-
-  const onSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const validateEmail = (email: string) => {
-      const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-      return emailRegex.test(email);
+  const mapForm = (_data: ContactFormData) => {
+    const _mapForm = {
+      contact: {
+        fullName: `${_data?.firstName} ${_data?.lastName}`,
+        firstName: _data?.firstName,
+        lastName: _data?.lastName,
+        email: _data.email,
+        phone: {
+          number: _data.phone?.number,
+          countryCode: _data.phone?.countryCode,
+        },
+        message: _data?.message,
+        termsAndConditions: _data.termsAndConditions,
+        hostname: "iubizon.com",
+      },
     };
 
-    try {
-      if (!validateEmail(formData?.email || "")) {
-        throw new Error("Invalid email format");
-      }
+    return _mapForm;
+  };
 
-      const newFormData: ContactFormData = {
-        fullName:
-          `${formData.firstName || ""} ${formData.lastName || ""}`.toLowerCase(),
-        firstName: formData.firstName?.toLowerCase(),
-        lastName: formData.lastName?.toLowerCase(),
-        email: formData.email || "".toLowerCase(),
-        phone: {
-          numberPhone: formData.phone?.numberPhone || "".toLowerCase(),
-          phoneCode: formData.phone?.phoneCode || "".toLowerCase(),
+  const onSubmit = async (data: ContactFormData) => {
+    const newData = mapForm(data);
+    try {
+      const response = await fetch(`${IUBI_SALES_API}/emails/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-        message: formData.message?.toLowerCase(),
-        agreeToPolicies: formData.agreeToPolicies || false,
-        host: "iubizon.com",
-      };
-      console.log("data", newFormData);
+        body: JSON.stringify(newData),
+      });
+
+      await response;
     } catch (error) {
-      console.log("Error", error);
+      console.log("Error: ", error);
     }
   };
 
   return (
     <div className="min-h-screen h-auto flex flex-col lg:flex-row w-full bg-gray-200">
-      <div className="w-1/2 h-screen">
+      <div className="w-full hidden lg:block lg:w-1/2 h-screen ">
         <Image
           src="/images/contactClient.png"
           alt="contacto-proyectores"
@@ -56,12 +55,8 @@ export default function ContactClientPage() {
           className="w-full h-full max-h-screen object-cover object-[center_30%]"
         />
       </div>
-      <div className="w-1/2 grid place-items-center">
-        <ContactForm
-          formData={formData}
-          onSetFormData={onSetFormData}
-          onSubmit={onSubmit}
-        />
+      <div className="w-full lg:w-1/2 grid place-items-center bg-slate-50">
+        <ContactForm onSubmit={onSubmit} />
       </div>
     </div>
   );
