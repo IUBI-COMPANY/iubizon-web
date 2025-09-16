@@ -14,7 +14,35 @@ export default function ContactClientPage() {
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("formData:", formData);
+
+    const validateEmail = (email: string) => {
+      const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+      return emailRegex.test(email);
+    };
+
+    try {
+      if (!validateEmail(formData?.email || "")) {
+        throw new Error("Invalid email format");
+      }
+
+      const newFormData: ContactFormData = {
+        fullName:
+          `${formData.firstName || ""} ${formData.lastName || ""}`.toLowerCase(),
+        firstName: formData.firstName?.toLowerCase(),
+        lastName: formData.lastName?.toLowerCase(),
+        email: formData.email || "".toLowerCase(),
+        phone: {
+          numberPhone: formData.phone?.numberPhone || "".toLowerCase(),
+          phoneCode: formData.phone?.phoneCode || "".toLowerCase(),
+        },
+        message: formData.message?.toLowerCase(),
+        agreeToPolicies: formData.agreeToPolicies || false,
+        host: "iubizon.com",
+      };
+      console.log("data", newFormData);
+    } catch (error) {
+      console.log("Error", error);
+    }
   };
 
   return (

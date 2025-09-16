@@ -80,6 +80,7 @@ export const ContactForm = ({
                 className="block w-full rounded-md bg-white outline-1 -outline-offset-1 outline-gray-300 px-3.5 py-2 text-base text-primary outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500"
                 value={formData.email || ""}
                 onChange={(e) => onSetFormData({ email: e.target.value })}
+                required
               />
             </div>
           </div>
@@ -108,6 +109,7 @@ export const ContactForm = ({
                         },
                       })
                     }
+                    required
                   >
                     {countryCodes.map((country) => (
                       <option key={country.id} value={country.code}>
@@ -135,6 +137,7 @@ export const ContactForm = ({
                       },
                     })
                   }
+                  required
                 />
               </div>
             </div>
@@ -171,6 +174,7 @@ export const ContactForm = ({
                   onChange={(e) =>
                     onSetFormData({ agreeToPolicies: e.target.checked })
                   }
+                  required
                 />
               </div>
             </div>
