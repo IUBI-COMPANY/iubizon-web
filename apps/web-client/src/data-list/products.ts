@@ -5,7 +5,7 @@ export type Classification =
   | "clearance"
   | "wholesale";
 
-export type ProductCondition = "new" | "exhibition" | "used";
+export type ProductCondition = "new" | "reconditioned";
 
 export interface Product {
   id: string;
@@ -125,7 +125,7 @@ export const products: Product[] = [
     name: "Epson PowerLite 980W",
     stock: 0,
     oldStock: 2,
-    condition: "exhibition",
+    condition: "reconditioned",
     description: "Buena proyección, detalles estéticos",
     price: 1050,
     badge: "Top venta",
@@ -174,7 +174,7 @@ export const products: Product[] = [
       { type: "image", src: "/images/975W/4.jpg" },
       { type: "image", src: "/images/975W/5.jpg" },
     ],
-    condition: "exhibition",
+    condition: "reconditioned",
     displayTechnology: "3LCD",
     lumens: "3600 lúmenes ANSI",
     brand: "Epson",
@@ -210,7 +210,7 @@ export const products: Product[] = [
       { type: "image", src: "/images/1925W/4.jpg" },
       { type: "image", src: "/images/1925W/5.jpg" },
     ],
-    condition: "exhibition",
+    condition: "reconditioned",
     displayTechnology: "3LCD",
     lumens: "4000 lúmenes ANSI",
     brand: "Epson",
@@ -246,7 +246,7 @@ export const products: Product[] = [
       { type: "image", src: "/images/970/4.jpg" },
       { type: "image", src: "/images/970/5.jpg" },
     ],
-    condition: "used",
+    condition: "reconditioned",
     displayTechnology: "3LCD",
     lumens: "4000 lúmenes ANSI",
     brand: "Epson",
@@ -283,7 +283,7 @@ export const products: Product[] = [
       { type: "image", src: "/images/119W/4.jpg" },
       { type: "image", src: "/images/119W/5.jpg" },
     ],
-    condition: "exhibition",
+    condition: "reconditioned",
     displayTechnology: "3LCD",
     lumens: "4000 lúmenes ANSI",
     brand: "Epson",
@@ -320,7 +320,7 @@ export const products: Product[] = [
       { type: "image", src: "/images/108/4.jpg" },
       { type: "image", src: "/images/108/5.jpg" },
     ],
-    condition: "exhibition",
+    condition: "reconditioned",
     displayTechnology: "3LCD",
     lumens: "3700 lúmenes ANSI",
     brand: "Epson",
@@ -356,7 +356,7 @@ export const products: Product[] = [
       { type: "image", src: "/images/98H/4.jpg" },
       { type: "image", src: "/images/98H/5.jpg" },
     ],
-    condition: "used",
+    condition: "reconditioned",
     displayTechnology: "3LCD",
     lumens: "2700 lúmenes ANSI",
     brand: "Epson",

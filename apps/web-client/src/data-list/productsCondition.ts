@@ -1,6 +1,6 @@
 import { ProductCondition } from "@/data-list/products";
 
-interface DetailProductCondition {
+export interface DetailProductCondition {
   name: string;
   description: string;
 }
@@ -10,18 +10,13 @@ export const productsCondition: Record<
   DetailProductCondition
 > = {
   new: {
-    name: "Nuevos",
+    name: "Nuevo",
     description:
       "Productos completamente nuevos, en su empaque y con garantía.",
   },
-  exhibition: {
-    name: "De exhibición",
+  reconditioned: {
+    name: "Reacondicionado",
     description:
       "Artículos utilizados solo para demostraciones o exposición en tienda. Presentan leves signos estéticos, pero están en excelente estado, funcionamiento garantizado y con garantía.",
-  },
-  used: {
-    name: "Segunda mano",
-    description:
-      "Productos con uso previo, revisados y probados para asegurar su correcto funcionamiento. Pueden mostrar algunas manchas y detalles estéticos menores (no incluye garantía).",
   },
 };

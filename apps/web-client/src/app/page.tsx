@@ -11,15 +11,11 @@ export default function Home() {
       ...productsCondition.new,
       products: products.filter((products) => products.condition === "new"),
     },
-    exhibition: {
-      ...productsCondition.exhibition,
+    reconditioned: {
+      ...productsCondition.reconditioned,
       products: products.filter(
-        (products) => products.condition === "exhibition",
+        (products) => products.condition === "reconditioned",
       ),
-    },
-    used: {
-      ...productsCondition.used,
-      products: products.filter((products) => products.condition === "used"),
     },
   };
 
@@ -56,7 +52,8 @@ export default function Home() {
               Venta de proyectores
             </h1>
             <p className="mt-3 max-w-2xl md:text-lg opacity-95">
-              De exhibición verificada • Totalmente funcionales • Precios bajos
+              Productos para todo público • Totalmente funcionales • Buenos
+              precios
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
               <a
@@ -126,17 +123,17 @@ export default function Home() {
             </div>
           </div>
         )}
-        {productsByCondition.exhibition.products.length > 0 && (
+        {productsByCondition.reconditioned.products.length > 0 && (
           <div className="!mt-10 !mb-[5em]">
             <div className="mt-6 mb-6 flex items-end justify-between">
               <div>
                 <h2 className="text-2xl font-bold text-secondary">
-                  {productsByCondition.exhibition.name}
+                  {productsByCondition.reconditioned.name}
                 </h2>
                 <p className="text-sm text-secondary/70 max-w-[60em]">
-                  {productsByCondition.exhibition.description}
+                  {productsByCondition.reconditioned.description}
                 </p>
-                {productsByCondition.exhibition.products.length > 0 ? (
+                {productsByCondition.reconditioned.products.length > 0 ? (
                   <p className="text-primary text-[.8em] mt-2">
                     <span>Todos los productos salen probados</span>
                   </p>
@@ -150,39 +147,11 @@ export default function Home() {
               </div>
             </div>
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {productsByCondition.exhibition.products.map((product, index) => (
-                <ProductCard key={index} product={product} />
-              ))}
-            </div>
-          </div>
-        )}
-        {productsByCondition.used.products.length > 0 && (
-          <div className="!mt-10 !mb-[5em]">
-            <div className="mt-6 mb-6 flex items-end justify-between">
-              <div>
-                <h2 className="text-2xl font-bold text-secondary">
-                  {productsByCondition.used.name}
-                </h2>
-                <p className="text-sm text-secondary/70 max-w-[60em]">
-                  {productsByCondition.used.description}
-                </p>
-                {productsByCondition.used.products.length > 0 ? (
-                  <p className="text-primary text-[.8em] mt-2">
-                    <span>Todos los productos salen probados</span>
-                  </p>
-                ) : (
-                  <p className="text-red text-[.8em] mt-2">
-                    <span>
-                      <span>Disponibles en stock</span>
-                    </span>
-                  </p>
-                )}
-              </div>
-            </div>
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {productsByCondition.used.products.map((product, index) => (
-                <ProductCard key={index} product={product} />
-              ))}
+              {productsByCondition.reconditioned.products.map(
+                (product, index) => (
+                  <ProductCard key={index} product={product} />
+                ),
+              )}
             </div>
           </div>
         )}
