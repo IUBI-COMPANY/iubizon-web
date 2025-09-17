@@ -1,23 +1,28 @@
 "use client";
 import { useForm } from "react-hook-form";
 import { ChevronDownIcon } from "lucide-react";
-import { ContactFormData } from "@/app/contact/contact";
-import { countryCodes } from "@/data-list/country-code";
+import prefixs from "@/data-list/countriesISO.json";
 
 interface ContactFormProps {
-  onSubmit: (data: ContactFormData) => void;
+  serverActionSendContactEmail: (formData: Contact) => Promise<void>;
 }
 
-export const ContactForm = ({ onSubmit }: ContactFormProps) => {
+export const ContactForm = ({
+  serverActionSendContactEmail,
+}: ContactFormProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ContactFormData>({
+  } = useForm<Contact>({
     defaultValues: {
-      phone: { countryCode: "51" },
+      phone: { prefix: "+51" },
     },
   });
+
+  const onSubmit = async (formData: Contact) => {
+    return await serverActionSendContactEmail(formData);
+  };
 
   return (
     <div className="w-full h-screen isolate bg-slate-50 flex flex-col justify-center my-15 sm:my-10 md:my-5 lg:my-0">
@@ -113,17 +118,20 @@ export const ContactForm = ({ onSubmit }: ContactFormProps) => {
               >
                 <div className="grid shrink-0 grid-cols-1 focus-within:relative">
                   <select
-                    id="countryCode"
+                    id="prefix"
                     autoComplete="country"
                     aria-label="Country"
                     className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-transparent py-2 pr-7 pl-3.5 text-base text-gray-400 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2  sm:text-sm/6"
-                    {...register("phone.countryCode", {
+                    {...register("phone.prefix", {
                       required: "Selecciona el código de país",
                     })}
                   >
-                    {countryCodes.map((country) => (
-                      <option key={country.id} value={country.code}>
-                        {country.label}
+                    {prefixs.map((country, index) => (
+                      <option
+                        key={`${country.phonePrefix}-${index}`}
+                        value={country.phonePrefix}
+                      >
+                        {country.name} ({country.phonePrefix})
                       </option>
                     ))}
                   </select>

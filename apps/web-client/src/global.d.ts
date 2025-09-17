@@ -1,9 +1,9 @@
-export type Phone = {
+interface Phone {
   number: number;
-  countryCode: string;
-};
+  prefix: string;
+}
 
-export type ContactFormData = {
+interface Contact {
   fullName?: string;
   firstName?: string;
   lastName?: string;
@@ -12,4 +12,4 @@ export type ContactFormData = {
   message?: string;
   termsAndConditions: boolean;
   hostname: string;
-};
+}
