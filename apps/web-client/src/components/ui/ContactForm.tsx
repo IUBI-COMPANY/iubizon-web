@@ -11,6 +11,7 @@ import countriesISO from "@/data-list/countriesISO.json";
 import { TextArea } from "@/components/ui/TextArea";
 import { Form } from "@/components/ui/Form";
 import { useTransition } from "react";
+import { LoaderCircle, SendIcon } from "lucide-react";
 
 interface ContactFormProps {
   serverActionSendContactEmail: (
@@ -81,159 +82,170 @@ export const ContactForm = ({
           </p>
         </div>
         <Form onSubmit={handleSubmit(onSubmit)}>
-          <div className="md:col-span-2">
-            <Controller
-              name="firstName"
-              control={control}
-              render={({ field: { onChange, value, name } }) => (
-                <Input
-                  label="Nombres"
-                  placeholder="Ingresa tus nombres"
-                  name={name}
-                  value={value}
-                  error={error(name)}
-                  helperText={errorMessage(name)}
-                  required={required(name)}
-                  onChange={onChange}
-                  autoComplete="given-name"
-                />
-              )}
-            />
-          </div>
-          <div className="md:col-span-2">
-            <Controller
-              name="lastName"
-              control={control}
-              render={({ field: { onChange, value, name } }) => (
-                <Input
-                  label="Apellidos"
-                  placeholder="Ingresa tus apellidos"
-                  name={name}
-                  value={value}
-                  error={error(name)}
-                  helperText={errorMessage(name)}
-                  required={required(name)}
-                  onChange={onChange}
-                  autoComplete="family-name"
-                />
-              )}
-            />
-          </div>
-          <div className="md:col-span-4">
-            <Controller
-              name="email"
-              control={control}
-              render={({ field: { onChange, value, name } }) => (
-                <Input
-                  label="Correo Electrónico"
-                  placeholder="Ingresa tu correo electrónico"
-                  type="email"
-                  name={name}
-                  value={value}
-                  error={error(name)}
-                  helperText={errorMessage(name)}
-                  required={required(name)}
-                  onChange={onChange}
-                  autoComplete="email"
-                />
-              )}
-            />
-          </div>
-          <div className="md:col-span-1">
-            <Controller
-              name="phone.prefix"
-              control={control}
-              render={({ field: { onChange, value, name } }) => (
-                <Select
-                  label="Prefijo"
-                  placeholder="Selecciona un país"
-                  name={name}
-                  value={value}
-                  error={error(name)}
-                  helperText={errorMessage(name)}
-                  required={required(name)}
-                  onChange={onChange}
-                  options={countriesISO.map((iso) => ({
-                    label: `${iso.name} (${iso.phonePrefix})`,
-                    value: iso.phonePrefix,
-                  }))}
-                />
-              )}
-            />
-          </div>
-          <div className="md:col-span-3">
-            <Controller
-              name="phone.number"
-              control={control}
-              render={({ field: { onChange, value, name } }) => (
-                <Input
-                  label="Teléfono"
-                  placeholder="Ingresa tu numero de teléfono"
-                  type="number"
-                  name={name}
-                  value={value}
-                  error={error(name)}
-                  helperText={errorMessage(name)}
-                  required={required(name)}
-                  onChange={onChange}
-                />
-              )}
-            />
-          </div>
-          <div className="md:col-span-4">
-            <Controller
-              name="message"
-              control={control}
-              render={({ field: { onChange, value, name } }) => (
-                <TextArea
-                  label="Mensaje"
-                  placeholder="Escribe tu mensaje aquí..."
-                  rows={5}
-                  name={name}
-                  value={value}
-                  error={error(name)}
-                  helperText={errorMessage(name)}
-                  required={required(name)}
-                  onChange={onChange}
-                />
-              )}
-            />
-          </div>
-          {/* Terms and Conditions - Full Width */}
-          <div className="md:col-span-4">
-            <Controller
-              name="termsAndConditions"
-              control={control}
-              render={({ field: { onChange, value, name } }) => (
-                <Checkbox
-                  name={name}
-                  checked={value}
-                  error={error(name)}
-                  helperText={errorMessage(name)}
-                  required={required(name)}
-                  onChange={onChange}
-                >
-                  <div>
-                    Acepto los{" "}
-                    <a
-                      href="#"
-                      className="hover:text-slate-800 font-semibold underline"
-                    >
-                      términos y condiciones
-                    </a>
+          <div className="grid grid-cols-1 gap-3 md:gap-4 md:grid-cols-4">
+            <div className="md:col-span-2">
+              <Controller
+                name="firstName"
+                control={control}
+                render={({ field: { onChange, value, name } }) => (
+                  <Input
+                    label="Nombres"
+                    placeholder="Ingresa tus nombres"
+                    name={name}
+                    value={value}
+                    error={error(name)}
+                    helperText={errorMessage(name)}
+                    required={required(name)}
+                    onChange={onChange}
+                    autoComplete="given-name"
+                  />
+                )}
+              />
+            </div>
+            <div className="md:col-span-2">
+              <Controller
+                name="lastName"
+                control={control}
+                render={({ field: { onChange, value, name } }) => (
+                  <Input
+                    label="Apellidos"
+                    placeholder="Ingresa tus apellidos"
+                    name={name}
+                    value={value}
+                    error={error(name)}
+                    helperText={errorMessage(name)}
+                    required={required(name)}
+                    onChange={onChange}
+                    autoComplete="family-name"
+                  />
+                )}
+              />
+            </div>
+            <div className="md:col-span-4">
+              <Controller
+                name="email"
+                control={control}
+                render={({ field: { onChange, value, name } }) => (
+                  <Input
+                    label="Correo Electrónico"
+                    placeholder="Ingresa tu correo electrónico"
+                    type="email"
+                    name={name}
+                    value={value}
+                    error={error(name)}
+                    helperText={errorMessage(name)}
+                    required={required(name)}
+                    onChange={onChange}
+                    autoComplete="email"
+                  />
+                )}
+              />
+            </div>
+            <div className="md:col-span-1">
+              <Controller
+                name="phone.prefix"
+                control={control}
+                render={({ field: { onChange, value, name } }) => (
+                  <Select
+                    label="Prefijo"
+                    placeholder="Selecciona un país"
+                    name={name}
+                    value={value}
+                    error={error(name)}
+                    helperText={errorMessage(name)}
+                    required={required(name)}
+                    onChange={onChange}
+                    options={countriesISO.map((iso) => ({
+                      label: `${iso.name} (${iso.phonePrefix})`,
+                      value: iso.phonePrefix,
+                    }))}
+                  />
+                )}
+              />
+            </div>
+            <div className="md:col-span-3">
+              <Controller
+                name="phone.number"
+                control={control}
+                render={({ field: { onChange, value, name } }) => (
+                  <Input
+                    label="Teléfono"
+                    placeholder="Ingresa tu numero de teléfono"
+                    type="number"
+                    name={name}
+                    value={value}
+                    error={error(name)}
+                    helperText={errorMessage(name)}
+                    required={required(name)}
+                    onChange={onChange}
+                  />
+                )}
+              />
+            </div>
+            <div className="md:col-span-4">
+              <Controller
+                name="message"
+                control={control}
+                render={({ field: { onChange, value, name } }) => (
+                  <TextArea
+                    label="Mensaje"
+                    placeholder="Escribe tu mensaje aquí..."
+                    rows={5}
+                    name={name}
+                    value={value}
+                    error={error(name)}
+                    helperText={errorMessage(name)}
+                    required={required(name)}
+                    onChange={onChange}
+                  />
+                )}
+              />
+            </div>
+            {/* Terms and Conditions - Full Width */}
+            <div className="md:col-span-4">
+              <Controller
+                name="termsAndConditions"
+                control={control}
+                render={({ field: { onChange, value, name } }) => (
+                  <Checkbox
+                    name={name}
+                    checked={value}
+                    error={error(name)}
+                    helperText={errorMessage(name)}
+                    required={required(name)}
+                    onChange={onChange}
+                  >
+                    <div>
+                      Acepto los{" "}
+                      <a
+                        href="#"
+                        className="hover:text-slate-800 font-semibold underline"
+                      >
+                        términos y condiciones
+                      </a>
+                    </div>
+                  </Checkbox>
+                )}
+              />
+            </div>
+            <div className="md:col-span-4">
+              <button
+                type="submit"
+                disabled={isPending}
+                className="w-full rounded-xl bg-primary px-4 py-3 text-center text-sm font-semibold text-white shadow-sm cursor-pointer hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors duration-200"
+              >
+                {isPending ? (
+                  <div className="inline-flex gap-2 items-center">
+                    <LoaderCircle className="animate-spin" /> Enviando
+                    mensaje...
                   </div>
-                </Checkbox>
-              )}
-            />
-          </div>
-          <div className="md:col-span-4">
-            <button
-              type="submit"
-              disabled={isPending}
-              className="w-full rounded-md bg-primary px-4 py-3 text-center text-sm font-semibold text-white shadow-sm cursor-pointer hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors duration-200"
-            >
-              {isPending ? "Enviando mensaje..." : "Enviar mensaje"}
-            </button>
+                ) : (
+                  <div className="inline-flex gap-2 items-center">
+                    <SendIcon /> Enviar mensaje
+                  </div>
+                )}
+              </button>
+            </div>
           </div>
         </Form>
       </div>
