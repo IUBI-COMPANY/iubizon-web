@@ -53,18 +53,26 @@ export const useFormUtils = <FormData extends ObjectType>({
   const required: UseFormUtils<FormData>["required"] = (name) => {
     const describe = schema.describe();
 
-    const describePath = [];
-
+    const describePath: string[] = [];
     name.split(".").forEach((fieldName) => {
       describePath.push("fields");
       describePath.push(fieldName);
     });
 
-    describePath.push("tests");
+    const fieldInfo = get(describe, describePath);
 
-    const tests: Tests = get(describe, describePath, []);
+    const testsPath = [...describePath, "tests"];
+    let tests: Tests = get(describe, testsPath, []);
 
-    return tests.some((test) => test.name === "required");
+    if (tests.length === 0) {
+      tests = fieldInfo?.tests || [];
+    }
+
+    const hasRequiredTest = tests.some((test) => test.name === "required");
+
+    const isNotOptional = fieldInfo?.optional === false;
+
+    return hasRequiredTest || isNotOptional;
   };
 
   return { required, error, errorMessage, errorDetail };
