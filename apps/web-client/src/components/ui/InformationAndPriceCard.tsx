@@ -101,7 +101,7 @@ export const InformationAndPriceCard = ({
             <li className="my-3">
               <span className="text-sm text-secondary/90">
                 <p className="mt-1 text-sm text-green-600">
-                  Lo sentimos ya que queda stock pero{" "}
+                  Lo sentimos ya no queda stock pero{" "}
                   <strong>Puede solicitarlo a pedido 🙌🏼</strong>
                 </p>
               </span>
