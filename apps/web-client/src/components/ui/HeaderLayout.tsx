@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { twMerge } from "tailwind-merge";
+import { setLocale } from "yup";
+import yup from "@/config/yup.json";
 import { Menu } from "lucide-react";
 import { ContentWrapper } from "@/components/ui/ContentWrapper";
 import { Drawer } from "@/components/ui/DrawerLayout";
@@ -24,10 +26,13 @@ const navigation: HeaderNavigation[] = [
 
 export const HeaderLayout = () => {
   const pathname = usePathname();
-
   const [isOpen, setIsOpen] = useState(false);
 
   const onOpenDrawer = () => setIsOpen(!isOpen);
+
+  useEffect(() => {
+    setLocale(yup["es"]);
+  }, []);
 
   useEffect(() => {
     if (isOpen) {

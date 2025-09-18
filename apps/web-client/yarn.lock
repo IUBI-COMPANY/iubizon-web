@@ -100,6 +100,13 @@
   resolved "https://registry.yarnpkg.com/@fontsource-variable/manrope/-/manrope-5.2.6.tgz#5dec6ba84ae3dbd4cf85ab47686f5219456ace2f"
   integrity sha512-8a0INmmJfrcOO+MDThDefifCqreErfhNX1qy9l9VMc0FNCUTJtJi8Lclk8H5RqsDmR5PBYfTot1iUZFZ7qX57A==
 
+"@hookform/resolvers@^5.2.2":
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/@hookform/resolvers/-/resolvers-5.2.2.tgz#5ac16cd89501ca31671e6e9f0f5c5d762a99aa12"
+  integrity sha512-A/IxlMLShx3KjV/HeTcTfaMxdwy690+L/ZADoeaTltLx+CVuzkeVIPuybK3jrRfw7YZnmdKsVVHAlEPIAEUNlA==
+  dependencies:
+    "@standard-schema/utils" "^0.3.0"
+
 "@humanfs/core@^0.19.1":
   version "0.19.1"
   resolved "https://registry.npmjs.org/@humanfs/core/-/core-0.19.1.tgz"
@@ -396,6 +403,11 @@
   resolved "https://registry.npmjs.org/@rushstack/eslint-patch/-/eslint-patch-1.12.0.tgz"
   integrity sha512-5EwMtOqvJMMa3HbmxLlF74e+3/HhwBTMcvt3nqVJgGCozO6hzIPOBlwm8mGVNR9SN2IJpxSnlxczyDjcn7qIyw==
 
+"@standard-schema/utils@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@standard-schema/utils/-/utils-0.3.0.tgz#3d5e608f16c2390c10528e98e59aef6bf73cae7b"
+  integrity sha512-e7Mew686owMaPJVNNLs55PUvgz371nKgwsc4vxE49zsODpJEnxgxRo2y/OKrqueavXgZNMDVj3DdHFlaSAeU8g==
+
 "@swc/helpers@0.5.15":
   version "0.5.15"
   resolved "https://registry.npmjs.org/@swc/helpers/-/helpers-0.5.15.tgz"
@@ -545,6 +557,11 @@
   version "0.0.29"
   resolved "https://registry.npmjs.org/@types/json5/-/json5-0.0.29.tgz"
   integrity sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==
+
+"@types/lodash@^4.17.20":
+  version "4.17.20"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.17.20.tgz#1ca77361d7363432d29f5e55950d9ec1e1c6ea93"
+  integrity sha512-H3MHACvFUEiujabxhaI/ImO6gUrd8oOurg7LQtS7mbwIXA/cUqWrvBsaeJ23aZEPk1TAYkurjfMbSELfoCXlGA==
 
 "@types/node@^20":
   version "20.19.11"
@@ -2145,6 +2162,11 @@ lodash.merge@^4.6.2:
   resolved "https://registry.npmjs.org/lodash.merge/-/lodash.merge-4.6.2.tgz"
   integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
 
+lodash@^4.17.21:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
+
 loose-envify@^1.4.0:
   version "1.4.0"
   resolved "https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz"
@@ -2439,6 +2461,11 @@ prop-types@^15.8.1:
     object-assign "^4.1.1"
     react-is "^16.13.1"
 
+property-expr@^2.0.5:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/property-expr/-/property-expr-2.0.6.tgz#f77bc00d5928a6c748414ad12882e83f24aec1e8"
+  integrity sha512-SVtmxhRE/CGkn3eZY1T6pC8Nln6Fr/lu1mKSgRud0eC73whjGfoAogbn78LkD8aFL0zz3bAFerKSnOl7NlErBA==
+
 punycode@^2.1.0:
   version "2.3.1"
   resolved "https://registry.npmjs.org/punycode/-/punycode-2.3.1.tgz"
@@ -2455,6 +2482,11 @@ react-dom@19.1.0:
   integrity sha512-Xs1hdnE+DyKgeHJeJznQmYMIBG3TKIHJJT95Q58nHLSrElKlGQqDTR2HQ9fx5CN/Gk6Vh/kupBTDLU11/nDk/g==
   dependencies:
     scheduler "^0.26.0"
+
+react-hook-form@^7.62.0:
+  version "7.62.0"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.62.0.tgz#2d81e13c2c6b6d636548e440818341ca753218d0"
+  integrity sha512-7KWFejc98xqG/F4bAxpL41NB3o1nnvQO1RWZT3TqRZYL8RryQETGfEdVnJN2fy1crCiBLLjkRBVK05j24FxJGA==
 
 react-is@^16.13.1:
   version "16.13.1"
@@ -2839,6 +2871,11 @@ tar@^7.4.3:
     mkdirp "^3.0.1"
     yallist "^5.0.0"
 
+tiny-case@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/tiny-case/-/tiny-case-1.0.3.tgz#d980d66bc72b5d5a9ca86fb7c9ffdb9c898ddd03"
+  integrity sha512-Eet/eeMhkO6TX8mnUteS9zgPbUMQa4I6Kkp5ORiBD5476/m+PIRiumP5tmh5ioJpH7k51Kehawy2UDfsnxxY8Q==
+
 tinyglobby@^0.2.13:
   version "0.2.14"
   resolved "https://registry.npmjs.org/tinyglobby/-/tinyglobby-0.2.14.tgz"
@@ -2853,6 +2890,11 @@ to-regex-range@^5.0.1:
   integrity sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==
   dependencies:
     is-number "^7.0.0"
+
+toposort@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/toposort/-/toposort-2.0.2.tgz#ae21768175d1559d48bef35420b2f4962f09c330"
+  integrity sha512-0a5EOkAUp8D4moMi2W8ZF8jcga7BgZd91O/yabJCFY8az+XSzeGyTKs0Aoo897iV1Nj6guFq8orWDS96z91oGg==
 
 ts-api-utils@^2.1.0:
   version "2.1.0"
@@ -2880,6 +2922,11 @@ type-check@^0.4.0, type-check@~0.4.0:
   integrity sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==
   dependencies:
     prelude-ls "^1.2.1"
+
+type-fest@^2.19.0:
+  version "2.19.0"
+  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-2.19.0.tgz#88068015bb33036a598b952e55e9311a60fd3a9b"
+  integrity sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==
 
 typed-array-buffer@^1.0.3:
   version "1.0.3"
@@ -3054,3 +3101,13 @@ yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://registry.npmjs.org/yocto-queue/-/yocto-queue-0.1.0.tgz"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
+
+yup@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/yup/-/yup-1.7.0.tgz#5d2feeccc1725c39bfed6ec677cc0622527dafaf"
+  integrity sha512-VJce62dBd+JQvoc+fCVq+KZfPHr+hXaxCcVgotfwWvlR0Ja3ffYKaJBT8rptPOSKOGJDCUnW2C2JWpud7aRP6Q==
+  dependencies:
+    property-expr "^2.0.5"
+    tiny-case "^1.0.3"
+    toposort "^2.0.2"
+    type-fest "^2.19.0"

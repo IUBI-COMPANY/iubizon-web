@@ -101,7 +101,7 @@ export const InformationAndPriceCard = ({
             <li className="my-3">
               <span className="text-sm text-secondary/90">
                 <p className="mt-1 text-sm text-green-600">
-                  Lo sentimos ya que queda stock pero{" "}
+                  Lo sentimos ya no queda stock pero{" "}
                   <strong>Puede solicitarlo a pedido 🙌🏼</strong>
                 </p>
               </span>
@@ -110,7 +110,7 @@ export const InformationAndPriceCard = ({
           {product?.condition && (
             <li className="flex items-start">
               <span className="mt-1 text-xl text-primary"></span>
-              <span className="text-sm inline-flex items-center gap-4 text-font">
+              <span className="text-sm inline-flex items-center gap-4 text-foreground">
                 Condición:
                 <strong
                   className="inline-flex items-center gap-1 cursor-pointer"
@@ -136,7 +136,7 @@ export const InformationAndPriceCard = ({
                   <h2 className="text-xl font-bold mb-4 text-secondary">
                     Condición del producto
                   </h2>
-                  <p className="text-base mb-6 text-font">
+                  <p className="text-base mb-6 text-foreground">
                     {condition.description}
                   </p>
                 </div>
