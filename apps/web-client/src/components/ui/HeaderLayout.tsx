@@ -1,13 +1,20 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { twMerge } from "tailwind-merge";
+import { setLocale } from "yup";
+import yup from "@/config/yup.json";
 
 export const HeaderLayout = () => {
   const path = usePathname();
+
+  useEffect(() => {
+    setLocale(yup["es"]);
+  }, []);
+
   return (
     <>
       <header

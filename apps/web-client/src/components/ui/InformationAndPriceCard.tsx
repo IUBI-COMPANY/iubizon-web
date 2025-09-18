@@ -101,7 +101,7 @@ export const InformationAndPriceCard = ({
           {product?.condition && (
             <li className="flex items-start">
               <span className="mt-1 text-xl text-primary"></span>
-              <span className="text-sm inline-flex items-center gap-4 text-font">
+              <span className="text-sm inline-flex items-center gap-4 text-foreground">
                 Condición:
                 <strong
                   className="inline-flex items-center gap-1 cursor-pointer"
@@ -127,7 +127,7 @@ export const InformationAndPriceCard = ({
                   <h2 className="text-xl font-bold mb-4 text-secondary">
                     Condición del producto
                   </h2>
-                  <p className="text-base mb-6 text-font">
+                  <p className="text-base mb-6 text-foreground">
                     {product.condition}
                   </p>
                 </div>

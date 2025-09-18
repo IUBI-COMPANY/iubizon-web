@@ -1,8 +1,10 @@
 "use server";
 import { redirect } from "next/navigation";
 
-export async function sendContactEmail(formContact: Contact): Promise<void> {
-  const mapFormContact = (formContact: Contact) => ({
+export async function sendContactEmail(
+  formContact: Omit<Contact, "hostname">,
+): Promise<void> {
+  const mapFormContact = (formContact: Omit<Contact, "hostname">) => ({
     contact: {
       firstName: formContact?.firstName,
       lastName: formContact?.lastName,

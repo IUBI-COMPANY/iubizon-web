@@ -37,7 +37,6 @@ export default function ProductDetailPage({ product }: Props) {
     `}
       </style>
       <div className="min-h-screen h-auto flex flex-col w-full bg-white">
-
         {!product ? (
           <NoFoundComponent />
         ) : (
@@ -60,7 +59,7 @@ export default function ProductDetailPage({ product }: Props) {
                       Especificaciones del producto:
                     </div>
                     <div className="product-characteristics w-full grid grid-cols-1 lg:grid-cols-[1fr_40%] gap-x-10 gap-y-4">
-                      <div className="w-full flex flex-col gap-2 text-font font-mediun text-[.9em] ">
+                      <div className="w-full flex flex-col gap-2 text-foreground font-mediun text-[.9em] ">
                         {product?.condition && (
                           <div className="flex flex-col md:flex-row flex-wrap items-start md:items-end">
                             <div className="pr-4 w-[11em] leading-5">
@@ -185,7 +184,7 @@ export default function ProductDetailPage({ product }: Props) {
                           </div>
                         )}
                       </div>
-                      <div className="w-full flex flex-col gap-2 text-font font-mediun text-[.9em]">
+                      <div className="w-full flex flex-col gap-2 text-foreground font-mediun text-[.9em]">
                         <div className="flex flex-col md:flex-row flex-wrap items-start md:items-end">
                           <div className="pr-4 w-[11em] leading-5">
                             Advertencia:
