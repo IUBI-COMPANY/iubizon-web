@@ -11,7 +11,8 @@ import countriesISO from "@/data-list/countriesISO.json";
 import { TextArea } from "@/components/ui/TextArea";
 import { Form } from "@/components/ui/Form";
 import { useTransition } from "react";
-import { LoaderCircle, SendIcon } from "lucide-react";
+import { SendIcon } from "lucide-react";
+import { Button } from "@/components/ui/Button";
 
 interface ContactFormProps {
   serverActionSendContactEmail: (
@@ -229,22 +230,20 @@ export const ContactForm = ({
               />
             </div>
             <div className="md:col-span-4">
-              <button
+              <Button
                 type="submit"
                 disabled={isPending}
-                className="w-full rounded-xl bg-primary px-4 py-3 text-center text-md font-semibold text-white shadow-sm cursor-pointer hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors duration-200"
+                loading={isPending}
+                block
               >
                 {isPending ? (
-                  <div className="inline-flex gap-2 items-center">
-                    <LoaderCircle className="animate-spin" /> Enviando
-                    mensaje...
-                  </div>
+                  "Enviando mensaje..."
                 ) : (
-                  <div className="inline-flex gap-2 items-center">
-                    <SendIcon /> Enviar mensaje
+                  <div className="flex gap-2 items-center leading-1">
+                    <SendIcon className="w-[1.2em]" /> Enviar mensaje
                   </div>
                 )}
-              </button>
+              </Button>
             </div>
           </div>
         </Form>

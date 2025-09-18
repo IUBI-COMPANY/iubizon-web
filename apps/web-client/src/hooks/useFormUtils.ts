@@ -38,16 +38,17 @@ export const useFormUtils = <FormData extends ObjectType>({
   };
 
   const errorDetail: UseFormUtils<FormData>["errorDetail"] = (name: string) =>
-    errors && errors[name];
+    errors && get(errors, name);
 
   const errorMessage: UseFormUtils<FormData>["errorMessage"] = (name) => {
-    const message = errors && errors[name]?.message;
+    const errorObj = errors && get(errors, name);
+    const message = errorObj?.message;
 
     return isString(message) ? message : undefined;
   };
 
   const error: UseFormUtils<FormData>["error"] = (name) =>
-    !!(errors && errors[name]);
+    !!(errors && get(errors, name));
 
   const required: UseFormUtils<FormData>["required"] = (name) => {
     const describe = schema.describe();

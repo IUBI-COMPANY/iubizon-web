@@ -58,7 +58,7 @@ export const Checkbox = ({
           <Check
             className={twMerge(
               "absolute inset-0 m-0.5 h-4 w-4 text-white opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity",
-              disabled && "opacity-50"
+              disabled && "opacity-50",
             )}
             strokeWidth={3}
           />
@@ -68,7 +68,7 @@ export const Checkbox = ({
           htmlFor={name}
           className={twMerge(
             "text-sm text-slate-600 leading-5 flex-1",
-            disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer"
+            disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer",
           )}
         >
           <span className="flex gap-1 items-start">
@@ -81,7 +81,7 @@ export const Checkbox = ({
       {error && helperText && (
         <p
           id={`${name}-error`}
-          className="text-sm text-red-600 scroll-error-anchor ml-8"
+          className="text-sm text-red-600 scroll-error-anchor"
           role="alert"
         >
           {helperText}
