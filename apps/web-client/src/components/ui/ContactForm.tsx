@@ -232,7 +232,7 @@ export const ContactForm = ({
               <button
                 type="submit"
                 disabled={isPending}
-                className="w-full rounded-xl bg-primary px-4 py-3 text-center text-sm font-semibold text-white shadow-sm cursor-pointer hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors duration-200"
+                className="w-full rounded-xl bg-primary px-4 py-3 text-center text-md font-semibold text-white shadow-sm cursor-pointer hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors duration-200"
               >
                 {isPending ? (
                   <div className="inline-flex gap-2 items-center">
