@@ -7,6 +7,7 @@ import { ChevronRight, Info } from "lucide-react";
 import { NoFoundComponent } from "@/components/ui/NoFoundComponent";
 import { InformationAndPriceCard } from "@/components/ui/InformationAndPriceCard";
 import React, { useEffect, useState } from "react";
+import { productsCondition } from "@/data-list/productsCondition";
 
 interface Props {
   product: Product;
@@ -14,6 +15,8 @@ interface Props {
 
 export default function ProductDetailPage({ product }: Props) {
   const [showModal, setShowModal] = useState(false);
+
+  const condition = productsCondition[product.condition];
 
   useEffect(() => {
     document.body.style.overflow = showModal ? "hidden" : "auto";
@@ -51,6 +54,7 @@ export default function ProductDetailPage({ product }: Props) {
                       product={product}
                       showModal={showModal}
                       setShowModal={setShowModal}
+                      condition={condition}
                     />
                   </div>
                   {/*Product specifications*/}
@@ -60,7 +64,7 @@ export default function ProductDetailPage({ product }: Props) {
                     </div>
                     <div className="product-characteristics w-full grid grid-cols-1 lg:grid-cols-[1fr_40%] gap-x-10 gap-y-4">
                       <div className="w-full flex flex-col gap-2 text-foreground font-mediun text-[.9em] ">
-                        {product?.condition && (
+                        {condition && (
                           <div className="flex flex-col md:flex-row flex-wrap items-start md:items-end">
                             <div className="pr-4 w-[11em] leading-5">
                               Condición:
@@ -70,7 +74,8 @@ export default function ProductDetailPage({ product }: Props) {
                                 className="inline-flex items-center gap-1 cursor-pointer"
                                 onClick={() => setShowModal(true)}
                               >
-                                De exhibición <Info className="w-4" />
+                                {condition?.description}{" "}
+                                <Info className="w-4" />
                               </strong>
                             </div>
                           </div>
@@ -203,7 +208,6 @@ export default function ProductDetailPage({ product }: Props) {
                             </div>
                           </div>
                         )}
-
                         {product?.model && (
                           <div className="flex flex-col md:flex-row flex-wrap items-start md:items-end">
                             <div className="pr-4 w-[11em] leading-5 ">
@@ -234,13 +238,14 @@ export default function ProductDetailPage({ product }: Props) {
                   product={product}
                   showModal={showModal}
                   setShowModal={setShowModal}
+                  condition={condition}
                 />
               </div>
             </main>
             {product?.note && (
               <div className="w-full h-auto m-auto py-10 md:py-5 mb-0 md:mb-10">
                 <div className="text-2xl mb-3 text-secondary font-bold">
-                  Nota:
+                  Descripción del artículo:
                 </div>
                 <p className="pre-line text-base text-black/90">
                   {product.note}

@@ -2,17 +2,20 @@ import React from "react";
 import { Info, XCircle } from "lucide-react";
 import { Product } from "@/data-list/products";
 import { GiftCard } from "./GiftCard";
+import { DetailProductCondition } from "@/data-list/productsCondition";
 
 interface Props {
   product: Product;
   showModal: boolean;
   setShowModal: (showModal: boolean) => void;
+  condition: DetailProductCondition;
 }
 
 export const InformationAndPriceCard = ({
   product,
   showModal,
   setShowModal,
+  condition,
 }: Props) => {
   const options = [
     product?.brand,
@@ -79,21 +82,27 @@ export const InformationAndPriceCard = ({
           </div>
         )}
         <ul className="mb-7 space-y-4 list-style-none">
-          {product?.stock && (
+          <li className="my-3">
+            <span className="text-sm text-secondary/90">
+              <p className="mt-1 text-sm text-secondary/70">
+                Cantidad: {product.stock}{" "}
+                {product?.oldStock && (
+                  <>
+                    /{" "}
+                    <span className="line-through text-gray-400 mr-2">
+                      {product?.oldStock}
+                    </span>
+                  </>
+                )}
+              </p>
+            </span>
+          </li>
+          {product.stock <= 0 && (
             <li className="my-3">
               <span className="text-sm text-secondary/90">
-                <p className="mt-1 text-sm text-secondary/70">
-                  Cantidad: {product.stock}{" "}
-                  {product.stock === 1 ? "unidad" : "unidades"}
-                  {product?.oldStock && (
-                    <>
-                      {" "}
-                      /{" "}
-                      <span className="line-through text-gray-400 mr-2">
-                        {product?.oldStock}
-                      </span>
-                    </>
-                  )}
+                <p className="mt-1 text-sm text-green-600">
+                  Lo sentimos ya que queda stock pero{" "}
+                  <strong>Puede solicitarlo a pedido 🙌🏼</strong>
                 </p>
               </span>
             </li>
@@ -107,7 +116,7 @@ export const InformationAndPriceCard = ({
                   className="inline-flex items-center gap-1 cursor-pointer"
                   onClick={() => setShowModal(true)}
                 >
-                  De exhibición <Info className="w-4" />
+                  {condition.name} <Info className="w-4" />
                 </strong>
               </span>
               <div
@@ -128,7 +137,7 @@ export const InformationAndPriceCard = ({
                     Condición del producto
                   </h2>
                   <p className="text-base mb-6 text-foreground">
-                    {product.condition}
+                    {condition.description}
                   </p>
                 </div>
               </div>
