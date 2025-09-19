@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint iubizon-panel",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "eslint:check": "eslint src",
+    "type:check": "tsc --noEmit",
+    "prettier:check": "prettier . --check"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

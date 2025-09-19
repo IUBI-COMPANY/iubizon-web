@@ -170,8 +170,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   height={10}
                   className="w-[7em] h-auto"
                   alt="iubizon logo"
-                />{" "}
-                <strong>PANEL</strong>
+                />
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>

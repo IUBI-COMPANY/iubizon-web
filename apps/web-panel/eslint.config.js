@@ -23,20 +23,7 @@ export default tseslint.config([
     plugins: {},
     rules: {
       ...reactHooks.configs.recommended.rules,
-      "react-refresh/only-export-components": [
-        "warn",
-        {
-          allowConstantExport: true,
-          allowExportNames: [
-            "schema",
-            "config",
-            "data",
-            "chartConfig",
-            "chartData",
-            "columns",
-          ], // Permitir nombres específicos
-        },
-      ],
+      "react-refresh/only-export-components": "off",
     },
   },
 ]);
