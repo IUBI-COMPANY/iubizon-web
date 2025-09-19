@@ -20,10 +20,7 @@ export default tseslint.config([
       ecmaVersion: 2020,
       globals: globals.browser,
     },
-    plugins: {
-      "react-hooks": reactHooks,
-      "react-refresh": reactRefresh,
-    },
+    plugins: {},
     rules: {
       ...reactHooks.configs.recommended.rules,
       "react-refresh/only-export-components": [

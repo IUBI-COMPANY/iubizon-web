@@ -1,4 +1,4 @@
-import BaseLayout from "@/app/dashboard/page.tsx";
+import BaseLayout from "@/app/dashboard";
 import { ThemeProvider } from "@/components/theme-provider";
 
 export default function App() {
