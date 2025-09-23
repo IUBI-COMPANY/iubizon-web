@@ -36,7 +36,6 @@ export default function OtherProductsCarousel({
             <ProductCard product={product} key={index} />
           ))}
         </div>
-
         {products.length > 1 && (
           <div className="absolute w-full top-[40%] flex items-center justify-center min-h-[40px]">
             <div className="flex items-center justify-center w-full h-full">

@@ -12,7 +12,7 @@ export const productsCondition: Record<
   new: {
     name: "Nuevos",
     description:
-      "Equipos nuevos y con garantía oficial. Ofrecen la mejor calidad de proyección, alto brillo y tecnología de última generación, ideales para aulas, oficinas y presentaciones profesionales. La mejor inversión en rendimiento y durabilidad.",
+      "Equipos nuevos y con garantía. Ofrecen la mejor calidad de proyección, alto brillo y tecnología de última generación, ideales para aulas, oficinas y presentaciones profesionales. La mejor inversión en rendimiento y durabilidad.",
   },
   reconditioned: {
     name: "Reacondicionados",

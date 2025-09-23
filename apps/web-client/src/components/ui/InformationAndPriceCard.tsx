@@ -140,7 +140,7 @@ export const InformationAndPriceCard = ({
                     onClick={() => setShowModal(false)}
                   />
                   <h2 className="text-xl font-bold mb-4 text-secondary">
-                    Condición del producto
+                    {condition.name}
                   </h2>
                   <p className="text-base mb-6 text-foreground">
                     {condition.description}
