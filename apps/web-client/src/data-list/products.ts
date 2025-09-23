@@ -40,6 +40,8 @@ export interface MediaItem {
   src: string;
 }
 
+const DISCOUNT_PERCENTAGE = 0.3; // 30% DISCOUNT
+
 export const products: Product[] = [
   {
     id: "980W",
@@ -49,7 +51,7 @@ export const products: Product[] = [
     condition: "new",
     stock: 1,
     description: "Buena proyección, detalles estéticos",
-    price: 2399,
+    price: 2399.0,
     badge: "Top venta",
     mainImage: "/images/980W/980w.jpg",
     media: [
@@ -88,7 +90,7 @@ export const products: Product[] = [
     condition: "new",
     stock: 1,
     description: "Buena proyección, detalles estéticos",
-    price: 2399,
+    price: 2399.0,
     badge: "Top venta",
     mainImage: "/images/980W/980w.jpg",
     media: [
@@ -127,7 +129,7 @@ export const products: Product[] = [
     oldStock: 2,
     condition: "reconditioned",
     description: "Buena proyección, detalles estéticos",
-    price: 1050,
+    price: 2399.0,
     badge: "Top venta",
     mainImage: "/images/980W/980w.jpg",
     media: [
@@ -165,7 +167,7 @@ export const products: Product[] = [
     stock: 0,
     oldStock: 3,
     description: "Buena proyección, detalles estéticos",
-    price: 1050,
+    price: 2200.0,
     mainImage: "/images/975W/975w.jpg",
     media: [
       { type: "image", src: "/images/975W/2.jpg" },
@@ -201,7 +203,7 @@ export const products: Product[] = [
     stock: 0,
     oldStock: 1,
     description: "Buena proyección, detalles estéticos",
-    price: 1050,
+    price: 2800.0,
     mainImage: "/images/1925W/1925w.jpg",
     media: [
       { type: "image", src: "/images/1925W/2.jpg" },
@@ -236,7 +238,7 @@ export const products: Product[] = [
     stock: 0,
     oldStock: 1,
     description: "Bajo brillo, detalles estéticos",
-    price: 900,
+    price: 2800.0,
     badge: "Oferta",
     mainImage: "/images/970/970.jpg",
     media: [
@@ -273,7 +275,7 @@ export const products: Product[] = [
     stock: 0,
     oldStock: 1,
     description: "Buena proyección, detalles estéticos",
-    price: 1150,
+    price: 2800.0,
     badge: "Top venta",
     mainImage: "/images/119W/119w.jpg",
     media: [
@@ -310,7 +312,7 @@ export const products: Product[] = [
     name: "Epson PowerLite 108",
     stock: 0,
     oldStock: 4,
-    price: 1000,
+    price: 2250.0,
     badge: "Oferta",
     mainImage: "/images/108/108.jpg",
     media: [
@@ -346,7 +348,7 @@ export const products: Product[] = [
     name: "Epson PowerLite 98H",
     oldStock: 12,
     stock: 0,
-    price: 700,
+    price: 1400.0,
     badge: "Oferta",
     mainImage: "/images/98H/98h.jpg",
     media: [
@@ -381,4 +383,15 @@ export const products: Product[] = [
     dispositivos gracias a la nueva función moderador, compartiendo fácilmente el contenido con la audiencia. 
     Versátil y funcional, el PowerLite 98H cuenta con conectividad HDMI y funciones de audio premium.`,
   },
-];
+].map(
+  (product) =>
+    ({
+      ...product,
+      price:
+        product.condition === "reconditioned"
+          ? +Math.floor(
+              product.price - (product.price * DISCOUNT_PERCENTAGE || 0),
+            ).toFixed(2)
+          : +product.price,
+    }) as Product,
+);
