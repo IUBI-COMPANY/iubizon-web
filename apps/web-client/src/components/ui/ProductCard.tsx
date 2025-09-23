@@ -9,6 +9,8 @@ interface Props {
 }
 
 export const ProductCard = ({ product }: Props) => {
+  const isNew = product?.condition === "new";
+
   return (
     <article
       key={product.model}
@@ -19,9 +21,14 @@ export const ProductCard = ({ product }: Props) => {
     >
       <div className="mb-3">
         <div className="relative w-full h-48 rounded-xl overflow-hidden bg-white">
-          {product?.badge && (
-            <span className="rounded-full px-2.5 py-1 text-xs font-semibold bg-primary text-white absolute top-1 left-1">
-              {product.badge}
+          {product?.condition && (
+            <span
+              className={twMerge(
+                "rounded-full px-2.5 py-1 text-xs font-semibold bg-primary text-white absolute top-1 left-1",
+                !isNew && "bg-secondary/70",
+              )}
+            >
+              {isNew ? "Nuevo" : "Reacondicionado"}
             </span>
           )}
           <Image

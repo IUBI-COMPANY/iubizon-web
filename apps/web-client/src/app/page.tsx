@@ -52,8 +52,7 @@ export default function Home() {
               Venta de proyectores
             </h1>
             <p className="mt-3 max-w-2xl md:text-lg opacity-95">
-              Productos para todo público • Totalmente funcionales • Buenos
-              precios
+              Para trabajar, aprender y entretenerse • Proyectores que inspiran
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
               <a
@@ -105,14 +104,14 @@ export default function Home() {
           <div className="!mt-10 !mb-[5em]">
             <div className="mt-6 mb-6 flex items-end justify-between">
               <div>
-                <h2 className="text-2xl font-bold text-primary">
+                <h2 className="text-3xl font-bold text-primary">
                   {productsByCondition.new.name}
                 </h2>
                 <p className="text-sm text-secondary/70 max-w-[60em]">
                   {productsByCondition.new.description}
                 </p>
-                <p className="text-primary text-[.8em] mt-2">
-                  <span>Disponibles en stock</span>
+                <p className="text-primary text-[.8em] mt-2 font-medium">
+                  Llévate tu proyector completamente nuevo y con garantía.
                 </p>
               </div>
             </div>
@@ -127,23 +126,16 @@ export default function Home() {
           <div className="!mt-10 !mb-[5em]">
             <div className="mt-6 mb-6 flex items-end justify-between">
               <div>
-                <h2 className="text-2xl font-bold text-secondary">
+                <h2 className="text-3xl font-bold text-secondary">
                   {productsByCondition.reconditioned.name}
                 </h2>
                 <p className="text-sm text-secondary/70 max-w-[60em]">
                   {productsByCondition.reconditioned.description}
                 </p>
-                {productsByCondition.reconditioned.products.length > 0 ? (
-                  <p className="text-primary text-[.8em] mt-2">
-                    <span>Todos los productos salen probados</span>
-                  </p>
-                ) : (
-                  <p className="text-red text-[.8em] mt-2">
-                    <span>
-                      <span>Disponibles en stock</span>
-                    </span>
-                  </p>
-                )}
+                <p className="text-primary text-[.8em] mt-2 font-medium">
+                  Equipos a precios más accesibles, totalmente funcionales y con
+                  garantía
+                </p>
               </div>
             </div>
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
