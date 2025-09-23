@@ -13,3 +13,10 @@ interface Contact {
   termsAndConditions: boolean;
   hostname: string;
 }
+
+interface RepairsContact
+  extends Omit<Contact, "hostname" | "termsAndConditions" | "message"> {
+  productName: string;
+  faultDescription: string;
+  serviceType: string;
+}
