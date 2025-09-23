@@ -74,8 +74,7 @@ export default function ProductDetailPage({ product }: Props) {
                                 className="inline-flex items-center gap-1 cursor-pointer"
                                 onClick={() => setShowModal(true)}
                               >
-                                {condition?.description}{" "}
-                                <Info className="w-4" />
+                                {condition.name} <Info className="w-4" />
                               </strong>
                             </div>
                           </div>
