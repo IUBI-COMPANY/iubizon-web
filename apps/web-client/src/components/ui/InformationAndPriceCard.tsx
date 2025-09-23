@@ -97,15 +97,21 @@ export const InformationAndPriceCard = ({
               </p>
             </span>
           </li>
-          {product.stock <= 0 && (
-            <li className="my-3">
-              <span className="text-sm text-secondary/90">
-                <p className="mt-1 text-sm text-green-600">
-                  Lo sentimos ya no queda stock pero{" "}
-                  <strong>Puede solicitarlo a pedido 🙌🏼</strong>
-                </p>
-              </span>
-            </li>
+          {product.stock <= 0 ? (
+            <p className="mt-1 text-sm text-secondary">
+              Lo sentimos ya no queda stock, pero{" "}
+              <a
+                href={`https://wa.me/51972300301?text=Hola%20iubizon,%20quiero%20realizar%20un%20pedido%20del%20modelo%20${product.name}`}
+                target="_blank"
+                className="font-semibold cursor-pointer text-blue-400"
+              >
+                puede solicitarlo a pedido
+              </a>
+            </p>
+          ) : (
+            <p className="mt-1 text-sm text-green-600 font-medium">
+              Disponible puedes comprarlo ahora mismo
+            </p>
           )}
           {product?.condition && (
             <li className="flex items-start">
@@ -145,7 +151,6 @@ export const InformationAndPriceCard = ({
           )}
           <li className="items-start">
             <span className="mt-1 text-xl text-primary bg-ambar-500"></span>
-
             <span className="flex flex-col items-center">
               <GiftCard />
             </span>

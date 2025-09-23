@@ -74,7 +74,22 @@ export const ProductCard = ({ product }: Props) => {
           </>
         )}
       </p>
-      {/* Precio */}
+      {product.stock <= 0 ? (
+        <p className="mt-1 text-xs text-secondary">
+          Lo sentimos ya no queda stock, pero{" "}
+          <a
+            href={`https://wa.me/51972300301?text=Hola%20iubizon,%20quiero%20realizar%20un%20pedido%20del%20modelo%20${product.name}`}
+            target="_blank"
+            className="font-semibold cursor-pointer text-blue-400"
+          >
+            puede solicitarlo a pedido
+          </a>
+        </p>
+      ) : (
+        <p className="mt-1 text-xs text-green-600 font-medium">
+          Disponible puedes comprarlo ahora mismo
+        </p>
+      )}
       <div className="bg-orange-50 rounded-lg py-2 px-4 my-3 text-center">
         <div className="flex items-end justify-center gap-1">
           <p className="text-base font-bold text-primary flex justify-center items-start gap-1">
