@@ -20,7 +20,7 @@ interface Props {
 }
 
 interface SupportFormData {
-  visitType: string;
+  serviceType: string;
   visitDate: string;
   visitTime: string;
   district?: string;
@@ -36,25 +36,25 @@ export const SupportInformation = ({
   setCurrentStep,
 }: Props) => {
   const schema: ObjectSchema<SupportFormData> = yup.object({
-    visitType: yup.string().required(),
+    serviceType: yup.string().required(),
     visitDate: yup.string().required(),
     visitTime: yup.string().required(),
-    district: yup.string().when("visitType", {
+    district: yup.string().when("serviceType", {
       is: "house",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
-    address: yup.string().when("visitType", {
+    address: yup.string().when("serviceType", {
       is: "house",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
-    department: yup.string().when("visitType", {
+    department: yup.string().when("serviceType", {
       is: "shipping",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
-    province: yup.string().when("visitType", {
+    province: yup.string().when("serviceType", {
       is: "shipping",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
@@ -69,15 +69,15 @@ export const SupportInformation = ({
   } = useForm<SupportFormData>({
     resolver: yupResolver(schema),
     defaultValues: {
-      visitType: "local",
+      serviceType: "local",
     },
   });
 
   const { required, error, errorMessage } = useFormUtils({ errors, schema });
 
-  const isLocalVisit = watch("visitType") === "local";
-  const isHouseVisit = watch("visitType") === "house";
-  const isShipping = watch("visitType") === "shipping";
+  const isLocalVisit = watch("serviceType") === "local";
+  const isHouseVisit = watch("serviceType") === "house";
+  const isShipping = watch("serviceType") === "shipping";
 
   const onSubmit = (formData: SupportFormData) => {
     setRepairFormData({ ...repairFormData, ...formData });
@@ -91,7 +91,7 @@ export const SupportInformation = ({
             <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
               <div className="sm:col-span-2">
                 <Controller
-                  name="visitType"
+                  name="serviceType"
                   control={control}
                   render={({ field: { onChange, value, name } }) => (
                     <RadioGroup
@@ -114,6 +114,7 @@ export const SupportInformation = ({
                         {
                           label: "Quiero enviar mi producto al local",
                           value: "shipping",
+                          message: "Solo para provincias",
                         },
                       ]}
                     />

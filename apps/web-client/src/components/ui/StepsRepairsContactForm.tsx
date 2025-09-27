@@ -1,10 +1,13 @@
 import React from "react";
-import { twMerge } from "tailwind-merge";
-import { Projector, User, Wrench, Check } from "lucide-react";
+import { Check } from "lucide-react";
+import { Button } from "@/components/ui/Button";
 
 type Item = {
   step: number;
   title: string;
+  classList: string;
+  classButton: string;
+  icon: React.ReactNode;
 };
 
 interface Props {
@@ -24,53 +27,52 @@ export const StepsRepairsContactForm = ({
         {items.map((item) => (currentStep === item.step ? item.title : ""))}
       </div>
       <div className="w-full mx-auto max-w-xl flex justify-center items-center mt-4">
-        <ol className="flex justify-center items-center w-full mb-4 sm:mb-5">
-          <li
-            className={twMerge(
-              "w-full flex items-center text-secondary  after:content-[''] after:flex-1 after:h-1 after:border-b  after:border-3",
-              currentStep > 0
-                ? "after:border-primary"
-                : "after:border-gray-300",
-            )}
-          >
-            <button
-              onClick={() => setCurrentStep(0)}
-              className={twMerge(
-                "flex items-center justify-center w-10 h-10  rounded-full lg:h-12 lg:w-12  shrink-0",
-                currentStep >= 0 ? "bg-primary" : "bg-gray-300",
-              )}
+        <ol className="flex items-center w-full p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-white border border-gray-200 rounded-lg shadow-xs dark:text-gray-400 sm:text-base dark:bg-gray-800 dark:border-gray-700 sm:p-4 sm:space-x-4 rtl:space-x-reverse">
+          <li className="flex items-center text-blue-600 dark:text-blue-500">
+            <Check />
+            Personal <span className="hidden sm:inline-flex sm:ms-2">Info</span>
+            <svg
+              className="w-3 h-3 ms-2 sm:ms-4 rtl:rotate-180"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 12 10"
             >
-              {currentStep > 0 ? <Check /> : <User />}
-            </button>
-          </li>
-          <li
-            className={twMerge(
-              "w-full flex items-center text-secondary after:content-[''] after:flex-1 after:h-1 after:border-b  after:border-3",
-              currentStep > 1
-                ? "after:border-primary"
-                : "after:border-gray-300",
-            )}
-          >
-            <button
-              onClick={() => setCurrentStep(1)}
-              className={twMerge(
-                "flex items-center justify-center w-10 h-10  rounded-full lg:h-12 lg:w-12  shrink-0",
-                currentStep >= 1 ? "bg-primary" : "bg-gray-300",
-              )}
-            >
-              {currentStep > 1 ? <Check /> : <Projector />}
-            </button>
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m7 9 4-4-4-4M1 9l4-4-4-4"
+              />
+            </svg>
           </li>
           <li className="flex items-center">
-            <button
-              onClick={() => setCurrentStep(2)}
-              className={twMerge(
-                "flex items-center justify-center w-10 h-10  rounded-full lg:h-12 lg:w-12  shrink-0",
-                currentStep >= 2 ? "bg-primary" : "bg-gray-300",
-              )}
+            <span className="flex items-center justify-center w-5 h-5 me-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400">
+              2
+            </span>
+            Account <span className="hidden sm:inline-flex sm:ms-2">Info</span>
+            <svg
+              className="w-3 h-3 ms-2 sm:ms-4 rtl:rotate-180"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 12 10"
             >
-              {currentStep > 2 ? <Check /> : <Wrench />}
-            </button>
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m7 9 4-4-4-4M1 9l4-4-4-4"
+              />
+            </svg>
+          </li>
+          <li className="flex items-center">
+            <span className="flex items-center justify-center w-5 h-5 me-2 text-xs border border-gray-500 rounded-full shrink-0 dark:border-gray-400">
+              3
+            </span>
+            Review
           </li>
         </ol>
       </div>

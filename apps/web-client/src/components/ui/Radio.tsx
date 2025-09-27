@@ -11,6 +11,7 @@ interface Props {
   required?: boolean;
   hidden?: boolean;
   disabled?: boolean;
+  message?: string;
   children: React.ReactNode;
 }
 
@@ -23,6 +24,7 @@ export const Radio = ({
   required = false,
   hidden = false,
   disabled = false,
+  message,
   children,
 }: Props) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,8 +73,13 @@ export const Radio = ({
             disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer",
           )}
         >
-          <span className="flex gap-1 items-start">
+          <span className="flex flex-col gap-1 items-start">
             {children}
+            {message && (
+              <span className="text-xs text-slate-500 font-bold">
+                {`(${message})`}
+              </span>
+            )}
             {required && <span className="text-red-500 text-base">*</span>}
           </span>
         </label>

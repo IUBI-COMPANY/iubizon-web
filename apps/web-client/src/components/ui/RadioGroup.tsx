@@ -5,6 +5,7 @@ import { Radio } from "@/components/ui/Radio";
 interface Option {
   value: string;
   label: React.ReactNode;
+  message?: string;
   disabled?: boolean;
 }
 
@@ -98,6 +99,7 @@ export const RadioGroup = ({
             onChange={(checked) => handleCheckboxChange(option.value, checked)}
             error={false} // Individual checkboxes don't show errors, only the group
             disabled={disabled || option.disabled}
+            message={option?.message}
           >
             {option.label}
           </Radio>

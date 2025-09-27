@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
-import { twMerge } from "tailwind-merge";
+import React from "react";
 import { Input } from "@/components/ui/Input";
 import * as yup from "yup";
 import { Form } from "@/components/ui/Form";
@@ -151,12 +150,7 @@ export const ClientInformation = ({
               </div>
             </div>
             <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <Button
-                block
-                variant="secondary"
-                type="button"
-                onClick={() => setCurrentStep(currentStep - 1)}
-              >
+              <Button block disabled variant="secondary" type="button">
                 Atrás
               </Button>
               <Button block variant="primary" type="submit">
