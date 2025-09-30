@@ -17,6 +17,8 @@ interface Props {
   setRepairFormData: (formData: SupportFormData) => void;
   currentStep: number;
   setCurrentStep: (step: number) => void;
+  stepsCompleted: number[];
+  setStepsCompleted: (steps: number[]) => void;
 }
 
 interface SupportFormData {
@@ -34,6 +36,8 @@ export const SupportInformation = ({
   setRepairFormData,
   currentStep,
   setCurrentStep,
+  stepsCompleted,
+  setStepsCompleted,
 }: Props) => {
   const schema: ObjectSchema<SupportFormData> = yup.object({
     serviceType: yup.string().required(),
@@ -85,6 +89,9 @@ export const SupportInformation = ({
 
   return (
     <div className="w-full">
+      <div className="text-2xl text-center text-secondary font-semibold">
+        Tipo de servicio
+      </div>
       <div className="mt-5">
         <Form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gap-6 mx-auto max-w-xl">
@@ -270,7 +277,14 @@ export const SupportInformation = ({
                   >
                     Atrás
                   </Button>
-                  <Button block variant="primary" type="submit">
+                  <Button
+                    block
+                    variant="primary"
+                    type="submit"
+                    onClick={() =>
+                      setStepsCompleted([...stepsCompleted, currentStep])
+                    }
+                  >
                     {currentStep === 2 ? "Finalizar" : "Siguiente"}
                   </Button>
                 </div>
