@@ -10,66 +10,72 @@ import { Projector, User, Wrench } from "lucide-react";
 export const RepairsContactForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [repairFormData, setRepairFormData] = useState({});
+  const [stepsCompleted, setStepsCompleted] = useState<number[]>([]);
   console.log("formulario: ", repairFormData);
+  console.log("Paso actual: ", currentStep);
+  console.log("Pasos completados: ", stepsCompleted);
 
   const stepItems = [
     {
       step: 0,
-      title: "Datos de contacto",
-      classList: "flex-1 flex flex-col items-center",
-      classButton:
-        "absolute flex items-center justify-center w-8 h-8 bg-green-200 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-green-900",
+      label: "Contacto",
+      classButton: "flex items-center justify-center rounded-l-full",
       icon: <User />,
     },
     {
       step: 1,
-      title: "Datos del equipo",
-      classList: "flex-1 flex flex-col items-center",
-      classButton:
-        "absolute flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-gray-700",
+      label: "Equipo",
+      classButton: "flex items-center rounded-none justify-center",
       icon: <Projector />,
     },
     {
       step: 2,
-      title: "Tipo de visita",
-      classList: "flex-1 flex flex-col items-center",
-      classButton:
-        "absolute flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 dark:bg-gray-700",
+      label: "Visita",
+      classButton: "flex items-center justify-center rounded-r-full",
       icon: <Wrench />,
     },
   ];
 
   return (
-    <div className="w-full max-w-2xl mx-auto shadow-lg my-10 py-10 px-6 rounded-2xl bg-white">
+    <div className="grid gap-5 py-10 w-full max-w-2xl mx-auto ">
       <StepsRepairsContactForm
         items={stepItems}
         currentStep={currentStep}
         setCurrentStep={setCurrentStep}
+        stepsCompleted={stepsCompleted}
       />
-      {currentStep === 0 && (
-        <ClientInformation
-          repairFormData={repairFormData}
-          setRepairFormData={setRepairFormData}
-          currentStep={currentStep}
-          setCurrentStep={setCurrentStep}
-        />
-      )}
-      {currentStep === 1 && (
-        <DeviceInformation
-          repairFormData={repairFormData}
-          setRepairFormData={setRepairFormData}
-          currentStep={currentStep}
-          setCurrentStep={setCurrentStep}
-        />
-      )}
-      {currentStep === 2 && (
-        <SupportInformation
-          repairFormData={repairFormData}
-          setRepairFormData={setRepairFormData}
-          currentStep={currentStep}
-          setCurrentStep={setCurrentStep}
-        />
-      )}
+      <div className="w-full max-w-2xl mx-auto shadow-lg  py-10 px-6 rounded-2xl bg-white">
+        {currentStep === 0 && (
+          <ClientInformation
+            repairFormData={repairFormData}
+            setRepairFormData={setRepairFormData}
+            currentStep={currentStep}
+            setCurrentStep={setCurrentStep}
+            stepsCompleted={stepsCompleted}
+            setStepsCompleted={setStepsCompleted}
+          />
+        )}
+        {currentStep === 1 && (
+          <DeviceInformation
+            repairFormData={repairFormData}
+            setRepairFormData={setRepairFormData}
+            currentStep={currentStep}
+            setCurrentStep={setCurrentStep}
+            stepsCompleted={stepsCompleted}
+            setStepsCompleted={setStepsCompleted}
+          />
+        )}
+        {currentStep === 2 && (
+          <SupportInformation
+            repairFormData={repairFormData}
+            setRepairFormData={setRepairFormData}
+            currentStep={currentStep}
+            setCurrentStep={setCurrentStep}
+            stepsCompleted={stepsCompleted}
+            setStepsCompleted={setStepsCompleted}
+          />
+        )}
+      </div>
     </div>
   );
 };
