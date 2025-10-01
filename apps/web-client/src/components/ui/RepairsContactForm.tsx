@@ -9,9 +9,16 @@ import { Projector, User, Wrench } from "lucide-react";
 
 export const RepairsContactForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
-  const [repairFormData, setRepairFormData] = useState({});
   const [stepsCompleted, setStepsCompleted] = useState<number[]>([]);
-  console.log("formulario: ", repairFormData);
+
+  const addLocalStorageForm = (data: object) => {
+    const currentLocalData = JSON.parse(
+      localStorage.getItem("formData") || "{}",
+    );
+    const newData = { ...currentLocalData, ...data };
+    localStorage.setItem("formData", JSON.stringify(newData));
+  };
+
   console.log("Paso actual: ", currentStep);
   console.log("Pasos completados: ", stepsCompleted);
 
@@ -47,32 +54,29 @@ export const RepairsContactForm = () => {
       <div className="w-full max-w-2xl mx-auto shadow-lg  py-10 px-6 rounded-2xl bg-white">
         {currentStep === 0 && (
           <ClientInformation
-            repairFormData={repairFormData}
-            setRepairFormData={setRepairFormData}
             currentStep={currentStep}
             setCurrentStep={setCurrentStep}
             stepsCompleted={stepsCompleted}
             setStepsCompleted={setStepsCompleted}
+            addLocalStorageForm={addLocalStorageForm}
           />
         )}
         {currentStep === 1 && (
           <DeviceInformation
-            repairFormData={repairFormData}
-            setRepairFormData={setRepairFormData}
             currentStep={currentStep}
             setCurrentStep={setCurrentStep}
             stepsCompleted={stepsCompleted}
             setStepsCompleted={setStepsCompleted}
+            addLocalStorageForm={addLocalStorageForm}
           />
         )}
         {currentStep === 2 && (
           <SupportInformation
-            repairFormData={repairFormData}
-            setRepairFormData={setRepairFormData}
             currentStep={currentStep}
             setCurrentStep={setCurrentStep}
             stepsCompleted={stepsCompleted}
             setStepsCompleted={setStepsCompleted}
+            addLocalStorageForm={addLocalStorageForm}
           />
         )}
       </div>

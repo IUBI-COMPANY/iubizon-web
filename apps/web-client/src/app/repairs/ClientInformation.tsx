@@ -13,12 +13,11 @@ import countriesISO from "@/data-list/countriesISO.json";
 import { Button } from "@/components/ui/Button";
 
 interface Props {
-  repairFormData: object;
-  setRepairFormData: (formData: ClientFormData) => void;
   currentStep: number;
   setCurrentStep: (step: number) => void;
   stepsCompleted: number[];
   setStepsCompleted: (steps: number[]) => void;
+  addLocalStorageForm: (data: object) => void;
   current?: number;
   hideControls?: boolean;
 }
@@ -30,12 +29,11 @@ interface ClientFormData {
 }
 
 export const ClientInformation = ({
-  repairFormData,
-  setRepairFormData,
   currentStep,
   setCurrentStep,
   stepsCompleted,
   setStepsCompleted,
+  addLocalStorageForm,
 }: Props) => {
   const schema: ObjectSchema<ClientFormData> = yup.object({
     fullName: yup.string().required(),
@@ -62,7 +60,9 @@ export const ClientInformation = ({
   const { required, error, errorMessage } = useFormUtils({ errors, schema });
 
   const onSubmit = (formData: ClientFormData) => {
-    setRepairFormData({ ...repairFormData, ...formData });
+    if (!stepsCompleted.includes(currentStep))
+      setStepsCompleted([...stepsCompleted, currentStep]);
+    addLocalStorageForm(formData);
     setCurrentStep(currentStep + 1);
   };
 
@@ -160,14 +160,7 @@ export const ClientInformation = ({
               <Button block disabled variant="secondary" type="button">
                 Atrás
               </Button>
-              <Button
-                block
-                variant="primary"
-                type="submit"
-                onClick={() =>
-                  setStepsCompleted([...stepsCompleted, currentStep])
-                }
-              >
+              <Button block variant="primary" type="submit">
                 {currentStep === 2 ? "Finalizar" : "Siguiente"}
               </Button>
             </div>
