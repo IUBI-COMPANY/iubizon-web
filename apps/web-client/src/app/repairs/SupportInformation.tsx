@@ -11,6 +11,8 @@ import { TimePicker } from "@/components/ui/TimePicker";
 import { DatePicker } from "@/components/ui/DatePicker";
 import { Input } from "@/components/ui/Input";
 import { Alert } from "@/components/ui/Alert";
+import { Select } from "@/components/ui/Select";
+import { peruUbigeo } from "@/data-list/ubigeos";
 
 interface Props {
   currentStep: number;
@@ -95,9 +97,20 @@ export const SupportInformation = ({
 
   const { required, error, errorMessage } = useFormUtils({ errors, schema });
 
+  //Validate Service Type
   const isLocalVisit = watch("serviceType") === "local";
   const isHouseVisit = watch("serviceType") === "house";
   const isShipping = watch("serviceType") === "shipping";
+
+  //Validate Department and Province
+  const departmentSelected = watch("department");
+  const _departmentSelected = peruUbigeo.find(
+    (dep) => dep.name === departmentSelected,
+  );
+  const provinceSelected = watch("province");
+  const _provinceSelected = _departmentSelected?.provinces.find(
+    (prov) => prov.name === provinceSelected,
+  );
 
   const onSubmit = (formData: SupportFormData) => {
     if (!stepsCompleted.includes(currentStep))
@@ -214,7 +227,7 @@ export const SupportInformation = ({
                         name="department"
                         control={control}
                         render={({ field: { onChange, value, name } }) => (
-                          <Input
+                          <Select
                             label="Departamento"
                             placeholder="Ej. Lima"
                             name={name}
@@ -223,6 +236,10 @@ export const SupportInformation = ({
                             helperText={errorMessage(name)}
                             required={required(name)}
                             onChange={onChange}
+                            options={peruUbigeo.map((dep) => ({
+                              value: dep.name,
+                              label: dep.name,
+                            }))}
                           />
                         )}
                       />
@@ -232,7 +249,7 @@ export const SupportInformation = ({
                         name="province"
                         control={control}
                         render={({ field: { onChange, value, name } }) => (
-                          <Input
+                          <Select
                             label="Provincia"
                             placeholder="Ej. Lima"
                             name={name}
@@ -241,6 +258,12 @@ export const SupportInformation = ({
                             helperText={errorMessage(name)}
                             required={required(name)}
                             onChange={onChange}
+                            options={
+                              _departmentSelected?.provinces.map((prov) => ({
+                                value: prov.name,
+                                label: prov.name,
+                              })) || []
+                            }
                           />
                         )}
                       />
@@ -254,7 +277,7 @@ export const SupportInformation = ({
                         name="district"
                         control={control}
                         render={({ field: { onChange, value, name } }) => (
-                          <Input
+                          <Select
                             label="Distrito"
                             placeholder="Ej. Chorrillos"
                             name={name}
@@ -263,6 +286,12 @@ export const SupportInformation = ({
                             helperText={errorMessage(name)}
                             required={required(name)}
                             onChange={onChange}
+                            options={
+                              _provinceSelected?.districts.map((dist) => ({
+                                value: dist.name,
+                                label: dist.name,
+                              })) || []
+                            }
                           />
                         )}
                       />
