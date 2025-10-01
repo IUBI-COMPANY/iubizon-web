@@ -13,18 +13,17 @@ import { Input } from "@/components/ui/Input";
 import { Alert } from "@/components/ui/Alert";
 
 interface Props {
-  repairFormData: object;
-  setRepairFormData: (formData: SupportFormData) => void;
   currentStep: number;
   setCurrentStep: (step: number) => void;
   stepsCompleted: number[];
   setStepsCompleted: (steps: number[]) => void;
+  addLocalStorageForm: (data: object) => void;
 }
 
 interface SupportFormData {
   serviceType: string;
-  visitDate: string;
-  visitTime: string;
+  visitDate?: string;
+  visitTime?: string;
   district?: string;
   address?: string;
   department?: string;
@@ -32,24 +31,31 @@ interface SupportFormData {
 }
 
 export const SupportInformation = ({
-  repairFormData,
-  setRepairFormData,
   currentStep,
   setCurrentStep,
   stepsCompleted,
   setStepsCompleted,
+  addLocalStorageForm,
 }: Props) => {
   const schema: ObjectSchema<SupportFormData> = yup.object({
     serviceType: yup.string().required(),
-    visitDate: yup.string().required(),
-    visitTime: yup.string().required(),
-    district: yup.string().when("serviceType", {
+    visitDate: yup.string().when("serviceType", {
       is: "house",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
-    address: yup.string().when("serviceType", {
+    visitTime: yup.string().when("serviceType", {
       is: "house",
+      then: (schema) => schema.required(),
+      otherwise: (schema) => schema.notRequired(),
+    }),
+    district: yup.string().when("serviceType", {
+      is: "house || shipping",
+      then: (schema) => schema.required(),
+      otherwise: (schema) => schema.notRequired(),
+    }),
+    address: yup.string().when("serviceType", {
+      is: "house || shipping",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
@@ -84,7 +90,9 @@ export const SupportInformation = ({
   const isShipping = watch("serviceType") === "shipping";
 
   const onSubmit = (formData: SupportFormData) => {
-    setRepairFormData({ ...repairFormData, ...formData });
+    if (!stepsCompleted.includes(currentStep))
+      setStepsCompleted([...stepsCompleted, currentStep]);
+    addLocalStorageForm(formData);
   };
 
   return (
@@ -277,14 +285,7 @@ export const SupportInformation = ({
                   >
                     Atrás
                   </Button>
-                  <Button
-                    block
-                    variant="primary"
-                    type="submit"
-                    onClick={() =>
-                      setStepsCompleted([...stepsCompleted, currentStep])
-                    }
-                  >
+                  <Button block variant="primary" type="submit">
                     {currentStep === 2 ? "Finalizar" : "Siguiente"}
                   </Button>
                 </div>

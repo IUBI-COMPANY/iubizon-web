@@ -9,12 +9,11 @@ import React from "react";
 import { Button } from "@/components/ui/Button";
 
 interface Props {
-  repairFormData: object;
-  setRepairFormData: (formData: DeviceFormData) => void;
   currentStep: number;
   setCurrentStep: (step: number) => void;
   stepsCompleted: number[];
   setStepsCompleted: (steps: number[]) => void;
+  addLocalStorageForm: (data: object) => void;
 }
 
 interface DeviceFormData {
@@ -23,12 +22,11 @@ interface DeviceFormData {
 }
 
 export const DeviceInformation = ({
-  repairFormData,
-  setRepairFormData,
   currentStep,
   setCurrentStep,
   stepsCompleted,
   setStepsCompleted,
+  addLocalStorageForm,
 }: Props) => {
   const schema: ObjectSchema<DeviceFormData> = yup.object({
     productName: yup.string().required(),
@@ -45,7 +43,9 @@ export const DeviceInformation = ({
 
   const { required, error, errorMessage } = useFormUtils({ errors, schema });
   const onSubmit = (formData: DeviceFormData) => {
-    setRepairFormData({ ...repairFormData, ...formData });
+    if (!stepsCompleted.includes(currentStep))
+      setStepsCompleted([...stepsCompleted, currentStep]);
+    addLocalStorageForm(formData);
     setCurrentStep(currentStep + 1);
   };
 
@@ -104,14 +104,7 @@ export const DeviceInformation = ({
               >
                 Atrás
               </Button>
-              <Button
-                block
-                variant="primary"
-                type="submit"
-                onClick={() =>
-                  setStepsCompleted([...stepsCompleted, currentStep])
-                }
-              >
+              <Button block variant="primary" type="submit">
                 {currentStep === 2 ? "Finalizar" : "Siguiente"}
               </Button>
             </div>
