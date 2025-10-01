@@ -1,8 +1,17 @@
 "use client";
 
 import { RepairsContactForm } from "@/components/ui/RepairsContactForm";
+import { useState } from "react";
 
 export default function RepairsClientPage() {
+  const addLocalStorageData = (data: object) => {
+    const currentLocalData = JSON.parse(
+      localStorage.getItem("formData") || "{}",
+    );
+    const newData = { ...currentLocalData, ...data };
+    localStorage.setItem("formData", JSON.stringify(newData));
+  };
+
   return (
     <div className="min-h-screen h-auto flex flex-col w-full bg-gray-300">
       <section className="bg-primary text-primary-foreground py-20 px-4">
@@ -19,7 +28,7 @@ export default function RepairsClientPage() {
           </button>
         </div>
       </section>
-      <RepairsContactForm />
+      <RepairsContactForm addLocalStorageForm={addLocalStorageData} />
     </div>
   );
 }

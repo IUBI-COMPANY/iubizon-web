@@ -17,6 +17,13 @@ interface Contact {
 interface RepairsContact
   extends Omit<Contact, "hostname" | "termsAndConditions" | "message"> {
   productName: string;
-  faultDescription: string;
+  deviceFault: string;
+  otherFault?: string;
   serviceType: string;
+  visitDate?: string;
+  visitTime?: string;
+  department?: string;
+  province?: string;
+  district?: string;
+  address?: string;
 }
