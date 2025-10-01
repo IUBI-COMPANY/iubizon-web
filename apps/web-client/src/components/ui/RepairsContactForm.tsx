@@ -7,20 +7,14 @@ import { SupportInformation } from "@/app/repairs/SupportInformation";
 import { StepsRepairsContactForm } from "@/components/ui/StepsRepairsContactForm";
 import { Projector, User, Wrench } from "lucide-react";
 
-export const RepairsContactForm = () => {
+interface Props {
+  addLocalStorageForm: (data: object) => void;
+}
+
+export const RepairsContactForm = ({ addLocalStorageForm }: Props) => {
   const [currentStep, setCurrentStep] = useState(0);
+  const [repairsFormData, setRepairsFormData] = useState({});
   const [stepsCompleted, setStepsCompleted] = useState<number[]>([]);
-
-  const addLocalStorageForm = (data: object) => {
-    const currentLocalData = JSON.parse(
-      localStorage.getItem("formData") || "{}",
-    );
-    const newData = { ...currentLocalData, ...data };
-    localStorage.setItem("formData", JSON.stringify(newData));
-  };
-
-  console.log("Paso actual: ", currentStep);
-  console.log("Pasos completados: ", stepsCompleted);
 
   const stepItems = [
     {
@@ -56,6 +50,8 @@ export const RepairsContactForm = () => {
           <ClientInformation
             currentStep={currentStep}
             setCurrentStep={setCurrentStep}
+            repairsFormData={repairsFormData}
+            setRepairsFormData={setRepairsFormData}
             stepsCompleted={stepsCompleted}
             setStepsCompleted={setStepsCompleted}
             addLocalStorageForm={addLocalStorageForm}
@@ -65,6 +61,8 @@ export const RepairsContactForm = () => {
           <DeviceInformation
             currentStep={currentStep}
             setCurrentStep={setCurrentStep}
+            repairsFormData={repairsFormData}
+            setRepairsFormData={setRepairsFormData}
             stepsCompleted={stepsCompleted}
             setStepsCompleted={setStepsCompleted}
             addLocalStorageForm={addLocalStorageForm}
@@ -74,6 +72,8 @@ export const RepairsContactForm = () => {
           <SupportInformation
             currentStep={currentStep}
             setCurrentStep={setCurrentStep}
+            repairsFormData={repairsFormData}
+            setRepairsFormData={setRepairsFormData}
             stepsCompleted={stepsCompleted}
             setStepsCompleted={setStepsCompleted}
             addLocalStorageForm={addLocalStorageForm}

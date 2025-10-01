@@ -15,6 +15,8 @@ import { Alert } from "@/components/ui/Alert";
 interface Props {
   currentStep: number;
   setCurrentStep: (step: number) => void;
+  repairsFormData: Partial<RepairsContact>;
+  setRepairsFormData: (data: object) => void;
   stepsCompleted: number[];
   setStepsCompleted: (steps: number[]) => void;
   addLocalStorageForm: (data: object) => void;
@@ -33,6 +35,8 @@ interface SupportFormData {
 export const SupportInformation = ({
   currentStep,
   setCurrentStep,
+  repairsFormData,
+  setRepairsFormData,
   stepsCompleted,
   setStepsCompleted,
   addLocalStorageForm,
@@ -79,7 +83,13 @@ export const SupportInformation = ({
   } = useForm<SupportFormData>({
     resolver: yupResolver(schema),
     defaultValues: {
-      serviceType: "local",
+      serviceType: repairsFormData?.serviceType || "local",
+      visitDate: repairsFormData?.visitDate || "",
+      visitTime: repairsFormData?.visitTime || "",
+      department: repairsFormData?.department || "",
+      province: repairsFormData?.province || "",
+      district: repairsFormData?.district || "",
+      address: repairsFormData?.address || "",
     },
   });
 
@@ -92,6 +102,7 @@ export const SupportInformation = ({
   const onSubmit = (formData: SupportFormData) => {
     if (!stepsCompleted.includes(currentStep))
       setStepsCompleted([...stepsCompleted, currentStep]);
+    setRepairsFormData({ ...repairsFormData, ...formData });
     addLocalStorageForm(formData);
   };
 

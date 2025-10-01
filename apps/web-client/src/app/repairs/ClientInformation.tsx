@@ -15,6 +15,8 @@ import { Button } from "@/components/ui/Button";
 interface Props {
   currentStep: number;
   setCurrentStep: (step: number) => void;
+  repairsFormData: Partial<RepairsContact>;
+  setRepairsFormData: (data: object) => void;
   stepsCompleted: number[];
   setStepsCompleted: (steps: number[]) => void;
   addLocalStorageForm: (data: object) => void;
@@ -31,6 +33,8 @@ interface ClientFormData {
 export const ClientInformation = ({
   currentStep,
   setCurrentStep,
+  repairsFormData,
+  setRepairsFormData,
   stepsCompleted,
   setStepsCompleted,
   addLocalStorageForm,
@@ -51,8 +55,11 @@ export const ClientInformation = ({
   } = useForm<ClientFormData>({
     resolver: yupResolver(schema),
     defaultValues: {
+      fullName: repairsFormData?.fullName || "",
+      email: repairsFormData?.email || "",
       phone: {
         prefix: "+51",
+        number: repairsFormData?.phone?.number || undefined,
       },
     },
   });
@@ -62,6 +69,7 @@ export const ClientInformation = ({
   const onSubmit = (formData: ClientFormData) => {
     if (!stepsCompleted.includes(currentStep))
       setStepsCompleted([...stepsCompleted, currentStep]);
+    setRepairsFormData({ ...repairsFormData, ...formData });
     addLocalStorageForm(formData);
     setCurrentStep(currentStep + 1);
   };

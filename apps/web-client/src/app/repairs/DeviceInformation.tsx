@@ -7,10 +7,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useFormUtils } from "@/hooks/useFormUtils";
 import React from "react";
 import { Button } from "@/components/ui/Button";
+import { Select } from "@/components/ui/Select";
 
 interface Props {
   currentStep: number;
   setCurrentStep: (step: number) => void;
+  repairsFormData: Partial<RepairsContact>;
+  setRepairsFormData: (data: object) => void;
   stepsCompleted: number[];
   setStepsCompleted: (steps: number[]) => void;
   addLocalStorageForm: (data: object) => void;
@@ -18,33 +21,51 @@ interface Props {
 
 interface DeviceFormData {
   productName: string;
-  faultDescription: string;
+  deviceFault: string;
+  otherFault?: string;
 }
 
 export const DeviceInformation = ({
   currentStep,
   setCurrentStep,
+  repairsFormData,
+  setRepairsFormData,
   stepsCompleted,
   setStepsCompleted,
   addLocalStorageForm,
 }: Props) => {
   const schema: ObjectSchema<DeviceFormData> = yup.object({
     productName: yup.string().required(),
-    faultDescription: yup.string().required(),
+    deviceFault: yup.string().required(),
+    otherFault: yup.string().when("deviceFault", {
+      is: "other",
+      then: (schema) => schema.required(),
+      otherwise: (schema) => schema.notRequired(),
+    }),
   });
 
   const {
     handleSubmit,
     control,
     formState: { errors },
+    watch,
   } = useForm<DeviceFormData>({
     resolver: yupResolver(schema),
+    defaultValues: {
+      productName: repairsFormData?.productName || "",
+      deviceFault: repairsFormData?.deviceFault || "",
+      otherFault: repairsFormData?.otherFault || "",
+    },
   });
 
   const { required, error, errorMessage } = useFormUtils({ errors, schema });
+
+  const isOtherFault = watch("deviceFault") === "other";
+
   const onSubmit = (formData: DeviceFormData) => {
     if (!stepsCompleted.includes(currentStep))
       setStepsCompleted([...stepsCompleted, currentStep]);
+    setRepairsFormData({ ...repairsFormData, ...formData });
     addLocalStorageForm(formData);
     setCurrentStep(currentStep + 1);
   };
@@ -64,7 +85,7 @@ export const DeviceInformation = ({
                   control={control}
                   render={({ field: { onChange, value, name } }) => (
                     <Input
-                      label="Producto"
+                      label="Modelo del Proyector"
                       name={name}
                       value={value}
                       error={error(name)}
@@ -78,11 +99,11 @@ export const DeviceInformation = ({
               </div>
               <div className="sm:col-span-2">
                 <Controller
-                  name="faultDescription"
+                  name="deviceFault"
                   control={control}
                   render={({ field: { onChange, value, name } }) => (
-                    <Input
-                      label="Descripción del problema"
+                    <Select
+                      label="Seleccione la falla del equipo"
                       name={name}
                       value={value}
                       error={error(name)}
@@ -90,9 +111,36 @@ export const DeviceInformation = ({
                       required={required(name)}
                       onChange={onChange}
                       placeholder="Ej. No enciende, no proyecta imagen, manchas, etc."
+                      options={[
+                        { label: "No enciende", value: "off" },
+                        { label: "No proyecta imagen", value: "no-image" },
+                        { label: "Manchas en la imagen", value: "spots" },
+                        { label: "Imagen distorsionada", value: "distorted" },
+                        { label: "Ruido excesivo", value: "noise" },
+                        { label: "Sobrecalentamiento", value: "overheat" },
+                        { label: "Problemas con el lente", value: "lens" },
+                        { label: "Otros", value: "other" },
+                      ]}
                     />
                   )}
                 />
+                {isOtherFault && (
+                  <div className="mt-3">
+                    <Controller
+                      name="otherFault"
+                      control={control}
+                      render={({ field: { onChange, value, name } }) => (
+                        <Input
+                          label="Describa la falla"
+                          name={name}
+                          value={value}
+                          onChange={onChange}
+                          placeholder="Describa la falla del equipo"
+                        />
+                      )}
+                    />
+                  </div>
+                )}
               </div>
             </div>
             <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
