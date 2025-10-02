@@ -21,7 +21,8 @@ interface Props {
   setRepairsFormData: (data: object) => void;
   stepsCompleted: number[];
   setStepsCompleted: (steps: number[]) => void;
-  addLocalStorageForm: (data: object) => void;
+  addLocalStorageData: (data: object) => void;
+  addStepToLocalStorage: (step: number, steps: number[]) => void;
 }
 
 interface SupportFormData {
@@ -41,7 +42,8 @@ export const SupportInformation = ({
   setRepairsFormData,
   stepsCompleted,
   setStepsCompleted,
-  addLocalStorageForm,
+  addLocalStorageData,
+  addStepToLocalStorage,
 }: Props) => {
   const schema: ObjectSchema<SupportFormData> = yup.object({
     serviceType: yup.string().required(),
@@ -85,9 +87,9 @@ export const SupportInformation = ({
   } = useForm<SupportFormData>({
     resolver: yupResolver(schema),
     defaultValues: {
-      serviceType: repairsFormData?.serviceType || "local",
-      visitDate: repairsFormData?.visitDate || "",
-      visitTime: repairsFormData?.visitTime || "",
+      serviceType: repairsFormData?.service_type || "local",
+      visitDate: repairsFormData?.visit_date || "",
+      visitTime: repairsFormData?.visit_time || "",
       department: repairsFormData?.department || "",
       province: repairsFormData?.province || "",
       district: repairsFormData?.district || "",
@@ -116,7 +118,9 @@ export const SupportInformation = ({
     if (!stepsCompleted.includes(currentStep))
       setStepsCompleted([...stepsCompleted, currentStep]);
     setRepairsFormData({ ...repairsFormData, ...formData });
-    addLocalStorageForm(formData);
+    addStepToLocalStorage(currentStep + 1, [...stepsCompleted, currentStep]);
+    addLocalStorageData(formData);
+    setCurrentStep(currentStep + 1);
   };
 
   return (

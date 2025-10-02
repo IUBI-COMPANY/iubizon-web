@@ -19,7 +19,8 @@ interface Props {
   setRepairsFormData: (data: object) => void;
   stepsCompleted: number[];
   setStepsCompleted: (steps: number[]) => void;
-  addLocalStorageForm: (data: object) => void;
+  addLocalStorageData: (data: object) => void;
+  addStepToLocalStorage: (step: number, steps: number[]) => void;
   current?: number;
   hideControls?: boolean;
 }
@@ -37,7 +38,8 @@ export const ClientInformation = ({
   setRepairsFormData,
   stepsCompleted,
   setStepsCompleted,
-  addLocalStorageForm,
+  addLocalStorageData,
+  addStepToLocalStorage,
 }: Props) => {
   const schema: ObjectSchema<ClientFormData> = yup.object({
     fullName: yup.string().required(),
@@ -67,11 +69,13 @@ export const ClientInformation = ({
   const { required, error, errorMessage } = useFormUtils({ errors, schema });
 
   const onSubmit = (formData: ClientFormData) => {
-    if (!stepsCompleted.includes(currentStep))
+    if (!stepsCompleted.includes(currentStep)) {
       setStepsCompleted([...stepsCompleted, currentStep]);
+    }
     setRepairsFormData({ ...repairsFormData, ...formData });
-    addLocalStorageForm(formData);
+    addLocalStorageData(formData);
     setCurrentStep(currentStep + 1);
+    addStepToLocalStorage(currentStep + 1, [...stepsCompleted, currentStep]);
   };
 
   return (

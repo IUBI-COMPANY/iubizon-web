@@ -1138,25 +1138,6 @@ export const peruUbigeo: Department[] = [
     ],
   },
   {
-    name: "Callao",
-    code: "07",
-    provinces: [
-      {
-        name: "Callao",
-        code: "0701",
-        districts: [
-          { name: "Callao", code: "070101" },
-          { name: "Bellavista", code: "070102" },
-          { name: "Carmen de la Legua Reynoso", code: "070103" },
-          { name: "La Perla", code: "070104" },
-          { name: "La Punta", code: "070105" },
-          { name: "Ventanilla", code: "070106" },
-          { name: "Mi Perú", code: "070107" },
-        ],
-      },
-    ],
-  },
-  {
     name: "Cusco",
     code: "08",
     provinces: [
@@ -2204,6 +2185,19 @@ export const peruUbigeo: Department[] = [
           { name: "Pativilca", code: "150203" },
           { name: "Supe", code: "150204" },
           { name: "Supe Puerto", code: "150205" },
+        ],
+      },
+      {
+        name: "Callao",
+        code: "0701",
+        districts: [
+          { name: "Callao", code: "070101" },
+          { name: "Bellavista", code: "070102" },
+          { name: "Carmen de la Legua Reynoso", code: "070103" },
+          { name: "La Perla", code: "070104" },
+          { name: "La Punta", code: "070105" },
+          { name: "Ventanilla", code: "070106" },
+          { name: "Mi Perú", code: "070107" },
         ],
       },
       {
