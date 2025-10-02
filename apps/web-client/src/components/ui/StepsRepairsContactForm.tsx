@@ -29,6 +29,7 @@ export const StepsRepairsContactForm = ({
         {items.map((item, key) => {
           const isComplete = stepsCompleted.includes(item.step);
           const isActive = currentStep === item.step;
+          const isFinishedForm = currentStep === 3;
 
           return (
             <li key={key} className="w-full flex items-center">
@@ -39,7 +40,7 @@ export const StepsRepairsContactForm = ({
                   item.classButton,
                 )}
                 onClick={() => setCurrentStep(item.step)}
-                disabled={!(isComplete || isActive) && true}
+                disabled={(!(isComplete || isActive) || isFinishedForm) && true}
               >
                 <span className="flex items-end gap-2">
                   {isComplete ? <CircleCheck /> : item.icon}

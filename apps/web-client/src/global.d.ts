@@ -14,14 +14,13 @@ interface Contact {
   hostname: string;
 }
 
-interface RepairsContact
-  extends Omit<Contact, "hostname" | "termsAndConditions" | "message"> {
-  productName: string;
-  deviceFault: string;
-  otherFault?: string;
-  serviceType: string;
-  visitDate?: string;
-  visitTime?: string;
+interface RepairsContact extends Contact {
+  product_name: string;
+  device_fault: string;
+  other_fault?: string;
+  service_type: string;
+  visit_date?: string;
+  visit_time?: string;
   department?: string;
   province?: string;
   district?: string;

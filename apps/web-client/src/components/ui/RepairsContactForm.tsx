@@ -1,20 +1,46 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ClientInformation } from "@/app/repairs/ClientInformation";
 import { DeviceInformation } from "@/app/repairs/DeviceInformation";
 import { SupportInformation } from "@/app/repairs/SupportInformation";
 import { StepsRepairsContactForm } from "@/components/ui/StepsRepairsContactForm";
-import { Projector, User, Wrench } from "lucide-react";
+import { CircleCheck, Loader2, Projector, User, Wrench } from "lucide-react";
+import Image from "next/image";
 
-interface Props {
-  addLocalStorageForm: (data: object) => void;
-}
-
-export const RepairsContactForm = ({ addLocalStorageForm }: Props) => {
+export const RepairsContactForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [repairsFormData, setRepairsFormData] = useState({});
   const [stepsCompleted, setStepsCompleted] = useState<number[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("formData") || "{}");
+    const stepsData = JSON.parse(localStorage.getItem("steps") || "{}");
+    if (stepsData.currentStep !== undefined)
+      setCurrentStep(stepsData.currentStep);
+    if (stepsData.stepsCompleted) setStepsCompleted(stepsData.stepsCompleted);
+    setRepairsFormData(data);
+    setLoading(false);
+  }, []);
+
+  const addLocalStorageData = (data: object) => {
+    const currentLocalData = getLocalStorageData();
+    const newData = { ...currentLocalData, ...data };
+    localStorage.setItem("formData", JSON.stringify(newData));
+  };
+
+  const addStepToLocalStorage = (step: number, stepsCompleted: number[]) => {
+    const newData = {
+      currentStep: step,
+      stepsCompleted: [...stepsCompleted],
+    };
+    localStorage.setItem("steps", JSON.stringify(newData));
+  };
+
+  const getLocalStorageData = () => {
+    return JSON.parse(localStorage.getItem("formData") || "{}");
+  };
 
   const stepItems = [
     {
@@ -37,7 +63,11 @@ export const RepairsContactForm = ({ addLocalStorageForm }: Props) => {
     },
   ];
 
-  return (
+  return loading ? (
+    <div className="w-full h-full grid place-items-center ">
+      <Loader2 className="w-20 h-20 text-primary animate-spin" />
+    </div>
+  ) : (
     <div className="grid gap-5 py-10 w-full max-w-2xl mx-auto ">
       <StepsRepairsContactForm
         items={stepItems}
@@ -54,7 +84,8 @@ export const RepairsContactForm = ({ addLocalStorageForm }: Props) => {
             setRepairsFormData={setRepairsFormData}
             stepsCompleted={stepsCompleted}
             setStepsCompleted={setStepsCompleted}
-            addLocalStorageForm={addLocalStorageForm}
+            addLocalStorageData={addLocalStorageData}
+            addStepToLocalStorage={addStepToLocalStorage}
           />
         )}
         {currentStep === 1 && (
@@ -65,7 +96,8 @@ export const RepairsContactForm = ({ addLocalStorageForm }: Props) => {
             setRepairsFormData={setRepairsFormData}
             stepsCompleted={stepsCompleted}
             setStepsCompleted={setStepsCompleted}
-            addLocalStorageForm={addLocalStorageForm}
+            addLocalStorageData={addLocalStorageData}
+            addStepToLocalStorage={addStepToLocalStorage}
           />
         )}
         {currentStep === 2 && (
@@ -76,8 +108,26 @@ export const RepairsContactForm = ({ addLocalStorageForm }: Props) => {
             setRepairsFormData={setRepairsFormData}
             stepsCompleted={stepsCompleted}
             setStepsCompleted={setStepsCompleted}
-            addLocalStorageForm={addLocalStorageForm}
+            addLocalStorageData={addLocalStorageData}
+            addStepToLocalStorage={addStepToLocalStorage}
           />
+        )}
+        {currentStep === 3 && (
+          <div className="w-full h-full grid sm:grid-cols-2 place-items-center ">
+            <Image
+              width={1000}
+              height={1000}
+              src="/images/iubizon-pet.png"
+              alt="iubizonpet"
+              className="w-full h-auto"
+            />
+            <div className="grid place-items-center gap-5">
+              <CircleCheck className="w-25 h-25 text-green-700 " />
+              <span className="text-xl font-bold text-center text-secondary">
+                Listo, te contactaremos lo más antes posible
+              </span>
+            </div>
+          </div>
         )}
       </div>
     </div>
