@@ -27,13 +27,13 @@ interface Props {
 }
 
 export const SupportInformation = ({
-  globalStep,
-  repairsFormData,
-  setRepairsFormData,
-  addLocalStorageData,
-  setCurrentStepToLocalStorage,
-  setLoading,
-}: Props) => {
+                                     globalStep,
+                                     repairsFormData,
+                                     setRepairsFormData,
+                                     addLocalStorageData,
+                                     setCurrentStepToLocalStorage,
+                                     setLoading,
+                                   }: Props) => {
   const schema: ObjectSchema<RepairStep3> = yup.object({
     service_type: yup.string().required(),
     visit_date: yup.string().when("service_type", {

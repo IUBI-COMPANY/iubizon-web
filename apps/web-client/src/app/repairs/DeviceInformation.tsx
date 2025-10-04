@@ -19,12 +19,12 @@ interface Props {
 }
 
 export const DeviceInformation = ({
-  globalStep,
-  repairsFormData,
-  setRepairsFormData,
-  addLocalStorageData,
-  setCurrentStepToLocalStorage,
-}: Props) => {
+                                    globalStep,
+                                    repairsFormData,
+                                    setRepairsFormData,
+                                    addLocalStorageData,
+                                    setCurrentStepToLocalStorage,
+                                  }: Props) => {
   const schema: ObjectSchema<RepairStep2> = yup.object({
     product_name: yup.string().required(),
     description_device_fault: yup.string().required(),

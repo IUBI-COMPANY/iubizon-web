@@ -24,12 +24,12 @@ interface Props {
 }
 
 export const ClientInformation = ({
-  globalStep,
-  repairsFormData,
-  setRepairsFormData,
-  addLocalStorageData,
-  setCurrentStepToLocalStorage,
-}: Props) => {
+                                    globalStep,
+                                    repairsFormData,
+                                    setRepairsFormData,
+                                    addLocalStorageData,
+                                    setCurrentStepToLocalStorage,
+                                  }: Props) => {
   const schema: ObjectSchema<RepairStep1> = yup.object({
     first_name: yup.string().required(),
     last_name: yup.string().required(),
