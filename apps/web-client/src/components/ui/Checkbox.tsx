@@ -77,7 +77,6 @@ export const Checkbox = ({
           </span>
         </label>
       </div>
-
       {error && helperText && (
         <p
           id={`${name}-error`}

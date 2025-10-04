@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ClientInformation } from "@/app/repairs/ClientInformation";
 import { DeviceInformation } from "@/app/repairs/DeviceInformation";
 import { SupportInformation } from "@/app/repairs/SupportInformation";
@@ -8,21 +8,45 @@ import { StepsRepairsContactForm } from "@/components/ui/StepsRepairsContactForm
 import { CircleCheck, Loader2, Projector, User, Wrench } from "lucide-react";
 import Image from "next/image";
 
+export type RepairStep1 = Pick<
+  Repair,
+  "first_name" | "last_name" | "email" | "phone_prefix" | "phone_number"
+>;
+
+export type RepairStep2 = Pick<
+  Repair,
+  "product_name" | "description_device_fault" | "description_other_fault"
+>;
+
+export type RepairStep3 = Pick<
+  Repair,
+  | "service_type"
+  | "visit_date"
+  | "visit_time"
+  | "department"
+  | "province"
+  | "district"
+  | "address"
+  | "terms_and_conditions"
+>;
+
 export const RepairsContactForm = () => {
-  const [currentStep, setCurrentStep] = useState(0);
-  const [repairsFormData, setRepairsFormData] = useState({});
-  const [stepsCompleted, setStepsCompleted] = useState<number[]>([]);
+  const [globalStep, setGlobalStep] = useState(0);
+  const [repairsFormData, setRepairsFormData] = useState<Partial<Repair>>({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const stepsData = Number(localStorage.getItem("currentStep") || 0);
+    if (stepsData !== null) {
+      setCurrentStepToLocalStorage(stepsData);
+    }
+  }, []);
+
+  useEffect(() => {
     const data = JSON.parse(localStorage.getItem("formData") || "{}");
-    const stepsData = JSON.parse(localStorage.getItem("steps") || "{}");
-    if (stepsData.currentStep !== undefined)
-      setCurrentStep(stepsData.currentStep);
-    if (stepsData.stepsCompleted) setStepsCompleted(stepsData.stepsCompleted);
     setRepairsFormData(data);
     setLoading(false);
-  }, []);
+  }, [globalStep]);
 
   const addLocalStorageData = (data: object) => {
     const currentLocalData = getLocalStorageData();
@@ -30,12 +54,9 @@ export const RepairsContactForm = () => {
     localStorage.setItem("formData", JSON.stringify(newData));
   };
 
-  const addStepToLocalStorage = (step: number, stepsCompleted: number[]) => {
-    const newData = {
-      currentStep: step,
-      stepsCompleted: [...stepsCompleted],
-    };
-    localStorage.setItem("steps", JSON.stringify(newData));
+  const setCurrentStepToLocalStorage = (step: number) => {
+    localStorage.setItem("currentStep", JSON.stringify(step));
+    setGlobalStep(step);
   };
 
   const getLocalStorageData = () => {
@@ -71,48 +92,39 @@ export const RepairsContactForm = () => {
     <div className="grid gap-5 py-10 w-full max-w-2xl mx-auto ">
       <StepsRepairsContactForm
         items={stepItems}
-        currentStep={currentStep}
-        setCurrentStep={setCurrentStep}
-        stepsCompleted={stepsCompleted}
+        globalStep={globalStep}
+        setGlobalStep={setGlobalStep}
       />
       <div className="w-full max-w-2xl mx-auto shadow-lg  py-10 px-6 rounded-2xl bg-white">
-        {currentStep === 0 && (
+        {globalStep === 0 && (
           <ClientInformation
-            currentStep={currentStep}
-            setCurrentStep={setCurrentStep}
+            globalStep={globalStep}
             repairsFormData={repairsFormData}
             setRepairsFormData={setRepairsFormData}
-            stepsCompleted={stepsCompleted}
-            setStepsCompleted={setStepsCompleted}
             addLocalStorageData={addLocalStorageData}
-            addStepToLocalStorage={addStepToLocalStorage}
+            setCurrentStepToLocalStorage={setCurrentStepToLocalStorage}
           />
         )}
-        {currentStep === 1 && (
+        {globalStep === 1 && (
           <DeviceInformation
-            currentStep={currentStep}
-            setCurrentStep={setCurrentStep}
+            globalStep={globalStep}
             repairsFormData={repairsFormData}
             setRepairsFormData={setRepairsFormData}
-            stepsCompleted={stepsCompleted}
-            setStepsCompleted={setStepsCompleted}
             addLocalStorageData={addLocalStorageData}
-            addStepToLocalStorage={addStepToLocalStorage}
+            setCurrentStepToLocalStorage={setCurrentStepToLocalStorage}
           />
         )}
-        {currentStep === 2 && (
+        {globalStep === 2 && (
           <SupportInformation
-            currentStep={currentStep}
-            setCurrentStep={setCurrentStep}
+            setLoading={setLoading}
+            globalStep={globalStep}
             repairsFormData={repairsFormData}
             setRepairsFormData={setRepairsFormData}
-            stepsCompleted={stepsCompleted}
-            setStepsCompleted={setStepsCompleted}
             addLocalStorageData={addLocalStorageData}
-            addStepToLocalStorage={addStepToLocalStorage}
+            setCurrentStepToLocalStorage={setCurrentStepToLocalStorage}
           />
         )}
-        {currentStep === 3 && (
+        {globalStep === 3 && (
           <div className="w-full h-full grid sm:grid-cols-2 place-items-center ">
             <Image
               width={1000}

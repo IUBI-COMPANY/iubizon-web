@@ -11,71 +11,68 @@ import { useFormUtils } from "@/hooks/useFormUtils";
 import { Select } from "@/components/ui/Select";
 import countriesISO from "@/data-list/countriesISO.json";
 import { Button } from "@/components/ui/Button";
+import { RepairStep1 } from "@/components/ui/RepairsContactForm";
 
 interface Props {
-  currentStep: number;
-  setCurrentStep: (step: number) => void;
-  repairsFormData: Partial<RepairsContact>;
-  setRepairsFormData: (data: object) => void;
-  stepsCompleted: number[];
-  setStepsCompleted: (steps: number[]) => void;
+  globalStep: number;
+  repairsFormData: Partial<Repair>;
+  setRepairsFormData: (data: Partial<Repair>) => void;
   addLocalStorageData: (data: object) => void;
-  addStepToLocalStorage: (step: number, steps: number[]) => void;
+  setCurrentStepToLocalStorage: (step: number) => void;
   current?: number;
   hideControls?: boolean;
 }
 
-interface ClientFormData {
-  fullName: string;
-  email: string;
-  phone: Phone;
-}
-
 export const ClientInformation = ({
-  currentStep,
-  setCurrentStep,
+  globalStep,
   repairsFormData,
   setRepairsFormData,
-  stepsCompleted,
-  setStepsCompleted,
   addLocalStorageData,
-  addStepToLocalStorage,
+  setCurrentStepToLocalStorage,
 }: Props) => {
-  const schema: ObjectSchema<ClientFormData> = yup.object({
-    fullName: yup.string().required(),
+  const schema: ObjectSchema<RepairStep1> = yup.object({
+    first_name: yup.string().required(),
+    last_name: yup.string().required(),
     email: yup.string().email().required(),
-    phone: yup.object({
-      prefix: yup.string().required(),
-      number: yup.number().required(),
-    }),
+    phone_prefix: yup.string().required(),
+    phone_number: yup
+      .string()
+      .required()
+      .test("is-valid-phone", "Número de teléfono inválido", function (value) {
+        const { phone_prefix } = this.parent;
+        return regexPhoneByCountries(phone_prefix).test(value);
+      }),
   });
 
   const {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<ClientFormData>({
+  } = useForm<RepairStep1>({
     resolver: yupResolver(schema),
     defaultValues: {
-      fullName: repairsFormData?.fullName || "",
+      first_name: repairsFormData?.first_name || "",
+      last_name: repairsFormData?.last_name || "",
       email: repairsFormData?.email || "",
-      phone: {
-        prefix: "+51",
-        number: repairsFormData?.phone?.number || undefined,
-      },
+      phone_prefix: "+51",
+      phone_number: repairsFormData?.phone_number || undefined,
     },
   });
 
   const { required, error, errorMessage } = useFormUtils({ errors, schema });
 
-  const onSubmit = (formData: ClientFormData) => {
-    if (!stepsCompleted.includes(currentStep)) {
-      setStepsCompleted([...stepsCompleted, currentStep]);
-    }
+  const regexPhoneByCountries = (phone_prefix: string) => {
+    const country = countriesISO.find(
+      (country) => country.phonePrefix === phone_prefix,
+    );
+    const regex = country?.regex || "^\\d{4,}$";
+    return new RegExp(regex);
+  };
+
+  const onSubmit = (formData: RepairStep1) => {
     setRepairsFormData({ ...repairsFormData, ...formData });
     addLocalStorageData(formData);
-    setCurrentStep(currentStep + 1);
-    addStepToLocalStorage(currentStep + 1, [...stepsCompleted, currentStep]);
+    setCurrentStepToLocalStorage(globalStep + 1);
   };
 
   return (
@@ -86,21 +83,39 @@ export const ClientInformation = ({
       <div className="mt-5">
         <Form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gap-6 mx-auto max-w-xl">
-            <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-4">
-              <div className="sm:col-span-4">
+            <div className="grid grid-cols-1 gap-x-2 gap-y-6 sm:grid-cols-4">
+              <div className="sm:col-span-2">
                 <Controller
-                  name="fullName"
+                  name="first_name"
                   control={control}
                   render={({ field: { onChange, value, name } }) => (
                     <Input
-                      label="Nombres completos"
+                      label="Nombres"
                       name={name}
                       value={value}
                       error={error(name)}
                       helperText={errorMessage(name)}
                       required={required(name)}
                       onChange={onChange}
-                      placeholder="Tu nombre y apellidos"
+                      placeholder="Tus nombres"
+                    />
+                  )}
+                />
+              </div>
+              <div className="sm:col-span-2">
+                <Controller
+                  name="last_name"
+                  control={control}
+                  render={({ field: { onChange, value, name } }) => (
+                    <Input
+                      label="Apellidos"
+                      name={name}
+                      value={value}
+                      error={error(name)}
+                      helperText={errorMessage(name)}
+                      required={required(name)}
+                      onChange={onChange}
+                      placeholder="Tus apellidos"
                     />
                   )}
                 />
@@ -128,7 +143,7 @@ export const ClientInformation = ({
             <div className="grid grid-cols-1 gap-x-2 gap-y-6 sm:grid-cols-4">
               <div className="sm:col-span-1">
                 <Controller
-                  name="phone.prefix"
+                  name="phone_prefix"
                   control={control}
                   render={({ field: { onChange, value, name } }) => (
                     <Select
@@ -150,7 +165,7 @@ export const ClientInformation = ({
               </div>
               <div className="sm:col-span-3">
                 <Controller
-                  name="phone.number"
+                  name="phone_number"
                   control={control}
                   render={({ field: { onChange, value, name } }) => (
                     <Input
@@ -173,7 +188,7 @@ export const ClientInformation = ({
                 Atrás
               </Button>
               <Button block variant="primary" type="submit">
-                {currentStep === 2 ? "Finalizar" : "Siguiente"}
+                Siguiente
               </Button>
             </div>
           </div>

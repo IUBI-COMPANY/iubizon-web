@@ -8,38 +8,27 @@ import { useFormUtils } from "@/hooks/useFormUtils";
 import React from "react";
 import { Button } from "@/components/ui/Button";
 import { Select } from "@/components/ui/Select";
+import { RepairStep2 } from "@/components/ui/RepairsContactForm";
 
 interface Props {
-  currentStep: number;
-  setCurrentStep: (step: number) => void;
-  repairsFormData: Partial<RepairsContact>;
-  setRepairsFormData: (data: object) => void;
-  stepsCompleted: number[];
-  setStepsCompleted: (steps: number[]) => void;
+  globalStep: number;
+  repairsFormData: Partial<RepairStep2>;
+  setRepairsFormData: (data: Partial<RepairStep2>) => void;
   addLocalStorageData: (data: object) => void;
-  addStepToLocalStorage: (step: number, steps: number[]) => void;
-}
-
-interface DeviceFormData {
-  productName: string;
-  deviceFault: string;
-  otherFault?: string;
+  setCurrentStepToLocalStorage: (step: number) => void;
 }
 
 export const DeviceInformation = ({
-  currentStep,
-  setCurrentStep,
+  globalStep,
   repairsFormData,
   setRepairsFormData,
-  stepsCompleted,
-  setStepsCompleted,
   addLocalStorageData,
-  addStepToLocalStorage,
+  setCurrentStepToLocalStorage,
 }: Props) => {
-  const schema: ObjectSchema<DeviceFormData> = yup.object({
-    productName: yup.string().required(),
-    deviceFault: yup.string().required(),
-    otherFault: yup.string().when("deviceFault", {
+  const schema: ObjectSchema<RepairStep2> = yup.object({
+    product_name: yup.string().required(),
+    description_device_fault: yup.string().required(),
+    description_other_fault: yup.string().when("description_device_fault", {
       is: "other",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
@@ -51,26 +40,23 @@ export const DeviceInformation = ({
     control,
     formState: { errors },
     watch,
-  } = useForm<DeviceFormData>({
+  } = useForm<RepairStep2>({
     resolver: yupResolver(schema),
     defaultValues: {
-      productName: repairsFormData?.product_name || "",
-      deviceFault: repairsFormData?.device_fault || "",
-      otherFault: repairsFormData?.other_fault || "",
+      product_name: repairsFormData?.product_name || "",
+      description_device_fault: repairsFormData?.description_device_fault || "",
+      description_other_fault: repairsFormData?.description_other_fault || "",
     },
   });
 
   const { required, error, errorMessage } = useFormUtils({ errors, schema });
 
-  const isOtherFault = watch("deviceFault") === "other";
+  const isOtherFault = watch("description_device_fault") === "other";
 
-  const onSubmit = (formData: DeviceFormData) => {
-    if (!stepsCompleted.includes(currentStep))
-      setStepsCompleted([...stepsCompleted, currentStep]);
+  const onSubmit = (formData: RepairStep2) => {
     setRepairsFormData({ ...repairsFormData, ...formData });
     addLocalStorageData(formData);
-    setCurrentStep(currentStep + 1);
-    addStepToLocalStorage(currentStep + 1, [...stepsCompleted, currentStep]);
+    setCurrentStepToLocalStorage(globalStep + 1);
   };
 
   return (
@@ -84,7 +70,7 @@ export const DeviceInformation = ({
             <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
               <div className="sm:col-span-2">
                 <Controller
-                  name="productName"
+                  name="product_name"
                   control={control}
                   render={({ field: { onChange, value, name } }) => (
                     <Input
@@ -102,7 +88,7 @@ export const DeviceInformation = ({
               </div>
               <div className="sm:col-span-2">
                 <Controller
-                  name="deviceFault"
+                  name="description_device_fault"
                   control={control}
                   render={({ field: { onChange, value, name } }) => (
                     <Select
@@ -130,7 +116,7 @@ export const DeviceInformation = ({
                 {isOtherFault && (
                   <div className="mt-3">
                     <Controller
-                      name="otherFault"
+                      name="description_other_fault"
                       control={control}
                       render={({ field: { onChange, value, name } }) => (
                         <Input
@@ -151,12 +137,12 @@ export const DeviceInformation = ({
                 block
                 variant="secondary"
                 type="button"
-                onClick={() => setCurrentStep(currentStep - 1)}
+                onClick={() => setCurrentStepToLocalStorage(globalStep - 1)}
               >
                 Atrás
               </Button>
               <Button block variant="primary" type="submit">
-                {currentStep === 2 ? "Finalizar" : "Siguiente"}
+                Siguiente
               </Button>
             </div>
           </div>

@@ -14,15 +14,23 @@ interface Contact {
   hostname: string;
 }
 
-interface RepairsContact extends Contact {
-  product_name: string;
-  device_fault: string;
-  other_fault?: string;
-  service_type: string;
+interface Repair {
+  full_name: string;
+  first_name?: string;
+  last_name?: string;
+  email?: string;
+  phone_prefix?: string;
+  phone_number?: string;
+  product_name?: string;
+  description_device_fault?: string;
+  description_other_fault?: string;
+  service_type?: string;
   visit_date?: string;
   visit_time?: string;
   department?: string;
   province?: string;
   district?: string;
   address?: string;
+  status: string;
+  terms_and_conditions: boolean;
 }

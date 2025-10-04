@@ -13,70 +13,60 @@ import { Input } from "@/components/ui/Input";
 import { Alert } from "@/components/ui/Alert";
 import { Select } from "@/components/ui/Select";
 import { peruUbigeo } from "@/data-list/ubigeos";
+import { Checkbox } from "@/components/ui/Checkbox";
+import { sendRepairEmail } from "./actions";
+import { RepairStep3 } from "@/components/ui/RepairsContactForm";
 
 interface Props {
-  currentStep: number;
-  setCurrentStep: (step: number) => void;
-  repairsFormData: Partial<RepairsContact>;
-  setRepairsFormData: (data: object) => void;
-  stepsCompleted: number[];
-  setStepsCompleted: (steps: number[]) => void;
+  globalStep: number;
+  repairsFormData: Partial<Repair>;
+  setRepairsFormData: (data: Partial<Repair>) => void;
   addLocalStorageData: (data: object) => void;
-  addStepToLocalStorage: (step: number, steps: number[]) => void;
-}
-
-interface SupportFormData {
-  serviceType: string;
-  visitDate?: string;
-  visitTime?: string;
-  district?: string;
-  address?: string;
-  department?: string;
-  province?: string;
+  setCurrentStepToLocalStorage: (step: number) => void;
+  setLoading: (loading: boolean) => void;
 }
 
 export const SupportInformation = ({
-  currentStep,
-  setCurrentStep,
+  globalStep,
   repairsFormData,
   setRepairsFormData,
-  stepsCompleted,
-  setStepsCompleted,
   addLocalStorageData,
-  addStepToLocalStorage,
+  setCurrentStepToLocalStorage,
+  setLoading,
 }: Props) => {
-  const schema: ObjectSchema<SupportFormData> = yup.object({
-    serviceType: yup.string().required(),
-    visitDate: yup.string().when("serviceType", {
+  const schema: ObjectSchema<RepairStep3> = yup.object({
+    service_type: yup.string().required(),
+    visit_date: yup.string().when("service_type", {
       is: "house",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
-    visitTime: yup.string().when("serviceType", {
+    visit_time: yup.string().when("service_type", {
       is: "house",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
-    district: yup.string().when("serviceType", {
+    district: yup.string().when("service_type", {
       is: "house || shipping",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
-    address: yup.string().when("serviceType", {
+    address: yup.string().when("service_type", {
       is: "house || shipping",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
-    department: yup.string().when("serviceType", {
+    department: yup.string().when("service_type", {
       is: "shipping",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
-    province: yup.string().when("serviceType", {
+    province: yup.string().when("service_type", {
       is: "shipping",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
+    terms_and_conditions: yup.boolean().required(),
   });
 
   const {
@@ -84,12 +74,12 @@ export const SupportInformation = ({
     control,
     formState: { errors },
     watch,
-  } = useForm<SupportFormData>({
+  } = useForm<RepairStep3>({
     resolver: yupResolver(schema),
     defaultValues: {
-      serviceType: repairsFormData?.service_type || "local",
-      visitDate: repairsFormData?.visit_date || "",
-      visitTime: repairsFormData?.visit_time || "",
+      service_type: repairsFormData?.service_type || "local",
+      visit_date: repairsFormData?.visit_date || "",
+      visit_time: repairsFormData?.visit_time || "",
       department: repairsFormData?.department || "",
       province: repairsFormData?.province || "",
       district: repairsFormData?.district || "",
@@ -99,12 +89,10 @@ export const SupportInformation = ({
 
   const { required, error, errorMessage } = useFormUtils({ errors, schema });
 
-  //Validate Service Type
-  const isLocalVisit = watch("serviceType") === "local";
-  const isHouseVisit = watch("serviceType") === "house";
-  const isShipping = watch("serviceType") === "shipping";
+  const isLocalVisit = watch("service_type") === "local";
+  const isHouseVisit = watch("service_type") === "house";
+  const isShipping = watch("service_type") === "shipping";
 
-  //Validate Department and Province
   const departmentSelected = watch("department");
   const _departmentSelected = peruUbigeo.find(
     (dep) => dep.name === departmentSelected,
@@ -114,13 +102,23 @@ export const SupportInformation = ({
     (prov) => prov.name === provinceSelected,
   );
 
-  const onSubmit = (formData: SupportFormData) => {
-    if (!stepsCompleted.includes(currentStep))
-      setStepsCompleted([...stepsCompleted, currentStep]);
+  const districtsByLimaProvince = peruUbigeo[13].provinces[0].districts;
+
+  const onSubmit = async (formData: RepairStep3) => {
+    setLoading(true);
     setRepairsFormData({ ...repairsFormData, ...formData });
-    addStepToLocalStorage(currentStep + 1, [...stepsCompleted, currentStep]);
+    setCurrentStepToLocalStorage(globalStep + 1);
     addLocalStorageData(formData);
-    setCurrentStep(currentStep + 1);
+    const data: Repair = JSON.parse(localStorage.getItem("formData") || "{}");
+    try {
+      await sendRepairEmail(data);
+      localStorage.removeItem("currentStep");
+      localStorage.removeItem("formData");
+      setLoading(false);
+      window.location.href = "/repairs";
+    } catch (error) {
+      console.error("Error: ", error);
+    }
   };
 
   return (
@@ -134,7 +132,7 @@ export const SupportInformation = ({
             <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
               <div className="sm:col-span-2">
                 <Controller
-                  name="serviceType"
+                  name="service_type"
                   control={control}
                   render={({ field: { onChange, value, name } }) => (
                     <RadioGroup
@@ -153,6 +151,7 @@ export const SupportInformation = ({
                         {
                           label: "Quiero una visita técnica en mi domicilio",
                           value: "house",
+                          message: "Solo para Lima",
                         },
                         {
                           label: "Quiero enviar mi producto al local",
@@ -186,7 +185,7 @@ export const SupportInformation = ({
                   <div className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2 my-6">
                     <div className="sm:col-span-1">
                       <Controller
-                        name="visitDate"
+                        name="visit_date"
                         control={control}
                         render={({ field: { onChange, value, name } }) => (
                           <DatePicker
@@ -203,7 +202,7 @@ export const SupportInformation = ({
                     </div>
                     <div className="sm:col-span-1">
                       <Controller
-                        name="visitTime"
+                        name="visit_time"
                         control={control}
                         render={({ field: { onChange, value, name } }) => (
                           <TimePicker
@@ -294,7 +293,11 @@ export const SupportInformation = ({
                               _provinceSelected?.districts.map((dist) => ({
                                 value: dist.name,
                                 label: dist.name,
-                              })) || []
+                              })) ||
+                              districtsByLimaProvince.map((dist) => ({
+                                value: dist.name,
+                                label: dist.name,
+                              }))
                             }
                           />
                         )}
@@ -320,17 +323,43 @@ export const SupportInformation = ({
                     </div>
                   </div>
                 )}
+                <div className="sm: col-span-2">
+                  <Controller
+                    name="terms_and_conditions"
+                    control={control}
+                    render={({ field: { onChange, value, name } }) => (
+                      <Checkbox
+                        name={name}
+                        checked={value}
+                        error={error(name)}
+                        helperText={errorMessage(name)}
+                        required={required(name)}
+                        onChange={onChange}
+                      >
+                        <div>
+                          Acepto los{" "}
+                          <a
+                            href="#"
+                            className="hover:text-slate-800 font-semibold underline"
+                          >
+                            términos y condiciones
+                          </a>
+                        </div>
+                      </Checkbox>
+                    )}
+                  />
+                </div>
                 <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <Button
                     block
                     variant="secondary"
                     type="button"
-                    onClick={() => setCurrentStep(currentStep - 1)}
+                    onClick={() => setCurrentStepToLocalStorage(globalStep - 1)}
                   >
                     Atrás
                   </Button>
                   <Button block variant="primary" type="submit">
-                    {currentStep === 2 ? "Finalizar" : "Siguiente"}
+                    Finalizar
                   </Button>
                 </div>
               </div>
