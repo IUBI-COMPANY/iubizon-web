@@ -351,7 +351,7 @@ export const products: Product[] = [
     stock: 1,
     condition: "new",
     description: "Buena proyección, detalles estéticos",
-    price: 2399.0,
+    price: 999.0,
     badge: "Nuevo",
     mainImage: "/images/EX3210/1.jpg",
     media: [
@@ -385,7 +385,7 @@ export const products: Product[] = [
     stock: 1,
     condition: "new",
     description: "Buena proyección, detalles estéticos",
-    price: 2399.0,
+    price: 999.0,
     badge: "Nuevo",
     mainImage: "/images/VS340/1.jpg",
     media: [
@@ -419,7 +419,7 @@ export const products: Product[] = [
     stock: 7,
     condition: "new",
     description: "Accesorio de proyección",
-    price: 299.0,
+    price: 570.0,
     badge: "Nuevo",
     mainImage: "/images/ELPAP11/1.jpg",
     media: [
