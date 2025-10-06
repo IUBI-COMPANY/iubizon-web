@@ -16,6 +16,7 @@ import { peruUbigeo } from "@/data-list/ubigeos";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { sendRepairEmail } from "./actions";
 import { RepairStep3 } from "@/components/ui/RepairsContactForm";
+import { SendIcon } from "lucide-react";
 
 interface Props {
   globalStep: number;
@@ -23,6 +24,7 @@ interface Props {
   setRepairsFormData: (data: Partial<Repair>) => void;
   addLocalStorageData: (data: object) => void;
   setCurrentStepToLocalStorage: (step: number) => void;
+  loading: boolean;
   setLoading: (loading: boolean) => void;
 }
 
@@ -32,6 +34,7 @@ export const SupportInformation = ({
   setRepairsFormData,
   addLocalStorageData,
   setCurrentStepToLocalStorage,
+  loading,
   setLoading,
 }: Props) => {
   const schema: ObjectSchema<RepairStep3> = yup.object({
@@ -354,12 +357,20 @@ export const SupportInformation = ({
                     block
                     variant="secondary"
                     type="button"
+                    disabled={loading}
                     onClick={() => setCurrentStepToLocalStorage(globalStep - 1)}
                   >
                     Atrás
                   </Button>
-                  <Button block variant="primary" type="submit">
-                    Finalizar
+                  <Button
+                    block
+                    variant="primary"
+                    type="submit"
+                    loading={loading}
+                  >
+                    <div className="flex gap-2 items-center justify-center">
+                      <SendIcon /> <span>Enviar solicitud</span>
+                    </div>
                   </Button>
                 </div>
               </div>

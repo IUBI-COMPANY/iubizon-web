@@ -116,6 +116,7 @@ export const RepairsContactForm = () => {
         )}
         {globalStep === 2 && (
           <SupportInformation
+            loading={loading}
             setLoading={setLoading}
             globalStep={globalStep}
             repairsFormData={repairsFormData}
