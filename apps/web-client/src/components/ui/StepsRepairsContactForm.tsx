@@ -30,7 +30,7 @@ export const StepsRepairsContactForm = ({
 
   return (
     <div className="flex justify-center rounded-full">
-      <ol className="w-full flex justify-center gap-1 rounded-l-full rounded-r-full  object-cover">
+      <ol className="w-full flex justify-center gap-1 rounded-l-full rounded-r-full object-cover">
         {items.map((item, key) => {
           const isComplete = step > item.step;
           const isActive = step === item.step;

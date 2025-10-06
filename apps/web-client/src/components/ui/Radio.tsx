@@ -68,14 +68,14 @@ export const Radio = ({
         <label
           htmlFor={name}
           className={twMerge(
-            "text-sm text-slate-600 leading-5 flex-1",
+            "text-[.9em] text-secondary leading-5 flex-1",
             disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer",
           )}
         >
           <span className="flex flex-col gap-1 items-start">
             {children}
             {message && (
-              <span className="text-xs text-slate-500 font-bold">
+              <span className="text-xs text-primary font-bold">
                 {`(${message})`}
               </span>
             )}
@@ -83,7 +83,6 @@ export const Radio = ({
           </span>
         </label>
       </div>
-
       {error && helperText && (
         <p
           id={`${name}-error`}

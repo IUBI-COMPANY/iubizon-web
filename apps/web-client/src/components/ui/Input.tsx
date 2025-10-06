@@ -55,7 +55,7 @@ export const Input = ({
         placeholder={placeholder}
         autoComplete={autoComplete}
         className={twMerge(
-          "block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-600 placeholder:text-gray-500 transition-colors duration-200",
+          "block w-full rounded-md bg-white px-3.5 py-2 text-base placeholder:text-gray-400 transition-colors duration-200",
           "outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2",
           error
             ? "outline-red-500 border-red-500 focus:outline-red-500"
@@ -65,7 +65,6 @@ export const Input = ({
         aria-describedby={error ? `${name}-error` : undefined}
         aria-invalid={error}
       />
-
       {error && helperText && (
         <p
           id={`${name}-error`}

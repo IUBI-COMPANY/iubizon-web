@@ -91,7 +91,7 @@ export default function RepairsPage() {
             <div className="absolute inset-0 bg-blue-900/50"></div>
           </div>
           {/* Hero Content */}
-          <div className="relative z-10 h-auto p-[2em] flex flex-col justify-center items-center text-center">
+          <div className="relative z-10 h-auto px-[2em] pt-[3em] 2xl:pt-[5em] flex flex-col justify-center items-center text-center">
             <div className="max-w-4xl mx-auto mb-8">
               <h1 className="text-3xl md:text-[2.5em] font-bold text-white mb-4 leading-tight">
                 Mantenimiento y Reparación

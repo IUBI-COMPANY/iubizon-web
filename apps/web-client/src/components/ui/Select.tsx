@@ -60,21 +60,21 @@ export const Select = ({
           onChange={handleChange}
           autoComplete={autoComplete}
           className={twMerge(
-            "block w-full rounded-md bg-white px-3.5 py-2 pr-10 text-base text-gray-600 transition-colors duration-200",
+            "block w-full rounded-md bg-white px-3.5 py-2 pr-10 text-base transition-colors duration-200",
             "outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2",
             "appearance-none cursor-pointer",
             error
               ? "outline-red-500 border-red-500 focus:outline-red-500"
               : "focus:outline-secondary/70 hover:outline-gray-400",
             // Placeholder styling when no value is selected
-            !value && "text-gray-500",
+            !value && "text-gray-400",
             className,
           )}
           aria-describedby={error ? `${name}-error` : undefined}
           aria-invalid={error}
         >
           {placeholder && (
-            <option value="" disabled className="text-gray-500">
+            <option value="" disabled className="text-gray-400">
               {placeholder}
             </option>
           )}

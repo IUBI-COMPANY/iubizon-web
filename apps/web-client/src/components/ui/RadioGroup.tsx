@@ -77,7 +77,7 @@ export const RadioGroup = ({
     <div className={twMerge("", hidden && "hidden", className)}>
       {label && (
         <div className="mb-3">
-          <label className="block text-sm/6 font-semibold text-secondary">
+          <label className="block text-md font-semibold text-secondary">
             {label}
             {required && <span className="text-red-500 ml-1">*</span>}
           </label>

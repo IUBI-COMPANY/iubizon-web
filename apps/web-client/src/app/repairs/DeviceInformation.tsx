@@ -74,14 +74,14 @@ export const DeviceInformation = ({
                   control={control}
                   render={({ field: { onChange, value, name } }) => (
                     <Input
-                      label="Modelo del Proyector"
+                      label="Marca y Modelo del Proyector"
                       name={name}
                       value={value}
                       error={error(name)}
                       helperText={errorMessage(name)}
                       required={required(name)}
                       onChange={onChange}
-                      placeholder="Epson, BenQ, Optoma, etc."
+                      placeholder="Epson Powerlite-980w, Casio - XJ-F100W, BenQ, etc."
                     />
                   )}
                 />

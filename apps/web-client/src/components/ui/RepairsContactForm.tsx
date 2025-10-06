@@ -89,13 +89,13 @@ export const RepairsContactForm = () => {
       <Loader2 className="w-20 h-20 text-primary animate-spin" />
     </div>
   ) : (
-    <div className="grid gap-5 py-10 w-full max-w-2xl mx-auto ">
+    <div className="grid gap-5 py-10 w-full max-w-2xl mx-auto">
       <StepsRepairsContactForm
         items={stepItems}
         globalStep={globalStep}
         setGlobalStep={setGlobalStep}
       />
-      <div className="w-full max-w-2xl mx-auto shadow-lg  py-10 px-6 rounded-2xl bg-white">
+      <div className="w-full max-w-2xl mx-auto shadow-lg  py-10 px-6 rounded-2xl bg-white border-2 border-solid border-primary">
         {globalStep === 0 && (
           <ClientInformation
             globalStep={globalStep}

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title:
     "Quiénes Somos | Iubizon - Expertos en Proyectores y Tecnología Educativa",
   description:
-    "Conoce la historia de Iubizon, empresa especialista en proyectores y tecnología educativa en Lima. Equipo con más de 15 años de experiencia brindando soluciones innovadoras desde 2023.",
+    "Conoce la historia de Iubizon, empresa especialista en proyectores y tecnología educativa en Lima. Equipo con 5 años de experiencia brindando soluciones innovadoras desde 2023.",
   keywords: [
     "quienes somos Iubizon",
     "empresa proyectores Lima",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     title:
       "Quiénes Somos | Iubizon - Expertos en Proyectores y Tecnología Educativa",
     description:
-      "Conoce la historia de Iubizon, empresa especialista en proyectores y tecnología educativa en Lima. Equipo con más de 15 años de experiencia desde 2023.",
+      "Conoce la historia de Iubizon, empresa especialista en proyectores y tecnología educativa en Lima. Equipo con 5 años de experiencia desde 2023.",
     url: "/about-us",
     siteName: "Iubizon",
     images: [
@@ -187,8 +187,8 @@ export default function AboutUsPage() {
                     soluciones tecnológicas de vanguardia. Aunque somos una
                     empresa joven con <strong>1 año en el mercado</strong>,
                     nuestros especialistas cuentan con{" "}
-                    <strong>más de 15 años de experiencia individual</strong> en
-                    el sector.
+                    <strong>5 años de experiencia individual</strong> en el
+                    sector.
                   </p>
                   <p>
                     Nos hemos establecido rápidamente como{" "}
@@ -238,7 +238,7 @@ export default function AboutUsPage() {
                   <Users className="w-8 h-8 text-blue-600" />
                 </div>
                 <h3 className="text-lg font-bold text-color-secondary mb-2">
-                  +15 Años de Experiencia
+                  5 Años de Experiencia
                 </h3>
                 <p className="text-gray-600 text-sm">
                   Equipo especializado en proyectores y tecnología audiovisual

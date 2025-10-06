@@ -49,12 +49,12 @@ export const SupportInformation = ({
     district: yup.string().when("service_type", {
       is: "house || shipping",
       then: (schema) => schema.required(),
-      otherwise: (schema) => schema.notRequired(),
+      otherwise: (schema) => schema.required(),
     }),
     address: yup.string().when("service_type", {
       is: "house || shipping",
       then: (schema) => schema.required(),
-      otherwise: (schema) => schema.notRequired(),
+      otherwise: (schema) => schema.required(),
     }),
     department: yup.string().when("service_type", {
       is: "shipping",
@@ -64,7 +64,7 @@ export const SupportInformation = ({
     province: yup.string().when("service_type", {
       is: "shipping",
       then: (schema) => schema.required(),
-      otherwise: (schema) => schema.notRequired(),
+      otherwise: (schema) => schema.required(),
     }),
     terms_and_conditions: yup.boolean().required(),
   });
@@ -149,7 +149,7 @@ export const SupportInformation = ({
                           value: "local",
                         },
                         {
-                          label: "Quiero una visita técnica en mi domicilio",
+                          label: "Quiero una visita técnica a mi domicilio",
                           value: "house",
                           message: "Solo para Lima",
                         },
@@ -310,7 +310,7 @@ export const SupportInformation = ({
                         render={({ field: { onChange, value, name } }) => (
                           <Input
                             label="Dirección"
-                            placeholder="Av. Ejemplo 123"
+                            placeholder="Av. Huaylas 123"
                             name={name}
                             value={value}
                             error={error(name)}
