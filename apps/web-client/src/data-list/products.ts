@@ -308,7 +308,6 @@ export const products: Product[] = [
     id: "98H",
     model: "H687A",
     name: "Epson PowerLite 98H",
-    oldStock: 12,
     stock: 2,
     price: 1400.0,
     badge: "Oferta",
@@ -362,13 +361,13 @@ export const products: Product[] = [
       { type: "image", src: "/images/EX3210/4.jpg" },
     ],
     displayTechnology: "3LCD",
-    lumens: "3800 lúmenes ANSI",
+    lumens: "2800  lúmenes ANSI",
     brand: "Epson",
     type: "Proyector",
     contrastRatio: "15,000:1",
     connectivity: "VGA/SVGA, USB, HDMI Estándar, HDMI Micro",
     features: "Altavoces integrados",
-    nativeResolution: "1280 x 800",
+    nativeResolution: "800 x 600",
     aspectRatio: "16:10",
     throwRatio: "Proyección media/estándar",
     category: [
@@ -396,7 +395,7 @@ export const products: Product[] = [
       { type: "image", src: "/images/VS340/4.jpg" },
     ],
     displayTechnology: "3LCD",
-    lumens: "3800 lúmenes ANSI",
+    lumens: "3000 lúmenes ANSI",
     brand: "Epson",
     type: "Proyector",
     contrastRatio: "15,000:1",
@@ -423,10 +422,13 @@ export const products: Product[] = [
     price: 299.0,
     badge: "Nuevo",
     mainImage: "/images/ELPAP11/1.jpg",
-    media: [{ type: "image", src: "/images/ELPAP11/1.jpg" }],
-    displayTechnology: "Accesorio",
+    media: [
+      { type: "image", src: "/images/ELPAP11/1.jpg" },
+      { type: "image", src: "/images/ELPAP11/2.jpg" },
+    ],
+    connectivity: "Wireless/ USB type A/ 802.11 b/g/n",
     brand: "Epson",
-    type: "Accesorio",
+    type: "Adaptador",
     category: [
       "Electrónica",
       "TV, Video y Audio para el Hogar",
@@ -442,8 +444,8 @@ export const products: Product[] = [
       price:
         product.condition === "reconditioned"
           ? +Math.floor(
-              product.price - (product.price * DISCOUNT_PERCENTAGE || 0)
+              product.price - (product.price * DISCOUNT_PERCENTAGE || 0),
             ).toFixed(2)
           : +product.price,
-    }) as Product
+    }) as Product,
 );
