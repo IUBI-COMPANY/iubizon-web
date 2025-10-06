@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export const FooterLayout = () => {
   return (
@@ -14,7 +15,7 @@ export const FooterLayout = () => {
             className="w-36 h-auto mb-2 drop-shadow-lg"
           />
         </div>
-        <div className="flex flex-col gap-4 text-sm items-center md:items-start">
+        <div className="flex flex-col gap-4 text-sm items-center ">
           <div className="flex items-center gap-2 text-white">
             <svg width="20" height="20" fill="white" viewBox="0 0 24 24">
               <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.21.49 2.53.76 3.88.76a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.35.27 2.67.76 3.88a1 1 0 01-.21 1.11l-2.2 2.2z" />
@@ -30,6 +31,15 @@ export const FooterLayout = () => {
             <a href="https://wa.me/51972300301" target="_blank">
               WhatsApp: <span className="font-semibold ml-1">972300301</span>
             </a>
+          </div>
+          <div className="flex items-center gap-2 text-white">
+            <Link
+              href="/contact"
+              className="rounded-xl px-4 py-2 text-sm font-semibold text-white border-solid border-1 border-tertiary"
+            >
+              ¿Consultas?
+              <span className="font-semibold ml-1">Déjanos un MENSAJE</span>
+            </Link>
           </div>
         </div>
         <div className="flex flex-col gap-4 items-center md:items-end">

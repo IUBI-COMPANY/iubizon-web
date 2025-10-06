@@ -2,17 +2,20 @@ import React from "react";
 import { Info, XCircle } from "lucide-react";
 import { Product } from "@/data-list/products";
 import { GiftCard } from "./GiftCard";
+import { DetailProductCondition } from "@/data-list/productsCondition";
 
 interface Props {
   product: Product;
   showModal: boolean;
   setShowModal: (showModal: boolean) => void;
+  condition: DetailProductCondition;
 }
 
 export const InformationAndPriceCard = ({
   product,
   showModal,
   setShowModal,
+  condition,
 }: Props) => {
   const options = [
     product?.brand,
@@ -79,35 +82,47 @@ export const InformationAndPriceCard = ({
           </div>
         )}
         <ul className="mb-7 space-y-4 list-style-none">
-          {product?.stock && (
-            <li className="my-3">
-              <span className="text-sm text-secondary/90">
-                <p className="mt-1 text-sm text-secondary/70">
-                  Cantidad: {product.stock}{" "}
-                  {product.stock === 1 ? "unidad" : "unidades"}
-                  {product?.oldStock && (
-                    <>
-                      {" "}
-                      /{" "}
-                      <span className="line-through text-gray-400 mr-2">
-                        {product?.oldStock}
-                      </span>
-                    </>
-                  )}
-                </p>
-              </span>
-            </li>
+          <li className="my-3">
+            <span className="text-sm text-secondary/90">
+              <p className="mt-1 text-sm text-secondary/70">
+                Cantidad: {product.stock}{" "}
+                {product?.oldStock && (
+                  <>
+                    /{" "}
+                    <span className="line-through text-gray-400 mr-2">
+                      {product?.oldStock}
+                    </span>
+                  </>
+                )}
+              </p>
+            </span>
+          </li>
+          {product.stock <= 0 ? (
+            <p className="mt-1 text-sm text-secondary">
+              Lo sentimos ya no queda stock, pero{" "}
+              <a
+                href={`https://wa.me/51972300301?text=Hola%20iubizon,%20quiero%20realizar%20un%20pedido%20del%20modelo%20${product.name}`}
+                target="_blank"
+                className="font-semibold cursor-pointer text-blue-400"
+              >
+                puede solicitarlo a pedido
+              </a>
+            </p>
+          ) : (
+            <p className="mt-1 text-sm text-green-600 font-medium">
+              Disponible puedes comprarlo ahora mismo
+            </p>
           )}
           {product?.condition && (
             <li className="flex items-start">
               <span className="mt-1 text-xl text-primary"></span>
-              <span className="text-sm inline-flex items-center gap-4 text-font">
+              <span className="text-sm inline-flex items-center gap-4 text-foreground">
                 Condición:
                 <strong
                   className="inline-flex items-center gap-1 cursor-pointer"
                   onClick={() => setShowModal(true)}
                 >
-                  De exhibición <Info className="w-4" />
+                  {condition.name} <Info className="w-4" />
                 </strong>
               </span>
               <div
@@ -125,22 +140,23 @@ export const InformationAndPriceCard = ({
                     onClick={() => setShowModal(false)}
                   />
                   <h2 className="text-xl font-bold mb-4 text-secondary">
-                    Condición del producto
+                    {condition.name}
                   </h2>
-                  <p className="text-base mb-6 text-font">
-                    {product.condition}
+                  <p className="text-base mb-6 text-foreground">
+                    {condition.description}
                   </p>
                 </div>
               </div>
             </li>
           )}
-          <li className="items-start">
-            <span className="mt-1 text-xl text-primary bg-ambar-500"></span>
-
-            <span className="flex flex-col items-center">
-              <GiftCard />
-            </span>
-          </li>
+          {product.type === "Proyector" && (
+            <li className="items-start">
+              <span className="mt-1 text-xl text-primary bg-ambar-500"></span>
+              <span className="flex flex-col items-center">
+                <GiftCard />
+              </span>
+            </li>
+          )}
         </ul>
         <a
           href={`https://wa.me/51972300301?text=Hola%20iubizon,%20me%20interesa%20el%20${product.type}%20${product.name}`}

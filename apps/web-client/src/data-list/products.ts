@@ -5,10 +5,13 @@ export type Classification =
   | "clearance"
   | "wholesale";
 
+export type ProductCondition = "new" | "reconditioned";
+
 export interface Product {
   id: string;
   model: string;
   name?: string;
+  SN?: string;
   oldStock?: number;
   stock: number;
   description?: string;
@@ -17,7 +20,7 @@ export interface Product {
   badge?: string;
   mainImage?: string;
   media: MediaItem[];
-  condition?: string;
+  condition: ProductCondition;
   displayTechnology?: string;
   lumens?: string;
   brand?: string;
@@ -29,7 +32,6 @@ export interface Product {
   aspectRatio?: string;
   throwRatio?: string;
   category?: string[];
-  classification: Classification;
   note?: string;
 }
 
@@ -38,70 +40,28 @@ export interface MediaItem {
   src: string;
 }
 
+const DISCOUNT_PERCENTAGE = 0.3; // 30% DISCOUNT
+
 export const products: Product[] = [
-  {
-    id: "98H",
-    model: "H687A",
-    name: "Epson PowerLite 98H",
-    oldStock: 12,
-    stock: 4,
-    price: 600,
-    badge: "Oferta",
-    mainImage: "/images/98H/98h.jpg",
-    media: [
-      { type: "image", src: "/images/98H/2.jpg" },
-      { type: "video", src: "/videos/98H.mp4" },
-      { type: "image", src: "/images/98H/3.jpg" },
-      { type: "image", src: "/images/98H/4.jpg" },
-      { type: "image", src: "/images/98H/5.jpg" },
-    ],
-    condition: `Artículo de exhibición, en excelente estado físico y con funcionamiento 100% garantizado. 
-      Puede presentar ligeros signos de uso o detalles estéticos mínimos propios de la manipulación, pero no afectan en absoluto su rendimiento.
-      Ideal para quienes buscan calidad a un precio más accesible.`,
-    displayTechnology: "3LCD",
-    lumens: "2700 lúmenes ANSI",
-    brand: "Epson",
-    type: "Proyector",
-    contrastRatio: "10,000:1",
-    connectivity: "HDMI estándar, VGA/SVGA D-Sub",
-    features: "Altavoces integrados",
-    nativeResolution: "1024 x 768",
-    aspectRatio: "4:3",
-    throwRatio: "Proyección media/estándar",
-    category: [
-      "Electrónica",
-      "TV, Video y Audio para el Hogar",
-      "TV y Video",
-      "Proyectores para Home Theater",
-    ],
-    classification: "clearance",
-    note: `Con una conectividad de red avanzada y una calidad de imagen excepcional, el PowerLite 98H          
-    ofrece una gran opción para cualquier tipo de sala. La tecnología 3LCD ofrece colores hasta 3x mas 
-    brillantes que otros modelos de la competencia. Los proyectores Epson aseguran imágenes brillantes 
-    y vívidas. Confiable y fácil de usar, el PowerLite 98H cuanta con una resolución XGA, 3.000 lúmenes 
-    de brillo en color y 3.000 lúmenes de brillo en blanco. Proyecte y controle la imagen desde múltiples 
-    dispositivos gracias a la nueva función moderador, compartiendo fácilmente el contenido con la audiencia. 
-    Versátil y funcional, el PowerLite 98H cuenta con conectividad HDMI y funciones de audio premium.`,
-  },
   {
     id: "980W",
     model: "H866A",
     name: "Epson PowerLite 980W",
-    stock: 5,
+    SN: "X4ZF9600474",
+    condition: "new",
+    stock: 1,
     description: "Buena proyección, detalles estéticos",
-    price: 1150,
+    price: 2300.0,
     badge: "Top venta",
-    mainImage: "/images/980W/980w.jpg",
+    mainImage: "/images/980W/1.jpg",
     media: [
-      { type: "image", src: "/images/980W/2.png" },
-      { type: "video", src: "/videos/980W.mp4" },
-      { type: "image", src: "/images/980W/3.png" },
-      { type: "image", src: "/images/980W/4.png" },
-      { type: "image", src: "/images/980W/5.png" },
+      { type: "image", src: "/images/980W/1.jpg" },
+      { type: "image", src: "/images/980W/2.jpg" },
+      { type: "image", src: "/images/980W/3.jpg" },
+      { type: "image", src: "/images/980W/4.jpg" },
+      { type: "image", src: "/images/980W/5.jpg" },
+      { type: "image", src: "/images/980W/6.jpg" },
     ],
-    condition: `Artículo de exhibición, en excelente estado físico y con funcionamiento 100% garantizado. 
-      Puede presentar ligeros signos de uso o detalles estéticos mínimos propios de la manipulación, pero no afectan en absoluto su rendimiento.
-      Ideal para quienes buscan calidad a un precio más accesible.`,
     displayTechnology: "3LCD",
     lumens: "3800 lúmenes ANSI",
     brand: "Epson",
@@ -118,7 +78,45 @@ export const products: Product[] = [
       "TV y Video",
       "Proyectores para Home Theater",
     ],
-    classification: "premium",
+    note: `
+    Proyector ideal para aulas de estudio bien iluminadas y pequeños auditorios.  Resolución WXGA ideal para presentaciones multimedia.  Lámpara con durabilidad de hasta 12,000 horas.
+    Colores tres veces más brillantes, Luminosidad en Color y Excelente calidad.
+    `,
+  },
+  {
+    id: "980W-1",
+    model: "H866A",
+    name: "Epson PowerLite 980W",
+    stock: 0,
+    oldStock: 2,
+    condition: "reconditioned",
+    description: "Buena proyección, detalles estéticos",
+    price: 2399.0,
+    badge: "Top venta",
+    mainImage: "/images/980W-reacon/980w.jpg",
+    media: [
+      { type: "image", src: "/images/980W-reacon/2.png" },
+      { type: "video", src: "/videos/980W-reacon.mp4" },
+      { type: "image", src: "/images/980W-reacon/3.png" },
+      { type: "image", src: "/images/980W-reacon/4.png" },
+      { type: "image", src: "/images/980W-reacon/5.png" },
+    ],
+    displayTechnology: "3LCD",
+    lumens: "3800 lúmenes ANSI",
+    brand: "Epson",
+    type: "Proyector",
+    contrastRatio: "15,000:1",
+    connectivity: "VGA/SVGA, USB, HDMI Estándar, HDMI Micro",
+    features: "Altavoces integrados",
+    nativeResolution: "1280 x 800",
+    aspectRatio: "16:10",
+    throwRatio: "Proyección media/estándar",
+    category: [
+      "Electrónica",
+      "TV, Video y Audio para el Hogar",
+      "TV y Video",
+      "Proyectores para Home Theater",
+    ],
     note: `
     Proyector ideal para aulas de estudio bien iluminadas y pequeños auditorios.  Resolución WXGA ideal para presentaciones multimedia.  Lámpara con durabilidad de hasta 12,000 horas.
     Colores tres veces más brillantes, Luminosidad en Color y Excelente calidad.
@@ -128,9 +126,10 @@ export const products: Product[] = [
     id: "975W",
     model: "H835A",
     name: "Epson PowerLite 975W",
-    stock: 3,
+    stock: 0,
+    oldStock: 3,
     description: "Buena proyección, detalles estéticos",
-    price: 1050,
+    price: 2200.0,
     mainImage: "/images/975W/975w.jpg",
     media: [
       { type: "image", src: "/images/975W/2.jpg" },
@@ -139,9 +138,7 @@ export const products: Product[] = [
       { type: "image", src: "/images/975W/4.jpg" },
       { type: "image", src: "/images/975W/5.jpg" },
     ],
-    condition: `Artículo de exhibición, en excelente estado físico y con funcionamiento 100% garantizado. 
-      Puede presentar ligeros signos de uso o detalles estéticos mínimos propios de la manipulación, pero no afectan en absoluto su rendimiento.
-      Ideal para quienes buscan calidad a un precio más accesible.`,
+    condition: "reconditioned",
     displayTechnology: "3LCD",
     lumens: "3600 lúmenes ANSI",
     brand: "Epson",
@@ -158,7 +155,6 @@ export const products: Product[] = [
       "TV y Video",
       "Proyectores para Home Theater",
     ],
-    classification: "standard",
     note: `El videoproyector PowerLite 975W ofrece una resolución Wide que se adapta a computadoras, tabletas y dispositivos móviles.  Ofrece una  luminosidad de 3.600 lúmenes en color y blanco para presentaciones brillantes. Alta conectividad, Miracast,  HDMI, Inalámbrica.
     Epson PowerLite 975W es el mejor proyector para el aula de clase o sala de reuninoes.  Cuenta con 3.600 lúmenes de brillo en color y blanco otorgando imágenes claras.  Su lámpara de 10,000 horas en modo Normal lo convierte en tu mejor aliado en costo de operación.`,
   },
@@ -166,9 +162,10 @@ export const products: Product[] = [
     id: "1925W",
     model: "V11H314020",
     name: "Epson PowerLite 1925W",
-    stock: 1,
+    stock: 0,
+    oldStock: 1,
     description: "Buena proyección, detalles estéticos",
-    price: 1050,
+    price: 2800.0,
     mainImage: "/images/1925W/1925w.jpg",
     media: [
       { type: "image", src: "/images/1925W/2.jpg" },
@@ -177,9 +174,7 @@ export const products: Product[] = [
       { type: "image", src: "/images/1925W/4.jpg" },
       { type: "image", src: "/images/1925W/5.jpg" },
     ],
-    condition: `Artículo de exhibición, en excelente estado físico y con funcionamiento 100% garantizado. 
-      Puede presentar ligeros signos de uso o detalles estéticos mínimos propios de la manipulación, pero no afectan en absoluto su rendimiento.
-      Ideal para quienes buscan calidad a un precio más accesible.`,
+    condition: "reconditioned",
     displayTechnology: "3LCD",
     lumens: "4000 lúmenes ANSI",
     brand: "Epson",
@@ -196,16 +191,16 @@ export const products: Product[] = [
       "TV y Video",
       "Proyectores para Home Theater",
     ],
-    classification: "standard",
     note: `Este potente proyector produce imágenes vívidas y de alta calidad, pero aún incluye una serie de características fáciles de usar, como un módulo inalámbrico para una fácil configuración inalámbrica. Con la tecnología Epson 3LCD y 4000 lúmenes de salida de luz de color y blanco, tus presentaciones aparecerán en cualquier entorno. Con conectividad digital HDMI y resolución WXGA, puede proyectar películas HD y más. Red de conectividad: RJ-45, LAN, S-Video, USB x 3, Estándar HDMI, VGA/SVGA D-Sub Modos de vídeo 720p, 1080i, 480p, 480i`,
   },
   {
     id: "970",
     model: "H865A",
     name: "Epson PowerLite 970",
-    stock: 1,
+    stock: 0,
+    oldStock: 1,
     description: "Bajo brillo, detalles estéticos",
-    price: 1000,
+    price: 2800.0,
     badge: "Oferta",
     mainImage: "/images/970/970.jpg",
     media: [
@@ -215,9 +210,7 @@ export const products: Product[] = [
       { type: "image", src: "/images/970/4.jpg" },
       { type: "image", src: "/images/970/5.jpg" },
     ],
-    condition: `Artículo de exhibición, en excelente estado físico y con funcionamiento 100% garantizado. 
-      Puede presentar ligeros signos de uso o detalles estéticos mínimos propios de la manipulación, pero no afectan en absoluto su rendimiento.
-      Ideal para quienes buscan calidad a un precio más accesible.`,
+    condition: "reconditioned",
     displayTechnology: "3LCD",
     lumens: "4000 lúmenes ANSI",
     brand: "Epson",
@@ -234,7 +227,6 @@ export const products: Product[] = [
       "TV y Video",
       "Proyectores para Home Theater",
     ],
-    classification: "budget",
     note: `PowerLite 970 es la mejor herramienta de proyección para aulas bien iluminadas o pequeños auditorios. Gran rendimiento ya que ofrece una resolución XGA óptima para hojas de cálculo en adelante. Su lámpara tiene una duración hasta de 12,000 horas. 
     TecnologÍa 3LCD que brinda imágenes claras, brillantes y llenas de color. Su luminosidad de 4000 lumenes en color y 4000 en color lo convierten en la mejor opción para aulas de educación bien iluminadas. Adicional ofrece una conectividad inalámbrica opcional la cual te permite poder proyectar tu contenido sin requerir cables. 2 puertos HDMI para conectar todos los dispositivos actuales del Aula`,
   },
@@ -242,9 +234,10 @@ export const products: Product[] = [
     id: "119W",
     model: "H985A",
     name: "Epson PowerLite 119W",
-    stock: 1,
+    stock: 0,
+    oldStock: 1,
     description: "Buena proyección, detalles estéticos",
-    price: 1150,
+    price: 2800.0,
     badge: "Top venta",
     mainImage: "/images/119W/119w.jpg",
     media: [
@@ -254,9 +247,7 @@ export const products: Product[] = [
       { type: "image", src: "/images/119W/4.jpg" },
       { type: "image", src: "/images/119W/5.jpg" },
     ],
-    condition: `Artículo de exhibición, en excelente estado físico y con funcionamiento 100% garantizado. 
-      Puede presentar ligeros signos de uso o detalles estéticos mínimos propios de la manipulación, pero no afectan en absoluto su rendimiento.
-      Ideal para quienes buscan calidad a un precio más accesible.`,
+    condition: "reconditioned",
     displayTechnology: "3LCD",
     lumens: "4000 lúmenes ANSI",
     brand: "Epson",
@@ -274,16 +265,16 @@ export const products: Product[] = [
       "TV y Video",
       "Proyectores para Home Theater",
     ],
-    classification: "premium",
     note: `PowerLite 119W es la mejor herramienta de proyección para los salones actuales. Ofrece una resolución WXGA (1.280 x 800 pixeles), con calidad de alta definición. 
-    La tecnología 3LCD ofrece imágenes claras, brillantes y llenas de color. Su luminosidad es de 4.000 lúmenes en blanco2 y 4.000 lúmenes en color2 lo convierten en la mejor opción para aulas de educación bien iluminadas.  Adicionalmente, ofrecen conectividad inalámbrica opcional que permite proyectar contenido sin requerir cables.  Cuenta con puertos HDMI para conectar todos los dispositivos actuales del aula educativa.`,
+    La tecnología 3LCD ofrece imágenes claras, brillantes y llenas de color. Su luminosidad es de 4.000 lúmenes en blanco2 y 4.000 lúmenes en color lo convierten en la mejor opción para aulas de educación bien iluminadas.  Adicionalmente, ofrecen conectividad inalámbrica opcional que permite proyectar contenido sin requerir cables.  Cuenta con puertos HDMI para conectar todos los dispositivos actuales del aula educativa.`,
   },
   {
     id: "108",
     model: "H860A",
     name: "Epson PowerLite 108",
-    stock: 4,
-    price: 1000,
+    stock: 0,
+    oldStock: 4,
+    price: 2250.0,
     badge: "Oferta",
     mainImage: "/images/108/108.jpg",
     media: [
@@ -293,9 +284,7 @@ export const products: Product[] = [
       { type: "image", src: "/images/108/4.jpg" },
       { type: "image", src: "/images/108/5.jpg" },
     ],
-    condition: `Artículo de exhibición, en excelente estado físico y con funcionamiento 100% garantizado. 
-      Puede presentar ligeros signos de uso o detalles estéticos mínimos propios de la manipulación, pero no afectan en absoluto su rendimiento.
-      Ideal para quienes buscan calidad a un precio más accesible.`,
+    condition: "reconditioned",
     displayTechnology: "3LCD",
     lumens: "3700 lúmenes ANSI",
     brand: "Epson",
@@ -313,7 +302,150 @@ export const products: Product[] = [
       "TV y Video",
       "Proyectores para Home Theater",
     ],
-    classification: "budget",
-    note: `La tecnología 3LCD ofrece imágenes claras, brillantes y llenas de color. Su luminosidad de 3.700 lúmenes en color2y en blanco2 en el PowerLite® 108`,
+    note: `La tecnología 3LCD ofrece imágenes claras, brillantes y llenas de color. Su luminosidad de 3.700 lúmenes en color y en blanco en el PowerLite® 108`,
   },
-];
+  {
+    id: "98H",
+    model: "H687A",
+    name: "Epson PowerLite 98H",
+    stock: 2,
+    price: 1400.0,
+    badge: "Oferta",
+    mainImage: "/images/98H/98h.jpg",
+    media: [
+      { type: "image", src: "/images/98H/2.jpg" },
+      { type: "video", src: "/videos/98H.mp4" },
+      { type: "image", src: "/images/98H/3.jpg" },
+      { type: "image", src: "/images/98H/4.jpg" },
+      { type: "image", src: "/images/98H/5.jpg" },
+    ],
+    condition: "new",
+    displayTechnology: "3LCD",
+    lumens: "3000 lúmenes ANSI",
+    brand: "Epson",
+    type: "Proyector",
+    contrastRatio: "10,000:1",
+    connectivity: "HDMI estándar, VGA/SVGA D-Sub",
+    features: "Altavoces integrados",
+    nativeResolution: "1024 x 768",
+    aspectRatio: "4:3",
+    throwRatio: "Proyección media/estándar",
+    category: [
+      "Electrónica",
+      "TV, Video y Audio para el Hogar",
+      "TV y Video",
+      "Proyectores para Home Theater",
+    ],
+    note: `Con una conectividad de red avanzada y una calidad de imagen excepcional, el PowerLite 98H          
+    ofrece una gran opción para cualquier tipo de sala. La tecnología 3LCD ofrece colores hasta 3x mas 
+    brillantes que otros modelos de la competencia. Los proyectores Epson aseguran imágenes brillantes 
+    y vívidas. Confiable y fácil de usar, el PowerLite 98H cuanta con una resolución XGA, 3.000 lúmenes 
+    de brillo en color y 3.000 lúmenes de brillo en blanco. Proyecte y controle la imagen desde múltiples 
+    dispositivos gracias a la nueva función moderador, compartiendo fácilmente el contenido con la audiencia. 
+    Versátil y funcional, el PowerLite 98H cuenta con conectividad HDMI y funciones de audio premium.`,
+  },
+  {
+    id: "EX3210",
+    model: "H430A",
+    name: "Epson PowerLite EX3210",
+    stock: 1,
+    condition: "new",
+    description: "Buena proyección, detalles estéticos",
+    price: 999.0,
+    badge: "Nuevo",
+    mainImage: "/images/EX3210/1.jpg",
+    media: [
+      { type: "image", src: "/images/EX3210/1.jpg" },
+      { type: "image", src: "/images/EX3210/2.jpg" },
+      { type: "image", src: "/images/EX3210/3.jpg" },
+      { type: "image", src: "/images/EX3210/4.jpg" },
+    ],
+    displayTechnology: "3LCD",
+    lumens: "2800  lúmenes ANSI",
+    brand: "Epson",
+    type: "Proyector",
+    contrastRatio: "15,000:1",
+    connectivity: "VGA/SVGA, USB, HDMI Estándar, HDMI Micro",
+    features: "Altavoces integrados",
+    nativeResolution: "800 x 600",
+    aspectRatio: "16:10",
+    throwRatio: "Proyección media/estándar",
+    category: [
+      "Electrónica",
+      "TV, Video y Audio para el Hogar",
+      "TV y Video",
+      "Proyectores para Home Theater",
+    ],
+    note: `Proyector ideal para aulas de estudio bien iluminadas y pequeños auditorios. Resolución WXGA ideal para presentaciones multimedia. Lámpara con durabilidad de hasta 12,000 horas.`,
+  },
+  {
+    id: "VS340",
+    model: "H717A",
+    name: "Epson PowerLite VS340",
+    stock: 1,
+    condition: "new",
+    description: "Buena proyección, detalles estéticos",
+    price: 999.0,
+    badge: "Nuevo",
+    mainImage: "/images/VS340/1.jpg",
+    media: [
+      { type: "image", src: "/images/VS340/1.jpg" },
+      { type: "image", src: "/images/VS340/2.jpg" },
+      { type: "image", src: "/images/VS340/3.jpg" },
+      { type: "image", src: "/images/VS340/4.jpg" },
+    ],
+    displayTechnology: "3LCD",
+    lumens: "3000 lúmenes ANSI",
+    brand: "Epson",
+    type: "Proyector",
+    contrastRatio: "15,000:1",
+    connectivity: "VGA/SVGA, USB, HDMI Estándar, HDMI Micro",
+    features: "Altavoces integrados",
+    nativeResolution: "1280 x 800",
+    aspectRatio: "16:10",
+    throwRatio: "Proyección media/estándar",
+    category: [
+      "Electrónica",
+      "TV, Video y Audio para el Hogar",
+      "TV y Video",
+      "Proyectores para Home Theater",
+    ],
+    note: `Proyector ideal para aulas de estudio bien iluminadas y pequeños auditorios. Resolución WXGA ideal para presentaciones multimedia. Lámpara con durabilidad de hasta 12,000 horas.`,
+  },
+  {
+    id: "ELPAP11",
+    model: "V12H005A02",
+    name: "Epson ELPAP11 - Adaptador WIFI",
+    stock: 7,
+    condition: "new",
+    description: "Accesorio de proyección",
+    price: 570.0,
+    badge: "Nuevo",
+    mainImage: "/images/ELPAP11/1.jpg",
+    media: [
+      { type: "image", src: "/images/ELPAP11/1.jpg" },
+      { type: "image", src: "/images/ELPAP11/2.jpg" },
+    ],
+    connectivity: "Wireless/ USB type A/ 802.11 b/g/n",
+    brand: "Epson",
+    type: "Adaptador",
+    category: [
+      "Electrónica",
+      "TV, Video y Audio para el Hogar",
+      "TV y Video",
+      "Accesorios para Proyectores",
+    ],
+    note: `Accesorio compatible con proyectores Epson para mejorar la experiencia de proyección.`,
+  },
+].map(
+  (product) =>
+    ({
+      ...product,
+      price:
+        product.condition === "reconditioned"
+          ? +Math.floor(
+              product.price - (product.price * DISCOUNT_PERCENTAGE || 0),
+            ).toFixed(2)
+          : +product.price,
+    }) as Product,
+);

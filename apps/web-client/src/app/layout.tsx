@@ -30,7 +30,9 @@ export const metadata: Metadata = {
   keywords: [
     //Generic words
     "venta de proyectores",
+    "venta de proyectores nuevos",
     "venta de proyectores epson",
+    "proyectores reacondicionados",
     "proyectores de segunda",
     "proyectores epson",
     "proyectores multimedia",
@@ -130,7 +132,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="es">
       <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=AW-17511349348"
