@@ -24,12 +24,12 @@ interface Props {
 }
 
 export const ClientInformation = ({
-                                    globalStep,
-                                    repairsFormData,
-                                    setRepairsFormData,
-                                    addLocalStorageData,
-                                    setCurrentStepToLocalStorage,
-                                  }: Props) => {
+  globalStep,
+  repairsFormData,
+  setRepairsFormData,
+  addLocalStorageData,
+  setCurrentStepToLocalStorage,
+}: Props) => {
   const schema: ObjectSchema<RepairStep1> = yup.object({
     first_name: yup.string().required(),
     last_name: yup.string().required(),
@@ -183,10 +183,12 @@ export const ClientInformation = ({
                 />
               </div>
             </div>
-            <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <Button block disabled variant="secondary" type="button">
-                Atrás
-              </Button>
+            <div className="mt-2 grid grid-cols-1 gap-3">
+              {globalStep !== 0 && (
+                <Button block disabled variant="secondary" type="button">
+                  Atrás
+                </Button>
+              )}
               <Button block variant="primary" type="submit">
                 Siguiente
               </Button>

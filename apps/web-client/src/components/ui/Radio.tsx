@@ -55,7 +55,6 @@ export const Radio = ({
                 : "border-slate-300 hover:border-slate-400 checked:bg-secondary checked:border-secondary",
             )}
             aria-describedby={error ? `${name}-error` : undefined}
-            aria-invalid={error}
           />
           <CircleIcon
             className={twMerge(

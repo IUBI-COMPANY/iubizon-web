@@ -17,10 +17,10 @@ interface Props {
 }
 
 export const StepsRepairsContactForm = ({
-                                          items,
-                                          globalStep,
-                                          setGlobalStep,
-                                        }: Props) => {
+  items,
+  globalStep,
+  setGlobalStep,
+}: Props) => {
   const [step, setStep] = useState(0);
 
   useEffect(() => {

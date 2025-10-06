@@ -37,10 +37,10 @@ export default function Home() {
           autoPlay
           muted
           loop
-          poster="./images/education-projectors.jpg"
+          poster="/images/education-projectors.jpg"
           className="absolute inset-0 w-full h-full object-cover opacity-10 pointer-events-none"
         >
-          <source src="./videos/education-projectors.mp4" type="video/mp4" />
+          <source src="/videos/education-projectors.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div className="w-full h-auto min-h-svh sm:min-h-[31em] m-auto flex justify-center flex-wrap items-center lg:items-stretch text-center text-white relative">

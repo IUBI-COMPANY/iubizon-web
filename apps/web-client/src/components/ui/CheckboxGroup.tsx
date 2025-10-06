@@ -49,7 +49,7 @@ export const CheckboxGroup = ({
       }
     } else {
       // Remove value
-      onChange(values.filter(value => value !== optionValue));
+      onChange(values.filter((value) => value !== optionValue));
     }
   };
 
@@ -57,17 +57,18 @@ export const CheckboxGroup = ({
     if (direction === "horizontal") {
       return "flex flex-wrap gap-4";
     }
-    
+
     if (columns > 1) {
-      const colsClass = {
-        2: "grid-cols-2",
-        3: "grid-cols-3",
-        4: "grid-cols-4",
-      }[columns] || "grid-cols-2";
-      
+      const colsClass =
+        {
+          2: "grid-cols-2",
+          3: "grid-cols-3",
+          4: "grid-cols-4",
+        }[columns] || "grid-cols-2";
+
       return `grid ${colsClass} gap-2`;
     }
-    
+
     return "space-y-2";
   };
 
@@ -87,7 +88,6 @@ export const CheckboxGroup = ({
         role="group"
         aria-labelledby={label ? `${name}-label` : undefined}
         aria-describedby={error ? `${name}-error` : undefined}
-        aria-invalid={error}
       >
         {options.map((option, index) => (
           <Checkbox

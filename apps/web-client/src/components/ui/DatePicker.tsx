@@ -48,7 +48,7 @@ export const DatePicker = ({
           {required && <span className="text-red-500 ml-1">*</span>}
         </label>
       )}
-      
+
       <div className="relative">
         <input
           id={name}
@@ -68,18 +68,18 @@ export const DatePicker = ({
             error
               ? "outline-red-500 border-red-500 focus:outline-red-500"
               : "focus:outline-secondary/70 hover:outline-gray-400",
-            className
+            className,
           )}
           aria-describedby={error ? `${name}-error` : undefined}
           aria-invalid={error}
         />
-        
+
         <CalendarIcon
           aria-hidden="true"
           className="pointer-events-none absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400"
         />
       </div>
-      
+
       {error && helperText && (
         <p
           id={`${name}-error`}

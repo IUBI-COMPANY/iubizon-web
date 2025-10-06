@@ -22,7 +22,9 @@ export const useFormUtils = <FormData extends ObjectType>({
   schema,
 }: Props<FormData>): UseFormUtils<FormData> => {
   useEffect(() => {
-    !isEmpty(errors) && scrollIntoError();
+    if (!isEmpty(errors)) {
+      scrollIntoError();
+    }
   }, [errors]);
 
   const scrollIntoError = () => {
@@ -30,11 +32,12 @@ export const useFormUtils = <FormData extends ObjectType>({
       "scroll-error-anchor",
     );
 
-    formItemErrors.length &&
+    if (formItemErrors.length) {
       formItemErrors[0].scrollIntoView({
         behavior: "smooth",
         block: "center",
       });
+    }
   };
 
   const errorDetail: UseFormUtils<FormData>["errorDetail"] = (name: string) =>

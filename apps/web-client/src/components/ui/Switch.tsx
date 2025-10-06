@@ -41,17 +41,19 @@ export const Switch = ({
               htmlFor={name}
               className={twMerge(
                 "text-sm font-semibold text-secondary cursor-pointer",
-                disabled && "opacity-50 cursor-not-allowed"
+                disabled && "opacity-50 cursor-not-allowed",
               )}
             >
               {label}
               {required && <span className="text-red-500 ml-1">*</span>}
             </label>
             {description && (
-              <p className={twMerge(
-                "text-sm text-gray-500 mt-0.5",
-                disabled && "opacity-50"
-              )}>
+              <p
+                className={twMerge(
+                  "text-sm text-gray-500 mt-0.5",
+                  disabled && "opacity-50",
+                )}
+              >
                 {description}
               </p>
             )}
@@ -70,7 +72,7 @@ export const Switch = ({
             aria-describedby={error ? `${name}-error` : undefined}
             aria-invalid={error}
           />
-          
+
           <div
             className={twMerge(
               "relative w-11 h-6 rounded-full transition-colors duration-200 cursor-pointer",
@@ -78,14 +80,14 @@ export const Switch = ({
               error
                 ? "bg-red-100 peer-checked:bg-red-500"
                 : "bg-gray-200 peer-checked:bg-secondary",
-              disabled && "opacity-50 cursor-not-allowed"
+              disabled && "opacity-50 cursor-not-allowed",
             )}
           >
             <div
               className={twMerge(
                 "absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow-sm transition-transform duration-200",
                 "peer-checked:translate-x-5",
-                error && "peer-checked:bg-white"
+                error && "peer-checked:bg-white",
               )}
             />
           </div>

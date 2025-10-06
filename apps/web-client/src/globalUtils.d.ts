@@ -6,7 +6,7 @@ type FormOnChange = (...event: unknown[]) => void;
 type Translate = (
   key: string,
   params?: string[],
-  defaultTranslation?: string
+  defaultTranslation?: string,
 ) => string;
 
 type OnNavigateTo<T = ObjectType> = (pathname: string, state?: T) => void;

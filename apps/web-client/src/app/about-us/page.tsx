@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Image from "next/image";
-import { Award, CheckCircle, Heart, Users } from "lucide-react";
+import Link from "next/link";
+import { CheckCircle, Users, Award, Heart } from "lucide-react";
 
 export const metadata: Metadata = {
   title:
@@ -294,18 +295,18 @@ export default function AboutUsPage() {
               tu negocio o institución.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
+              <Link
                 href="/contact"
                 className="bg-color-primary hover:bg-color-primary/90 text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-300 inline-block shadow-lg"
               >
                 Contáctanos Hoy
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/repairs"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg font-semibold transition-all duration-300 inline-block"
               >
                 Nuestros Servicios
-              </a>
+              </Link>
             </div>
           </div>
         </section>

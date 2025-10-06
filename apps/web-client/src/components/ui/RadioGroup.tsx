@@ -89,7 +89,6 @@ export const RadioGroup = ({
         role="group"
         aria-labelledby={label ? `${name}-label` : undefined}
         aria-describedby={error ? `${name}-error` : undefined}
-        aria-invalid={error}
       >
         {options.map((option, index) => (
           <Radio

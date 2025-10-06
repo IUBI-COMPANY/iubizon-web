@@ -54,7 +54,7 @@ export const TextArea = ({
           {required && <span className="text-red-500 ml-1">*</span>}
         </label>
       )}
-      
+
       <textarea
         id={name}
         name={name}
@@ -71,12 +71,12 @@ export const TextArea = ({
           error
             ? "outline-red-500 border-red-500 focus:outline-red-500"
             : "focus:outline-secondary/70 hover:outline-gray-400",
-          className
+          className,
         )}
         aria-describedby={error ? `${name}-error` : undefined}
         aria-invalid={error}
       />
-      
+
       {error && helperText && (
         <p
           id={`${name}-error`}

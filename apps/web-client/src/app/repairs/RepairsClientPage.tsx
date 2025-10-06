@@ -79,14 +79,14 @@ export default function RepairsPage() {
     <>
       <div className="min-h-screen bg-white">
         {/* Hero Banner Section */}
-        <div className="relative h-[60vh] bg-gradient-to-br from-secondary via-secondary/95 to-secondary overflow-hidden">
+        <div className="relative h-[60vh] bg-gradient-to-br from-secondary/10 via-secondary to-secondary/0 overflow-hidden">
           {/* Background Image */}
           <div className="absolute inset-0">
             <Image
               src="/images/proyectores-reparaciones.webp"
               alt="Servicio técnico de proyectores"
               fill
-              className="object-cover opacity-30"
+              className="object-cover opacity-50"
             />
             <div className="absolute inset-0 bg-blue-900/50"></div>
           </div>

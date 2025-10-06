@@ -1,12 +1,13 @@
 import React, { useRef, useState, useCallback } from "react";
 import { twMerge } from "tailwind-merge";
 import {
-  UploadIcon,
-  XIcon,
-  ImageIcon,
-  VideoIcon,
-  FileIcon,
+  Upload as UploadIcon,
+  X,
+  FileText as FileIcon,
+  Video as VideoIcon,
+  Image as ImageIcon,
 } from "lucide-react";
+import Image from "next/image";
 
 interface Props {
   name: string;
@@ -207,9 +208,11 @@ export const Upload = ({
             >
               <div className="flex items-center space-x-3 flex-1 min-w-0">
                 {file.type.startsWith("image/") && (
-                  <img
+                  <Image
                     src={getPreviewUrl(file)}
                     alt={file.name}
+                    width={40}
+                    height={40}
                     className="w-10 h-10 object-cover rounded"
                   />
                 )}
@@ -242,7 +245,7 @@ export const Upload = ({
                 onClick={() => removeFile(index)}
                 className="p-1 text-red-500 hover:text-red-700 transition-colors"
               >
-                <XIcon className="w-4 h-4" />
+                <X className="w-4 h-4" />
               </button>
             </div>
           ))}
