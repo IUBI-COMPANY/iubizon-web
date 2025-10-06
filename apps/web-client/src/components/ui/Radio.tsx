@@ -1,6 +1,6 @@
 import React from "react";
 import { twMerge } from "tailwind-merge";
-import { Check } from "lucide-react";
+import { CircleIcon } from "lucide-react";
 
 interface Props {
   name: string;
@@ -11,10 +11,11 @@ interface Props {
   required?: boolean;
   hidden?: boolean;
   disabled?: boolean;
+  message?: string;
   children: React.ReactNode;
 }
 
-export const Checkbox = ({
+export const Radio = ({
   name,
   checked = false,
   onChange,
@@ -23,6 +24,7 @@ export const Checkbox = ({
   required = false,
   hidden = false,
   disabled = false,
+  message,
   children,
 }: Props) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,12 +40,12 @@ export const Checkbox = ({
           <input
             id={name}
             name={name}
-            type="checkbox"
+            type="radio"
             checked={checked}
             onChange={handleChange}
             disabled={disabled}
             className={twMerge(
-              "peer h-5 w-5 transition-all appearance-none rounded border-2 shadow-sm",
+              "peer h-5 w-5 transition-all appearance-none rounded-full border-2 shadow-sm",
               "focus:ring-2 focus:ring-secondary/20 focus:ring-offset-2",
               disabled
                 ? "cursor-not-allowed opacity-50"
@@ -55,7 +57,7 @@ export const Checkbox = ({
             aria-describedby={error ? `${name}-error` : undefined}
             aria-invalid={error}
           />
-          <Check
+          <CircleIcon
             className={twMerge(
               "absolute inset-0 m-0.5 h-4 w-4 text-white opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity",
               disabled && "opacity-50",
@@ -71,12 +73,18 @@ export const Checkbox = ({
             disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer",
           )}
         >
-          <span className="flex gap-1 items-start">
+          <span className="flex flex-col gap-1 items-start">
             {children}
+            {message && (
+              <span className="text-xs text-slate-500 font-bold">
+                {`(${message})`}
+              </span>
+            )}
             {required && <span className="text-red-500 text-base">*</span>}
           </span>
         </label>
       </div>
+
       {error && helperText && (
         <p
           id={`${name}-error`}
