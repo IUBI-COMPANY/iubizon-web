@@ -11,12 +11,12 @@ import Confetti from "react-confetti";
 
 export type RepairStep1 = Pick<
   Repair,
-  "first_name" | "last_name" | "email" | "phone_prefix" | "phone_number"
+  "product_name" | "description_device_fault" | "description_other_fault"
 >;
 
 export type RepairStep2 = Pick<
   Repair,
-  "product_name" | "description_device_fault" | "description_other_fault"
+  "first_name" | "last_name" | "email" | "phone_prefix" | "phone_number"
 >;
 
 export type RepairStep3 = Pick<
@@ -77,15 +77,15 @@ export const RepairsContactForm = () => {
   const stepItems = [
     {
       step: 0,
-      label: "Contacto",
+      label: "Equipo",
       classButton: "flex items-center justify-center rounded-l-full",
-      icon: <User />,
+      icon: <Projector />,
     },
     {
       step: 1,
-      label: "Equipo",
+      label: "Contacto",
       classButton: "flex items-center rounded-none justify-center",
-      icon: <Projector />,
+      icon: <User />,
     },
     {
       step: 2,
@@ -108,7 +108,7 @@ export const RepairsContactForm = () => {
       />
       <div className="w-full max-w-2xl mx-auto shadow-lg  py-10 px-6 rounded-2xl bg-white border-2 border-solid border-primary">
         {globalStep === 0 && (
-          <ClientInformation
+          <DeviceInformation
             globalStep={globalStep}
             repairsFormData={repairsFormData}
             setRepairsFormData={setRepairsFormData}
@@ -117,7 +117,7 @@ export const RepairsContactForm = () => {
           />
         )}
         {globalStep === 1 && (
-          <DeviceInformation
+          <ClientInformation
             globalStep={globalStep}
             repairsFormData={repairsFormData}
             setRepairsFormData={setRepairsFormData}

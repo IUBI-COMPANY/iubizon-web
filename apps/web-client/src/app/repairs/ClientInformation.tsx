@@ -11,8 +11,8 @@ import { useFormUtils } from "@/hooks/useFormUtils";
 import { Select } from "@/components/ui/Select";
 import countriesISO from "@/data-list/countriesISO.json";
 import { Button } from "@/components/ui/Button";
-import { RepairStep1 } from "@/components/ui/RepairsContactForm";
-import { ArrowRight } from "lucide-react";
+import { RepairStep2 } from "@/components/ui/RepairsContactForm";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 interface Props {
   globalStep: number;
@@ -31,7 +31,7 @@ export const ClientInformation = ({
   addLocalStorageData,
   setCurrentStepToLocalStorage,
 }: Props) => {
-  const schema: ObjectSchema<RepairStep1> = yup.object({
+  const schema: ObjectSchema<RepairStep2> = yup.object({
     first_name: yup.string().required(),
     last_name: yup.string().required(),
     email: yup.string().email().required(),
@@ -49,7 +49,7 @@ export const ClientInformation = ({
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<RepairStep1>({
+  } = useForm<RepairStep2>({
     resolver: yupResolver(schema),
     defaultValues: {
       first_name: repairsFormData?.first_name || "",
@@ -70,7 +70,7 @@ export const ClientInformation = ({
     return new RegExp(regex);
   };
 
-  const onSubmit = (formData: RepairStep1) => {
+  const onSubmit = (formData: RepairStep2) => {
     setRepairsFormData({ ...repairsFormData, ...formData });
     addLocalStorageData(formData);
     setCurrentStepToLocalStorage(globalStep + 1);
@@ -184,12 +184,16 @@ export const ClientInformation = ({
                 />
               </div>
             </div>
-            <div className="mt-2 grid grid-cols-1 gap-3">
-              {globalStep !== 0 && (
-                <Button block disabled variant="secondary" type="button">
-                  Atrás
-                </Button>
-              )}
+            <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <Button
+                type="button"
+                variant="secondary"
+                onClick={() => setCurrentStepToLocalStorage(globalStep - 1)}
+              >
+                <div className="flex gap-2 items-center justify-center">
+                  <ArrowLeft /> <span>Atrás</span>
+                </div>
+              </Button>
               <Button block variant="primary" type="submit">
                 <div className="flex gap-2 items-center justify-center">
                   <ArrowRight /> <span>Siguiente</span>

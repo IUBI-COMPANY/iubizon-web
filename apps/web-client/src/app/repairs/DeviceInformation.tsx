@@ -8,13 +8,13 @@ import { useFormUtils } from "@/hooks/useFormUtils";
 import React from "react";
 import { Button } from "@/components/ui/Button";
 import { Select } from "@/components/ui/Select";
-import { RepairStep2 } from "@/components/ui/RepairsContactForm";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { RepairStep1 } from "@/components/ui/RepairsContactForm";
+import { ArrowRight } from "lucide-react";
 
 interface Props {
   globalStep: number;
-  repairsFormData: Partial<RepairStep2>;
-  setRepairsFormData: (data: Partial<RepairStep2>) => void;
+  repairsFormData: Partial<RepairStep1>;
+  setRepairsFormData: (data: Partial<RepairStep1>) => void;
   addLocalStorageData: (data: object) => void;
   setCurrentStepToLocalStorage: (step: number) => void;
 }
@@ -26,7 +26,7 @@ export const DeviceInformation = ({
   addLocalStorageData,
   setCurrentStepToLocalStorage,
 }: Props) => {
-  const schema: ObjectSchema<RepairStep2> = yup.object({
+  const schema: ObjectSchema<RepairStep1> = yup.object({
     product_name: yup.string().required(),
     description_device_fault: yup.string().required(),
     description_other_fault: yup.string().when("description_device_fault", {
@@ -41,7 +41,7 @@ export const DeviceInformation = ({
     control,
     formState: { errors },
     watch,
-  } = useForm<RepairStep2>({
+  } = useForm<RepairStep1>({
     resolver: yupResolver(schema),
     defaultValues: {
       product_name: repairsFormData?.product_name || "",
@@ -54,7 +54,7 @@ export const DeviceInformation = ({
 
   const isOtherFault = watch("description_device_fault") === "other";
 
-  const onSubmit = (formData: RepairStep2) => {
+  const onSubmit = (formData: RepairStep1) => {
     setRepairsFormData({ ...repairsFormData, ...formData });
     addLocalStorageData(formData);
     setCurrentStepToLocalStorage(globalStep + 1);
@@ -133,17 +133,7 @@ export const DeviceInformation = ({
                 )}
               </div>
             </div>
-            <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <Button
-                block
-                variant="secondary"
-                type="button"
-                onClick={() => setCurrentStepToLocalStorage(globalStep - 1)}
-              >
-                <div className="flex gap-2 items-center justify-center">
-                  <ArrowLeft /> <span>Atrás</span>
-                </div>
-              </Button>
+            <div className="mt-2 grid grid-cols-1 gap-3">
               <Button block variant="primary" type="submit">
                 <div className="flex gap-2 items-center justify-center">
                   <ArrowRight /> <span>Siguiente</span>
