@@ -63,7 +63,7 @@ export const DeviceInformation = ({
   return (
     <div className="w-full">
       <div className="text-2xl text-center text-secondary font-semibold">
-        Datos del equipo
+        Datos del equipo a reparar
       </div>
       <div className="mt-5">
         <Form onSubmit={handleSubmit(onSubmit)}>
@@ -102,6 +102,7 @@ export const DeviceInformation = ({
                       onChange={onChange}
                       placeholder="Ej. No enciende, no proyecta imagen, manchas, etc."
                       options={[
+                        { label: "Mantenimiento", value: "maintenance" },
                         { label: "No enciende", value: "off" },
                         { label: "No proyecta imagen", value: "no-image" },
                         { label: "Manchas en la imagen", value: "spots" },
