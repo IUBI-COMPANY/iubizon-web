@@ -6,6 +6,7 @@ import Script from "next/script";
 import "./globals.css";
 import { FooterLayout } from "@/components/ui/FooterLayout";
 import { HeaderLayout } from "@/components/ui/HeaderLayout";
+import { WhatsAppFloatingButton } from "@/components/ui/WhatsAppFloatingButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -170,6 +171,7 @@ export default function RootLayout({
         <Analytics />
         {/* LAYOUT */}
         <FooterLayout />
+        <WhatsAppFloatingButton />
       </body>
     </html>
   );
