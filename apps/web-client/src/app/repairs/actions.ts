@@ -25,7 +25,7 @@ export async function sendRepairEmail(formRepair: Repair): Promise<void> {
 
   try {
     const response = await fetch(
-      `${process.env.IUBI_CRM_API}/iubizon/repairs`,
+      `https://api-iubisales.web.app/iubizon/repairs`,
       {
         method: "POST",
         headers: {
