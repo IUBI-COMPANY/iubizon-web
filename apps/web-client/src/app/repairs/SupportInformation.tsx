@@ -115,16 +115,8 @@ export const SupportInformation = ({
     setRepairsFormData({ ...repairsFormData, ...formData });
     addLocalStorageData(formData);
 
-    if (formRef?.current) {
-      setTimeout(() => {
-        formRef.current?.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }, 100);
-    }
-
     const data: Repair = JSON.parse(localStorage.getItem("formData") || "{}");
+
     try {
       await sendRepairEmail(data);
       setLoading(false);
@@ -132,8 +124,12 @@ export const SupportInformation = ({
         setCurrentStepToLocalStorage(globalStep + 1);
       }, 150);
     } catch (error) {
-      console.error("Error: ", error);
+      console.error("Error sending repair email: ", error);
       setLoading(false);
+
+      alert(
+        "Hubo un error al enviar la solicitud. Por favor, inténtelo nuevamente o contacte con soporte.",
+      );
     }
   };
 

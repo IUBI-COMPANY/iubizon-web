@@ -2,7 +2,8 @@
 
 export async function sendRepairEmail(formRepair: Repair): Promise<void> {
   const mapFormContact = (formRepair: Repair) => ({
-    full_name: formRepair?.first_name || "" + formRepair?.last_name || "",
+    full_name:
+      `${formRepair?.first_name || ""} ${formRepair?.last_name || ""}`.trim(),
     first_name: formRepair?.first_name,
     last_name: formRepair?.last_name,
     email: formRepair.email,
@@ -35,10 +36,16 @@ export async function sendRepairEmail(formRepair: Repair): Promise<void> {
     );
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const errorText = await response.text();
+      console.error(
+        `HTTP error! status: ${response.status}, message: ${errorText}`,
+      );
+      throw new Error(`Error ${response.status}: ${errorText}`);
     }
+
+    console.log("Repair email sent successfully");
   } catch (error) {
-    console.error("Error sending email: ", error);
+    console.error("Error sending repair email: ", error);
     throw error;
   }
 }
