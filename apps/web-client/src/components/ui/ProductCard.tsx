@@ -35,7 +35,7 @@ export const ProductCard = ({ product }: Props) => {
             src={product?.mainImage || "product-not-found.png"}
             width={300}
             height={300}
-            alt={`Imagen de ${product.model}`}
+            alt={product?.name || "Proyectores"}
             className="w-full h-full object-cover"
           />
         </div>
