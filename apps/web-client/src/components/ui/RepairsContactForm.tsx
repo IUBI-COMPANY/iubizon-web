@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ClientInformation } from "@/app/repairs/ClientInformation";
 import { DeviceInformation } from "@/app/repairs/DeviceInformation";
 import { SupportInformation } from "@/app/repairs/SupportInformation";
@@ -34,6 +34,7 @@ export const RepairsContactForm = () => {
   const [globalStep, setGlobalStep] = useState(0);
   const [repairsFormData, setRepairsFormData] = useState<Partial<Repair>>({});
   const [loading, setLoading] = useState(true);
+  const formRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const stepsData = Number(localStorage.getItem("currentStep") || 0);
@@ -57,6 +58,15 @@ export const RepairsContactForm = () => {
   const setCurrentStepToLocalStorage = (step: number) => {
     localStorage.setItem("currentStep", JSON.stringify(step));
     setGlobalStep(step);
+
+    if (formRef.current && step < globalStep) {
+      setTimeout(() => {
+        formRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 100);
+    }
   };
 
   const getLocalStorageData = () => {
@@ -89,7 +99,7 @@ export const RepairsContactForm = () => {
       <Loader2 className="w-20 h-20 text-primary animate-spin" />
     </div>
   ) : (
-    <div className="grid gap-5 py-10 w-full max-w-2xl mx-auto">
+    <div ref={formRef} className="grid gap-5 py-10 w-full max-w-2xl mx-auto">
       <StepsRepairsContactForm
         items={stepItems}
         globalStep={globalStep}

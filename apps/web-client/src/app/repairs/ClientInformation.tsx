@@ -12,6 +12,7 @@ import { Select } from "@/components/ui/Select";
 import countriesISO from "@/data-list/countriesISO.json";
 import { Button } from "@/components/ui/Button";
 import { RepairStep1 } from "@/components/ui/RepairsContactForm";
+import { ArrowRight } from "lucide-react";
 
 interface Props {
   globalStep: number;
@@ -190,7 +191,9 @@ export const ClientInformation = ({
                 </Button>
               )}
               <Button block variant="primary" type="submit">
-                Siguiente
+                <div className="flex gap-2 items-center justify-center">
+                  <ArrowRight /> <span>Siguiente</span>
+                </div>
               </Button>
             </div>
           </div>

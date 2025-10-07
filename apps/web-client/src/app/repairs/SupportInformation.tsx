@@ -1,6 +1,6 @@
 import React from "react";
-import { ObjectSchema } from "yup";
 import * as yup from "yup";
+import { ObjectSchema } from "yup";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useFormUtils } from "@/hooks/useFormUtils";
@@ -16,7 +16,7 @@ import { peruUbigeo } from "@/data-list/ubigeos";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { sendRepairEmail } from "./actions";
 import { RepairStep3 } from "@/components/ui/RepairsContactForm";
-import { SendIcon } from "lucide-react";
+import { ArrowLeft, SendIcon } from "lucide-react";
 import { BusinessAddress } from "@/app/repairs/BusinessAddress";
 
 interface Props {
@@ -53,12 +53,12 @@ export const SupportInformation = ({
     district: yup.string().when("service_type", {
       is: "house || shipping",
       then: (schema) => schema.required(),
-      otherwise: (schema) => schema.required(),
+      otherwise: (schema) => schema.notRequired(),
     }),
     address: yup.string().when("service_type", {
       is: "house || shipping",
       then: (schema) => schema.required(),
-      otherwise: (schema) => schema.required(),
+      otherwise: (schema) => schema.notRequired(),
     }),
     department: yup.string().when("service_type", {
       is: "shipping",
@@ -68,7 +68,7 @@ export const SupportInformation = ({
     province: yup.string().when("service_type", {
       is: "shipping",
       then: (schema) => schema.required(),
-      otherwise: (schema) => schema.required(),
+      otherwise: (schema) => schema.notRequired(),
     }),
     terms_and_conditions: yup.boolean().required(),
   });
@@ -347,7 +347,9 @@ export const SupportInformation = ({
                     disabled={loading}
                     onClick={() => setCurrentStepToLocalStorage(globalStep - 1)}
                   >
-                    Atrás
+                    <div className="flex gap-2 items-center justify-center">
+                      <ArrowLeft /> <span>Atrás</span>
+                    </div>
                   </Button>
                   <Button
                     block

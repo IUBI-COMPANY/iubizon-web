@@ -1,7 +1,7 @@
 import { Input } from "@/components/ui/Input";
 import { Form } from "@/components/ui/Form";
-import { ObjectSchema } from "yup";
 import * as yup from "yup";
+import { ObjectSchema } from "yup";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useFormUtils } from "@/hooks/useFormUtils";
@@ -9,6 +9,7 @@ import React from "react";
 import { Button } from "@/components/ui/Button";
 import { Select } from "@/components/ui/Select";
 import { RepairStep2 } from "@/components/ui/RepairsContactForm";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 interface Props {
   globalStep: number;
@@ -139,10 +140,14 @@ export const DeviceInformation = ({
                 type="button"
                 onClick={() => setCurrentStepToLocalStorage(globalStep - 1)}
               >
-                Atrás
+                <div className="flex gap-2 items-center justify-center">
+                  <ArrowLeft /> <span>Atrás</span>
+                </div>
               </Button>
               <Button block variant="primary" type="submit">
-                Siguiente
+                <div className="flex gap-2 items-center justify-center">
+                  <ArrowRight /> <span>Siguiente</span>
+                </div>
               </Button>
             </div>
           </div>
