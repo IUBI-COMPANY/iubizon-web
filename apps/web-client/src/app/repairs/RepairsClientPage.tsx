@@ -1,3 +1,5 @@
+"use client";
+
 import { Metadata } from "next";
 import { RepairsContactForm } from "@/components/ui/RepairsContactForm";
 import {
@@ -78,9 +80,7 @@ export default function RepairsPage() {
   return (
     <>
       <div className="min-h-screen bg-white">
-        {/* Hero Banner Section */}
         <div className="relative h-[60vh] bg-gradient-to-br from-secondary/10 via-secondary to-secondary/0 overflow-hidden">
-          {/* Background Image */}
           <div className="absolute inset-0">
             <Image
               src="/images/proyectores-reparaciones.webp"
@@ -90,7 +90,6 @@ export default function RepairsPage() {
             />
             <div className="absolute inset-0 bg-blue-900/50"></div>
           </div>
-          {/* Hero Content */}
           <div className="relative z-10 h-auto px-[2em] pt-[3em] 2xl:pt-[5em] flex flex-col justify-center items-center text-center">
             <div className="max-w-4xl mx-auto mb-8">
               <h1 className="text-3xl md:text-[2.5em] font-bold text-white mb-4 leading-tight">
@@ -108,14 +107,12 @@ export default function RepairsPage() {
           </div>
         </div>
 
-        {/* Form Section - Overlapping */}
-        <div className="relative -mt-60 sm:-mt-70 z-20 px-4">
+        <div className="relative -mt-60 sm:-mt-70 z-20 px-4" id="contact-form">
           <div className="max-w-4xl mx-auto">
             <RepairsContactForm />
           </div>
         </div>
 
-        {/* How It Works Section */}
         <section
           className="mt-10 pt-0 pb-16 bg-white"
           itemScope
@@ -139,7 +136,6 @@ export default function RepairsPage() {
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-              {/* Step 1 */}
               <div
                 className="text-center"
                 itemScope
@@ -162,7 +158,6 @@ export default function RepairsPage() {
                 </p>
               </div>
 
-              {/* Step 2 */}
               <div
                 className="text-center"
                 itemScope
@@ -185,7 +180,6 @@ export default function RepairsPage() {
                 </p>
               </div>
 
-              {/* Step 3 */}
               <div
                 className="text-center"
                 itemScope
@@ -208,7 +202,6 @@ export default function RepairsPage() {
               </div>
             </div>
 
-            {/* Services Section with Schema */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <article
                 className="bg-blue-50 p-6 rounded-xl"
@@ -254,7 +247,7 @@ export default function RepairsPage() {
             </div>
           </div>
         </section>
-        {/* Why Choose Us Section */}
+
         <section
           className="py-16 bg-gray-50"
           aria-labelledby="benefits-heading"
@@ -310,7 +303,7 @@ export default function RepairsPage() {
             </div>
           </div>
         </section>
-        {/* FAQ Section for SEO */}
+
         <section
           className="py-16 bg-gray-50"
           itemScope
@@ -407,6 +400,89 @@ export default function RepairsPage() {
                   </p>
                 </div>
               </article>
+
+              <article
+                itemScope
+                itemType="https://schema.org/Question"
+                className="bg-white p-6 rounded-xl shadow-sm"
+              >
+                <h3
+                  itemProp="name"
+                  className="text-lg font-bold text-color-secondary mb-3"
+                >
+                  ¿Atienden proyectores de provincia?
+                </h3>
+                <div
+                  itemScope
+                  itemType="https://schema.org/Answer"
+                  itemProp="acceptedAnswer"
+                >
+                  <p itemProp="text" className="text-gray-700">
+                    Sí, ofrecemos atención especializada para clientes de
+                    provincia a través de nuestro servicio de envío. El cliente
+                    envía su proyector a nuestro local ubicado en{" "}
+                    <strong>Pje. los Jazmines 121, Chorrillos, Lima</strong>,{" "}
+                    realizamos el servicio técnico completo con diagnóstico,
+                    reparación y pruebas de calidad, y una vez culminado el
+                    servicio, lo reenviamos a su dirección. Este es un servicio
+                    especial que garantiza la misma calidad técnica para todo el
+                    Perú.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16 relative bg-gradient-to-br from-secondary/10 via-secondary to-secondary/0 overflow-hidden">
+          <div className="absolute inset-0">
+            <Image
+              src="/images/proyectores-reparaciones.webp"
+              alt="Servicio técnico de proyectores"
+              fill
+              className="object-cover opacity-50"
+            />
+            <div className="absolute inset-0 bg-blue-900/50"></div>
+          </div>
+          <div className="absolute inset-0 bg-black/10"></div>
+          <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
+            <div className="bg-white/15 backdrop-blur-md rounded-2xl p-8 md:p-10 border border-white/30 shadow-2xl">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                ¿Tu Proyector Necesita Reparación?
+              </h2>
+              <p className="text-lg text-white/90 mb-6 max-w-xl mx-auto">
+                Técnicos especializados listos para devolver tu proyector a su
+                máximo rendimiento.
+              </p>
+              <div className="flex flex-wrap justify-center gap-6 mb-8 text-white/95">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5 text-primary" />
+                  <span className="text-sm font-medium">Respuesta en 24h</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5 text-primary" />
+                  <span className="text-sm font-medium">6 meses garantía</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5 text-primary" />
+                  <span className="text-sm font-medium">Técnicos expertos</span>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <button
+                  onClick={() =>
+                    document.getElementById("contact-form")?.scrollIntoView({
+                      behavior: "smooth",
+                    })
+                  }
+                  className="bg-primary hover:bg-primary/90 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl cursor-pointer"
+                >
+                  Solicitar Reparación Ahora
+                </button>
+                <p className="text-sm text-white/80">
+                  ⚡ Proceso rápido • 📧 Confirmación por email
+                </p>
+              </div>
             </div>
           </div>
         </section>

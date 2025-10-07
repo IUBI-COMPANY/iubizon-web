@@ -192,8 +192,8 @@ export default function AboutUsPage() {
                   </p>
                   <p>
                     Nos hemos establecido rápidamente como{" "}
-                    <strong>distribuidores oficiales de Epson</strong> y otras
-                    marcas reconocidas. Somos{" "}
+                    <strong>distribuidores de Epson</strong> y otras marcas
+                    reconocidas. Somos{" "}
                     <strong>consultores especializados</strong> que entienden
                     las necesidades únicas de cada cliente y ofrecemos
                     soluciones personalizadas con{" "}
@@ -207,13 +207,11 @@ export default function AboutUsPage() {
                   alt="Historia de Iubizon - Empresa de proyectores en Lima"
                   width={600}
                   height={400}
-                  className="w-full h-auto rounded-xl shadow-lg"
+                  className="w-full h-auto"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
                 />
               </div>
             </div>
-
-            {/* Key Points */}
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-color-secondary mb-4">
                 ¿Por Qué Elegirnos?
@@ -226,7 +224,7 @@ export default function AboutUsPage() {
                   <Award className="w-8 h-8 text-yellow-600" />
                 </div>
                 <h3 className="text-lg font-bold text-color-secondary mb-2">
-                  Distribuidor Oficial Epson
+                  Distribuidor Epson
                 </h3>
                 <p className="text-gray-600 text-sm">
                   Productos originales y soporte técnico especializado
