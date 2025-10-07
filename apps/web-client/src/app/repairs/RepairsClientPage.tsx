@@ -91,8 +91,10 @@ export default function RepairsPage() {
             <div className="absolute inset-0 bg-blue-900/50"></div>
           </div>
         </div>
-
-        <div className="relative -mt-60 sm:-mt-120 z-20 px-4" id="contact-form">
+        <div
+          className="relative -mt-[33rem] sm:-mt-[31rem] 2xl:-mt-[33rem] z-20 px-4"
+          id="contact-form"
+        >
           <div className="max-w-4xl mx-auto">
             <div className="relative z-10 h-auto px-[2em] pt-[3em] 2xl:pt-[5em] flex flex-col justify-center items-center text-center">
               <div className="max-w-4xl mx-auto mb-8">

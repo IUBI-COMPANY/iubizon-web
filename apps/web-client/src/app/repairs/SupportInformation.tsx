@@ -113,7 +113,6 @@ export const SupportInformation = ({
   const onSubmit = async (formData: RepairStep3) => {
     setLoading(true);
     setRepairsFormData({ ...repairsFormData, ...formData });
-    setCurrentStepToLocalStorage(globalStep + 1);
     addLocalStorageData(formData);
 
     if (formRef?.current) {
@@ -128,14 +127,13 @@ export const SupportInformation = ({
     const data: Repair = JSON.parse(localStorage.getItem("formData") || "{}");
     try {
       await sendRepairEmail(data);
-      localStorage.removeItem("currentStep");
-      localStorage.removeItem("formData");
       setLoading(false);
       setTimeout(() => {
-        window.location.href = "/repairs";
-      }, 2000);
+        setCurrentStepToLocalStorage(globalStep + 1);
+      }, 150);
     } catch (error) {
       console.error("Error: ", error);
+      setLoading(false);
     }
   };
 

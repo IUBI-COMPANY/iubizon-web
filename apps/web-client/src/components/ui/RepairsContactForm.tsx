@@ -8,6 +8,7 @@ import { StepsRepairsContactForm } from "@/components/ui/StepsRepairsContactForm
 import { CircleCheck, Loader2, Projector, User, Wrench } from "lucide-react";
 import Image from "next/image";
 import Confetti from "react-confetti";
+import { useRouter } from "next/navigation";
 
 export type RepairStep1 = Pick<
   Repair,
@@ -35,7 +36,10 @@ export const RepairsContactForm = () => {
   const [globalStep, setGlobalStep] = useState(0);
   const [repairsFormData, setRepairsFormData] = useState<Partial<Repair>>({});
   const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
+  const [countdown, setCountdown] = useState(8);
   const formRef = useRef<HTMLDivElement | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const stepsData = Number(localStorage.getItem("currentStep") || 0);
@@ -60,7 +64,7 @@ export const RepairsContactForm = () => {
     localStorage.setItem("currentStep", JSON.stringify(step));
     setGlobalStep(step);
 
-    if (formRef.current && step < globalStep) {
+    if (formRef.current) {
       setTimeout(() => {
         formRef.current?.scrollIntoView({
           behavior: "smooth",
@@ -95,6 +99,28 @@ export const RepairsContactForm = () => {
     },
   ];
 
+  useEffect(() => {
+    if (globalStep === 3) {
+      setCountdown(8);
+      const timer = setInterval(() => {
+        setCountdown((prev) => {
+          if (prev <= 1) {
+            clearInterval(timer);
+            localStorage.removeItem("currentStep");
+            localStorage.removeItem("formData");
+            setTimeout(() => {
+              window.location.href = "/repairs";
+            }, 100);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+
+      return () => clearInterval(timer);
+    }
+  }, [globalStep, router]);
+
   return loading ? (
     <div className="w-full h-full min-h-[40svh] grid place-items-center">
       <Loader2 className="w-20 h-20 text-primary animate-spin" />
@@ -127,8 +153,8 @@ export const RepairsContactForm = () => {
         )}
         {globalStep === 2 && (
           <SupportInformation
-            loading={loading}
-            setLoading={setLoading}
+            loading={submitting}
+            setLoading={setSubmitting}
             globalStep={globalStep}
             repairsFormData={repairsFormData}
             setRepairsFormData={setRepairsFormData}
@@ -163,6 +189,13 @@ export const RepairsContactForm = () => {
                       <strong>Confirmación enviada</strong> a tu correo con
                       todos los detalles
                     </span>
+                  </p>
+                </div>
+                <div className="mt-4 bg-gray-50 border border-gray-200 rounded-lg p-3">
+                  <p className="text-sm text-gray-600 text-center">
+                    Redirigiendo en{" "}
+                    <span className="font-bold text-primary">{countdown}</span>{" "}
+                    segundo{countdown !== 1 ? "s" : ""}...
                   </p>
                 </div>
                 <p className="text-sm text-gray-500 italic">
