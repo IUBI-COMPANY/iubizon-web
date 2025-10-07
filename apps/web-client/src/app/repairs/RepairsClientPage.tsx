@@ -80,7 +80,7 @@ export default function RepairsPage() {
   return (
     <>
       <div className="min-h-screen bg-white">
-        <div className="relative h-[60vh] bg-gradient-to-br from-secondary/10 via-secondary to-secondary/0 overflow-hidden">
+        <div className="relative h-[33rem] bg-gradient-to-br from-secondary/10 via-secondary to-secondary/0 overflow-hidden">
           <div className="absolute inset-0">
             <Image
               src="/images/proyectores-reparaciones.webp"
@@ -92,7 +92,7 @@ export default function RepairsPage() {
           </div>
         </div>
         <div
-          className="relative -mt-[33rem] sm:-mt-[31rem] 2xl:-mt-[33rem] z-20 px-4"
+          className="relative -mt-[33rem] sm:-mt-[31rem] z-20 px-4"
           id="contact-form"
         >
           <div className="max-w-4xl mx-auto">
