@@ -149,7 +149,7 @@ export const ProductCard = ({ product }: Props) => {
             d="M5 13l4 4L19 7"
           />
         </svg>
-        Garantía de 6 meses
+        Garantía de {product?.condition === "new" ? "12 meses" : "6 meses"}
       </div>
       <div className="mt-3 grid gap-2 grid-cols-[1fr_auto] row-span-1 items-end">
         <a

@@ -6,7 +6,6 @@ export const FooterLayout = () => {
   return (
     <footer className="pt-10 pb-6 px-4 bg-gradient-to-b from-secondary/100 to-secondary/95 text-white">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 items-start">
-        {/* Logo y dirección */}
         <div className="flex flex-col gap-4 items-center md:items-start">
           <Image
             src="/images/logo.png"
@@ -34,7 +33,6 @@ export const FooterLayout = () => {
             </p>
           </div>
         </div>
-        {/* Enlaces rápidos */}
         <div className="flex flex-col gap-2 text-sm">
           <span className="font-bold text-white mb-2">Enlaces rápidos</span>
           <Link href="/repairs" className="hover:text-primary">
@@ -47,7 +45,6 @@ export const FooterLayout = () => {
             Sobre Nosotros
           </Link>
         </div>
-        {/* Contacto y soporte */}
         <div className="flex flex-col gap-3 text-sm">
           <span className="font-bold text-white mb-2">Soporte y contacto</span>
           <div className="flex items-center gap-2">
