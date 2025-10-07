@@ -40,7 +40,7 @@ export interface MediaItem {
   src: string;
 }
 
-const DISCOUNT_PERCENTAGE = 0.3; // 30% DISCOUNT
+const DISCOUNT_PERCENTAGE = 0.42; // 42% DISCOUNT
 
 export const products: Product[] = [
   {
@@ -91,7 +91,7 @@ export const products: Product[] = [
     oldStock: 2,
     condition: "reconditioned",
     description: "Buena proyección, detalles estéticos",
-    price: 2399.0,
+    price: 2300.0,
     badge: "Top venta",
     mainImage: "/images/980W-reacon/980w.jpg",
     media: [

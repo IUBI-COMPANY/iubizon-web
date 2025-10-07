@@ -1,5 +1,5 @@
 import React from "react";
-import { BadgePercent, MapPin } from "lucide-react";
+import { BadgePercent } from "lucide-react";
 import { products } from "@/data-list/products";
 import { ProductCard } from "@/components/ui/ProductCard";
 import Image from "next/image";
