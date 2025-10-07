@@ -27,6 +27,7 @@ interface Props {
   setCurrentStepToLocalStorage: (step: number) => void;
   loading: boolean;
   setLoading: (loading: boolean) => void;
+  formRef?: React.RefObject<HTMLDivElement | null>;
 }
 
 export const SupportInformation = ({
@@ -37,6 +38,7 @@ export const SupportInformation = ({
   setCurrentStepToLocalStorage,
   loading,
   setLoading,
+  formRef,
 }: Props) => {
   const schema: ObjectSchema<RepairStep3> = yup.object({
     service_type: yup.string().required(),
@@ -113,13 +115,25 @@ export const SupportInformation = ({
     setRepairsFormData({ ...repairsFormData, ...formData });
     setCurrentStepToLocalStorage(globalStep + 1);
     addLocalStorageData(formData);
+
+    if (formRef?.current) {
+      setTimeout(() => {
+        formRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 100);
+    }
+
     const data: Repair = JSON.parse(localStorage.getItem("formData") || "{}");
     try {
       await sendRepairEmail(data);
       localStorage.removeItem("currentStep");
       localStorage.removeItem("formData");
       setLoading(false);
-      window.location.href = "/repairs";
+      setTimeout(() => {
+        window.location.href = "/repairs";
+      }, 2000);
     } catch (error) {
       console.error("Error: ", error);
     }

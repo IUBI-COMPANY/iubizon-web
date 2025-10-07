@@ -7,6 +7,7 @@ import { SupportInformation } from "@/app/repairs/SupportInformation";
 import { StepsRepairsContactForm } from "@/components/ui/StepsRepairsContactForm";
 import { CircleCheck, Loader2, Projector, User, Wrench } from "lucide-react";
 import Image from "next/image";
+import Confetti from "react-confetti";
 
 export type RepairStep1 = Pick<
   Repair,
@@ -34,7 +35,7 @@ export const RepairsContactForm = () => {
   const [globalStep, setGlobalStep] = useState(0);
   const [repairsFormData, setRepairsFormData] = useState<Partial<Repair>>({});
   const [loading, setLoading] = useState(true);
-  const formRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const stepsData = Number(localStorage.getItem("currentStep") || 0);
@@ -95,7 +96,7 @@ export const RepairsContactForm = () => {
   ];
 
   return loading ? (
-    <div className="w-full h-full grid place-items-center ">
+    <div className="w-full h-full min-h-[40svh] grid place-items-center">
       <Loader2 className="w-20 h-20 text-primary animate-spin" />
     </div>
   ) : (
@@ -133,10 +134,11 @@ export const RepairsContactForm = () => {
             setRepairsFormData={setRepairsFormData}
             addLocalStorageData={addLocalStorageData}
             setCurrentStepToLocalStorage={setCurrentStepToLocalStorage}
+            formRef={formRef}
           />
         )}
         {globalStep === 3 && (
-          <div className="w-full h-full grid sm:grid-cols-2 place-items-center ">
+          <div className="w-full h-full grid sm:grid-cols-2 place-items-center relative overflow-hidden">
             <Image
               width={1000}
               height={1000}
@@ -144,11 +146,38 @@ export const RepairsContactForm = () => {
               alt="iubizonpet"
               className="w-full h-auto"
             />
-            <div className="grid place-items-center gap-5">
-              <CircleCheck className="w-25 h-25 text-green-700 " />
-              <span className="text-xl font-bold text-center text-secondary">
-                Listo, te contactaremos lo más antes posible
-              </span>
+            <div className="grid place-items-center gap-4 relative">
+              <CircleCheck className="w-20 h-20 text-green-600" />
+              <div className="text-center space-y-3 max-w-md">
+                <h2 className="text-2xl font-bold text-secondary">
+                  ¡Solicitud enviada!
+                </h2>
+                <p className="text-gray-700">
+                  Nuestro equipo técnico te contactará pronto para coordinar el
+                  servicio.
+                </p>
+                <div className="bg-gradient-to-r from-blue-50 to-green-50 border-l-4 border-blue-400 rounded-r-lg p-3">
+                  <p className="text-sm text-blue-900 flex items-center gap-2">
+                    <span className="text-lg">📧</span>
+                    <span>
+                      <strong>Confirmación enviada</strong> a tu correo con
+                      todos los detalles
+                    </span>
+                  </p>
+                </div>
+                <p className="text-sm text-gray-500 italic">
+                  Gracias por confiar en nosotros 🛠️
+                </p>
+              </div>
+            </div>
+            <div className="absolute inset-0 pointer-events-none">
+              <Confetti
+                width={formRef.current?.offsetWidth || 400}
+                height={formRef.current?.offsetHeight || 600}
+                recycle={false}
+                numberOfPieces={100}
+                gravity={0.3}
+              />
             </div>
           </div>
         )}
