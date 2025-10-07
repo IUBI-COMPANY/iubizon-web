@@ -100,7 +100,7 @@ export const RepairsContactForm = () => {
       <Loader2 className="w-20 h-20 text-primary animate-spin" />
     </div>
   ) : (
-    <div ref={formRef} className="grid gap-5 py-10 w-full max-w-2xl mx-auto">
+    <div ref={formRef} className="grid gap-5 pb-10 w-full max-w-2xl mx-auto">
       <StepsRepairsContactForm
         items={stepItems}
         globalStep={globalStep}

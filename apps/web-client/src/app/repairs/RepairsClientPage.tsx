@@ -90,25 +90,25 @@ export default function RepairsPage() {
             />
             <div className="absolute inset-0 bg-blue-900/50"></div>
           </div>
-          <div className="relative z-10 h-auto px-[2em] pt-[3em] 2xl:pt-[5em] flex flex-col justify-center items-center text-center">
-            <div className="max-w-4xl mx-auto mb-8">
-              <h1 className="text-3xl md:text-[2.5em] font-bold text-white mb-4 leading-tight">
-                Mantenimiento y Reparación
-                <span className="block text-primary font-bold">
-                  Especializada de Proyectores
-                </span>
-              </h1>
-              <p className="text-lg md:text-xl text-blue-100 mb-6 max-w-3xl mx-auto">
-                Servicio técnico profesional con garantía • Mantenimiento
-                preventivo especializado • Reparaciones con los mejores
-                repuestos
-              </p>
-            </div>
-          </div>
         </div>
 
-        <div className="relative -mt-60 sm:-mt-70 z-20 px-4" id="contact-form">
+        <div className="relative -mt-60 sm:-mt-120 z-20 px-4" id="contact-form">
           <div className="max-w-4xl mx-auto">
+            <div className="relative z-10 h-auto px-[2em] pt-[3em] 2xl:pt-[5em] flex flex-col justify-center items-center text-center">
+              <div className="max-w-4xl mx-auto mb-8">
+                <h1 className="text-3xl md:text-[2.5em] font-bold text-white mb-4 leading-tight">
+                  Mantenimiento y Reparación
+                  <span className="block text-primary font-bold">
+                    Especializada de Proyectores
+                  </span>
+                </h1>
+                <p className="text-lg md:text-xl text-blue-100 mb-6 max-w-3xl mx-auto">
+                  Servicio técnico profesional con garantía • Mantenimiento
+                  preventivo especializado • Reparaciones con los mejores
+                  repuestos
+                </p>
+              </div>
+            </div>
             <RepairsContactForm />
           </div>
         </div>
