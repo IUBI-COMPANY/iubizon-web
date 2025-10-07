@@ -17,6 +17,7 @@ import { Checkbox } from "@/components/ui/Checkbox";
 import { sendRepairEmail } from "./actions";
 import { RepairStep3 } from "@/components/ui/RepairsContactForm";
 import { SendIcon } from "lucide-react";
+import { BusinessAddress } from "@/app/repairs/BusinessAddress";
 
 interface Props {
   globalStep: number;
@@ -166,24 +167,7 @@ export const SupportInformation = ({
                   )}
                 />
 
-                {isLocalVisit && (
-                  <div className="w-full grid gap-6 my-6">
-                    <p className="text-base text-secondary mt-2">
-                      Puedes traer tu equipo a nuestro local ubicado en Psje Los
-                      Jazmines 121, Chorrillos. Lunes a Viernes de 9:00 AM a
-                      6:00 PM y sábados de 10:00 AM a 4:00 PM.
-                    </p>
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d344.71337159212857!2d-77.01877893930197!3d-12.181314674423286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105b77bc923c7dd%3A0xc9a1cab224d7580f!2sPje.%20los%20Jazmines%20121%2C%20Chorrillos%2015066!5e0!3m2!1ses!2spe!4v1758727743550!5m2!1ses!2spe"
-                      width="600"
-                      height="450"
-                      allowFullScreen={true}
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      className="w-full "
-                    ></iframe>
-                  </div>
-                )}
+                {isLocalVisit && <BusinessAddress />}
                 {isHouseVisit && (
                   <div className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2 my-6">
                     <div className="sm:col-span-1">
@@ -223,58 +207,61 @@ export const SupportInformation = ({
                   </div>
                 )}
                 {isShipping && (
-                  <div className="grid grid-cols-1 gap-x-4 sm:grid-cols-2 my-6">
-                    <Alert
-                      type="info"
-                      message="Estos datos servirán para el envío de su equipo una vez terminado el servicio."
-                    />
-                    <div className="sm:col-span-1">
-                      <Controller
-                        name="department"
-                        control={control}
-                        render={({ field: { onChange, value, name } }) => (
-                          <Select
-                            label="Departamento"
-                            placeholder="Ej. Lima"
-                            name={name}
-                            value={value}
-                            error={error(name)}
-                            helperText={errorMessage(name)}
-                            required={required(name)}
-                            onChange={onChange}
-                            options={peruUbigeo.map((dep) => ({
-                              value: dep.name,
-                              label: dep.name,
-                            }))}
-                          />
-                        )}
+                  <>
+                    <BusinessAddress />
+                    <div className="grid grid-cols-1 gap-x-4 sm:grid-cols-2 my-6">
+                      <Alert
+                        type="info"
+                        message="Necesitamos tu dirección para poder reenviarte tu equipo una vez hagamos culminado con el servicio."
                       />
+                      <div className="sm:col-span-1">
+                        <Controller
+                          name="department"
+                          control={control}
+                          render={({ field: { onChange, value, name } }) => (
+                            <Select
+                              label="Departamento"
+                              placeholder="Ej. Lima"
+                              name={name}
+                              value={value}
+                              error={error(name)}
+                              helperText={errorMessage(name)}
+                              required={required(name)}
+                              onChange={onChange}
+                              options={peruUbigeo.map((dep) => ({
+                                value: dep.name,
+                                label: dep.name,
+                              }))}
+                            />
+                          )}
+                        />
+                      </div>
+                      <div className="sm:col-span-1">
+                        <Controller
+                          name="province"
+                          control={control}
+                          render={({ field: { onChange, value, name } }) => (
+                            <Select
+                              label="Provincia"
+                              placeholder="Ej. Lima"
+                              name={name}
+                              value={value}
+                              error={error(name)}
+                              helperText={errorMessage(name)}
+                              required={required(name)}
+                              onChange={onChange}
+                              options={
+                                _departmentSelected?.provinces.map((prov) => ({
+                                  value: prov.name,
+                                  label: prov.name,
+                                })) || []
+                              }
+                            />
+                          )}
+                        />
+                      </div>
                     </div>
-                    <div className="sm:col-span-1">
-                      <Controller
-                        name="province"
-                        control={control}
-                        render={({ field: { onChange, value, name } }) => (
-                          <Select
-                            label="Provincia"
-                            placeholder="Ej. Lima"
-                            name={name}
-                            value={value}
-                            error={error(name)}
-                            helperText={errorMessage(name)}
-                            required={required(name)}
-                            onChange={onChange}
-                            options={
-                              _departmentSelected?.provinces.map((prov) => ({
-                                value: prov.name,
-                                label: prov.name,
-                              })) || []
-                            }
-                          />
-                        )}
-                      />
-                    </div>
-                  </div>
+                  </>
                 )}
                 {(isHouseVisit || isShipping) && (
                   <div className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6 my-6">
