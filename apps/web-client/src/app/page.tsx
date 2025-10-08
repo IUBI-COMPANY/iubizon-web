@@ -130,7 +130,7 @@ export default function Home() {
           </div>
         )}
         {quantityProjectors >= 3 && (
-          <section className="mt-10 rounded-2xl p-6 text-center shadow-sm text-white  bg-gradient-to-br from-secondary/90 via-secondary to-secondary/90 relative">
+          <section className="mt-10 md:mt-[10em] rounded-2xl p-6 text-center shadow-sm text-white  bg-gradient-to-br from-secondary/90 via-secondary to-secondary/90 relative">
             <Image
               src="/images/pet-corriendo-izquierda.png"
               alt="pet iubizon"
