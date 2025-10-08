@@ -27,7 +27,6 @@ interface Props {
   setCurrentStepToLocalStorage: (step: number) => void;
   loading: boolean;
   setLoading: (loading: boolean) => void;
-  formRef?: React.RefObject<HTMLDivElement | null>;
 }
 
 export const SupportInformation = ({
@@ -38,7 +37,6 @@ export const SupportInformation = ({
   setCurrentStepToLocalStorage,
   loading,
   setLoading,
-  formRef,
 }: Props) => {
   const schema: ObjectSchema<RepairStep3> = yup.object({
     service_type: yup.string().required(),

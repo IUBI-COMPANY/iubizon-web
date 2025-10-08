@@ -4,6 +4,7 @@ import { products } from "@/data-list/products";
 import { ProductCard } from "@/components/ui/ProductCard";
 import Image from "next/image";
 import { productsCondition } from "@/data-list/productsCondition";
+import Link from "next/link";
 
 export default function Home() {
   const productsByCondition = {
@@ -55,12 +56,12 @@ export default function Home() {
               Para trabajar, aprender y entretenerse • Proyectores que inspiran
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-              <a
+              <Link
                 href="#lista"
                 className="rounded-full bg-primary px-5 py-3 text-sm font-semibold text-white-900 shadow hover:shadow-md"
               >
                 Ver modelos disponibles
-              </a>
+              </Link>
               <a
                 href="https://wa.me/51972300301"
                 target="_blank"
