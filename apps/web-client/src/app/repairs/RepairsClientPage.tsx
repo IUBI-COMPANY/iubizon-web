@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Head from "next/head";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title:
@@ -563,12 +564,12 @@ export default function RepairsPage() {
               <p className="text-sm text-white/80">
                 ⚡ Proceso rápido • 📧 Confirmación por email
               </p>
-              <a
+              <Link
                 href="/contact"
                 className="underline text-white/90 hover:text-primary"
               >
                 ¿Tienes dudas? Contáctanos
-              </a>
+              </Link>
             </div>
           </div>
         </div>
