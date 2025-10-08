@@ -160,7 +160,6 @@ export const RepairsContactForm = () => {
             setRepairsFormData={setRepairsFormData}
             addLocalStorageData={addLocalStorageData}
             setCurrentStepToLocalStorage={setCurrentStepToLocalStorage}
-            formRef={formRef}
           />
         )}
         {globalStep === 3 && (
