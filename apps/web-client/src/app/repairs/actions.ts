@@ -19,7 +19,7 @@ export async function sendRepairEmail(formRepair: Repair): Promise<void> {
     province: formRepair?.province,
     district: formRepair?.district,
     address: formRepair?.address,
-    status: "pending",
+    status: "new_lead",
     terms_and_conditions: formRepair?.terms_and_conditions,
   });
 
