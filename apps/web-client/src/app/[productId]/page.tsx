@@ -4,14 +4,15 @@ import ProductClientPage from "./ProductClientPage";
 import { products, Product } from "@/data-list/products";
 
 type Props = {
-  params: { productId: string };
+  params: Promise<{ productId: string }>;
 };
 
 // ==========================
 // 🔹 Dynamic Metada
 // ==========================
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { productId } = params;
+  const { productId } = await params;
+
   const product: Product | undefined = products.find(
     (product) => product.id === productId,
   );
@@ -151,7 +152,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 // 🔹 Página principal (Server)
 // ==========================
 export default async function Page({ params }: Props) {
-  const { productId } = params;
+  const { productId } = await params;
   const product = products.find((p) => p.id === productId);
   if (!product) return <NoFoundComponent />;
   return <ProductClientPage product={product} />;
