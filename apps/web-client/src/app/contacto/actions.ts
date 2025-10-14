@@ -32,7 +32,7 @@ export async function sendContactEmail(
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    redirect("/contact/success");
+    redirect("/contacto/exitoso");
   } catch (error) {
     console.error("Error sending email: ", error);
     throw error;

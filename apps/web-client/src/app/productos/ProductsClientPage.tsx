@@ -186,9 +186,9 @@ export default function ProductsClientPage() {
               Entrega inmediata • Prueba de funcionamiento • Con garantía
             </p>
             <a
-              href="https://wa.me/51972300301?text=Hola%20iubizon,%20quiero%20el%20lote%20completo"
+              href="https://wa.me/51972300301?text=Hola%20iubizon,%20quiero%20un%20lote%20de%20"
               target="_blank"
-              className="mt-4 inline-flex rounded-full px-5 py-3 text-sm font-semibold shadow bg-primary"
+              className="mt-4 inline-flex rounded-full px-10 py-3 text-sm font-semibold shadow bg-primary"
             >
               Reservar ahora
             </a>
@@ -198,7 +198,7 @@ export default function ProductsClientPage() {
         {/* Guarantee Information */}
         <div className="mt-12 p-6 bg-gray-50 rounded-xl text-center">
           <h3 className="text-lg font-semibold text-color-secondary mb-3">
-            🛡️ Garantía y Calidad Asegurada
+            Garantía y Calidad Asegurada
           </h3>
           <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-600">
             <span className="flex items-center gap-2">

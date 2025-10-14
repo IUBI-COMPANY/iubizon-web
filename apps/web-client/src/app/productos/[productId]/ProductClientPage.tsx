@@ -1,7 +1,7 @@
 "use client";
 
-import MediaCarousel from "../../components/ui/MediaCarousel";
-import OtherProductsCarousel from "../../components/ui/OtherProductsCarousel";
+import MediaCarousel from "../../../components/ui/MediaCarousel";
+import OtherProductsCarousel from "../../../components/ui/OtherProductsCarousel";
 import { Product } from "@/data-list/products";
 import { ChevronRight, Info } from "lucide-react";
 import { NoFoundComponent } from "@/components/ui/NoFoundComponent";

@@ -36,16 +36,16 @@ export const metadata: Metadata = {
   authors: [{ name: "iubizon" }],
   creator: "iubizon",
   publisher: "iubizon",
-  metadataBase: new URL("https://iubizon.com/repairs"),
+  metadataBase: new URL("https://www.iubizon.com/reparaciones"),
   alternates: {
-    canonical: "/repairs",
+    canonical: "https://www.iubizon.com/reparaciones",
   },
   openGraph: {
     title:
       "Servicio Técnico de Proyectores | Mantenimiento y Reparación Especializada",
     description:
       "Servicio técnico profesional de proyectores en Lima. Mantenimiento preventivo, reparaciones especializadas y soporte técnico con garantía.",
-    url: "/repairs",
+    url: "https://www.iubizon.com/reparaciones",
     siteName: "iubizon",
     images: [
       {
@@ -89,9 +89,9 @@ export default function RepairsPage() {
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
               name: "iubizon",
-              image: "https://iubizon.com/images/logo.png",
-              "@id": "https://iubizon.com/repairs",
-              url: "https://iubizon.com/repairs",
+              image: "https://www.iubizon.com/images/logo.png",
+              "@id": "https://www.iubizon.com/reparaciones",
+              url: "https://www.iubizon.com/reparaciones",
               telephone: "+51 972 300 301",
               address: {
                 "@type": "PostalAddress",
@@ -560,7 +560,7 @@ export default function RepairsPage() {
                 ⚡ Proceso rápido • 📧 Confirmación por email
               </p>
               <Link
-                href="/contact"
+                href="/contacto"
                 className="underline text-white/90 hover:text-primary"
               >
                 ¿Tienes dudas? Contáctanos

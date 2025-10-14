@@ -59,7 +59,7 @@ export async function sendRepairRequest(
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    redirect("/repairs/success");
+    redirect("/reparaciones/exitoso");
   } catch (error) {
     console.error("Error sending repair request: ", error);
     throw error;

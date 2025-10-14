@@ -72,14 +72,15 @@ export const ContactForm = ({
   };
 
   return (
-    <div className="w-full min-h-screen isolate bg-slate-50 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="w-full min-h-auto isolate flex flex-col justify-center py-auto px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl mx-auto w-full">
         <div className="text-center mb-10">
           <h1 className="text-[2.3em] sm:text-[2.5em] font-semibold tracking-tight text-balance text-secondary leading-13">
-            Contáctanos
+            Envíanos un Mensaje
           </h1>
           <p className="text-base text-foreground">
-            Déjanos un mensaje para ponernos en contacto contigo.
+            Completa el formulario y nos pondremos en contacto contigo lo antes
+            posible
           </p>
         </div>
         <Form onSubmit={handleSubmit(onSubmit)}>

@@ -77,7 +77,7 @@ export default function SuccessContactPage() {
           </Link>
 
           <Link
-            href="/contact"
+            href="/contacto"
             className="bg-white border-2 border-secondary text-secondary hover:bg-secondary hover:text-white transition-colors duration-300 py-4 px-8 rounded-2xl font-medium flex items-center gap-3 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
           >
             <MailIcon className="w-5 h-5" />

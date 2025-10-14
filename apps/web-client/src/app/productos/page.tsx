@@ -23,12 +23,12 @@ export async function generateMetadata(): Promise<Metadata> {
       "Perú",
     ],
     alternates: {
-      canonical: "https://www.iubizon.com/products",
+      canonical: "https://www.iubizon.com/productos",
     },
     openGraph: {
       type: "website",
       title: "Catálogo de proyectores y accesorios en Lima y Perú | iubizon",
-      url: "https://www.iubizon.com/products",
+      url: "https://www.iubizon.com/productos",
       description:
         "Descubre nuestro catálogo de proyectores, repuestos y accesorios originales en Lima y todo Perú. Compra online, cotiza gratis y recibe asesoría personalizada.",
       images: [

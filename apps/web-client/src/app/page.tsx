@@ -152,9 +152,9 @@ export default function Home() {
               Entrega inmediata • Prueba de funcionamiento • Con garantía
             </p>
             <a
-              href="https://wa.me/51972300301?text=Hola%20iubizon,%20quiero%20el%20lote%20completo"
+              href="https://wa.me/51972300301?text=Hola%20iubizon,%20quiero%20un%20lote%20de%20"
               target="_blank"
-              className="mt-4 inline-flex rounded-full px-5 py-3 text-sm font-semibold shadow bg-primary"
+              className="mt-4 inline-flex rounded-full px-10 py-3 text-sm font-semibold shadow bg-primary"
             >
               Reservar ahora
             </a>

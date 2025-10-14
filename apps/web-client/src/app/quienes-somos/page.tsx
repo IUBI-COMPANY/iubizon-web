@@ -22,13 +22,13 @@ export async function generateMetadata(): Promise<Metadata> {
       "proyectores empresariales Lima",
     ],
     alternates: {
-      canonical: "https://www.iubizon.com/about-us",
+      canonical: "https://www.iubizon.com/quienes-somos",
     },
     openGraph: {
       type: "website",
       title:
         "Quiénes Somos - Expertos en Proyectores y Tecnología Educativa | iubizon",
-      url: "https://www.iubizon.com/about-us",
+      url: "https://www.iubizon.com/quienes-somos",
       description:
         "Conoce la historia de iubizon, empresa especialista en proyectores y tecnología educativa en Lima. Equipo con 5 años de experiencia desde 2023.",
       images: [
@@ -85,7 +85,7 @@ function generateStructuredData() {
     name: "iubizon",
     description:
       "Empresa líder en proyectores y tecnología educativa en Lima, Perú. Especialistas en soluciones Epson para empresas y centros educativos.",
-    url: "https://www.iubizon.com/about-us",
+    url: "https://www.iubizon.com/quienes-somos",
     logo: "https://www.iubizon.com/images/logo.png",
     foundingDate: "2023",
     address: {
@@ -304,13 +304,13 @@ export default function AboutUsPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/contact"
+                href="/contacto"
                 className="bg-color-primary hover:bg-color-primary/90 text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-300 inline-block shadow-lg"
               >
                 Contáctanos Hoy
               </Link>
               <Link
-                href="/repairs"
+                href="/reparaciones"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg font-semibold transition-all duration-300 inline-block"
               >
                 Nuestros Servicios

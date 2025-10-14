@@ -160,7 +160,7 @@ export const ProductCard = ({ product }: Props) => {
           Contactar para comprar
         </a>
         <Link
-          href={`/${product.id}`}
+          href={`/productos/${product.id}`}
           className="rounded-xl px-4 py-2 text-sm font-semibold text-secondary border-solid border-1 border-tertiary"
         >
           Ver más

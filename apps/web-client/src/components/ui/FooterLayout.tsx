@@ -35,17 +35,17 @@ export const FooterLayout = () => {
         </div>
         <div className="flex flex-col gap-2 text-sm">
           <span className="font-bold text-white mb-2">Enlaces rápidos</span>
-          <Link href="/products" className="hover:text-primary">
+          <Link href="/productos" className="hover:text-primary">
             Productos
           </Link>
-          <Link href="/repairs" className="hover:text-primary">
+          <Link href="/reparaciones" className="hover:text-primary">
             Servicio de Reparación
           </Link>
-          <Link href="/contact" className="hover:text-primary">
+          <Link href="/contacto" className="hover:text-primary">
             Contacto
           </Link>
-          <Link href="/about-us" className="hover:text-primary">
-            Sobre Nosotros
+          <Link href="/quienes-somos" className="hover:text-primary">
+            ¿Quienes somos?
           </Link>
         </div>
         <div className="flex flex-col gap-3 text-sm">

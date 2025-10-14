@@ -19,13 +19,13 @@ export async function generateMetadata(): Promise<Metadata> {
       "iubizon",
     ],
     alternates: {
-      canonical: "https://www.iubizon.com/contact",
+      canonical: "https://www.iubizon.com/contacto",
     },
     openGraph: {
       type: "website",
       title:
         "Contacto - Cotiza proyectores y servicios en Lima y Perú | iubizon",
-      url: "https://www.iubizon.com/contact",
+      url: "https://www.iubizon.com/contacto",
       description:
         "Contáctanos para cotizar proyectores, repuestos, accesorios y servicios de mantenimiento en Lima y todo Perú. Atención personalizada y respuesta rápida.",
       images: [

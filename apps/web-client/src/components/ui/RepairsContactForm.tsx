@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ClientInformation } from "@/app/repairs/ClientInformation";
-import { DeviceInformation } from "@/app/repairs/DeviceInformation";
-import { SupportInformation } from "@/app/repairs/SupportInformation";
+import { ClientInformation } from "@/app/reparaciones/ClientInformation";
+import { DeviceInformation } from "@/app/reparaciones/DeviceInformation";
+import { SupportInformation } from "@/app/reparaciones/SupportInformation";
 import { StepsRepairsContactForm } from "@/components/ui/StepsRepairsContactForm";
 import { CircleCheck, Loader2, Projector, User, Wrench } from "lucide-react";
 import Image from "next/image";
@@ -109,7 +109,7 @@ export const RepairsContactForm = () => {
             localStorage.removeItem("currentStep");
             localStorage.removeItem("formData");
             setTimeout(() => {
-              window.location.href = "/repairs";
+              window.location.href = "/reparaciones";
             }, 100);
             return 0;
           }

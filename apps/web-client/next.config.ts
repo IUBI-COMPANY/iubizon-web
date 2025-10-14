@@ -5,6 +5,36 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.join(__dirname),
   },
+  trailingSlash: false,
+  async redirects() {
+    return [
+      {
+        source: "/about-us",
+        destination: "/quienes-somos",
+        permanent: true,
+      },
+      {
+        source: "/products",
+        destination: "/productos",
+        permanent: true,
+      },
+      {
+        source: "/repairs",
+        destination: "/reparaciones",
+        permanent: true,
+      },
+      {
+        source: "/contact",
+        destination: "/contacto",
+        permanent: true,
+      },
+      {
+        source: "/contact/success",
+        destination: "/contacto/exitoso",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

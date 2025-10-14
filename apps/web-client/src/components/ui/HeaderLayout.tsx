@@ -18,10 +18,10 @@ export interface HeaderNavigation {
 
 const navigation: HeaderNavigation[] = [
   { name: "Inicio", href: "/" },
-  { name: "¿Quienes somos?", href: "/about-us" },
-  { name: "Productos", href: "/products" },
-  { name: "Reparaciones", href: "/repairs" },
-  { name: "Contacto", href: "/contact" },
+  { name: "¿Quienes somos?", href: "/quienes-somos" },
+  { name: "Productos", href: "/productos" },
+  { name: "Reparaciones", href: "/reparaciones" },
+  { name: "Contacto", href: "/contacto" },
 ];
 
 export const HeaderLayout = () => {
