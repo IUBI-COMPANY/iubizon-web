@@ -141,7 +141,7 @@ export default function RepairsPage() {
           <div className="relative z-10 h-auto px-[2em] pt-[3em] 2xl:pt-[5em] flex flex-col justify-center items-center text-center">
             <div className="max-w-4xl mx-auto mb-8">
               <h1 className="text-3xl md:text-[2.5em] font-bold text-white mb-4 leading-tight">
-                Mantenimiento y Reparación de Proyectores en Lima
+                Servicio Técnico de Proyectores
               </h1>
               <p className="text-lg md:text-xl text-blue-100 mb-6 max-w-3xl mx-auto">
                 Soluciones profesionales en mantenimiento, diagnóstico y
@@ -171,9 +171,10 @@ export default function RepairsPage() {
               className="text-xl text-gray-600 max-w-3xl mx-auto"
               itemProp="description"
             >
-              Proceso simple y eficiente para que tu proyector Epson, BenQ, Sony
-              y otras marcas vuelva a funcionar como nuevo. Servicio técnico
-              especializado en Lima, diagnóstico rápido y repuestos originales.
+              Recibimos tu proyector Epson, BenQ, Sony u otra marca en Lima,
+              realizamos diagnóstico profesional y usamos repuestos originales
+              para que funcione como nuevo. Atención rápida y resultados
+              garantizados.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
@@ -193,12 +194,10 @@ export default function RepairsPage() {
                 className="text-xl font-bold text-gray-900 mb-4"
                 itemProp="name"
               >
-                1. Solicita Tu Servicio Técnico de Proyectores
+                1. Solicita Tu Servicio Técnico
               </h3>
               <p className="text-gray-600" itemProp="text">
-                Completa el formulario con tus datos y la información de tu
-                proyector Epson, BenQ, Sony, ViewSonic u otra marca. Programa tu
-                visita técnica y recibe atención inmediata en Lima.
+                Completa el formulario y agenda tu visita técnica en Lima.
               </p>
             </article>
             <article
@@ -217,12 +216,10 @@ export default function RepairsPage() {
                 className="text-xl font-bold text-gray-900 mb-4"
                 itemProp="name"
               >
-                2. Diagnóstico Técnico Especializado
+                2. Diagnóstico Técnico
               </h3>
               <p className="text-gray-600" itemProp="text">
-                Especifica la marca, modelo y describe el problema de tu
-                proyector. Preparamos herramientas y repuestos originales para
-                una reparación rápida y garantizada.
+                Evaluamos tu proyector y te informamos la solución recomendada.
               </p>
             </article>
             <article
@@ -244,9 +241,8 @@ export default function RepairsPage() {
                 3. Servicio a Domicilio en Lima
               </h3>
               <p className="text-gray-600" itemProp="text">
-                Selecciona fecha, horario y proporciona tu dirección completa en
-                Lima. Nuestro técnico especializado llegará puntualmente para
-                reparar o mantener tu proyector.
+                El servicio a domicilio es solo para diagnóstico. La reparación
+                se realiza en nuestro taller especializado.
               </p>
             </article>
           </div>
@@ -462,13 +458,12 @@ export default function RepairsPage() {
               >
                 <p itemProp="text" className="text-gray-700">
                   Sí, brindamos servicio técnico a domicilio en toda Lima y
-                  distritos aledaños. Nuestros técnicos especializados llegan
-                  con todas las herramientas necesarias para diagnosticar y
-                  reparar tu proyector en el lugar.
+                  distritos aledaños. El servicio a domicilio es solo para
+                  diagnóstico; la reparación se realiza en nuestro taller
+                  especializado.
                 </p>
               </div>
             </article>
-
             <article
               itemScope
               itemType="https://schema.org/Question"
