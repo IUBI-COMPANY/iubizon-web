@@ -16,7 +16,7 @@ export const NoFoundComponent = () => {
           src="/images/product-not-found.png"
           width={344}
           height={80}
-          alt="producto no encontrado"
+          alt="Producto no encontrado - iubizon venta de proyectores en Lima"
         />
         <button
           onClick={() => router.back()}

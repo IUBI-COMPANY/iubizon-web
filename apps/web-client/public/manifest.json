@@ -1,0 +1,36 @@
+{
+  "name": "iubizon - Venta y Reparación de Proyectores Epson en Lima | Servicio Técnico",
+  "short_name": "iubizon",
+  "description": "Venta, reparación y mantenimiento de proyectores Epson en Lima, Perú. Equipos nuevos y reacondicionados con garantía extendida. Servicio técnico especializado.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#f25c05",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["shopping", "business"],
+  "lang": "es-PE",
+  "dir": "ltr",
+  "scope": "/",
+  "screenshots": [
+    {
+      "src": "/images/iubiz-with-land.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ]
+}

@@ -300,6 +300,49 @@ export default async function Page({ params }: Props) {
     }),
   };
 
+  // Generate BreadcrumbList Schema (JSON-LD)
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Inicio",
+        item: "https://www.iubizon.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Productos",
+        item: "https://www.iubizon.com/productos",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: product.name || product.model,
+        item: `https://www.iubizon.com/productos/${product.id}`,
+      },
+    ],
+  };
+
+  // Generate VideoObject Schema for products with videos
+  const videoSchemas = product.media
+    .filter((m) => m.type === "video")
+    .map((video, index) => ({
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      name: `${product.name || product.model} - Video demostrativo ${index + 1}`,
+      description: `Video demostrativo del ${product.name || product.model} ${product.brand || ""} con ${product.lumens || ""} - ${product.condition === "new" ? "Nuevo" : "Reacondicionado"}`,
+      thumbnailUrl: product.mainImage
+        ? `https://www.iubizon.com${product.mainImage}`
+        : `https://www.iubizon.com${product.media.find((m) => m.type === "image")?.src || "/images/product-not-found.png"}`,
+      contentUrl: `https://www.iubizon.com${video.src}`,
+      uploadDate: "2024-01-01T00:00:00Z",
+      duration: "PT1M",
+      embedUrl: `https://www.iubizon.com${video.src}`,
+    }));
+
   return (
     <>
       <Script
@@ -307,6 +350,20 @@ export default async function Page({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
       />
+      <Script
+        id="breadcrumb-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      {videoSchemas.length > 0 &&
+        videoSchemas.map((videoSchema, index) => (
+          <Script
+            key={`video-schema-${index}`}
+            id={`video-schema-${index}`}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }}
+          />
+        ))}
       <ProductClientPage product={product} />
     </>
   );

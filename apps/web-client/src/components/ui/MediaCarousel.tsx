@@ -34,6 +34,18 @@ export default function MediaCarousel({ product }: Props) {
     });
   }, [current, media, videoPaused]);
 
+  // Generate descriptive alt text for images
+  const getImageAlt = (index: number) => {
+    const productName = product.name || product.model;
+    const brand = product.brand || "";
+    const condition = product.condition === "new" ? "Nuevo" : "Reacondicionado";
+
+    if (index === 0) {
+      return `${productName} ${brand} - Imagen principal del proyector ${condition}`;
+    }
+    return `${productName} ${brand} - Vista ${index + 1} del proyector ${condition}`;
+  };
+
   return (
     <div className="w-full">
       <div className="w-full h-[30em] md:h-[40rem] flex items-center justify-center rounded-3xl overflow-hidden shadow-lg relative">
@@ -48,8 +60,8 @@ export default function MediaCarousel({ product }: Props) {
                   src={m.src}
                   width={1000}
                   height={1000}
-                  priority
-                  alt="Imagen del producto"
+                  priority={i === 0}
+                  alt={getImageAlt(i)}
                   className="w-full h-full object-cover relative z-10"
                 />
               ) : (
@@ -61,6 +73,7 @@ export default function MediaCarousel({ product }: Props) {
                       filter: "blur(8px)",
                     }}
                     className="absolute inset-0"
+                    aria-hidden="true"
                   ></div>
                   <video
                     ref={(el) => {
@@ -70,8 +83,10 @@ export default function MediaCarousel({ product }: Props) {
                     height={1000}
                     controls
                     className="w-full h-full object-contain relative z-10"
+                    aria-label={`Video demostrativo de ${product.name || product.model}`}
                   >
                     <source src={m.src} type="video/mp4" />
+                    Tu navegador no soporta la reproducción de videos.
                   </video>
                 </div>
               )}
@@ -83,14 +98,14 @@ export default function MediaCarousel({ product }: Props) {
             <button
               onClick={() => slider.current?.prev()}
               className="hidden lg:block absolute w-[3em] h-[3em] left-4 top-1/2 -translate-y-1/2 text-black/60 rounded-full p-2 shadow hover:bg-[#f25c05] transition cursor-pointer border-solid border-2 border-primary"
-              aria-label="Anterior"
+              aria-label="Ver imagen anterior del producto"
             >
               ◀
             </button>
             <button
               onClick={() => slider.current?.next()}
               className="hidden lg:block absolute w-[3em] h-[3em] right-4 top-1/2 -translate-y-1/2 text-black/60 rounded-full p-2 shadow hover:bg-[#f25c05] transition cursor-pointer border-solid border-2 border-primary"
-              aria-label="Siguiente"
+              aria-label="Ver siguiente imagen del producto"
             >
               ▶
             </button>

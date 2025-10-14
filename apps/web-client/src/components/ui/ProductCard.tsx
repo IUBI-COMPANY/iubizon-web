@@ -11,6 +11,16 @@ interface Props {
 export const ProductCard = ({ product }: Props) => {
   const isNew = product?.condition === "new";
 
+  // Generate descriptive alt text for product card image
+  const getProductImageAlt = () => {
+    const productName = product?.name || "Proyector";
+    const brand = product?.brand || "";
+    const lumens = product?.lumens || "";
+    const condition = isNew ? "Nuevo" : "Reacondicionado";
+
+    return `${productName} ${brand} ${lumens} - Proyector ${condition} en Lima, Perú`;
+  };
+
   return (
     <article
       key={product.model}
@@ -35,7 +45,7 @@ export const ProductCard = ({ product }: Props) => {
             src={product?.mainImage || "product-not-found.png"}
             width={300}
             height={300}
-            alt={product?.name || "Proyectores"}
+            alt={getProductImageAlt()}
             className="w-full h-full object-cover"
           />
         </div>

@@ -22,11 +22,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.iubizon.com"),
   title: {
     default:
-      "iubizon - Venta de Proyectores Epson en Lima | Nuevos y Reacondicionados",
+      "iubizon - Venta y Reparación de Proyectores Epson en Lima | Servicio Técnico",
     template: "%s | iubizon",
   },
   description:
-    "Venta de proyectores Epson nuevos y reacondicionados en Lima, Perú. Distribuidores autorizados con garantía extendida hasta 12 meses. Servicio técnico especializado y envíos a todo el país.",
+    "Venta, reparación y mantenimiento de proyectores Epson en Lima, Perú. Equipos nuevos y reacondicionados con garantía extendida. Servicio técnico especializado.",
   alternates: {
     canonical: "https://www.iubizon.com",
   },
@@ -52,6 +52,29 @@ export const metadata: Metadata = {
     "venta de productos multimedia",
     "venta de proyectores baratos",
     "proyectores a bajos precios",
+
+    //Repairs and maintenance
+    "reparación de proyectores",
+    "reparación de proyectores lima",
+    "reparación de proyectores epson",
+    "servicio técnico de proyectores",
+    "servicio técnico proyectores lima",
+    "mantenimiento de proyectores",
+    "mantenimiento de proyectores epson",
+    "reparación proyectores epson lima",
+    "técnico de proyectores",
+    "reparación de proyectores a domicilio",
+    "mantenimiento preventivo proyectores",
+    "servicio de proyectores",
+    "arreglo de proyectores",
+    "proyectores que no encienden",
+    "reparación lámpara proyector",
+    "cambio de lámpara proyector",
+    "limpieza de proyectores",
+    "calibración de proyectores",
+    "proyector no da imagen",
+    "proyector sobrecalentado",
+    "reparación urgente proyectores",
 
     //By model
     "epson powerlite 98h",
@@ -131,6 +154,7 @@ export const metadata: Metadata = {
     shortcut: "/favicon.png",
     apple: "/favicon.png",
   },
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
@@ -143,7 +167,7 @@ export default function RootLayout({
     "@type": "LocalBusiness",
     name: "iubizon",
     description:
-      "Venta de proyectores Epson nuevos y reacondicionados en Lima, Perú. Distribuidores autorizados con garantía extendida y servicio técnico especializado.",
+      "Venta, reparación y mantenimiento de proyectores Epson en Lima, Perú. Equipos nuevos y reacondicionados con garantía extendida. Servicio técnico especializado.",
     url: "https://www.iubizon.com",
     logo: "https://www.iubizon.com/images/logo.png",
     image: "https://www.iubizon.com/tu-mundo-multimedia.jpg",

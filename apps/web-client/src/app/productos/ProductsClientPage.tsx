@@ -41,7 +41,7 @@ export default function ProductsClientPage() {
         <div className="absolute inset-0">
           <Image
             src="/images/education-projectors.jpg"
-            alt="Proyectores Iubizon"
+            alt="Catálogo de proyectores Epson nuevos y reacondicionados en Lima - iubizon"
             fill
             sizes="100vw"
             className="object-cover opacity-20"
