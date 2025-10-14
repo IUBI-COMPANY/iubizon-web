@@ -72,7 +72,11 @@ export const HeaderLayout = () => {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-white/87 hover:text-white transition-colors duration-200 font-medium"
+                  className={
+                    item.name === "Reparaciones"
+                      ? "text-primary font-bold bg-primary/10 px-3 py-1 rounded transition-colors duration-200"
+                      : "text-white/87 hover:text-white transition-colors duration-200 font-medium"
+                  }
                 >
                   {item.name}
                 </Link>

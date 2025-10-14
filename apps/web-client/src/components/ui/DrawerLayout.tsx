@@ -28,7 +28,11 @@ export function Drawer({
             <Link
               key={item.name}
               href={item.href}
-              className="group flex items-center justify-between py-4 px-4 rounded-lg text-white/87 hover:bg-accent/50 hover:text-white transition-all duration-200 font-medium text-lg border border-transparent hover:border-border/50"
+              className={
+                item.name === "Reparaciones"
+                  ? "group flex items-center justify-between py-4 px-4 rounded-lg text-primary font-bold bg-primary/10 transition-all duration-200 text-lg"
+                  : "group flex items-center justify-between py-4 px-4 rounded-lg text-white/87 hover:bg-accent/50 hover:text-white transition-all duration-200 font-medium text-lg"
+              }
               onClick={() => onIsOpenDrawer()}
               style={{
                 animationDelay: `${index * 50}ms`,
