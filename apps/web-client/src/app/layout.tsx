@@ -101,7 +101,7 @@ export const metadata: Metadata = {
       "De todo multimedia a precios accesibles para mayoristas y minoristas.",
     images: [
       {
-        url: "https://storage.googleapis.com/iubi-website.appspot.com/resources/seo-banner.jpg",
+        url: "https://www.iubizon.com/tu-mundo-multimedia.jpg",
       },
     ],
     siteName: "iubizon - Tu mundo multimedia",
@@ -113,7 +113,7 @@ export const metadata: Metadata = {
       "De todo multimedia a precios accesibles para mayoristas y minoristas.",
     images: [
       {
-        url: "https://storage.googleapis.com/iubi-website.appspot.com/resources/seo-banner.jpg",
+        url: "https://www.iubizon.com/tu-mundo-multimedia.jpg",
       },
     ],
   },

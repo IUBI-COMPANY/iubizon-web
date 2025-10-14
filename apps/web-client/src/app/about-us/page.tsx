@@ -1,94 +1,104 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { CheckCircle, Users, Award, Heart } from "lucide-react";
 
-export const metadata: Metadata = {
-  title:
-    "Quiénes Somos | Iubizon - Expertos en Proyectores y Tecnología Educativa",
-  description:
-    "Conoce la historia de Iubizon, empresa especialista en proyectores y tecnología educativa en Lima. Equipo con 5 años de experiencia brindando soluciones innovadoras desde 2023.",
-  keywords: [
-    "quienes somos Iubizon",
-    "empresa proyectores Lima",
-    "historia Iubizon",
-    "tecnología educativa Perú",
-    "empresa proyectores Peru",
-    "especialistas Epson Lima",
-    "distribuidores proyectores",
-    "servicio técnico proyectores",
-    "empresa tecnología educativa",
-    "proyectores empresariales Lima",
-  ],
-  authors: [{ name: "Iubizon" }],
-  creator: "Iubizon",
-  publisher: "Iubizon",
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_BASE_URL || "https://iubizon.com",
-  ),
-  alternates: {
-    canonical: "/about-us",
-  },
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  return {
     title:
-      "Quiénes Somos | Iubizon - Expertos en Proyectores y Tecnología Educativa",
+      "Quiénes Somos - Expertos en Proyectores y Tecnología Educativa | iubizon",
     description:
-      "Conoce la historia de Iubizon, empresa especialista en proyectores y tecnología educativa en Lima. Equipo con 5 años de experiencia desde 2023.",
-    url: "/about-us",
-    siteName: "Iubizon",
-    images: [
-      {
-        url: "/images/iubiz-with-land.png",
-        width: 1200,
-        height: 630,
-        alt: "Equipo Iubizon - Expertos en proyectores y tecnología educativa",
-      },
+      "Conoce la historia de iubizon, empresa especialista en proyectores y tecnología educativa en Lima. Equipo con 5 años de experiencia brindando soluciones innovadoras desde 2023.",
+    keywords: [
+      "quienes somos iubizon",
+      "empresa proyectores Lima",
+      "historia iubizon",
+      "tecnología educativa Perú",
+      "empresa proyectores Perú",
+      "especialistas Epson Lima",
+      "distribuidores proyectores",
+      "servicio técnico proyectores",
+      "empresa tecnología educativa",
+      "proyectores empresariales Lima",
     ],
-    locale: "es_PE",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Quiénes Somos | Iubizon - Expertos en Proyectores",
-    description:
-      "Conoce la historia de Iubizon, empresa especialista en proyectores y tecnología educativa en Lima desde 2023.",
-    images: ["/images/iubiz-with-land.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+    alternates: {
+      canonical: "https://www.iubizon.com/about-us",
+    },
+    openGraph: {
+      type: "website",
+      title:
+        "Quiénes Somos - Expertos en Proyectores y Tecnología Educativa | iubizon",
+      url: "https://www.iubizon.com/about-us",
+      description:
+        "Conoce la historia de iubizon, empresa especialista en proyectores y tecnología educativa en Lima. Equipo con 5 años de experiencia desde 2023.",
+      images: [
+        {
+          url: "https://www.iubizon.com/tu-mundo-multimedia.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Equipo iubizon - Expertos en proyectores y tecnología educativa",
+        },
+      ],
+      siteName: "iubizon",
+      locale: "es_PE",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Quiénes Somos - Expertos en Proyectores | iubizon",
+      description:
+        "Conoce la historia de iubizon, empresa especialista en proyectores y tecnología educativa en Lima desde 2023.",
+      images: [
+        {
+          url: "https://www.iubizon.com/tu-mundo-multimedia.jpg",
+          alt: "Equipo iubizon - Expertos en proyectores y tecnología educativa",
+        },
+      ],
+      site: "@iubizon",
+    },
+    authors: [{ name: "iubi", url: "https://www.iubi.pe" }],
+    publisher: "iubizon",
+    robots: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      nocache: false,
+      googleBot: {
+        index: true,
+        follow: true,
+        noimageindex: false,
+        "max-snippet": -1,
+        "max-image-preview": "large",
+        "max-video-preview": -1,
+      },
     },
-  },
-};
+    category: "Empresa",
+    applicationName: "iubizon",
+    generator: "Next.js",
+    metadataBase: new URL("https://www.iubizon.com"),
+  };
+}
 
 // Structured Data for Organization
 function generateStructuredData() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Iubizon",
+    name: "iubizon",
     description:
       "Empresa líder en proyectores y tecnología educativa en Lima, Perú. Especialistas en soluciones Epson para empresas y centros educativos.",
-    url: `${process.env.NEXT_PUBLIC_BASE_URL || "https://iubizon.com"}/about-us`,
-    logo: `${process.env.NEXT_PUBLIC_BASE_URL || "https://iubizon.com"}/images/logo.png`,
+    url: "https://www.iubizon.com/about-us",
+    logo: "https://www.iubizon.com/images/logo.png",
     foundingDate: "2023",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Tu dirección completa",
-      addressLocality: "Lima",
+      streetAddress: "Pje. los Jazmines 121",
+      addressLocality: "Chorrillos",
       addressRegion: "Lima",
-      postalCode: "15001",
+      postalCode: "15067",
       addressCountry: "PE",
     },
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+51-1-234-5678",
+      telephone: "+51-972-300-301",
       contactType: "customer service",
       areaServed: "PE",
       availableLanguage: "Spanish",

@@ -1,24 +1,80 @@
-"use client";
+import type { Metadata } from "next";
+import ContactClientPage from "./ContactClientPage";
 
-import Image from "next/image";
-import { ContactForm } from "@/components/ui/ContactForm";
-import { sendContactEmail } from "@/app/contact/actions";
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "Contacto - Cotiza proyectores y servicios en Lima y Perú | iubizon",
+    description:
+      "Contáctanos para cotizar proyectores, repuestos, accesorios y servicios de mantenimiento en Lima y todo Perú. Atención personalizada y respuesta rápida.",
+    keywords: [
+      "contacto iubizon",
+      "cotizar proyectores",
+      "consultas proyectores",
+      "atención al cliente",
+      "soporte técnico",
+      "Lima",
+      "Perú",
+      "asesoría proyectores",
+      "servicio técnico",
+      "iubizon",
+    ],
+    alternates: {
+      canonical: "https://www.iubizon.com/contact",
+    },
+    openGraph: {
+      type: "website",
+      title:
+        "Contacto - Cotiza proyectores y servicios en Lima y Perú | iubizon",
+      url: "https://www.iubizon.com/contact",
+      description:
+        "Contáctanos para cotizar proyectores, repuestos, accesorios y servicios de mantenimiento en Lima y todo Perú. Atención personalizada y respuesta rápida.",
+      images: [
+        {
+          url: "https://www.iubizon.com/tu-mundo-multimedia.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Formulario de contacto iubizon - Lima, Perú",
+        },
+      ],
+      siteName: "iubizon",
+      locale: "es_PE",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title:
+        "Contacto - Cotiza proyectores y servicios en Lima y Perú | iubizon",
+      description:
+        "Contáctanos para cotizar proyectores, repuestos, accesorios y servicios de mantenimiento en Lima y todo Perú. Atención personalizada y respuesta rápida.",
+      images: [
+        {
+          url: "https://www.iubizon.com/tu-mundo-multimedia.jpg",
+          alt: "Formulario de contacto iubizon - Lima, Perú",
+        },
+      ],
+      site: "@iubizon",
+    },
+    authors: [{ name: "iubi", url: "https://www.iubi.pe" }],
+    publisher: "iubizon",
+    robots: {
+      index: true,
+      follow: true,
+      nocache: false,
+      googleBot: {
+        index: true,
+        follow: true,
+        noimageindex: false,
+        "max-snippet": -1,
+        "max-image-preview": "large",
+        "max-video-preview": -1,
+      },
+    },
+    category: "Contacto",
+    applicationName: "iubizon",
+    generator: "Next.js",
+    metadataBase: new URL("https://www.iubizon.com"),
+  };
+}
 
-export default function ContactClientPage() {
-  return (
-    <div className="min-h-screen h-auto flex flex-col lg:flex-row w-full bg-gray-200">
-      <div className="w-full hidden lg:block lg:w-1/2 h-screen ">
-        <Image
-          src="/images/contactClient.png"
-          alt="contacto-proyectores"
-          width={700}
-          height={1000}
-          className="w-full h-full max-h-screen object-cover object-[center_30%]"
-        />
-      </div>
-      <div className="w-full lg:w-1/2 grid place-items-center bg-slate-50">
-        <ContactForm serverActionSendContactEmail={sendContactEmail} />
-      </div>
-    </div>
-  );
+export default async function Page() {
+  return <ContactClientPage />;
 }
