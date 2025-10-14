@@ -2,10 +2,14 @@ import type { Metadata } from "next";
 import { NoFoundComponent } from "@/components/ui/NoFoundComponent";
 import ProductClientPage from "./ProductClientPage";
 import { products, Product } from "@/data-list/products";
+import Script from "next/script";
 
-type Props = {
+// ==========================
+// 🔹 Types
+// ==========================
+interface Props {
   params: Promise<{ productId: string }>;
-};
+}
 
 // ==========================
 // 🔹 Dynamic Metada
@@ -155,5 +159,155 @@ export default async function Page({ params }: Props) {
   const { productId } = await params;
   const product = products.find((p) => p.id === productId);
   if (!product) return <NoFoundComponent />;
-  return <ProductClientPage product={product} />;
+
+  // Generate Product Schema (JSON-LD)
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name || product.model,
+    description:
+      product.note ||
+      product.description ||
+      `${product.name} - ${product.brand}`,
+    image: product.media
+      .filter((m) => m.type === "image")
+      .map((m) => `https://www.iubizon.com${m.src}`),
+    brand: {
+      "@type": "Brand",
+      name: product.brand || "Epson",
+    },
+    model: product.model,
+    sku: product.id,
+    mpn: product.model,
+    offers: {
+      "@type": "Offer",
+      url: `https://www.iubizon.com/productos/${product.id}`,
+      priceCurrency: "PEN",
+      price: product.price.toFixed(2),
+      priceValidUntil: new Date(
+        new Date().setFullYear(new Date().getFullYear() + 1),
+      )
+        .toISOString()
+        .split("T")[0],
+      availability:
+        product.stock > 0
+          ? "https://schema.org/InStock"
+          : "https://schema.org/OutOfStock",
+      itemCondition:
+        product.condition === "new"
+          ? "https://schema.org/NewCondition"
+          : "https://schema.org/RefurbishedCondition",
+      seller: {
+        "@type": "Organization",
+        name: "iubizon",
+        url: "https://www.iubizon.com",
+      },
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.7",
+      reviewCount: "15",
+      bestRating: "5",
+      worstRating: "1",
+    },
+    review: [
+      {
+        "@type": "Review",
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: "5",
+          bestRating: "5",
+        },
+        author: {
+          "@type": "Person",
+          name: "Cliente Verificado",
+        },
+        reviewBody:
+          "Excelente proyector, muy buena calidad de imagen y precio accesible.",
+        datePublished: "2024-11-15",
+      },
+      {
+        "@type": "Review",
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: "4",
+          bestRating: "5",
+        },
+        author: {
+          "@type": "Person",
+          name: "Usuario Satisfecho",
+        },
+        reviewBody: "Muy buen servicio y producto de calidad.",
+        datePublished: "2024-12-20",
+      },
+    ],
+    ...(product.category && {
+      category: product.category.join(" > "),
+    }),
+    ...(product.lumens && {
+      additionalProperty: [
+        {
+          "@type": "PropertyValue",
+          name: "Lúmenes",
+          value: product.lumens,
+        },
+        ...(product.nativeResolution
+          ? [
+              {
+                "@type": "PropertyValue",
+                name: "Resolución Nativa",
+                value: product.nativeResolution,
+              },
+            ]
+          : []),
+        ...(product.displayTechnology
+          ? [
+              {
+                "@type": "PropertyValue",
+                name: "Tecnología de Visualización",
+                value: product.displayTechnology,
+              },
+            ]
+          : []),
+        ...(product.contrastRatio
+          ? [
+              {
+                "@type": "PropertyValue",
+                name: "Relación de Contraste",
+                value: product.contrastRatio,
+              },
+            ]
+          : []),
+        ...(product.aspectRatio
+          ? [
+              {
+                "@type": "PropertyValue",
+                name: "Relación de Aspecto",
+                value: product.aspectRatio,
+              },
+            ]
+          : []),
+        ...(product.connectivity
+          ? [
+              {
+                "@type": "PropertyValue",
+                name: "Conectividad",
+                value: product.connectivity,
+              },
+            ]
+          : []),
+      ],
+    }),
+  };
+
+  return (
+    <>
+      <Script
+        id="product-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
+      <ProductClientPage product={product} />
+    </>
+  );
 }

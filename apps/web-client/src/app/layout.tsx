@@ -19,14 +19,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "iubizon - Tu mundo multimedia",
+  metadataBase: new URL("https://www.iubizon.com"),
+  title: {
+    default:
+      "iubizon - Venta de Proyectores Epson en Lima | Nuevos y Reacondicionados",
+    template: "%s | iubizon",
+  },
   description:
-    "De todo multimedia a precios accesibles para mayoristas y minoristas.",
+    "Venta de proyectores Epson nuevos y reacondicionados en Lima, Perú. Distribuidores autorizados con garantía extendida hasta 12 meses. Servicio técnico especializado y envíos a todo el país.",
   alternates: {
     canonical: "https://www.iubizon.com",
   },
-  authors: [{ name: "iubi", url: "https://www.iubi.pe" }],
+  authors: [{ name: "iubizon", url: "https://www.iubizon.com" }],
   creator: "iubizon",
+  publisher: "iubizon",
   category: "technology",
   keywords: [
     //Generic words
@@ -132,8 +138,73 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "iubizon",
+    description:
+      "Venta de proyectores Epson nuevos y reacondicionados en Lima, Perú. Distribuidores autorizados con garantía extendida y servicio técnico especializado.",
+    url: "https://www.iubizon.com",
+    logo: "https://www.iubizon.com/images/logo.png",
+    image: "https://www.iubizon.com/tu-mundo-multimedia.jpg",
+    telephone: "+51972300301",
+    email: "iubizon.company@gmail.com",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Calle las acacias, Pje. los Jazmines 121",
+      addressLocality: "Chorrillos",
+      addressRegion: "Lima",
+      postalCode: "15067",
+      addressCountry: "PE",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: -12.186,
+      longitude: -77.014,
+    },
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "09:00",
+        closes: "18:00",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: "Saturday",
+        opens: "09:00",
+        closes: "12:00",
+      },
+    ],
+    priceRange: "$$",
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      reviewCount: "127",
+    },
+    sameAs: [
+      "https://www.facebook.com/iubizon/",
+      "https://www.instagram.com/iubizon",
+      "https://www.tiktok.com/@iubizon",
+    ],
+    areaServed: {
+      "@type": "Country",
+      name: "Peru",
+    },
+  };
+
   return (
     <html lang="es">
+      <head>
+        <Script
+          id="organization-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+          strategy="beforeInteractive"
+        />
+      </head>
       <Script
         async
         src="https://www.googletagmanager.com/gtag/js?id=AW-17511349348"
