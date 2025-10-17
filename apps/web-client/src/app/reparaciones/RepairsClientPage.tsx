@@ -285,7 +285,7 @@ export default function RepairsPage() {
               <p className="text-orange-800" itemProp="description">
                 Solucionamos problemas de imagen, sonido, conectividad,
                 reemplazo de lámparas, reparación de ventiladores y cualquier
-                falla técnica con repuestos originales y garantía de 6 meses.
+                falla técnica con repuestos originales y garantía de 3 meses.
               </p>
               <meta itemProp="serviceType" content="Reparación" />
               <meta itemProp="areaServed" content="Lima, Perú" />
@@ -324,7 +324,7 @@ export default function RepairsPage() {
                 Garantía de Servicio
               </h3>
               <p className="text-gray-600">
-                6 meses de garantía en todas nuestras reparaciones de
+                3 meses de garantía en todas nuestras reparaciones de
                 proyectores Epson, BenQ, Sony y más.
               </p>
             </article>
@@ -433,12 +433,11 @@ export default function RepairsPage() {
                   identificar el problema exacto. Posterior al diagnóstico, las
                   reparaciones toman mínimo 2 días hábiles. Para casos más
                   complejos que requieren repuestos especiales, el tiempo puede
-                  extenderse de 3 a 7 días hábiles. Siempre informamos el tiempo
-                  estimado después del diagnóstico.
+                  extenderse. Siempre informamos el tiempo estimado después del
+                  diagnóstico.
                 </p>
               </div>
             </article>
-
             <article
               itemScope
               itemType="https://schema.org/Question"
@@ -534,7 +533,7 @@ export default function RepairsPage() {
                   className="w-5 h-5 text-primary"
                   aria-label="Check"
                 />
-                <span className="text-sm font-medium">6 meses garantía</span>
+                <span className="text-sm font-medium">3 meses garantía</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle
