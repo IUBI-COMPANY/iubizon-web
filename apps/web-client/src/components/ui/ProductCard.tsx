@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Product } from "@/data-list/products";
 import { twMerge } from "tailwind-merge";
+import { getWhatsAppMessage } from "@/utils/whatsapp";
 
 interface Props {
   product: Product;
@@ -162,11 +163,11 @@ export const ProductCard = ({ product }: Props) => {
       </div>
       <div className="mt-3 grid gap-2 grid-cols-[1fr_auto] row-span-1 items-end">
         <a
-          href={`https://wa.me/51972300301?text=Hola%20iubizon,%20me%20interesa%20el%20${product.type}%20${product.name}`}
+          href={`https://wa.me/51972300301?text=${getWhatsAppMessage(product)}`}
           target="_blank"
           className="w-full rounded-xl px-4 py-2 text-center text-sm font-semibold shadow-sm transition bg-secondary text-white"
         >
-          Contactar para comprar
+          {product.stock <= 0 ? "Comprar a pedido" : "Comprar ahora"}
         </a>
         <Link
           href={`/productos/${product.id}`}

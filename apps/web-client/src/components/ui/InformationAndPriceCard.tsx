@@ -4,6 +4,7 @@ import { Product } from "@/data-list/products";
 import { GiftCardReaconditioned } from "./GiftCardReaconditioned";
 import { GiftCardNews } from "./GiftCardNews";
 import { DetailProductCondition } from "@/data-list/productsCondition";
+import { getWhatsAppMessage } from "@/utils/whatsapp";
 
 interface Props {
   product: Product;
@@ -163,11 +164,11 @@ export const InformationAndPriceCard = ({
           )}
         </ul>
         <a
-          href={`https://wa.me/51972300301?text=Hola%20iubizon,%20me%20interesa%20el%20${product.type}%20${product.name}`}
+          href={`https://wa.me/51972300301?text=${getWhatsAppMessage(product)}`}
           target="_blank"
           className="rounded-full mt-10 px-8 py-3 text-base text-center md:text-lg font-medium w-full md:w-auto shadow-lg transition bg-primary text-white hover:bg-primary/90 hover:scale-105 duration-300 flex items-center justify-center gap-2"
         >
-          Contactar para comprar
+          {product.stock <= 0 ? "Comprar a pedido" : "Comprar ahora"}
         </a>
       </div>
     </section>
