@@ -351,7 +351,7 @@ export const products: Product[] = [
     stock: 1,
     condition: "new",
     description: "Buena proyección, detalles estéticos",
-    price: 999.0,
+    price: 800.0,
     badge: "Nuevo",
     mainImage: "/images/EX3210/1.jpg",
     media: [
