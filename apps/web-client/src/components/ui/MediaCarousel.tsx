@@ -21,6 +21,11 @@ export default function MediaCarousel({ product }: Props) {
   const { media } = product;
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const [videoPaused] = useState<{ [key: number]: boolean }>({});
+  const [zoomedImage, setZoomedImage] = useState<number | null>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  const [showCustomCursor, setShowCustomCursor] = useState(false);
+  const imageContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     media.forEach((m, i) => {
@@ -46,8 +51,103 @@ export default function MediaCarousel({ product }: Props) {
     return `${productName} ${brand} - Vista ${index + 1} del proyector ${condition}`;
   };
 
+  const handleImageClick = (index: number) => {
+    if (zoomedImage === index) {
+      setZoomedImage(null); // Zoom out if already zoomed
+    } else {
+      setZoomedImage(index); // Zoom in
+    }
+  };
+
+  const handleMouseMove = (
+    e: React.MouseEvent<HTMLDivElement>,
+    index: number,
+  ) => {
+    // Update custom cursor position
+    setCursorPosition({ x: e.clientX, y: e.clientY });
+
+    if (zoomedImage !== index) return;
+
+    const container = imageContainerRef.current;
+    if (!container) return;
+
+    const rect = container.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+    setMousePosition({ x, y });
+  };
+
   return (
     <div className="w-full">
+      {/* Custom Cursor Follower */}
+      {showCustomCursor && (
+        <div
+          className="fixed pointer-events-none z-[9999]"
+          style={{
+            left: `${cursorPosition.x}px`,
+            top: `${cursorPosition.y}px`,
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <svg
+            width="40"
+            height="40"
+            viewBox="0 0 40 40"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="16"
+              cy="16"
+              r="10"
+              fill="white"
+              stroke="black"
+              strokeWidth="2"
+            />
+            {zoomedImage !== null ? (
+              // Minus sign for zoom-out
+              <line
+                x1="11"
+                y1="16"
+                x2="21"
+                y2="16"
+                stroke="black"
+                strokeWidth="2"
+              />
+            ) : (
+              // Plus sign for zoom-in
+              <>
+                <line
+                  x1="16"
+                  y1="11"
+                  x2="16"
+                  y2="21"
+                  stroke="black"
+                  strokeWidth="2"
+                />
+                <line
+                  x1="11"
+                  y1="16"
+                  x2="21"
+                  y2="16"
+                  stroke="black"
+                  strokeWidth="2"
+                />
+              </>
+            )}
+            <line
+              x1="23"
+              y1="23"
+              x2="31"
+              y2="31"
+              stroke="black"
+              strokeWidth="3"
+              strokeLinecap="round"
+            />
+          </svg>
+        </div>
+      )}
+
       <div className="w-full h-[30em] md:h-[40rem] flex items-center justify-center rounded-3xl overflow-hidden shadow-lg relative">
         <div ref={sliderRef} className="keen-slider w-full h-full">
           {media.map((m, i) => (
@@ -56,14 +156,31 @@ export default function MediaCarousel({ product }: Props) {
               key={i}
             >
               {m.type === "image" ? (
-                <Image
-                  src={m.src}
-                  width={1000}
-                  height={1000}
-                  priority={i === 0}
-                  alt={getImageAlt(i)}
-                  className="w-full h-full object-contain relative z-10"
-                />
+                <div
+                  ref={i === current ? imageContainerRef : null}
+                  className="relative w-full h-full overflow-hidden cursor-none"
+                  onClick={() => handleImageClick(i)}
+                  onMouseMove={(e) => handleMouseMove(e, i)}
+                  onMouseEnter={() => setShowCustomCursor(true)}
+                  onMouseLeave={() => setShowCustomCursor(false)}
+                >
+                  <Image
+                    src={m.src}
+                    width={1000}
+                    height={1000}
+                    priority={i === 0}
+                    alt={getImageAlt(i)}
+                    className="w-full h-full object-contain relative z-10 transition-transform duration-300 ease-out"
+                    style={
+                      zoomedImage === i
+                        ? {
+                            transform: "scale(2.5)",
+                            transformOrigin: `${mousePosition.x}% ${mousePosition.y}%`,
+                          }
+                        : undefined
+                    }
+                  />
+                </div>
               ) : (
                 <div className="relative w-full h-full flex items-center justify-center">
                   <div
