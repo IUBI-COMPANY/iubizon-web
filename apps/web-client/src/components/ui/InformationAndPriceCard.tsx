@@ -1,7 +1,8 @@
 import React from "react";
 import { Info, XCircle } from "lucide-react";
 import { Product } from "@/data-list/products";
-import { GiftCard } from "./GiftCard";
+import { GiftCardReaconditioned } from "./GiftCardReaconditioned";
+import { GiftCardNews } from "./GiftCardNews";
 import { DetailProductCondition } from "@/data-list/productsCondition";
 
 interface Props {
@@ -53,13 +54,13 @@ export const InformationAndPriceCard = ({
           <div className="w-full h-auto my-7">
             <div className="flex flex-wrap gap-7 mb-3">
               <div className="flex items-center justify-start gap-1">
-                {/*<p className="text-base font-bold text-primary flex justify-center items-start gap-1">*/}
-                {/*  <span className="text-[1em]">S/</span>*/}
-                {/*  <span className="text-3xl">{product.price}</span>*/}
-                {/*</p>*/}
-                {/*<span className="text-secondary text-lg font-light ml-1">*/}
-                {/*  c/u*/}
-                {/*</span>*/}
+                <p className="text-base font-bold text-primary flex justify-center items-start gap-1">
+                  <span className="text-[1em]">S/</span>
+                  <span className="text-3xl">{product.price}</span>
+                </p>
+                <span className="text-secondary text-lg font-light ml-1">
+                  c/u
+                </span>
               </div>
               {product?.badge && (
                 <div
@@ -98,7 +99,7 @@ export const InformationAndPriceCard = ({
             </span>
           </li>
           {product.stock <= 0 ? (
-            <p className="mt-1 text-sm text-secondary">
+            <p className="mt-1 text-sm text-red-600">
               Lo sentimos ya no queda stock, pero{" "}
               <a
                 href={`https://wa.me/51972300301?text=Hola%20iubizon,%20quiero%20realizar%20un%20pedido%20del%20modelo%20${product.name}`}
@@ -149,11 +150,14 @@ export const InformationAndPriceCard = ({
               </div>
             </li>
           )}
-          {product.type === "Proyector" && (
+          {product?.type === "Proyector" && (
             <li className="items-start">
               <span className="mt-1 text-xl text-primary bg-ambar-500"></span>
               <span className="flex flex-col items-center">
-                <GiftCard />
+                {product?.condition === "new" && <GiftCardNews />}
+                {product?.condition === "reconditioned" && (
+                  <GiftCardReaconditioned />
+                )}
               </span>
             </li>
           )}
