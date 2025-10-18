@@ -102,13 +102,7 @@ export const InformationAndPriceCard = ({
           {product.stock <= 0 ? (
             <p className="mt-1 text-sm text-red-600">
               Lo sentimos ya no queda stock, pero{" "}
-              <a
-                href={`https://wa.me/51972300301?text=Hola%20iubizon,%20quiero%20realizar%20un%20pedido%20del%20modelo%20${product.name}`}
-                target="_blank"
-                className="font-semibold cursor-pointer text-blue-400"
-              >
-                puede solicitarlo a pedido
-              </a>
+              <span className="font-semibold">puede comprarlo a pedido</span>
             </p>
           ) : (
             <p className="mt-1 text-sm text-green-600 font-medium">
