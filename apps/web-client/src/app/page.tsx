@@ -160,6 +160,106 @@ export default function Home() {
             </a>
           </section>
         )}
+        <section className="mt-12 mb-10 grid gap-8 rounded-2xl bg-gradient-to-br from-white to-slate-50 p-8 shadow-md md:grid-cols-2 border border-slate-100">
+          <div className="flex flex-col justify-center">
+            <div className="inline-flex items-center gap-2 rounded-full bg-secondary/10 px-4 py-1.5 text-sm font-semibold text-secondary w-fit">
+              Servicio Especializado
+            </div>
+            <h2 className="mt-4 text-3xl font-bold text-secondary">
+              Servicio Técnico de Proyectores
+            </h2>
+            <p className="mt-3 text-base text-secondary/80 leading-relaxed">
+              Servicio técnico especializado en reparación y mantenimiento de
+              proyectores. Diagnóstico profesional, repuestos originales y
+              garantía en todos nuestros trabajos.
+            </p>
+            <div className="mt-6 space-y-3">
+              <div className="flex items-start gap-3">
+                <span className="text-primary text-xl">✓</span>
+                <div>
+                  <p className="font-semibold text-secondary">
+                    Diagnóstico gratuito
+                  </p>
+                  <p className="text-sm text-secondary/70">
+                    Evaluación completa sin costo en nuestro local
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-primary text-xl">✓</span>
+                <div>
+                  <p className="font-semibold text-secondary">
+                    Reparaciones especializadas
+                  </p>
+                  <p className="text-sm text-secondary/70">
+                    Lámparas, fuentes de poder, placas y sistema de ventilación
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-primary text-xl">✓</span>
+                <div>
+                  <p className="font-semibold text-secondary">
+                    Reacondicionado profesional
+                  </p>
+                  <p className="text-sm text-secondary/70">
+                    Limpieza profunda y pruebas exhaustivas de funcionamiento
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-primary text-xl">✓</span>
+                <div>
+                  <p className="font-semibold text-secondary">
+                    Repuestos originales
+                  </p>
+                  <p className="text-sm text-secondary/70">
+                    Garantía en mano de obra y componentes utilizados
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/reparaciones"
+                className="inline-flex items-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white shadow-md hover:shadow-lg hover:bg-primary/90 transition-all"
+              >
+                Ver servicio completo
+              </Link>
+
+              <a
+                href="https://wa.me/51972300301?text=Hola%20iubizon,%20necesito%20reparar%20mi%20proyector"
+                target="_blank"
+                className="inline-flex items-center rounded-full border-2 border-secondary px-6 py-3 text-sm font-semibold text-secondary hover:bg-secondary hover:text-white transition-all"
+              >
+                Solicitar reparación
+              </a>
+            </div>
+            <p className="mt-5 text-xs text-secondary/60 border-l-2 border-primary pl-3">
+              <strong>Servicio en Lima y provincias:</strong> Recogemos y
+              entregamos equipos. Consulta zonas de cobertura y tiempos de
+              reparación.
+            </p>
+          </div>
+
+          <div className="flex items-center justify-center order-first md:order-last">
+            <div className="relative">
+              <Image
+                src="/images/proyectores-reparaciones.webp"
+                alt="Técnico especializado reparando proyector Epson - Servicio técnico profesional en Lima, Perú"
+                width={800}
+                height={600}
+                className="w-full max-w-lg rounded-xl object-cover shadow-lg"
+                priority={false}
+              />
+              <div className="absolute -bottom-4 -right-4 bg-primary text-white rounded-lg p-4 shadow-xl hidden md:block">
+                <p className="text-2xl font-bold">+500</p>
+                <p className="text-xs">Proyectores reparados</p>
+              </div>
+            </div>
+          </div>
+        </section>
         <p className="mt-6 text-center text-sm text-secondary/70">
           Todos los equipos son funcionales • Si viene a nuestro local, se hace
           su respectiva prueba • Con garantía
