@@ -62,7 +62,7 @@ export default function MediaCarousel({ product }: Props) {
                   height={1000}
                   priority={i === 0}
                   alt={getImageAlt(i)}
-                  className="w-full h-full object-cover relative z-10"
+                  className="w-full h-full object-contain relative z-10"
                 />
               ) : (
                 <div className="relative w-full h-full flex items-center justify-center">
