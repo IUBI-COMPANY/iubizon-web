@@ -51,7 +51,7 @@ export default function Home() {
             </span>
 
             <h1 className="mt-4 text-4xl md:text-5xl font-bold leading-tight">
-              Venta y Reparación de Proyectores Epson
+              Venta y Servicio técnico de Proyectores
             </h1>
 
             <p className="mt-3 max-w-2xl md:text-lg opacity-95">

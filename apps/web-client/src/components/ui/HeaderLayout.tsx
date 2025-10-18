@@ -20,7 +20,7 @@ const navigation: HeaderNavigation[] = [
   { name: "Inicio", href: "/" },
   { name: "¿Quienes somos?", href: "/quienes-somos" },
   { name: "Productos", href: "/productos" },
-  { name: "Reparaciones", href: "/reparaciones" },
+  { name: "Servicio Técnico", href: "/reparaciones" },
   { name: "Contacto", href: "/contacto" },
 ];
 
@@ -73,7 +73,7 @@ export const HeaderLayout = () => {
                   key={item.name}
                   href={item.href}
                   className={
-                    item.name === "Reparaciones"
+                    item.href === "/reparaciones"
                       ? "text-primary font-bold bg-primary/10 px-3 py-1 rounded transition-colors duration-200"
                       : "text-white/87 hover:text-white transition-colors duration-200 font-medium"
                   }
