@@ -90,7 +90,7 @@ function generateStructuredData() {
     foundingDate: "2023",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Pje. los Jazmines 121",
+      streetAddress: "Pje. los Jazmines 181",
       addressLocality: "Chorrillos",
       addressRegion: "Lima",
       postalCode: "15067",

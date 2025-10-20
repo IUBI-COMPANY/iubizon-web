@@ -205,7 +205,7 @@ export default function ContactClientPage() {
                   >
                     <MapPin className="w-5 h-5" />
                     <span>
-                      Calle las acacias, Pje. los Jazmines 121, Chorrillos, Lima
+                      Calle las acacias, Pje. los Jazmines 181, Chorrillos, Lima
                     </span>
                   </a>
                 </div>

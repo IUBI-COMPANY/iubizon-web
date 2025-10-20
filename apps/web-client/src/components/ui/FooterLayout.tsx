@@ -22,7 +22,7 @@ export const FooterLayout = () => {
               rel="noopener"
               className="hover:text-primary"
             >
-              Calle las acacias, Pje. los Jazmines 121, Chorrillos, Lima
+              Calle las acacias, Pje. los Jazmines 181, Chorrillos, Lima
             </a>
           </div>
           <div className="text-sm text-blue-100">

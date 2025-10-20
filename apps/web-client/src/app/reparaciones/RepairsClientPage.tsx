@@ -95,7 +95,7 @@ export default function RepairsPage() {
               telephone: "+51 972 300 301",
               address: {
                 "@type": "PostalAddress",
-                streetAddress: "Pje. los Jazmines 121",
+                streetAddress: "Pje. los Jazmines 181",
                 addressLocality: "Chorrillos",
                 addressRegion: "Lima",
                 addressCountry: "PE",
@@ -485,7 +485,7 @@ export default function RepairsPage() {
                   Sí, ofrecemos atención especializada para clientes de
                   provincia a través de nuestro servicio de envío. El cliente
                   envía su proyector a nuestro local ubicado en{" "}
-                  <strong>Pje. los Jazmines 121, Chorrillos, Lima</strong>,{" "}
+                  <strong>Pje. los Jazmines 181, Chorrillos, Lima</strong>,{" "}
                   realizamos el servicio técnico completo con diagnóstico,
                   reparación y pruebas de calidad, y una vez culminado el
                   servicio, lo reenviamos a su dirección. Este es un servicio

@@ -34,7 +34,7 @@ export const BusinessAddress = () => {
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:text-blue-800 hover:underline transition-colors duration-200 cursor-pointer text-sm leading-tight"
               >
-                Calle las Acacias, Pje. los Jazmines 121, Chorrillos
+                Calle las Acacias, Pje. los Jazmines 181, Chorrillos
               </a>
               <p className="text-xs text-gray-600 mt-0.5">Ver en Google Maps</p>
             </div>
