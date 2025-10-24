@@ -16,8 +16,8 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 
 interface Props {
   globalStep: number;
-  repairsFormData: Partial<Repair>;
-  setRepairsFormData: (data: Partial<Repair>) => void;
+  repairsFormData: Partial<TechnicalService>;
+  setRepairsFormData: (data: Partial<TechnicalService>) => void;
   addLocalStorageData: (data: object) => void;
   setCurrentStepToLocalStorage: (step: number) => void;
   current?: number;

@@ -14,15 +14,15 @@ import { Alert } from "@/components/ui/Alert";
 import { Select } from "@/components/ui/Select";
 import { peruUbigeo } from "@/data-list/ubigeos";
 import { Checkbox } from "@/components/ui/Checkbox";
-import { sendRepairEmail } from "./actions";
+import { sendTechnicalServiceEmail } from "./actions";
 import { RepairStep3 } from "@/components/ui/TechnicalServiceForm";
 import { ArrowLeft, SendIcon } from "lucide-react";
 import { BusinessAddress } from "@/app/servicios/tecnico/BusinessAddress";
 
 interface Props {
   globalStep: number;
-  repairsFormData: Partial<Repair>;
-  setRepairsFormData: (data: Partial<Repair>) => void;
+  repairsFormData: Partial<TechnicalService>;
+  setRepairsFormData: (data: Partial<TechnicalService>) => void;
   addLocalStorageData: (data: object) => void;
   setCurrentStepToLocalStorage: (step: number) => void;
   loading: boolean;
@@ -113,10 +113,12 @@ export const SupportInformation = ({
     setRepairsFormData({ ...repairsFormData, ...formData });
     addLocalStorageData(formData);
 
-    const data: Repair = JSON.parse(localStorage.getItem("formData") || "{}");
+    const data: TechnicalService = JSON.parse(
+      localStorage.getItem("formData") || "{}",
+    );
 
     try {
-      await sendRepairEmail(data);
+      await sendTechnicalServiceEmail(data);
       setLoading(false);
       setTimeout(() => {
         setCurrentStepToLocalStorage(globalStep + 1);

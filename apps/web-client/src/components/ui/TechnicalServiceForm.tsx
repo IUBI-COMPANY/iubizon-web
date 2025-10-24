@@ -11,17 +11,17 @@ import Confetti from "react-confetti";
 import { useRouter } from "next/navigation";
 
 export type RepairStep1 = Pick<
-  Repair,
+  TechnicalService,
   "product_name" | "description_device_fault" | "description_other_fault"
 >;
 
 export type RepairStep2 = Pick<
-  Repair,
+  TechnicalService,
   "first_name" | "last_name" | "email" | "phone_prefix" | "phone_number"
 >;
 
 export type RepairStep3 = Pick<
-  Repair,
+  TechnicalService,
   | "service_type"
   | "visit_date"
   | "visit_time"
@@ -34,7 +34,9 @@ export type RepairStep3 = Pick<
 
 export const TechnicalServiceForm = () => {
   const [globalStep, setGlobalStep] = useState(0);
-  const [repairsFormData, setRepairsFormData] = useState<Partial<Repair>>({});
+  const [repairsFormData, setRepairsFormData] = useState<
+    Partial<TechnicalService>
+  >({});
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [countdown, setCountdown] = useState(8);

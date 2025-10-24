@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/Button";
 import { Select } from "@/components/ui/Select";
 import { RepairStep1 } from "@/components/ui/TechnicalServiceForm";
 import { ArrowRight } from "lucide-react";
+import { TextArea } from "@/components/ui/TextArea";
 
 interface Props {
   globalStep: number;
@@ -121,10 +122,14 @@ export const DeviceInformation = ({
                       name="description_other_fault"
                       control={control}
                       render={({ field: { onChange, value, name } }) => (
-                        <Input
+                        <TextArea
                           label="Describa la falla"
                           name={name}
                           value={value}
+                          error={error(name)}
+                          helperText={errorMessage(name)}
+                          required={required(name)}
+                          rows={3}
                           onChange={onChange}
                           placeholder="Describa la falla del equipo"
                         />
