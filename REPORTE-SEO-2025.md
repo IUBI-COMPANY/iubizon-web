@@ -51,7 +51,7 @@ El sitio web de iubizon presenta un **nivel de optimización SEO EXCELENTE** con
   - 4 preguntas frecuentes estructuradas
   - Respuestas completas
   
-- ✅ **HowTo Schema** (Reparaciones)
+- ✅ **HowTo Schema** (Servicios técnicos)
   - Proceso paso a paso
   - Instrucciones claras
 
@@ -195,7 +195,7 @@ El sitio web de iubizon presenta un **nivel de optimización SEO EXCELENTE** con
 - ✅ Inicio (/)
 - ✅ Productos (/productos)
 - ✅ Productos individuales (/productos/[id])
-- ✅ Reparaciones (/reparaciones)
+- ✅ Servicios técnicos (/servicios/tecnico)
 - ✅ Contacto (/contacto)
 - ✅ Quiénes somos (/quienes-somos)
 - ✅ 404 personalizado
@@ -478,4 +478,3 @@ Con las mejoras recomendadas, el sitio tiene potencial para:
 **Puntuación Final: 92/100** 🏆  
 **Nivel: EXCELENTE**  
 **Estado: LISTO PARA PRODUCCIÓN** ✅
-

@@ -29,7 +29,7 @@ export function Drawer({
               key={item.name}
               href={item.href}
               className={
-                item.name === "Reparaciones"
+                item.name === "Servicio Técnico"
                   ? "group flex items-center justify-between py-4 px-4 rounded-lg text-primary font-bold bg-primary/10 transition-all duration-200 text-lg"
                   : "group flex items-center justify-between py-4 px-4 rounded-lg text-white/87 hover:bg-accent/50 hover:text-white transition-all duration-200 font-medium text-lg"
               }

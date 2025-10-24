@@ -120,7 +120,7 @@ export default function Home() {
                 Ver proyectores disponibles
               </Link>
               <Link
-                href="/reparaciones"
+                href="/servicios/tecnico"
                 className="rounded-full border-2 border-white/70 bg-white/10 backdrop-blur-sm px-6 py-3 text-sm font-semibold text-white hover:bg-white/20 transition-all"
               >
                 Servicio técnico
@@ -554,19 +554,11 @@ export default function Home() {
 
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
-                href="/reparaciones"
+                href="/servicios/tecnico"
                 className="inline-flex items-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white shadow-md hover:shadow-lg hover:bg-primary/90 transition-all"
               >
-                Ver servicio completo
+                Solicitar servicio técnico
               </Link>
-
-              <a
-                href="https://wa.me/51972300301?text=Hola%20iubizon,%20necesito%20reparar%20mi%20proyector"
-                target="_blank"
-                className="inline-flex items-center rounded-full border-2 border-secondary px-6 py-3 text-sm font-semibold text-secondary hover:bg-secondary hover:text-white transition-all"
-              >
-                Solicitar reparación
-              </a>
             </div>
             <p className="mt-5 text-xs text-secondary/60 border-l-2 border-primary pl-3">
               <strong>Servicio en Lima y provincias:</strong> Recogemos y

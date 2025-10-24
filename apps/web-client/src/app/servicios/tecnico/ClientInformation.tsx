@@ -11,7 +11,7 @@ import { useFormUtils } from "@/hooks/useFormUtils";
 import { Select } from "@/components/ui/Select";
 import countriesISO from "@/data-list/countriesISO.json";
 import { Button } from "@/components/ui/Button";
-import { RepairStep2 } from "@/components/ui/RepairsContactForm";
+import { RepairStep2 } from "@/components/ui/TechnicalServiceForm";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 interface Props {

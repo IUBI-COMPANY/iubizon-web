@@ -8,7 +8,7 @@ import { useFormUtils } from "@/hooks/useFormUtils";
 import React from "react";
 import { Button } from "@/components/ui/Button";
 import { Select } from "@/components/ui/Select";
-import { RepairStep1 } from "@/components/ui/RepairsContactForm";
+import { RepairStep1 } from "@/components/ui/TechnicalServiceForm";
 import { ArrowRight } from "lucide-react";
 
 interface Props {

@@ -22,7 +22,7 @@ export const FooterLayout = () => {
               rel="noopener"
               className="hover:text-primary"
             >
-              Calle las acacias, Pje. los Jazmines 121, Chorrillos, Lima
+              Calle las acacias, Pje. los Jazmines 181, Chorrillos, Lima
             </a>
           </div>
           <div className="text-sm text-blue-100">
@@ -38,7 +38,7 @@ export const FooterLayout = () => {
           <Link href="/productos" className="hover:text-primary">
             Productos
           </Link>
-          <Link href="/reparaciones" className="hover:text-primary">
+          <Link href="/servicios/tecnico" className="hover:text-primary">
             Servicio de Reparación
           </Link>
           <Link href="/contacto" className="hover:text-primary">

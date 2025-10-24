@@ -1,7 +1,7 @@
 "use client";
 
 import { Metadata } from "next";
-import { RepairsContactForm } from "@/components/ui/RepairsContactForm";
+import { TechnicalServiceForm } from "@/components/ui/TechnicalServiceForm";
 import {
   CheckCircle,
   Clock,
@@ -36,16 +36,16 @@ export const metadata: Metadata = {
   authors: [{ name: "iubizon" }],
   creator: "iubizon",
   publisher: "iubizon",
-  metadataBase: new URL("https://www.iubizon.com/reparaciones"),
+  metadataBase: new URL("https://www.iubizon.com/servicios/tecnico"),
   alternates: {
-    canonical: "https://www.iubizon.com/reparaciones",
+    canonical: "https://www.iubizon.com/servicios/tecnico",
   },
   openGraph: {
     title:
       "Servicio Técnico de Proyectores | Mantenimiento y Reparación Especializada",
     description:
       "Servicio técnico profesional de proyectores en Lima. Mantenimiento preventivo, reparaciones especializadas y soporte técnico con garantía.",
-    url: "https://www.iubizon.com/reparaciones",
+    url: "https://www.iubizon.com/servicios/tecnico",
     siteName: "iubizon",
     images: [
       {
@@ -78,7 +78,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RepairsPage() {
+export default function TechnicalServicePage() {
   return (
     <main>
       <Head>
@@ -90,12 +90,12 @@ export default function RepairsPage() {
               "@type": "LocalBusiness",
               name: "iubizon",
               image: "https://www.iubizon.com/images/logo.png",
-              "@id": "https://www.iubizon.com/reparaciones",
-              url: "https://www.iubizon.com/reparaciones",
+              "@id": "https://www.iubizon.com/servicios/tecnico",
+              url: "https://www.iubizon.com/servicios/tecnico",
               telephone: "+51 972 300 301",
               address: {
                 "@type": "PostalAddress",
-                streetAddress: "Pje. los Jazmines 121",
+                streetAddress: "Pje. los Jazmines 181",
                 addressLocality: "Chorrillos",
                 addressRegion: "Lima",
                 addressCountry: "PE",
@@ -112,7 +112,7 @@ export default function RepairsPage() {
                 "https://www.tiktok.com/@iubizon",
               ],
               description:
-                "Servicio técnico profesional de mantenimiento y reparación de proyectores Epson, BenQ, Sony y más en Lima. Diagnóstico, repuestos originales y atención a domicilio.",
+                "Servicio técnico de mantenimiento y reparación de proyectores Epson, BenQ, Sony y más en Lima. Diagnóstico, repuestos originales y atención a domicilio.",
             }),
           }}
         />
@@ -150,7 +150,7 @@ export default function RepairsPage() {
               </p>
             </div>
           </div>
-          <RepairsContactForm />
+          <TechnicalServiceForm />
         </div>
       </section>
       <section
@@ -484,7 +484,7 @@ export default function RepairsPage() {
                   Sí, ofrecemos atención especializada para clientes de
                   provincia a través de nuestro servicio de envío. El cliente
                   envía su proyector a nuestro local ubicado en{" "}
-                  <strong>Pje. los Jazmines 121, Chorrillos, Lima</strong>,{" "}
+                  <strong>Pje. los Jazmines 181, Chorrillos, Lima</strong>,{" "}
                   realizamos el servicio técnico completo con diagnóstico,
                   reparación y pruebas de calidad, y una vez culminado el
                   servicio, lo reenviamos a su dirección. Este es un servicio

@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import RepairsClientPage from "./RepairsClientPage";
+import TechnicalServicePage from "./TechnicalServicePage";
 
 // ==========================
 // 🔹 Dynamic Metada
 // ==========================
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "Mantenimiento y reparación de proyectores en Lima y Perú | iubizon",
+    title: "Servicio técnico en Lima y Perú | iubizon",
     description:
-      "Servicio profesional de mantenimiento y reparación de proyectores en Lima y todo Perú. Soluciones rápidas, repuestos originales y atención personalizada. Cotiza gratis.",
+      "Servicio técnico de mantenimiento y reparación de proyectores en Lima y todo Perú. Soluciones rápidas, repuestos originales y atención personalizada. Cotiza gratis.",
     keywords: [
       "mantenimiento de proyectores",
       "reparación de proyectores",
@@ -23,13 +23,12 @@ export async function generateMetadata(): Promise<Metadata> {
       "repuestos de proyectores",
     ],
     alternates: {
-      canonical: "https://www.iubizon.com/reparaciones",
+      canonical: "https://www.iubizon.com/servicios/tecnico",
     },
     openGraph: {
       type: "website",
-      title:
-        "Mantenimiento y reparación de proyectores en Lima y Perú | iubizon",
-      url: "https://www.iubizon.com/reparaciones",
+      title: "Servicio técnico en Lima y Perú | iubizon",
+      url: "https://www.iubizon.com/servicios/tecnico",
       description:
         "Servicio profesional de mantenimiento y reparación de proyectores en Lima y todo Perú. Soluciones rápidas, repuestos originales y atención personalizada.",
       images: [
@@ -45,8 +44,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      title:
-        "Mantenimiento y reparación de proyectores en Lima y Perú | iubizon",
+      title: "Servicio técnico en Lima y Perú | iubizon",
       description:
         "Servicio profesional de mantenimiento y reparación de proyectores en Lima y todo Perú. Soluciones rápidas, repuestos originales y atención personalizada.",
       images: [
@@ -83,5 +81,5 @@ export async function generateMetadata(): Promise<Metadata> {
 // 🔹 Página principal (Server)
 // ==========================
 export default async function Page() {
-  return <RepairsClientPage />;
+  return <TechnicalServicePage />;
 }

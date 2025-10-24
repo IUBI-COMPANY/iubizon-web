@@ -15,9 +15,9 @@ import { Select } from "@/components/ui/Select";
 import { peruUbigeo } from "@/data-list/ubigeos";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { sendRepairEmail } from "./actions";
-import { RepairStep3 } from "@/components/ui/RepairsContactForm";
+import { RepairStep3 } from "@/components/ui/TechnicalServiceForm";
 import { ArrowLeft, SendIcon } from "lucide-react";
-import { BusinessAddress } from "@/app/reparaciones/BusinessAddress";
+import { BusinessAddress } from "@/app/servicios/tecnico/BusinessAddress";
 
 interface Props {
   globalStep: number;

@@ -175,7 +175,7 @@ export default function RootLayout({
     email: "iubizon.company@gmail.com",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Calle las acacias, Pje. los Jazmines 121",
+      streetAddress: "Calle las acacias, Pje. los Jazmines 181",
       addressLocality: "Chorrillos",
       addressRegion: "Lima",
       postalCode: "15067",

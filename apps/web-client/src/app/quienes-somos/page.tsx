@@ -90,7 +90,7 @@ function generateStructuredData() {
     foundingDate: "2023",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Pje. los Jazmines 121",
+      streetAddress: "Pje. los Jazmines 181",
       addressLocality: "Chorrillos",
       addressRegion: "Lima",
       postalCode: "15067",
@@ -310,7 +310,7 @@ export default function AboutUsPage() {
                 Contáctanos Hoy
               </Link>
               <Link
-                href="/reparaciones"
+                href="/servicios/tecnico"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg font-semibold transition-all duration-300 inline-block"
               >
                 Nuestros Servicios
