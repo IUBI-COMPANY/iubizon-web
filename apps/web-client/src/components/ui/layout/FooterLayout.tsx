@@ -14,7 +14,7 @@ export const FooterLayout = () => {
             height={40}
             className="w-36 h-auto mb-2 drop-shadow-lg"
           />
-          <div className="text-sm text-blue-100">
+          <div className="text-sm text-blue-100 text-center md:text-left">
             <span className="font-semibold">Dirección:</span> <br />
             <a
               href="https://maps.google.com/?q=Pje.+los+Jazmines+121,+Chorrillos,+Lima"
@@ -25,14 +25,14 @@ export const FooterLayout = () => {
               Calle las acacias, Pje. los Jazmines 181, Chorrillos, Lima
             </a>
           </div>
-          <div className="text-sm text-blue-100">
+          <div className="text-sm text-blue-100 text-center md:text-left">
             <span className="font-semibold">Horario:</span>
             <p>
               Lun-Vie 9:00 AM - 6:00 PM <br />
               Sáb 9:00 AM - 12:00 PM - Previa cita
             </p>
           </div>
-          <div className="text-sm text-blue-100 mt-2 pt-3 border-t border-blue-200/30">
+          <div className="text-sm text-blue-100 mt-2 pt-3 border-t border-blue-200/30 text-center md:text-left w-full">
             <p className="mt-1">
               <span className="font-medium">RUC:</span> 20614600374
             </p>
@@ -135,6 +135,110 @@ export const FooterLayout = () => {
                 className="w-[1.7em] h-[1.7em]"
               />
             </a>
+          </div>
+          <div className="mt-6 w-full">
+            <span className="font-bold text-white mb-3 block text-center md:text-right">
+              Medios de pago
+            </span>
+            <div className="flex flex-wrap gap-3 justify-center md:justify-end items-center">
+              {/* Transferencia Bancaria */}
+              <div className="bg-white rounded-lg p-1.5 w-14 h-10 flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
+                <svg
+                  viewBox="0 0 24 24"
+                  className="w-7 h-7"
+                  fill="none"
+                  stroke="#1e40af"
+                  strokeWidth="1.8"
+                >
+                  {/* Edificio de banco */}
+                  <path
+                    d="M3 21h18M3 10h18M12 3l9 7H3l9-7zM5 10v11M9 10v11M15 10v11M19 10v11"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  {/* Linea base */}
+                  <path d="M3 21h18" strokeWidth="2" />
+                </svg>
+              </div>
+              {/* Efectivo */}
+              <div className="bg-white rounded-lg p-1.5 w-14 h-10 flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
+                <svg viewBox="0 0 24 24" className="w-7 h-7" fill="none">
+                  {/* Billete */}
+                  <rect
+                    x="2"
+                    y="6"
+                    width="20"
+                    height="12"
+                    rx="2"
+                    fill="#059669"
+                    opacity="0.2"
+                    stroke="#059669"
+                    strokeWidth="1.5"
+                  />
+                  {/* Símbolo S/ */}
+                  <text
+                    x="12"
+                    y="15"
+                    fontSize="7"
+                    fontWeight="bold"
+                    fill="#059669"
+                    textAnchor="middle"
+                    fontFamily="Arial"
+                  >
+                    S/
+                  </text>
+                  {/* Decoración del billete */}
+                  <circle cx="6" cy="12" r="1.5" fill="#059669" opacity="0.4" />
+                  <circle
+                    cx="18"
+                    cy="12"
+                    r="1.5"
+                    fill="#059669"
+                    opacity="0.4"
+                  />
+                </svg>
+              </div>
+              {/* BCP */}
+              <div className="bg-white rounded-lg p-1.5 w-14 h-10 flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
+                <Image
+                  src="/svg/bcp.svg"
+                  alt="BCP"
+                  width={56}
+                  height={40}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              {/* BBVA */}
+              <div className="bg-white rounded-lg p-1.5 w-14 h-10 flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
+                <Image
+                  src="/svg/bbva.svg"
+                  alt="BBVA"
+                  width={56}
+                  height={40}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              {/* Yape */}
+              <div className="bg-white rounded-lg p-1.5 w-14 h-10 flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
+                <Image
+                  src="/images/yape.png"
+                  alt="Yape"
+                  width={56}
+                  height={40}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              {/* Plin */}
+              <div className="bg-white rounded-lg p-1.5 w-14 h-10 flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
+                <Image
+                  src="/images/plin.png"
+                  alt="Plin"
+                  width={56}
+                  height={40}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

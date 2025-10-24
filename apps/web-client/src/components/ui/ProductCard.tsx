@@ -16,10 +16,10 @@ export const ProductCard = ({ product }: Props) => {
   const getProductImageAlt = () => {
     const productName = product?.name || "Proyector";
     const brand = product?.brand || "";
-    const lumens = product?.lumens || "";
+    const lumensANSI = product?.lumensANSI || "";
     const condition = isNew ? "Nuevo" : "Reacondicionado";
 
-    return `${productName} ${brand} ${lumens} - Proyector ${condition} en Lima, Perú`;
+    return `${productName} ${brand} ${lumensANSI} - Proyector ${condition} en Lima, Perú`;
   };
 
   return (
@@ -61,9 +61,9 @@ export const ProductCard = ({ product }: Props) => {
             {product.brand}
           </span>
         )}
-        {product?.lumens && (
+        {product?.lumensANSI && (
           <span className="px-3 py-[.4em] rounded-full font-semibold text-[.6em] shadow-sm focus:outline-none bg-white/90 text-secondary border border-secondary/40">
-            {product.lumens}
+            {product.lumensANSI} Lúmenes ANSI
           </span>
         )}
         {product?.throwRatio && (
@@ -125,22 +125,24 @@ export const ProductCard = ({ product }: Props) => {
         </svg>
         Descuento por volumen
       </div>
-      <div className="flex items-center text-sm text-gray-600 mb-1">
-        <svg
-          className="w-5 h-5 text-green-500 mr-2"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M5 13l4 4L19 7"
-          />
-        </svg>
-        Prueba de funcionamiento verificada
-      </div>
+      {!isNew && (
+        <div className="flex items-center text-sm text-gray-600 mb-1">
+          <svg
+            className="w-5 h-5 text-green-500 mr-2"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+          Prueba de funcionamiento verificada
+        </div>
+      )}
       <div className="flex items-center text-sm text-gray-600 mb-1">
         <svg
           className="w-5 h-5 text-green-500 mr-2"

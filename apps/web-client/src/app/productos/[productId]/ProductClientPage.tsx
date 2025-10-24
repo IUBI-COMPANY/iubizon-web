@@ -115,13 +115,13 @@ export default function ProductDetailPage({ product }: Props) {
                             <div className="text-secondary">{product.type}</div>
                           </div>
                         )}
-                        {product?.lumens && (
+                        {product?.lumensANSI && (
                           <div className="flex flex-col md:flex-row flex-wrap items-start md:items-end">
                             <div className="pr-4 w-[11em] leading-5">
                               Lúmenes:
                             </div>{" "}
                             <div className="text-secondary">
-                              {product.lumens}
+                              {product.lumensANSI}
                             </div>
                           </div>
                         )}

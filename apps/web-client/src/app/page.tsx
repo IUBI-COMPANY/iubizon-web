@@ -305,13 +305,6 @@ export default function Home() {
               </p>
             </div>
           </div>
-
-          <div className="mt-5 p-3 bg-slate-50 rounded-lg">
-            <p className="text-sm text-center text-secondary/80">
-              <strong>💳 Formas de pago:</strong> Efectivo, transferencia
-              bancaria
-            </p>
-          </div>
         </section>
 
         {productsByCondition.new.products.length > 0 && (

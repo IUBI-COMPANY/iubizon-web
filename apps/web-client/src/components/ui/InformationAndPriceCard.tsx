@@ -22,7 +22,7 @@ export const InformationAndPriceCard = ({
   const options = [
     product?.brand,
     product?.model,
-    product?.lumens,
+    product?.lumensANSI,
     product?.contrastRatio,
     product?.nativeResolution,
     product?.aspectRatio,

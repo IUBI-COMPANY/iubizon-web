@@ -22,7 +22,7 @@ export interface Product {
   media: MediaItem[];
   condition: ProductCondition;
   displayTechnology?: string;
-  lumens?: string;
+  lumensANSI?: number;
   brand?: string;
   type?: string;
   contrastRatio?: string;
@@ -63,7 +63,7 @@ export const products: Product[] = [
       { type: "image", src: "/images/980W/6.jpg" },
     ],
     displayTechnology: "3LCD",
-    lumens: "3800 lúmenes ANSI",
+    lumensANSI: 3800,
     brand: "Epson",
     type: "Proyector",
     contrastRatio: "15,000:1",
@@ -71,7 +71,7 @@ export const products: Product[] = [
     features: "Altavoces integrados",
     nativeResolution: "1280 x 800",
     aspectRatio: "16:10",
-    throwRatio: "Proyección media/estándar",
+    throwRatio: "Proyección media/alta",
     category: [
       "Electrónica",
       "TV, Video y Audio para el Hogar",
@@ -102,7 +102,7 @@ export const products: Product[] = [
       { type: "image", src: "/images/980W-reacon/5.png" },
     ],
     displayTechnology: "3LCD",
-    lumens: "3800 lúmenes ANSI",
+    lumensANSI: 3800,
     brand: "Epson",
     type: "Proyector",
     contrastRatio: "15,000:1",
@@ -110,7 +110,7 @@ export const products: Product[] = [
     features: "Altavoces integrados",
     nativeResolution: "1280 x 800",
     aspectRatio: "16:10",
-    throwRatio: "Proyección media/estándar",
+    throwRatio: "Proyección media/alta",
     category: [
       "Electrónica",
       "TV, Video y Audio para el Hogar",
@@ -140,7 +140,7 @@ export const products: Product[] = [
     ],
     condition: "reconditioned",
     displayTechnology: "3LCD",
-    lumens: "3600 lúmenes ANSI",
+    lumensANSI: 3600,
     brand: "Epson",
     type: "Proyector",
     contrastRatio: "15,000:1",
@@ -148,7 +148,7 @@ export const products: Product[] = [
     features: "Altavoces integrados",
     nativeResolution: "1920 x 1080",
     aspectRatio: "16:10",
-    throwRatio: "Proyección media/estándar",
+    throwRatio: "Proyección media/alta",
     category: [
       "Electrónica",
       "TV, Video y Audio para el Hogar",
@@ -176,7 +176,7 @@ export const products: Product[] = [
     ],
     condition: "reconditioned",
     displayTechnology: "3LCD",
-    lumens: "4000 lúmenes ANSI",
+    lumensANSI: 4000,
     brand: "Epson",
     type: "Proyector",
     contrastRatio: "2.000:1",
@@ -184,7 +184,7 @@ export const products: Product[] = [
     features: "Altavoces integrados",
     nativeResolution: "1280x800",
     aspectRatio: "16:10",
-    throwRatio: "Proyección media/estándar",
+    throwRatio: "Proyección media/alta",
     category: [
       "Electrónica",
       "TV, Video y Audio para el Hogar",
@@ -212,7 +212,7 @@ export const products: Product[] = [
     ],
     condition: "reconditioned",
     displayTechnology: "3LCD",
-    lumens: "4000 lúmenes ANSI",
+    lumensANSI: 4000,
     brand: "Epson",
     type: "Proyector",
     contrastRatio: "15,000:1",
@@ -220,7 +220,7 @@ export const products: Product[] = [
     features: "Altavoces integrados",
     nativeResolution: "XGA (1024 x 768 pixeles)",
     aspectRatio: "4:3",
-    throwRatio: "Proyección media/estándar",
+    throwRatio: "Proyección media/alta",
     category: [
       "Electrónica",
       "TV, Video y Audio para el Hogar",
@@ -249,7 +249,7 @@ export const products: Product[] = [
     ],
     condition: "reconditioned",
     displayTechnology: "3LCD",
-    lumens: "4000 lúmenes ANSI",
+    lumensANSI: 4000,
     brand: "Epson",
     type: "Proyector",
     contrastRatio: "16.000:1",
@@ -258,7 +258,7 @@ export const products: Product[] = [
       "Proyección de techo, Reproductor de DVD integrado, Portátil, Pantalla integrada, HD Ready, Reproductor de Blu-ray integrado, Altavoces integrados, Enfoque automático, Corrección de color",
     nativeResolution: "1.280 x 800",
     aspectRatio: "16:10",
-    throwRatio: "Proyección media/estándar",
+    throwRatio: "Proyección media/alta",
     category: [
       "Electrónica",
       "TV, Video y Audio para el Hogar",
@@ -286,7 +286,7 @@ export const products: Product[] = [
     ],
     condition: "reconditioned",
     displayTechnology: "3LCD",
-    lumens: "3700 lúmenes ANSI",
+    lumensANSI: 3700,
     brand: "Epson",
     type: "Proyector",
     contrastRatio: "15000:1",
@@ -295,7 +295,7 @@ export const products: Product[] = [
       "Altavoces incorporados, proyección en el techo, proyección sobre la mesa",
     nativeResolution: "1024 x 768",
     aspectRatio: "4:3",
-    throwRatio: "Proyección media/estándar",
+    throwRatio: "Proyección media/alta",
     category: [
       "Electrónica",
       "TV, Video y Audio para el Hogar",
@@ -321,7 +321,7 @@ export const products: Product[] = [
     ],
     condition: "new",
     displayTechnology: "3LCD",
-    lumens: "3000 lúmenes ANSI",
+    lumensANSI: 3000,
     brand: "Epson",
     type: "Proyector",
     contrastRatio: "10,000:1",
@@ -329,7 +329,7 @@ export const products: Product[] = [
     features: "Altavoces integrados",
     nativeResolution: "1024 x 768",
     aspectRatio: "4:3",
-    throwRatio: "Proyección media/estándar",
+    throwRatio: "Proyección media/alta",
     category: [
       "Electrónica",
       "TV, Video y Audio para el Hogar",
@@ -361,7 +361,7 @@ export const products: Product[] = [
       { type: "image", src: "/images/EX3210/4.jpg" },
     ],
     displayTechnology: "3LCD",
-    lumens: "2800  lúmenes ANSI",
+    lumensANSI: 2800,
     brand: "Epson",
     type: "Proyector",
     contrastRatio: "15,000:1",
@@ -395,7 +395,7 @@ export const products: Product[] = [
       { type: "image", src: "/images/VS340/4.jpg" },
     ],
     displayTechnology: "3LCD",
-    lumens: "3000 lúmenes ANSI",
+    lumensANSI: 3000,
     brand: "Epson",
     type: "Proyector",
     contrastRatio: "15,000:1",
@@ -403,7 +403,7 @@ export const products: Product[] = [
     features: "Altavoces integrados",
     nativeResolution: "1280 x 800",
     aspectRatio: "16:10",
-    throwRatio: "Proyección media/estándar",
+    throwRatio: "Proyección media/alta",
     category: [
       "Electrónica",
       "TV, Video y Audio para el Hogar",
@@ -474,5 +474,11 @@ export const products: Product[] = [
               product.price - (product.price * DISCOUNT_PERCENTAGE || 0),
             ).toFixed(2)
           : +product.price,
+      ...(product.lumensANSI && {
+        throwRatio:
+          product.lumensANSI >= 3000
+            ? "Proyección media/alta"
+            : "Proyección media/estándar",
+      }),
     }) as Product,
 );
