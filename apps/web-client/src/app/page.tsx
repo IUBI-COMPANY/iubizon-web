@@ -480,18 +480,38 @@ export default function Home() {
           </div>
         </section>
 
-        <p className="mt-6 text-center text-sm text-secondary/70">
-          Todos los equipos son funcionales • Si viene a nuestro local, se hace
-          su respectiva prueba • Con garantía
-        </p>
+        {/* Guarantee Information */}
+        <div className="mt-12 p-6 bg-white rounded-xl text-center">
+          <h3 className="text-lg font-semibold text-color-secondary mb-3">
+            Garantía y Calidad Asegurada
+          </h3>
+          <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-600">
+            <span className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              Todos los equipos son funcionales
+            </span>
+            <span className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+              Prueba de funcionamiento en local
+            </span>
+            <span className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+              Garantía incluida
+            </span>
+            <span className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+              Soporte técnico especializado
+            </span>
+          </div>
+        </div>
 
-        <section className="mt-8 mb-6 grid gap-6 rounded-xl bg-gradient-to-br from-white to-slate-50 p-6 shadow-md md:grid-cols-2 border border-slate-100">
+        <section className="mt-8 mb-6 grid gap-6 rounded-xl bg-gradient-to-br from-white to-slate-50 p-6 shadow-md md:grid-cols-2 border border-primary">
           <div className="flex flex-col justify-center">
             <div className="inline-flex items-center gap-2 rounded-full bg-secondary/10 px-4 py-1.5 text-sm font-semibold text-secondary w-fit">
               Servicio Especializado
             </div>
             <h2 className="mt-4 text-2xl font-bold text-secondary">
-              Servicio Técnico de Proyectores
+              ¿Buscas servicio técnico de Proyectores?
             </h2>
             <p className="mt-3 text-base text-secondary/80 leading-relaxed">
               Servicio técnico especializado en reparación y mantenimiento de
