@@ -88,7 +88,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (product.name) keywordsArray.push(product.name);
   if (product.brand) keywordsArray.push(product.brand);
   if (product.type) keywordsArray.push(product.type);
-  if (product.lumensANSI) keywordsArray.push(product.lumensANSI);
+  // Ensure we only push strings into the keywords array — convert numbers to string
+  if (typeof product.lumensANSI === "number")
+    keywordsArray.push(String(product.lumensANSI));
   keywordsArray.push("proyector", "accesorio", "repuesto", "iubizon", "Perú");
 
   const imageList = product.media?.length
