@@ -1,7 +1,7 @@
 "use client";
 import { ChevronRight, X } from "lucide-react";
 import React from "react";
-import { HeaderNavigation } from "@/components/ui/HeaderLayout";
+import { HeaderNavigation } from "@/components/ui/layout/HeaderLayout";
 import Link from "next/link";
 
 interface Props {

@@ -32,20 +32,36 @@ export const FooterLayout = () => {
               Sáb 9:00 AM - 12:00 PM - Previa cita
             </p>
           </div>
+          <div className="text-sm text-blue-100 mt-2 pt-3 border-t border-blue-200/30">
+            <p className="mt-1">
+              <span className="font-medium">RUC:</span> 20614600374
+            </p>
+            <p>
+              <span className="font-medium">Razón Social:</span>
+              <br />
+              IUBIZON COMPANY SAC
+            </p>
+          </div>
         </div>
         <div className="flex flex-col gap-2 text-sm">
           <span className="font-bold text-white mb-2">Enlaces rápidos</span>
-          <Link href="/productos" className="hover:text-primary">
-            Productos
-          </Link>
-          <Link href="/servicios/tecnico" className="hover:text-primary">
-            Servicio de Reparación
-          </Link>
-          <Link href="/contacto" className="hover:text-primary">
-            Contacto
+          <Link href="/" className="hover:text-primary">
+            Inicio
           </Link>
           <Link href="/quienes-somos" className="hover:text-primary">
             ¿Quienes somos?
+          </Link>
+          <Link href="/productos" className="hover:text-primary">
+            Productos
+          </Link>
+          <Link
+            href="/servicios/tecnico"
+            className="text-primary font-bold hover:text-[1.1em] transition-all duration-100"
+          >
+            Servicio Técnico
+          </Link>
+          <Link href="/contacto" className="hover:text-primary">
+            Contacto
           </Link>
         </div>
         <div className="flex flex-col gap-3 text-sm">

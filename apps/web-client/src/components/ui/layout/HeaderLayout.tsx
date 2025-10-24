@@ -8,8 +8,8 @@ import { twMerge } from "tailwind-merge";
 import { setLocale } from "yup";
 import yup from "@/config/yup.json";
 import { Menu } from "lucide-react";
-import { ContentWrapper } from "@/components/ui/ContentWrapper";
-import { Drawer } from "@/components/ui/DrawerLayout";
+import { ContentWrapper } from "@/components/ui/layout/ContentWrapper";
+import { Drawer } from "@/components/ui/layout/DrawerLayout";
 
 export interface HeaderNavigation {
   name: string;

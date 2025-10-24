@@ -4,8 +4,8 @@ import { Analytics } from "@vercel/analytics/next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import { FooterLayout } from "@/components/ui/FooterLayout";
-import { HeaderLayout } from "@/components/ui/HeaderLayout";
+import { FooterLayout } from "@/components/ui/layout/FooterLayout";
+import { HeaderLayout } from "@/components/ui/layout/HeaderLayout";
 import { WhatsAppFloatingButton } from "@/components/ui/WhatsAppFloatingButton";
 
 const geistSans = Geist({
