@@ -1,10 +1,10 @@
 import React from "react";
-import { BadgePercent } from "lucide-react";
 import { products } from "@/data-list/products";
 import { ProductCard } from "@/components/ui/ProductCard";
 import Image from "next/image";
 import { productsCondition } from "@/data-list/productsCondition";
 import Link from "next/link";
+import { SlidersComponent } from "@/components/home/Sliders";
 
 export default function Home() {
   const productsByCondition = {
@@ -28,119 +28,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen h-auto w-full bg-slate-50">
-      <div
-        style={{
-          background: `linear-gradient(135deg, #112237,#000 50%, #112237)`,
-        }}
-        className="h-auto relative"
-      >
-        <video
-          autoPlay
-          muted
-          loop
-          poster="/images/education-projectors.jpg"
-          className="absolute inset-0 w-full h-full object-cover opacity-10 pointer-events-none"
-        >
-          <source src="/videos/education-projectors.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        <div className="w-full h-auto min-h-svh sm:min-h-[35em] m-auto flex justify-center flex-wrap items-center lg:items-stretch text-center text-white relative">
-          <div className="items m-[2em] relative flex flex-col items-center lg:items-start justify-center text-center lg:text-left pt-20 lg:pt-0 max-w-2xl">
-            <span className="flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-sm backdrop-blur">
-              <BadgePercent className="h-4 w-4" /> Nuevos y reacondicionados
-            </span>
-
-            <h1 className="mt-4 text-4xl md:text-5xl font-bold leading-tight">
-              Venta y Servicio técnico de Proyectores
-            </h1>
-
-            <p className="mt-3 max-w-2xl md:text-lg opacity-95">
-              Proyectores nuevos y reacondicionados con garantía • Servicio
-              técnico especializado en Lima, Perú
-            </p>
-
-            {/* Servicios destacados */}
-            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 w-full text-left">
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
-                <div className="flex items-center gap-2 mb-2">
-                  <svg
-                    className="w-5 h-5 text-primary"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                    />
-                  </svg>
-                  <h2 className="font-bold text-base">Venta de Proyectores</h2>
-                </div>
-                <p className="text-xs opacity-90">
-                  Equipos Epson nuevos y reacondicionados con garantía extendida
-                </p>
-              </div>
-
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
-                <div className="flex items-center gap-2 mb-2">
-                  <svg
-                    className="w-5 h-5 text-primary"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
-                  <h2 className="font-bold text-base">Servicio Técnico</h2>
-                </div>
-                <p className="text-xs opacity-90">
-                  Reparación, mantenimiento y reacondicionado profesional
-                </p>
-              </div>
-            </div>
-
-            {/* CTAs principales */}
-            <div className="mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-3 w-full">
-              <Link
-                href="#lista"
-                className="rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white shadow-lg hover:shadow-xl hover:bg-primary/90 transition-all"
-              >
-                Ver proyectores disponibles
-              </Link>
-              <Link
-                href="/servicios/tecnico"
-                className="rounded-full border-2 border-white/70 bg-white/10 backdrop-blur-sm px-6 py-3 text-sm font-semibold text-white hover:bg-white/20 transition-all"
-              >
-                Servicio técnico
-              </Link>
-            </div>
-          </div>
-
-          <div className="pet pb-[3em] md:pb-[2em] flex items-end justify-center lg:justify-left">
-            <Image
-              src="/images/pet-saludando.png"
-              alt="iubizon - Venta de proyectores Epson y servicio técnico especializado en Lima, Perú"
-              width={500}
-              height={500}
-              className="relative top-[1em] lg:top-[1em] right-[1em] w-[80%] h-auto sm:w-[22em] mx-auto"
-            />
-          </div>
-        </div>
-      </div>
+      <SlidersComponent />
       <main id="lista" className="mx-auto max-w-[1370px] px-6 py-10">
-        {/* Sección de Confianza y Garantía */}
         <section className="mb-6 grid gap-3 md:grid-cols-4 text-center max-w-[70%] m-auto">
           <div className="rounded-lg bg-white p-3 shadow-sm border border-slate-100">
             <div className="mx-auto w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center mb-2">
@@ -165,7 +54,6 @@ export default function Home() {
               Hasta 12 meses en equipos nuevos
             </p>
           </div>
-
           <div className="rounded-lg bg-white p-3 shadow-sm border border-slate-100">
             <div className="mx-auto w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center mb-2">
               <svg
