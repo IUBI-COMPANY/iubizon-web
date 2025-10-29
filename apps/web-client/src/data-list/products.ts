@@ -16,6 +16,7 @@ export interface Product {
   stock: number;
   description?: string;
   price: number;
+  oldPrice?: number;
   sub?: string;
   badge?: string;
   mainImage?: string;
@@ -420,7 +421,8 @@ export const products: Product[] = [
     oldStock: 20,
     condition: "new",
     description: "",
-    price: 550.0,
+    price: 549.99,
+    oldPrice: 687.5,
     badge: "Nuevo",
     mainImage: "/productos/HY350/HY350.jpg",
     media: [

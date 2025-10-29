@@ -13,9 +13,8 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
   const [scrollY, setScrollY] = useState(0);
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
-  // Precio con descuento de Halloween
-  const originalPrice = Math.round(product.price * 1.25);
-  const discountedPrice = product.price - 0.01;
+  const originalPrice = product.oldPrice || 687.5;
+  const discountedPrice = product.price || 549.99;
   const discountPercentage = Math.round(
     ((originalPrice - discountedPrice) / originalPrice) * 100,
   );
@@ -26,7 +25,6 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Prevenir scroll cuando el modal está abierto
   useEffect(() => {
     if (isVideoModalOpen) {
       document.body.style.overflow = "hidden";
