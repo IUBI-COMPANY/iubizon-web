@@ -8,10 +8,14 @@ import { NoFoundComponent } from "@/components/ui/NoFoundComponent";
 import { InformationAndPriceCard } from "@/components/ui/InformationAndPriceCard";
 import React, { useEffect, useState } from "react";
 import { productsCondition } from "@/data-list/productsCondition";
+import { MAGCUBICHY350 } from "./MAGCUBIC-HY350";
 
 interface Props {
   product: Product;
 }
+
+const SPECIAL_PRODUCT_ID =
+  "Proyector-Led-Portatil-Hy350-Magcubic-Full-Hd-1080p-Android";
 
 export default function ProductDetailPage({ product }: Props) {
   const [showModal, setShowModal] = useState(false);
@@ -24,6 +28,10 @@ export default function ProductDetailPage({ product }: Props) {
       document.body.style.overflow = "auto";
     };
   }, [showModal]);
+
+  if (product.id === SPECIAL_PRODUCT_ID) {
+    return <MAGCUBICHY350 product={product} />;
+  }
 
   return (
     <>

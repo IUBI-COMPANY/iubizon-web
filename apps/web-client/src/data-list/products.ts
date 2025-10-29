@@ -420,7 +420,7 @@ export const products: Product[] = [
     oldStock: 20,
     condition: "new",
     description: "",
-    price: 449.0,
+    price: 549.0,
     badge: "Nuevo",
     mainImage: "/productos/HY350/HY350.jpg",
     media: [
