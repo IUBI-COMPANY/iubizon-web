@@ -13,6 +13,13 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
   const [scrollY, setScrollY] = useState(0);
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
+  // Precio con descuento de Halloween
+  const originalPrice = Math.round(product.price * 1.25);
+  const discountedPrice = product.price - 0.01;
+  const discountPercentage = Math.round(
+    ((originalPrice - discountedPrice) / originalPrice) * 100,
+  );
+
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll);
@@ -139,6 +146,11 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
             </span>
           </div>
 
+          {/* Urgency Banner */}
+          <div className="mb-4 inline-flex items-center gap-2 bg-red-600/90 px-4 py-2 rounded-full text-sm font-bold animate-pulse">
+            <span>⚠️ OFERTA TERMINA EN 48 HORAS</span>
+          </div>
+
           <h1
             className="text-5xl md:text-7xl lg:text-9xl font-bold mb-6 leading-none"
             style={{
@@ -157,7 +169,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
           </h1>
 
           <p
-            className="text-xl md:text-2xl lg:text-3xl font-light mb-12 text-gray-300 max-w-3xl mx-auto"
+            className="text-xl md:text-2xl lg:text-3xl font-light mb-8 text-gray-300 max-w-3xl mx-auto"
             style={{
               opacity: Math.max(0, 1 - scrollY / 400),
               transition: "opacity 0.1s ease-out",
@@ -165,6 +177,27 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
           >
             Android 11.0 • Full HD 1080p • WiFi 6 • Bluetooth 5.0
           </p>
+
+          {/* Price Display with Discount */}
+          <div
+            className="mb-8 flex items-center justify-center gap-4 flex-wrap"
+            style={{
+              opacity: Math.max(0, 1 - scrollY / 400),
+              transition: "opacity 0.1s ease-out",
+            }}
+          >
+            <div className="flex items-center gap-3">
+              <span className="text-gray-400 line-through text-xl md:text-2xl">
+                s/ {originalPrice.toFixed(2)}
+              </span>
+              <span className="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+                -{discountPercentage}%
+              </span>
+            </div>
+            <div className="text-4xl md:text-5xl font-bold text-orange-400">
+              s/ {discountedPrice.toFixed(2)}
+            </div>
+          </div>
 
           <div
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
@@ -175,10 +208,10 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
           >
             <a
               href={`https://wa.me/51972300301?text=${getWhatsAppMessage(product)}`}
-              className="group relative bg-gradient-to-r from-orange-500 to-orange-600 text-white px-10 py-5 rounded-full text-lg font-semibold overflow-hidden transition-all transform hover:scale-105 shadow-lg shadow-orange-500/30"
+              className="group relative bg-gradient-to-r from-orange-500 to-orange-600 text-white px-10 py-5 rounded-full text-lg font-semibold overflow-hidden transition-all transform hover:scale-105 shadow-lg shadow-orange-500/30 animate-pulse"
             >
               <span className="relative z-10">
-                🎃 Comprar ahora · S/ {product.price.toFixed(2)}
+                🎃 SÍ, LO QUIERO AHORA · s/ {discountedPrice.toFixed(2)}
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-orange-700 opacity-0 group-hover:opacity-100 transition-opacity" />
             </a>
@@ -186,8 +219,34 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
               onClick={() => setIsVideoModalOpen(true)}
               className="border-2 border-orange-500/30 backdrop-blur-sm text-white px-10 py-5 rounded-full text-lg font-semibold hover:bg-orange-500/10 hover:border-orange-400 transition-all shadow-lg shadow-orange-500/10"
             >
-              👻 Descubrir más
+              👻 Ver Video
             </button>
+          </div>
+
+          {/* Trust Indicators */}
+          <div
+            className="mt-8 flex flex-wrap items-center justify-center gap-4 text-sm text-gray-400"
+            style={{
+              opacity: Math.max(0, 1 - scrollY / 450),
+              transition: "opacity 0.1s ease-out",
+            }}
+          >
+            <div className="flex items-center gap-2">
+              <span className="text-green-400">✓</span>
+              <span>Envío GRATIS</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-green-400">✓</span>
+              <span>Garantía 1 año</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-green-400">✓</span>
+              <span>Pago seguro</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-orange-400">⭐</span>
+              <span>+50 clientes satisfechos</span>
+            </div>
           </div>
         </div>
 
@@ -479,7 +538,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
       {/* Tech Specs Section */}
       <section
         id="especificaciones"
-        className="py-32 px-4 bg-gradient-to-b from-black via-orange-950/5 to-gray-950 relative"
+        className="py-20 md:py-32 px-4 bg-gradient-to-b from-black via-orange-950/5 to-gray-950 relative"
       >
         {/* Halloween pumpkins */}
         <div className="absolute top-20 left-10 text-5xl opacity-20 animate-pulse">
@@ -493,86 +552,98 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
         </div>
 
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-4xl md:text-6xl font-bold text-center mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold text-center mb-3 md:mb-4">
             Especificaciones
             <span className="block mt-2 bg-gradient-to-r from-orange-400 via-purple-400 to-orange-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(251,146,60,0.3)]">
               Técnicas 🕷️
             </span>
           </h2>
-          <p className="text-center text-orange-400/60 mb-20 text-sm">
+          <p className="text-center text-orange-400/60 mb-12 md:mb-20 text-xs md:text-sm">
             🕸️ Especial de Halloween 🕸️
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 md:gap-x-20 gap-y-4 md:gap-y-8">
             <div className="group">
-              <div className="flex justify-between items-baseline py-6 border-b border-gray-800 hover:border-orange-600 transition-colors">
-                <span className="text-gray-400 text-lg">Brillo</span>
-                <span className="text-white text-xl font-semibold group-hover:text-orange-400 transition-colors">
+              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-orange-600 transition-colors">
+                <span className="text-gray-400 text-sm md:text-lg">Brillo</span>
+                <span className="text-white text-base md:text-xl font-semibold group-hover:text-orange-400 transition-colors text-right">
                   {product.lumensANSI} lúmenes ANSI
                 </span>
               </div>
             </div>
 
             <div className="group">
-              <div className="flex justify-between items-baseline py-6 border-b border-gray-800 hover:border-orange-600 transition-colors">
-                <span className="text-gray-400 text-lg">Resolución</span>
-                <span className="text-white text-xl font-semibold group-hover:text-orange-400 transition-colors">
+              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-orange-600 transition-colors">
+                <span className="text-gray-400 text-sm md:text-lg">
+                  Resolución
+                </span>
+                <span className="text-white text-base md:text-xl font-semibold group-hover:text-orange-400 transition-colors text-right">
                   {product.nativeResolution}
                 </span>
               </div>
             </div>
 
             <div className="group">
-              <div className="flex justify-between items-baseline py-6 border-b border-gray-800 hover:border-orange-600 transition-colors">
-                <span className="text-gray-400 text-lg">Sistema Operativo</span>
-                <span className="text-white text-xl font-semibold group-hover:text-orange-400 transition-colors">
+              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-orange-600 transition-colors">
+                <span className="text-gray-400 text-sm md:text-lg">
+                  Sistema Operativo
+                </span>
+                <span className="text-white text-base md:text-xl font-semibold group-hover:text-orange-400 transition-colors text-right">
                   Android 11.0
                 </span>
               </div>
             </div>
 
             <div className="group">
-              <div className="flex justify-between items-baseline py-6 border-b border-gray-800 hover:border-orange-600 transition-colors">
-                <span className="text-gray-400 text-lg">Procesador</span>
-                <span className="text-white text-xl font-semibold group-hover:text-orange-400 transition-colors">
+              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-orange-600 transition-colors">
+                <span className="text-gray-400 text-sm md:text-lg">
+                  Procesador
+                </span>
+                <span className="text-white text-base md:text-xl font-semibold group-hover:text-orange-400 transition-colors text-right">
                   Allwinner H713 Quad-Core
                 </span>
               </div>
             </div>
 
             <div className="group">
-              <div className="flex justify-between items-baseline py-6 border-b border-gray-800 hover:border-orange-600 transition-colors">
-                <span className="text-gray-400 text-lg">Memoria</span>
-                <span className="text-white text-xl font-semibold group-hover:text-orange-400 transition-colors">
+              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-orange-600 transition-colors">
+                <span className="text-gray-400 text-sm md:text-lg">
+                  Memoria
+                </span>
+                <span className="text-white text-base md:text-xl font-semibold group-hover:text-orange-400 transition-colors text-right">
                   2GB RAM + 32GB ROM
                 </span>
               </div>
             </div>
 
             <div className="group">
-              <div className="flex justify-between items-baseline py-6 border-b border-gray-800 hover:border-orange-600 transition-colors">
-                <span className="text-gray-400 text-lg">Conectividad</span>
-                <span className="text-white text-xl font-semibold group-hover:text-orange-400 transition-colors">
+              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-orange-600 transition-colors">
+                <span className="text-gray-400 text-sm md:text-lg">
+                  Conectividad
+                </span>
+                <span className="text-white text-base md:text-xl font-semibold group-hover:text-orange-400 transition-colors text-right">
                   WiFi 6 • Bluetooth 5.0
                 </span>
               </div>
             </div>
 
             <div className="group">
-              <div className="flex justify-between items-baseline py-6 border-b border-gray-800 hover:border-orange-600 transition-colors">
-                <span className="text-gray-400 text-lg">
+              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-orange-600 transition-colors">
+                <span className="text-gray-400 text-sm md:text-lg">
                   Tamaño de proyección
                 </span>
-                <span className="text-white text-xl font-semibold group-hover:text-orange-400 transition-colors">
+                <span className="text-white text-base md:text-xl font-semibold group-hover:text-orange-400 transition-colors text-right">
                   Hasta 150&quot;
                 </span>
               </div>
             </div>
 
             <div className="group">
-              <div className="flex justify-between items-baseline py-6 border-b border-gray-800 hover:border-orange-600 transition-colors">
-                <span className="text-gray-400 text-lg">Nivel de ruido</span>
-                <span className="text-white text-xl font-semibold group-hover:text-orange-400 transition-colors">
+              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-orange-600 transition-colors">
+                <span className="text-gray-400 text-sm md:text-lg">
+                  Nivel de ruido
+                </span>
+                <span className="text-white text-base md:text-xl font-semibold group-hover:text-orange-400 transition-colors text-right">
                   {"< 35 dB"}
                 </span>
               </div>
@@ -580,35 +651,46 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
           </div>
 
           {/* Additional Features */}
-          <div className="mt-20 p-10 bg-gradient-to-br from-orange-950/20 to-purple-950/20 backdrop-blur-sm rounded-3xl border border-orange-500/20 shadow-lg shadow-orange-500/10">
-            <h3 className="text-2xl font-bold mb-6 text-center flex items-center justify-center gap-3">
+          <div className="mt-12 md:mt-20 p-6 md:p-10 bg-gradient-to-br from-orange-950/20 to-purple-950/20 backdrop-blur-sm rounded-3xl border border-orange-500/20 shadow-lg shadow-orange-500/10">
+            <h3 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-center flex items-center justify-center gap-2 md:gap-3 flex-wrap">
               <span>🎃</span>
               <span>Características Adicionales</span>
               <span>👻</span>
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-300">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 text-gray-300">
               <div className="flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-orange-400 to-purple-400" />
-                <span>Enfoque eléctrico con control remoto</span>
+                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-orange-400 to-purple-400 flex-shrink-0" />
+                <span className="text-sm md:text-base">
+                  Enfoque eléctrico con control remoto
+                </span>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-orange-400 to-purple-400" />
-                <span>Corrección trapezoidal automática</span>
+                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-orange-400 to-purple-400 flex-shrink-0" />
+                <span className="text-sm md:text-base">
+                  Corrección trapezoidal automática
+                </span>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-orange-400 to-purple-400" />
-                <span>Zoom ajustable 50% - 100%</span>
+                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-orange-400 to-purple-400 flex-shrink-0" />
+                <span className="text-sm md:text-base">
+                  Zoom ajustable 50% - 100%
+                </span>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-orange-400 to-purple-400" />
-                <span>Control por voz vía Bluetooth</span>
+                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-orange-400 to-purple-400 flex-shrink-0" />
+                <span className="text-sm md:text-base">
+                  Control por voz vía Bluetooth
+                </span>
               </div>
             </div>
           </div>
         </div>
       </section>
       {/* CTA Section */}
-      <section id="comprar" className="relative py-32 px-4 overflow-hidden">
+      <section
+        id="comprar"
+        className="relative py-20 md:py-32 px-4 overflow-hidden"
+      >
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
@@ -643,28 +725,81 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <div className="mb-4 text-4xl animate-bounce">🎃</div>
-          <h2 className="text-5xl md:text-7xl font-bold mb-2 bg-gradient-to-r from-orange-400 via-white to-orange-400 bg-clip-text text-transparent">
-            Llévalo Hoy
+          {/* Urgency Indicator */}
+          <div className="mb-4 md:mb-6 inline-flex items-center gap-2 bg-red-600/90 px-3 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-base font-bold animate-pulse">
+            <span className="relative flex h-2 w-2 md:h-3 md:w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 md:h-3 md:w-3 bg-red-500"></span>
+            </span>
+            <span className="leading-tight">
+              ⏰ ÚLTIMAS UNIDADES - OFERTA LIMITADA
+            </span>
+          </div>
+
+          <div className="mb-3 md:mb-4 text-3xl md:text-4xl animate-bounce">
+            🎃
+          </div>
+          <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold mb-3 md:mb-4 bg-gradient-to-r from-orange-400 via-white to-orange-400 bg-clip-text text-transparent px-2">
+            No Dejes Pasar Esta Oferta
           </h2>
-          <p className="text-orange-400 mb-4 text-lg font-semibold">
-            ✨ Oferta Especial de Halloween ✨
+          <p className="text-orange-400 mb-4 md:mb-6 text-base md:text-xl font-semibold">
+            ✨ Descuento Especial de Halloween ✨
           </p>
-          <p className="text-2xl md:text-3xl font-light mb-4 text-gray-300">
-            S/ {product.price.toFixed(2)}
-          </p>
-          <p className="text-lg text-gray-400 mb-12">
-            {product.stock > 0
-              ? `Solo ${product.stock} unidades disponibles 🎃`
-              : "Consultar disponibilidad 👻"}
-          </p>
+
+          {/* Price Section */}
+          <div className="mb-5 md:mb-6">
+            <div className="flex items-center justify-center gap-2 md:gap-4 mb-2 md:mb-3 flex-wrap">
+              <span className="text-gray-400 line-through text-lg md:text-2xl lg:text-3xl">
+                s/ {originalPrice.toFixed(2)}
+              </span>
+              <span className="bg-red-600 text-white px-3 md:px-4 py-1 md:py-2 rounded-full text-sm md:text-lg font-bold animate-pulse">
+                AHORRA {discountPercentage}%
+              </span>
+            </div>
+            <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-orange-400 mb-2">
+              s/ {discountedPrice.toFixed(2)}
+            </div>
+            <p className="text-green-400 text-base md:text-lg font-semibold">
+              💰 ¡Ahorra s/ {(originalPrice - discountedPrice).toFixed(2)} HOY!
+            </p>
+          </div>
+
+          {/* Stock Indicator */}
+          <div className="mb-6 md:mb-8 bg-orange-900/30 border border-orange-500/30 rounded-2xl p-4 md:p-6 max-w-md mx-auto">
+            <div className="flex items-center justify-between mb-3 gap-2">
+              <span className="text-gray-300 text-sm md:text-base">
+                Stock disponible:
+              </span>
+              <span className="text-orange-400 font-bold text-sm md:text-base">
+                {product.stock > 0 ? `${product.stock} unidades` : "Consultar"}
+              </span>
+            </div>
+            {product.stock > 0 && product.stock <= 10 && (
+              <>
+                <div className="w-full bg-gray-700 rounded-full h-2 md:h-3 mb-2">
+                  <div
+                    className="bg-gradient-to-r from-red-600 to-orange-500 h-2 md:h-3 rounded-full animate-pulse"
+                    style={{ width: `${(product.stock / 10) * 100}%` }}
+                  ></div>
+                </div>
+                <p className="text-red-400 text-xs md:text-sm font-semibold animate-pulse leading-tight">
+                  ⚠️ ¡Solo quedan {product.stock} unidades! Se están agotando
+                  rápido 🔥
+                </p>
+              </>
+            )}
+          </div>
+
+          {/* CTA Button */}
           <Link
             href={`https://wa.me/51972300301?text=${getWhatsAppMessage(product)}`}
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-14 py-6 rounded-full text-xl font-bold hover:shadow-2xl hover:shadow-orange-500/50 transition-all transform hover:scale-105"
+            className="inline-flex items-center justify-center gap-2 md:gap-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 md:px-16 py-5 md:py-7 rounded-full text-base md:text-xl lg:text-2xl font-bold hover:shadow-2xl hover:shadow-orange-500/50 transition-all transform hover:scale-105 mb-6 animate-pulse w-full sm:w-auto max-w-full"
           >
-            <span>🎃 Comprar Ahora</span>
+            <span className="text-center leading-tight">
+              🎃 SÍ, LO QUIERO CON DESCUENTO
+            </span>
             <svg
-              className="w-6 h-6"
+              className="w-5 h-5 md:w-7 md:h-7 flex-shrink-0"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -678,8 +813,62 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
             </svg>
           </Link>
 
-          <p className="text-sm text-gray-500 mt-8">
-            🦇 Envío gratis en Lima • Garantía incluida • Soporte técnico 👻
+          {/* Risk Reversal - Garantías */}
+          <div className="mt-6 md:mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 max-w-3xl mx-auto">
+            <div className="bg-white/5 backdrop-blur-sm border border-orange-500/20 rounded-xl p-3 md:p-4">
+              <div className="text-2xl md:text-3xl mb-1 md:mb-2">🚚</div>
+              <h4 className="font-bold text-white mb-1 text-sm md:text-base">
+                Envío GRATIS
+              </h4>
+              <p className="text-xs md:text-sm text-gray-400">
+                En Lima Metropolitana
+              </p>
+            </div>
+            <div className="bg-white/5 backdrop-blur-sm border border-orange-500/20 rounded-xl p-3 md:p-4">
+              <div className="text-2xl md:text-3xl mb-1 md:mb-2">🛡️</div>
+              <h4 className="font-bold text-white mb-1 text-sm md:text-base">
+                Garantía 1 Año
+              </h4>
+              <p className="text-xs md:text-sm text-gray-400">
+                Cubierta por fabricante
+              </p>
+            </div>
+            <div className="bg-white/5 backdrop-blur-sm border border-orange-500/20 rounded-xl p-3 md:p-4">
+              <div className="text-2xl md:text-3xl mb-1 md:mb-2">💳</div>
+              <h4 className="font-bold text-white mb-1 text-sm md:text-base">
+                Pago Seguro
+              </h4>
+              <p className="text-xs md:text-sm text-gray-400">
+                Múltiples métodos
+              </p>
+            </div>
+          </div>
+
+          {/* Social Proof */}
+          <div className="mt-6 md:mt-8 flex items-center justify-center gap-2 text-xs md:text-sm flex-wrap">
+            <div className="flex -space-x-2">
+              <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-orange-500 border-2 border-black flex items-center justify-center text-xs">
+                👤
+              </div>
+              <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-purple-500 border-2 border-black flex items-center justify-center text-xs">
+                👤
+              </div>
+              <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-pink-500 border-2 border-black flex items-center justify-center text-xs">
+                👤
+              </div>
+              <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-blue-500 border-2 border-black flex items-center justify-center text-xs">
+                👤
+              </div>
+            </div>
+            <p className="text-gray-300 text-center leading-tight">
+              <span className="text-orange-400 font-bold">+50 clientes</span>{" "}
+              compraron esta semana
+            </p>
+          </div>
+
+          <p className="text-xs md:text-sm text-gray-500 mt-4 md:mt-6 px-4 leading-relaxed">
+            🦇 Soporte técnico especializado • Instalación guiada • Asesoría
+            personalizada 👻
           </p>
         </div>
       </section>
