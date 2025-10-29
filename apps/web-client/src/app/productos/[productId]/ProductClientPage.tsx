@@ -189,14 +189,16 @@ export default function ProductDetailPage({ product }: Props) {
                         )}
                       </div>
                       <div className="w-full flex flex-col gap-2 text-foreground font-mediun text-[.9em]">
-                        <div className="flex flex-col md:flex-row flex-wrap items-start md:items-end">
-                          <div className="pr-4 w-[11em] leading-5">
-                            Advertencia:
+                        {product.type === "Proyector" && (
+                          <div className="flex flex-col md:flex-row flex-wrap items-start md:items-end">
+                            <div className="pr-4 w-[11em] leading-5">
+                              Advertencia:
+                            </div>
+                            <div className="text-secondary">
+                              Las lámparas del proyector contienen mercurio.
+                            </div>
                           </div>
-                          <div className="text-secondary">
-                            Las lámparas del proyector contienen mercurio.
-                          </div>
-                        </div>
+                        )}
                         {product?.aspectRatio && (
                           <div className="flex flex-col md:flex-row flex-wrap items-start md:items-end">
                             <div className="pr-4 w-[11em] leading-5 ">
@@ -246,7 +248,7 @@ export default function ProductDetailPage({ product }: Props) {
                 <div className="text-2xl mb-3 text-secondary font-bold">
                   Descripción del artículo:
                 </div>
-                <p className="pre-line text-base text-black/90">
+                <p className="text-base text-black/90 whitespace-pre-line">
                   {product.note}
                 </p>
               </div>
