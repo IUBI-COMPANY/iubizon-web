@@ -424,12 +424,13 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
       </section>
 
       {/* Banner Section */}
-      <section className="relative h-screen flex items-center justify-center">
+      <section className="relative flex items-center justify-center">
         <Image
           src="/productos/HY350/banner.webp"
+          width={1920}
+          height={1080}
           alt="MagCubic - Proyector Multimedia HY350"
-          fill
-          className="object-contain"
+          className="object-contain w-full h-auto"
           priority
         />
       </section>
@@ -446,10 +447,8 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
             priority
           />
         </div>
-
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 opacity-20" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-600 via-transparent to-secondary-600 opacity-20" />
         <div className="absolute inset-0 backdrop-blur-xs" />
-
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <h2 className="text-5xl md:text-7xl font-bold mb-6">Llévalo Hoy</h2>
           <p className="text-2xl md:text-3xl font-light mb-4 text-gray-300">
@@ -460,7 +459,6 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
               ? `Solo ${product.stock} unidades disponibles`
               : "Consultar disponibilidad"}
           </p>
-
           <Link
             href={`https://wa.me/51972300301?text=${getWhatsAppMessage(product)}`}
             className="inline-flex items-center gap-3 bg-white text-black px-14 py-6 rounded-full text-xl font-bold hover:shadow-2xl hover:shadow-white/20 transition-all transform hover:scale-105"
@@ -486,16 +484,6 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
           </p>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="py-12 px-4 bg-black border-t border-gray-900">
-        <div className="max-w-7xl mx-auto text-center text-gray-500 text-sm">
-          <p>MagCubic HY350 • Proyector LED Portátil Android</p>
-          <p className="mt-2">
-            © 2025 iubizon. Todos los derechos reservados.
-          </p>
-        </div>
-      </footer>
     </div>
   );
 };

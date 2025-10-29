@@ -155,7 +155,8 @@ export const SlidersComponent = () => {
       src: "/images/halloween/halloween-banner.jpg",
       srcMb: "/images/halloween/halloween-banner-mb.jpg",
       alt: "Proyectores para Halloween",
-      ctaLink: "/productos/hy-350",
+      ctaLink:
+        "/productos/Proyector-Led-Portatil-Hy350-Magcubic-Full-Hd-1080p-Android",
     },
   ];
 
