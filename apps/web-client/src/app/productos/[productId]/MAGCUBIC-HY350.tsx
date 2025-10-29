@@ -11,6 +11,7 @@ interface SpecialProductProps {
 
 export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
   const [scrollY, setScrollY] = useState(0);
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -18,8 +19,62 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Prevenir scroll cuando el modal está abierto
+  useEffect(() => {
+    if (isVideoModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isVideoModalOpen]);
+
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
+      {/* Video Modal */}
+      {isVideoModalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm p-0 md:p-4"
+          onClick={() => setIsVideoModalOpen(false)}
+        >
+          <div className="relative w-full max-w-6xl mx-0 md:mx-4">
+            {/* Close Button */}
+            <button
+              onClick={() => setIsVideoModalOpen(false)}
+              className="absolute -top-2 right-2 md:-top-12 md:right-0 z-10 text-white hover:text-gray-300 transition-colors bg-black/50 md:bg-transparent rounded-full p-2 md:p-0"
+              aria-label="Cerrar video"
+            >
+              <svg
+                className="w-8 h-8 md:w-10 md:h-10"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+
+            {/* Video Container */}
+            <div
+              className="relative w-full aspect-video rounded-none md:rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <video autoPlay controls className="w-full h-full object-contain">
+                <source src="/productos/HY350/outboxing.mp4" type="video/mp4" />
+                Tu navegador no soporta la reproducción de video.
+              </video>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Hero Section with Video */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Video Background */}
@@ -46,7 +101,8 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
             className="text-5xl md:text-7xl lg:text-9xl font-bold mb-6 leading-none"
             style={{
               transform: `translateY(${scrollY * 0.3}px)`,
-              transition: "transform 0.1s ease-out",
+              opacity: Math.max(0, 1 - scrollY / 300),
+              transition: "transform 0.1s ease-out, opacity 0.1s ease-out",
             }}
           >
             <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
@@ -58,26 +114,38 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
             </span>
           </h1>
 
-          <p className="text-xl md:text-2xl lg:text-3xl font-light mb-12 text-gray-300 max-w-3xl mx-auto">
+          <p
+            className="text-xl md:text-2xl lg:text-3xl font-light mb-12 text-gray-300 max-w-3xl mx-auto"
+            style={{
+              opacity: Math.max(0, 1 - scrollY / 400),
+              transition: "opacity 0.1s ease-out",
+            }}
+          >
             Android 11.0 • Full HD 1080p • WiFi 6 • Bluetooth 5.0
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link
-              href="#comprar"
+          <div
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            style={{
+              opacity: Math.max(0, 1 - scrollY / 450),
+              transition: "opacity 0.1s ease-out",
+            }}
+          >
+            <a
+              href={`https://wa.me/51972300301?text=${getWhatsAppMessage(product)}`}
               className="group relative bg-white text-black px-10 py-5 rounded-full text-lg font-semibold overflow-hidden transition-all transform hover:scale-105"
             >
               <span className="relative z-10">
                 Comprar ahora · S/ {product.price.toFixed(2)}
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-            </Link>
-            <Link
-              href="#galeria"
+            </a>
+            <button
+              onClick={() => setIsVideoModalOpen(true)}
               className="border-2 border-white/30 backdrop-blur-sm text-white px-10 py-5 rounded-full text-lg font-semibold hover:bg-white/10 hover:border-white transition-all"
             >
               Descubrir más
-            </Link>
+            </button>
           </div>
         </div>
 
