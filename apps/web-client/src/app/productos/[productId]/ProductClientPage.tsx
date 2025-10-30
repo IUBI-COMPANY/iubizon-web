@@ -29,7 +29,7 @@ export default function ProductDetailPage({ product }: Props) {
     };
   }, [showModal]);
 
-  if (product.id === SPECIAL_PRODUCT_ID) {
+  if (product.id.toUpperCase() === SPECIAL_PRODUCT_ID.toUpperCase()) {
     return <MAGCUBICHY350 product={product} />;
   }
 
