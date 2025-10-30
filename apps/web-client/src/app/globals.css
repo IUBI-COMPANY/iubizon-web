@@ -92,3 +92,34 @@ body {
   font-size: 17px;
   font-family: "sfpro", Helvetica, Arial, sans-serif;
 }
+
+/* Animaciones para productos especiales */
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(251, 146, 60, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 0 40px rgba(251, 146, 60, 0.6),
+      0 0 60px rgba(251, 146, 60, 0.4);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.animate-shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

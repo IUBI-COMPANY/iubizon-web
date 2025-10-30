@@ -34,6 +34,7 @@ export interface Product {
   throwRatio?: string;
   category?: string[];
   note?: string;
+  special?: boolean;
 }
 
 export interface MediaItem {
@@ -414,9 +415,9 @@ export const products: Product[] = [
     note: `Proyector ideal para aulas de estudio bien iluminadas y pequeños auditorios. Resolución WXGA ideal para presentaciones multimedia. Lámpara con durabilidad de hasta 12,000 horas.`,
   },
   {
-    id: "Proyector-Led-Portatil-Hy350-Magcubic-Full-Hd-1080p-Android",
+    id: "Proyector-Led-Portatil-HY350-Magcubic-Full-Hd-1080p-Android",
     model: "HY350",
-    name: "Proyector Led Portátil Hy350 Magcubic Full Hd 1080p Android",
+    name: "Proyector Led Portátil HY350 Magcubic Full Hd 1080p Android",
     stock: 4,
     oldStock: 20,
     condition: "new",
@@ -471,6 +472,7 @@ export const products: Product[] = [
         Nota Al emparejar el proyector con el control remoto a través de Bluetooth, podrás utilizar la función de control por voz.
 
     `,
+    special: true,
   },
   {
     id: "ELPAP07",

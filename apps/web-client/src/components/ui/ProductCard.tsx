@@ -11,6 +11,7 @@ interface Props {
 
 export const ProductCard = ({ product }: Props) => {
   const isNew = product?.condition === "new";
+  const isSpecial = product?.special === true;
 
   // Generate descriptive alt text for product card image
   const getProductImageAlt = () => {
@@ -26,11 +27,20 @@ export const ProductCard = ({ product }: Props) => {
     <article
       key={product.model}
       className={twMerge(
-        "keen-slider__slide flex flex-col h-full group rounded-2xl p-5 shadow-sm hover:shadow-md border-solid border-1 border-gray-400/40 bg-white",
+        "keen-slider__slide flex flex-col h-full group rounded-3xl p-5 shadow-sm hover:shadow-md border-solid border-1 border-gray-400/40 bg-white relative overflow-hidden",
         `${product?.condition === "new" && "border-primary"}`,
+        isSpecial &&
+          "border-2 border-orange-400/60 shadow-xl shadow-orange-400/20",
       )}
     >
-      <div className="mb-3">
+      {isSpecial && (
+        <>
+          <div className="absolute -top-2 -right-2 w-24 h-24 bg-gradient-to-br from-orange-400/15 to-yellow-400/10 rounded-full blur-2xl pointer-events-none" />
+          <div className="absolute -bottom-2 -left-2 w-24 h-24 bg-gradient-to-tr from-orange-400/10 to-yellow-400/15 rounded-full blur-2xl pointer-events-none" />
+          <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-orange-400/30 pointer-events-none" />
+        </>
+      )}
+      <div className="mb-3 relative z-10">
         <div className="relative w-full h-48 rounded-xl overflow-hidden bg-white">
           {product?.condition && (
             <span
@@ -40,6 +50,12 @@ export const ProductCard = ({ product }: Props) => {
               )}
             >
               {isNew ? "Nuevo" : "Reacondicionado"}
+            </span>
+          )}
+          {isSpecial && (
+            <span className="rounded-full px-2.5 py-1 text-xs font-semibold bg-gradient-to-r from-orange-500 to-orange-600 text-white absolute top-1 right-1 shadow-md flex items-center gap-1">
+              <span className="animate-pulse">⭐</span>
+              <span>Best seller</span>
             </span>
           )}
           <Image
@@ -52,10 +68,10 @@ export const ProductCard = ({ product }: Props) => {
         </div>
       </div>
       {/* Título */}
-      <div className="flex flex-wrap gap-2 item-center">
+      <div className="flex flex-wrap gap-2 item-center relative z-10">
         <h2 className="text-xl font-semibold text-gray-800">{product.name}</h2>
       </div>
-      <div className="my-2 flex flex-wrap gap-2 justify-start items-center">
+      <div className="my-2 flex flex-wrap gap-2 justify-start items-center relative z-10">
         {product?.brand && (
           <span className="px-3 py-[.4em] rounded-full font-semibold text-[.6em] shadow-sm focus:outline-none bg-white/90 text-secondary border border-secondary/40">
             {product.brand}
@@ -73,7 +89,7 @@ export const ProductCard = ({ product }: Props) => {
         )}
       </div>
       {/* Stock */}
-      <p className="mt-1 text-sm text-secondary/70">
+      <p className="mt-1 text-sm text-secondary/70 relative z-10">
         Cantidad: {product.stock} {product.stock === 1 ? "unidad" : "unidades"}
         {product?.oldStock && (
           <>
@@ -86,18 +102,25 @@ export const ProductCard = ({ product }: Props) => {
         )}
       </p>
       {product.stock <= 0 ? (
-        <p className="mt-1 text-xs text-red-600">
+        <p className="mt-1 text-xs text-red-600 relative z-10">
           Lo sentimos ya no queda stock, pero{" "}
           <span className="font-semibold cursor-pointer">
             puede comprarlo a pedido
           </span>
         </p>
       ) : (
-        <p className="mt-1 text-xs text-green-600 font-medium">
+        <p className="mt-1 text-xs text-green-600 font-medium relative z-10">
           Disponible puedes comprarlo ahora mismo
         </p>
       )}
-      <div className="bg-orange-50 rounded-lg py-2 px-4 my-3 text-center">
+      <div
+        className={twMerge(
+          "rounded-lg py-2 px-4 my-3 text-center relative z-10",
+          isSpecial
+            ? "bg-gradient-to-br from-orange-50 to-orange-100/50 border border-orange-200/50"
+            : "bg-orange-50",
+        )}
+      >
         <div className="flex items-end justify-center gap-1">
           <p className="text-base font-bold text-primary flex justify-center items-start gap-1">
             <span className="text-[.7em]">S/</span>
@@ -109,7 +132,7 @@ export const ProductCard = ({ product }: Props) => {
           <p className="text-xs text-secondary/80">{product.sub}</p>
         )}
       </div>
-      <div className="flex items-center mt-3 text-sm text-gray-600 mb-1">
+      <div className="flex items-center mt-3 text-sm text-gray-600 mb-1 relative z-10">
         <svg
           className="w-5 h-5 text-green-500 mr-2"
           fill="none"
@@ -126,7 +149,7 @@ export const ProductCard = ({ product }: Props) => {
         Descuento por volumen
       </div>
       {!isNew && (
-        <div className="flex items-center text-sm text-gray-600 mb-1">
+        <div className="flex items-center text-sm text-gray-600 mb-1 relative z-10">
           <svg
             className="w-5 h-5 text-green-500 mr-2"
             fill="none"
@@ -143,7 +166,7 @@ export const ProductCard = ({ product }: Props) => {
           Prueba de funcionamiento verificada
         </div>
       )}
-      <div className="flex items-center text-sm text-gray-600 mb-1">
+      <div className="flex items-center text-sm text-gray-600 mb-1 relative z-10">
         <svg
           className="w-5 h-5 text-green-500 mr-2"
           fill="none"
@@ -159,11 +182,16 @@ export const ProductCard = ({ product }: Props) => {
         </svg>
         Garantía de {product?.condition === "new" ? "12 meses" : "6 meses"}
       </div>
-      <div className="mt-3 grid gap-2 grid-cols-[1fr_auto] row-span-1 items-end">
+      <div className="mt-3 grid gap-2 grid-cols-[1fr_auto] row-span-1 items-end relative z-10">
         <a
           href={`https://wa.me/51972300301?text=${getWhatsAppMessage(product)}`}
           target="_blank"
-          className="w-full rounded-xl px-4 py-2 text-center text-sm font-semibold shadow-sm transition bg-secondary text-white"
+          className={twMerge(
+            "w-full rounded-xl px-4 py-2 text-center text-sm font-semibold shadow-sm transition text-white",
+            isSpecial
+              ? "bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 shadow-md hover:shadow-lg"
+              : "bg-secondary",
+          )}
         >
           {product.stock <= 0 ? "Comprar a pedido" : "Comprar ahora"}
         </a>
