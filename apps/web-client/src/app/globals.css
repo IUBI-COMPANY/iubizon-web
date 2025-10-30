@@ -125,6 +125,15 @@ body {
   }
 }
 
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .animate-shimmer {
   background-size: 200% 100%;
   animation: shimmer 3s ease-in-out infinite;
@@ -132,6 +141,10 @@ body {
 
 .animate-float {
   animation: float 3s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
 }
 
 .animate-pulse-slow {
