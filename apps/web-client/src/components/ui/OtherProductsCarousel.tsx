@@ -14,7 +14,11 @@ export default function OtherProductsCarousel({
   const products = allProducts
     .filter((p) => p.id !== currentProduct.id)
     .sort((a, b) => {
-      // Productos del mismo tipo que currentProduct van primero
+      // Primero: Productos con special: true
+      if (a.special && !b.special) return -1;
+      if (!a.special && b.special) return 1;
+
+      // Segundo: Productos del mismo tipo que currentProduct
       const aIsSameType = a.type === currentProduct.type;
       const bIsSameType = b.type === currentProduct.type;
 

@@ -8,15 +8,24 @@ import { products } from "@/data-list/products";
 import { Filter, Package, ShoppingCart, Star } from "lucide-react";
 
 export default function ProductsClientPage() {
+  const sortProductsBySpecial = (productsList: typeof products) => {
+    return [...productsList].sort((a, b) => {
+      if (a.special === b.special) return 0;
+      return a.special ? -1 : 1;
+    });
+  };
+
   const productsByCondition = {
     new: {
       ...productsCondition.new,
-      products: products.filter((product) => product.condition === "new"),
+      products: sortProductsBySpecial(
+        products.filter((product) => product.condition === "new"),
+      ),
     },
     reconditioned: {
       ...productsCondition.reconditioned,
-      products: products.filter(
-        (product) => product.condition === "reconditioned",
+      products: sortProductsBySpecial(
+        products.filter((product) => product.condition === "reconditioned"),
       ),
     },
   };

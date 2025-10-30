@@ -7,15 +7,24 @@ import Link from "next/link";
 import { SlidersComponent } from "@/components/home/Sliders";
 
 export default function Home() {
+  const sortProductsBySpecial = (productsList: typeof products) => {
+    return [...productsList].sort((a, b) => {
+      if (a.special === b.special) return 0;
+      return a.special ? -1 : 1;
+    });
+  };
+
   const productsByCondition = {
     new: {
       ...productsCondition.new,
-      products: products.filter((products) => products.condition === "new"),
+      products: sortProductsBySpecial(
+        products.filter((products) => products.condition === "new"),
+      ),
     },
     reconditioned: {
       ...productsCondition.reconditioned,
-      products: products.filter(
-        (products) => products.condition === "reconditioned",
+      products: sortProductsBySpecial(
+        products.filter((products) => products.condition === "reconditioned"),
       ),
     },
   };
