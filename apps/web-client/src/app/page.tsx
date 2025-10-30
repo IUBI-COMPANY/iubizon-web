@@ -322,7 +322,7 @@ export default function Home() {
                         </div>
                         <div className="flex items-center gap-2 text-gray-200 justify-center">
                           <span className="text-orange-400">✓</span>
-                          <span>Pantalla 150"</span>
+                          <span>Pantalla 150&quot;</span>
                         </div>
                       </div>
                     </div>
@@ -356,7 +356,7 @@ export default function Home() {
                       </div>
                       <div className="flex items-center gap-2 text-gray-200">
                         <span className="text-orange-400">✓</span>
-                        <span>Pantalla 150"</span>
+                        <span>Pantalla 150&quot;</span>
                       </div>
                     </div>
                   </div>
