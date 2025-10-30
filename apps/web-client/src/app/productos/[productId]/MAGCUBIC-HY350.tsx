@@ -38,26 +38,6 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
-      {/* Halloween Floating Pumpkins - Decorative */}
-      <div
-        className="fixed top-20 left-10 z-20 pointer-events-none animate-bounce"
-        style={{ animationDuration: "3s" }}
-      >
-        <div className="text-6xl opacity-70">🎃</div>
-      </div>
-      <div
-        className="fixed top-40 right-10 z-20 pointer-events-none animate-bounce"
-        style={{ animationDuration: "4s", animationDelay: "1s" }}
-      >
-        <div className="text-5xl opacity-60">👻</div>
-      </div>
-      <div
-        className="fixed bottom-32 left-20 z-20 pointer-events-none animate-bounce"
-        style={{ animationDuration: "3.5s", animationDelay: "0.5s" }}
-      >
-        <div className="text-4xl opacity-50">🦇</div>
-      </div>
-
       {/* Video Modal */}
       {isVideoModalOpen && (
         <div
@@ -243,7 +223,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
             </div>
             <div className="flex items-center gap-2">
               <span className="text-orange-400">⭐</span>
-              <span>+50 clientes satisfechos</span>
+              <span>+16 clientes satisfechos</span>
             </div>
           </div>
         </div>
@@ -859,7 +839,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
               </div>
             </div>
             <p className="text-gray-300 text-center leading-tight">
-              <span className="text-orange-400 font-bold">+50 clientes</span>{" "}
+              <span className="text-orange-400 font-bold">+16 clientes</span>{" "}
               compraron esta semana
             </p>
           </div>
