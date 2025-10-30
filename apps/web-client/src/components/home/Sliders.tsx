@@ -51,7 +51,7 @@ export const SlidersComponent = () => {
             <source src="/videos/education-projectors.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-          <div className="w-full h-full flex flex-col justify-center items-center text-center text-white relative px-3 sm:px-6 lg:px-8 py-6 sm:py-8 mt-10 md:mt-1">
+          <div className="w-full h-full flex flex-col justify-center items-center text-center text-white relative z-30 px-3 sm:px-6 lg:px-8 py-6 sm:py-8 mt-10 md:mt-1">
             <div className="flex-1 flex flex-col lg:flex-row items-center justify-center w-full max-w-7xl gap-3 sm:gap-4 lg:gap-8">
               <div className="flex flex-col items-center lg:items-start justify-center text-center lg:text-left max-w-2xl w-full">
                 <h1 className="mt-2.5 sm:mt-3 md:mt-4 text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight">
@@ -61,7 +61,6 @@ export const SlidersComponent = () => {
                   Proyectores nuevos y reacondicionados con garantía • Servicio
                   técnico especializado en Lima, Perú
                 </p>
-
                 <div className="mt-3 sm:mt-4 md:mt-6 grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 w-full text-left">
                   <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2.5 sm:p-3 md:p-4 border border-white/20">
                     <div className="flex items-center gap-1.5 sm:gap-2 mb-1 sm:mb-2">
@@ -87,7 +86,6 @@ export const SlidersComponent = () => {
                       extendida
                     </p>
                   </div>
-
                   <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2.5 sm:p-3 md:p-4 border border-white/20">
                     <div className="flex items-center gap-1.5 sm:gap-2 mb-1 sm:mb-2">
                       <svg
@@ -118,7 +116,7 @@ export const SlidersComponent = () => {
                   </div>
                 </div>
 
-                <div className="mt-3 sm:mt-4 md:mt-6 flex flex-col sm:flex-row flex-wrap items-center justify-center lg:justify-start gap-2 sm:gap-3 w-full">
+                <div className="mt-3 sm:mt-4 md:mt-6 flex flex-col sm:flex-row flex-wrap items-center justify-center lg:justify-start gap-2 sm:gap-3 w-full relative z-40">
                   <Link
                     href="#lista"
                     className="w-full sm:w-auto rounded-full bg-primary px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 text-[11px] sm:text-xs md:text-sm font-semibold text-white shadow-lg hover:shadow-xl hover:bg-primary/90 transition-all text-center"
@@ -199,10 +197,10 @@ export const SlidersComponent = () => {
           ))}
         </div>
       </div>
-      <div className="absolute bottom-4 sm:bottom-8 left-0 right-0 z-20 flex items-center justify-center gap-2 sm:gap-4 px-4">
+      <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 flex items-center justify-center gap-2 sm:gap-4 w-auto pointer-events-none">
         <button
           onClick={scrollPrev}
-          className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white p-1.5 sm:p-2 rounded-full transition-all border border-white/20 cursor-pointer"
+          className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white p-1.5 sm:p-2 rounded-full transition-all border border-white/20 cursor-pointer pointer-events-auto"
           aria-label="Slide anterior"
         >
           <svg
@@ -219,10 +217,9 @@ export const SlidersComponent = () => {
             />
           </svg>
         </button>
-
         <button
           onClick={togglePause}
-          className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white p-1.5 sm:p-2 rounded-full transition-all border border-white/20 cursor-pointer"
+          className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white p-1.5 sm:p-2 rounded-full transition-all border border-white/20 cursor-pointer pointer-events-auto"
           aria-label={isPaused ? "Reanudar carousel" : "Pausar carousel"}
         >
           {isPaused ? (
@@ -234,7 +231,7 @@ export const SlidersComponent = () => {
 
         <button
           onClick={scrollNext}
-          className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white p-1.5 sm:p-2 rounded-full transition-all border border-white/20 cursor-pointer"
+          className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white p-1.5 sm:p-2 rounded-full transition-all border border-white/20 cursor-pointer pointer-events-auto"
           aria-label="Siguiente slide"
         >
           <svg
