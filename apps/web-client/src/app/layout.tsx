@@ -228,6 +228,10 @@ export default function RootLayout({
           }}
           strategy="beforeInteractive"
         />
+        <meta
+          name="google-site-verification"
+          content="-v1f6esaQNCnNUROmmpub73xH6zZgAp_ue4LcS_oPV8"
+        />
       </head>
       <Script
         id="facebook-pixel"
