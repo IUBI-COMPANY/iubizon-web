@@ -243,6 +243,14 @@ export const FooterLayout = () => {
         </div>
       </div>
       <div className="mt-8 text-center text-xs text-blue-200">
+        <Link
+          href="/politica-de-devoluciones-y-cambios"
+          className="hover:text-primary"
+        >
+          Política de Devoluciones y Cambios
+        </Link>
+      </div>
+      <div className="mt-8 text-center text-xs text-blue-200">
         &copy; {new Date().getFullYear()} iubizon. Todos los derechos
         reservados.
       </div>
