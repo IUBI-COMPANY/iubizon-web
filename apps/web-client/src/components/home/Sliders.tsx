@@ -17,7 +17,7 @@ export const SlidersComponent = () => {
       loop: true,
       align: "start",
     },
-    [Autoplay({ delay: 7000, stopOnInteraction: false })],
+    [Autoplay({ delay: 10000, stopOnInteraction: false })],
   );
 
   const scrollPrev = () => emblaApi?.scrollPrev();
@@ -38,6 +38,15 @@ export const SlidersComponent = () => {
   const slides = [
     {
       id: 1,
+      type: "image",
+      src: "/images/ciberwow/CyberWow-Desk.png",
+      srcMb: "/images/ciberwow/CyberWOW-mb.png",
+      alt: "Cyber Wow 2025 iubizon",
+      ctaLink:
+        "/productos/Proyector-Led-Portatil-HY350-Magcubic-Full-Hd-1080p-Android",
+    },
+    {
+      id: 2,
       type: "content",
       content: (
         <>
@@ -146,15 +155,6 @@ export const SlidersComponent = () => {
           </div>
         </>
       ),
-    },
-    {
-      id: 2,
-      type: "image",
-      src: "/images/halloween/halloween-banner.jpg",
-      srcMb: "/images/halloween/halloween-banner-mb.jpg",
-      alt: "Proyectores para Halloween",
-      ctaLink:
-        "/productos/Proyector-Led-Portatil-Hy350-Magcubic-Full-Hd-1080p-Android",
     },
   ];
 
