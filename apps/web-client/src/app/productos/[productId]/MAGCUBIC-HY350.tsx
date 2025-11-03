@@ -208,8 +208,8 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-orange-500/30 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-orange-400 rounded-full mt-2 animate-pulse" />
+          <div className="w-6 h-10 border-2 border-[#fb0c6b]/30 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-[#fb0c6b] rounded-full mt-2 animate-pulse" />
           </div>
         </div>
       </section>
@@ -217,9 +217,26 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
       {/* Product Showcase Grid */}
       <section
         id="galeria"
-        className="py-32 px-4 bg-gradient-to-b from-black via-[#0700fe]/5 to-black relative"
+        className="py-32 px-4 bg-gradient-to-b from-black via-[#0700fe]/5 to-black relative overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto">
+        {/* Texto decorativo de fondo */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
+          <h2 className="text-[20vw] md:text-[15vw] font-black text-white/5 whitespace-nowrap">
+            CYBER WOW
+          </h2>
+        </div>
+
+        {/* Círculos decorativos flotantes */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-20 right-10 w-64 h-64 border-4 border-[#fb0c6b]/10 rounded-full animate-pulse" />
+          <div
+            className="absolute bottom-40 left-10 w-48 h-48 border-4 border-[#0700fe]/10 rounded-full animate-pulse"
+            style={{ animationDelay: "1s" }}
+          />
+          <div className="absolute top-1/2 right-1/4 w-32 h-32 bg-gradient-to-br from-[#fb0c6b]/5 to-[#0700fe]/5 rounded-full blur-3xl" />
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
           <h2 className="text-4xl md:text-6xl font-bold text-center mb-4">
             Características
             <span className="block mt-2 bg-gradient-to-r from-white via-[#fb0c6b] to-white bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(251,12,107,0.3)]">
@@ -353,8 +370,25 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
       </section>
 
       {/* Features Section */}
-      <section className="py-32 px-4 bg-black relative">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-32 px-4 bg-black relative overflow-hidden">
+        {/* Texto decorativo de fondo con gradiente */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
+          <h2 className="text-[18vw] md:text-[12vw] font-black bg-gradient-to-r from-[#fb0c6b]/10 via-[#0700fe]/10 to-[#fb0c6b]/10 bg-clip-text text-transparent whitespace-nowrap rotate-[-5deg]">
+            CONECTIVIDAD
+          </h2>
+        </div>
+
+        {/* Formas geométricas decorativas */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-32 left-20 w-40 h-40 border-4 border-[#fb0c6b]/10 rotate-45 animate-pulse" />
+          <div
+            className="absolute bottom-32 right-32 w-56 h-56 border-4 border-[#0700fe]/10 rounded-full animate-pulse"
+            style={{ animationDelay: "1.5s" }}
+          />
+          <div className="absolute top-1/3 right-10 w-24 h-24 bg-[#fb0c6b]/5 blur-2xl rounded-full" />
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
           <h2 className="text-4xl md:text-6xl font-bold text-center mb-4">
             Conectividad y
             <span className="block mt-2 bg-gradient-to-r from-white via-[#fb0c6b] to-white bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(251,12,107,0.3)]">
@@ -441,9 +475,22 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
       {/* Tech Specs Section */}
       <section
         id="especificaciones"
-        className="py-20 md:py-32 px-4 bg-gradient-to-b from-black via-[#0700fe]/5 to-gray-950 relative"
+        className="py-20 md:py-32 px-4 bg-gradient-to-b from-black via-[#0700fe]/5 to-gray-950 relative overflow-hidden"
       >
-        <div className="max-w-5xl mx-auto">
+        {/* Textos decorativos de fondo múltiples */}
+        <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
+          <div className="absolute top-1/4 -left-20 text-[15vw] md:text-[10vw] font-black text-[#fb0c6b]/5 rotate-[-15deg] whitespace-nowrap">
+            SPECS
+          </div>
+          <div className="absolute bottom-1/4 -right-20 text-[15vw] md:text-[10vw] font-black text-[#0700fe]/5 rotate-[15deg] whitespace-nowrap">
+            TECH
+          </div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[25vw] md:text-[18vw] font-black text-white/3 whitespace-nowrap">
+            HY350
+          </div>
+        </div>
+
+        <div className="max-w-5xl mx-auto relative z-10">
           <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold text-center mb-3 md:mb-4">
             Especificaciones
             <span className="block mt-2 bg-gradient-to-r from-white via-[#fb0c6b] to-white bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(251,12,107,0.3)]">
@@ -695,7 +742,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
           {/* Risk Reversal - Garantías */}
           <div className="mt-6 md:mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 max-w-3xl mx-auto">
-            <div className="bg-white/5 backdrop-blur-sm border border-orange-500/20 rounded-xl p-3 md:p-4">
+            <div className="bg-white/5 backdrop-blur-sm border border-[#fb0c6b]/20 rounded-xl p-3 md:p-4">
               <div className="text-2xl md:text-3xl mb-1 md:mb-2">🚚</div>
               <h4 className="font-bold text-white mb-1 text-sm md:text-base">
                 Envío GRATIS
@@ -704,7 +751,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
                 En Lima Metropolitana
               </p>
             </div>
-            <div className="bg-white/5 backdrop-blur-sm border border-orange-500/20 rounded-xl p-3 md:p-4">
+            <div className="bg-white/5 backdrop-blur-sm border border-[#fb0c6b]/20 rounded-xl p-3 md:p-4">
               <div className="text-2xl md:text-3xl mb-1 md:mb-2">🛡️</div>
               <h4 className="font-bold text-white mb-1 text-sm md:text-base">
                 Garantía 1 Año
@@ -713,7 +760,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
                 Cubierta por fabricante
               </p>
             </div>
-            <div className="bg-white/5 backdrop-blur-sm border border-orange-500/20 rounded-xl p-3 md:p-4">
+            <div className="bg-white/5 backdrop-blur-sm border border-[#fb0c6b]/20 rounded-xl p-3 md:p-4">
               <div className="text-2xl md:text-3xl mb-1 md:mb-2">💳</div>
               <h4 className="font-bold text-white mb-1 text-sm md:text-base">
                 Pago Seguro
