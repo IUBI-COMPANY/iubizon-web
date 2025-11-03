@@ -11,6 +11,7 @@ interface Props {
   showModal: boolean;
   setShowModal: (showModal: boolean) => void;
   condition: DetailProductCondition;
+  showCyberWow?: boolean;
 }
 
 export const InformationAndPriceCard = ({
@@ -18,6 +19,7 @@ export const InformationAndPriceCard = ({
   showModal,
   setShowModal,
   condition,
+  showCyberWow = false,
 }: Props) => {
   const options = [
     product?.brand,
@@ -53,11 +55,31 @@ export const InformationAndPriceCard = ({
         )}
         {product?.price && (
           <div className="w-full h-auto my-7">
+            {showCyberWow && (
+              <div className="mb-4 px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg text-white text-center text-sm font-bold flex items-center justify-center gap-2">
+                <span>⚡</span>
+                <span>CYBER WOW - 15% DSCTO</span>
+                <span>⚡</span>
+              </div>
+            )}
+            {showCyberWow && (
+              <div className="mb-2">
+                <p className="text-sm text-secondary/70">Precio antes:</p>
+                <p className="text-xl text-secondary/60 line-through flex items-center gap-1">
+                  <span className="text-sm">S/</span>
+                  <span>{product.price}</span>
+                </p>
+              </div>
+            )}
             <div className="flex flex-wrap gap-7 mb-3">
               <div className="flex items-center justify-start gap-1">
                 <p className="text-base font-bold text-primary flex justify-center items-start gap-1">
                   <span className="text-[1em]">S/</span>
-                  <span className="text-3xl">{product.price}</span>
+                  <span className="text-3xl">
+                    {showCyberWow
+                      ? (product.price * 0.85).toFixed(2)
+                      : product.price}
+                  </span>
                 </p>
                 <span className="text-secondary text-lg font-light ml-1">
                   c/u
@@ -74,6 +96,13 @@ export const InformationAndPriceCard = ({
                 </div>
               )}
             </div>
+            {showCyberWow && (
+              <div className="mb-4">
+                <span className="text-sm font-bold text-green-600">
+                  ¡Ahorrás S/ {(product.price * 0.15).toFixed(2)}!
+                </span>
+              </div>
+            )}
             {product?.sub && (
               <div className="mb-7">
                 <span className="text-sm font-semibold text-secondary">

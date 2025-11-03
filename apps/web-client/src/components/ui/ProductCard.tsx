@@ -12,7 +12,16 @@ interface Props {
 export const ProductCard = ({ product }: Props) => {
   const isNew = product?.condition === "new";
   const isSpecial = product?.special === true;
-  const isCyberWow = product?.ciberWow === true;
+
+  // Check if Cyber WOW campaign is active (Nov 3-6, 2025)
+  const isCyberWowActive = () => {
+    const now = new Date();
+    const campaignStart = new Date(2025, 10, 3); // Nov 3
+    const campaignEnd = new Date(2025, 10, 6, 23, 59, 59); // Nov 6 end of day
+    return now >= campaignStart && now <= campaignEnd;
+  };
+
+  const isCyberWow = product?.ciberWow === true && isCyberWowActive();
 
   // Generate descriptive alt text for product card image
   const getProductImageAlt = () => {

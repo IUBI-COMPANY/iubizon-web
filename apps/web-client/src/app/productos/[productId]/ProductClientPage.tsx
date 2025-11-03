@@ -22,6 +22,16 @@ export default function ProductDetailPage({ product }: Props) {
 
   const condition = productsCondition[product.condition];
 
+  // Check if Cyber WOW campaign is active (Nov 3-6, 2025)
+  const isCyberWowActive = () => {
+    const now = new Date();
+    const campaignStart = new Date(2025, 10, 3); // Nov 3
+    const campaignEnd = new Date(2025, 10, 6, 23, 59, 59); // Nov 6 end of day
+    return now >= campaignStart && now <= campaignEnd;
+  };
+
+  const showCyberWow = product.ciberWow && isCyberWowActive();
+
   useEffect(() => {
     document.body.style.overflow = showModal ? "hidden" : "auto";
     return () => {
@@ -45,6 +55,36 @@ export default function ProductDetailPage({ product }: Props) {
           transform: scale(1.05);
         }
       }
+
+      @keyframes cyberShine {
+        0% {
+          left: -100%;
+        }
+        100% {
+          left: 200%;
+        }
+      }
+
+      .cyber-wow-badge {
+        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      }
+
+      .cyber-wow-container {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cyber-wow-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        animation: cyberShine 3s ease-in-out infinite;
+        pointer-events: none;
+      }
     `}
       </style>
       <div className="min-h-screen h-auto flex flex-col w-full bg-white">
@@ -52,9 +92,22 @@ export default function ProductDetailPage({ product }: Props) {
           <NoFoundComponent />
         ) : (
           <div className="content-wrapper px-7 max-w-[1470px] m-auto w-full">
-            <main className="grid grid-cols-12 py-7 md:py-15 w-full relative">
+            <main className="grid grid-cols-12 py-5 w-full relative">
+              {showCyberWow && (
+                <div className="col-span-12 mb-4">
+                  <div className="cyber-wow-badge rounded-lg px-6 py-3 text-white text-center font-bold text-lg flex items-center justify-center gap-3">
+                    <span className="text-2xl">⚡</span>
+                    <span>
+                      CYBER WOW - ¡15% de descuento en productos seleccionados!
+                    </span>
+                    <span className="text-2xl">⚡</span>
+                  </div>
+                </div>
+              )}
               <section className="col-span-12 lg:col-span-8 w-full flex justify-center items-center">
-                <div className="w-full">
+                <div
+                  className={`w-full ${showCyberWow ? "cyber-wow-container" : ""}`}
+                >
                   {/*Product media*/}
                   <MediaCarousel product={product} />
                   <div className="block lg:hidden w-full my-10 mb-10 lg:mb-30">
@@ -63,6 +116,7 @@ export default function ProductDetailPage({ product }: Props) {
                       showModal={showModal}
                       setShowModal={setShowModal}
                       condition={condition}
+                      showCyberWow={showCyberWow}
                     />
                   </div>
                   {/*Product specifications*/}
@@ -248,6 +302,7 @@ export default function ProductDetailPage({ product }: Props) {
                   showModal={showModal}
                   setShowModal={setShowModal}
                   condition={condition}
+                  showCyberWow={showCyberWow}
                 />
               </div>
             </main>
