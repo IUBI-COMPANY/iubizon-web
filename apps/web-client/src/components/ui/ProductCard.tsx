@@ -12,6 +12,7 @@ interface Props {
 export const ProductCard = ({ product }: Props) => {
   const isNew = product?.condition === "new";
   const isSpecial = product?.special === true;
+  const isCyberWow = product?.ciberWow === true;
 
   // Generate descriptive alt text for product card image
   const getProductImageAlt = () => {
@@ -29,25 +30,25 @@ export const ProductCard = ({ product }: Props) => {
       className={twMerge(
         "keen-slider__slide flex flex-col h-full group rounded-3xl p-5 shadow-sm hover:shadow-md border-solid border-1 border-gray-400/40 bg-white relative overflow-hidden transition-all duration-500",
         `${product?.condition === "new" && "border-primary"}`,
-        isSpecial &&
-          "border-2 border-orange-400/60 shadow-xl shadow-orange-400/20 hover:shadow-2xl hover:shadow-orange-400/30 hover:-translate-y-1",
+        (isSpecial || isCyberWow) &&
+          "border-2 border-[#0700fe]/40 shadow-lg shadow-[#0700fe]/10 hover:shadow-xl hover:shadow-[#0700fe]/15 hover:-translate-y-1",
       )}
     >
-      {isSpecial && (
+      {(isSpecial || isCyberWow) && (
         <>
-          {/* Efecto de brillo animado sutil */}
-          <div className="absolute -top-2 -right-2 w-24 h-24 bg-gradient-to-br from-orange-400/15 to-yellow-400/10 rounded-full blur-2xl pointer-events-none animate-pulse" />
+          {/* Efecto de brillo Cyber Wow */}
+          <div className="absolute -top-2 -right-2 w-24 h-24 bg-gradient-to-br from-[#0700fe]/8 to-[#fb0c6b]/6 rounded-full blur-2xl pointer-events-none animate-pulse" />
           <div
-            className="absolute -bottom-2 -left-2 w-24 h-24 bg-gradient-to-tr from-orange-400/10 to-yellow-400/15 rounded-full blur-2xl pointer-events-none animate-pulse"
+            className="absolute -bottom-2 -left-2 w-24 h-24 bg-gradient-to-tr from-[#fb0c6b]/6 to-[#0700fe]/8 rounded-full blur-2xl pointer-events-none animate-pulse"
             style={{ animationDelay: "1s" }}
           />
 
-          {/* Borde brillante animado */}
-          <div className="absolute inset-0 rounded-3xl ring-1 ring-inset ring-orange-400/30 pointer-events-none" />
+          {/* Borde brillante Cyber Wow */}
+          <div className="absolute inset-0 rounded-3xl ring-1 ring-inset ring-[#0700fe]/20 pointer-events-none" />
 
-          {/* Línea de brillo que se desplaza */}
+          {/* Línea de brillo Cyber Wow */}
           <div
-            className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-orange-400/50 to-transparent pointer-events-none animate-shimmer"
+            className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#0700fe]/40 to-transparent pointer-events-none animate-shimmer"
             style={{
               backgroundSize: "200% 100%",
               animation: "shimmer 3s ease-in-out infinite",
@@ -68,10 +69,10 @@ export const ProductCard = ({ product }: Props) => {
               {isNew ? "Nuevo" : "Reacondicionado"}
             </span>
           )}
-          {isSpecial && (
-            <span className="rounded-full px-2.5 py-1 text-xs font-semibold bg-gradient-to-r from-orange-500 to-orange-600 text-white absolute top-1 right-1 shadow-md flex items-center gap-1 animate-float">
-              <span className="animate-pulse">⭐</span>
-              <span>Best seller</span>
+          {(isSpecial || isCyberWow) && (
+            <span className="rounded-full px-2.5 py-1 text-xs font-semibold bg-gradient-to-r from-[#0700fe] to-[#fb0c6b] text-white absolute top-1 right-1 shadow-md shadow-[#0700fe]/30 flex items-center gap-1 animate-float">
+              <span className="animate-pulse">⚡</span>
+              <span>Cyber Wow</span>
             </span>
           )}
           <Image
@@ -88,7 +89,7 @@ export const ProductCard = ({ product }: Props) => {
           <h2
             className={twMerge(
               "text-xl font-semibold text-gray-800 transition-colors duration-300",
-              isSpecial && "group-hover:text-orange-600",
+              (isSpecial || isCyberWow) && "group-hover:text-[#0700fe]",
             )}
           >
             {product?.name}
@@ -136,8 +137,8 @@ export const ProductCard = ({ product }: Props) => {
         <p
           className={twMerge(
             "mt-1 text-xs font-medium relative z-10 transition-all duration-300",
-            isSpecial &&
-              "text-green-600 group-hover:text-orange-600 group-hover:font-semibold",
+            (isSpecial || isCyberWow) &&
+              "text-green-600 group-hover:text-[#0700fe] group-hover:font-semibold",
           )}
         >
           Disponible puedes comprarlo ahora mismo
@@ -146,8 +147,8 @@ export const ProductCard = ({ product }: Props) => {
       <div
         className={twMerge(
           "rounded-lg py-2 px-4 my-3 text-center relative z-10 transition-all duration-300",
-          isSpecial
-            ? "bg-gradient-to-br from-orange-50 to-orange-100/50 border border-orange-200/50 group-hover:from-orange-100 group-hover:to-orange-150 group-hover:border-orange-300"
+          isSpecial || isCyberWow
+            ? "bg-gradient-to-br from-blue-50 to-fuchsia-50/50 border border-[#0700fe]/20 group-hover:from-blue-100 group-hover:to-fuchsia-100/50 group-hover:border-[#0700fe]/30"
             : "bg-orange-50",
         )}
       >
@@ -155,7 +156,7 @@ export const ProductCard = ({ product }: Props) => {
           <p
             className={twMerge(
               "text-base font-bold text-primary flex justify-center items-start gap-1 transition-transform duration-300",
-              isSpecial && "group-hover:scale-110",
+              (isSpecial || isCyberWow) && "group-hover:scale-110",
             )}
           >
             <span className="text-[.7em]">S/</span>
@@ -223,8 +224,8 @@ export const ProductCard = ({ product }: Props) => {
           target="_blank"
           className={twMerge(
             "w-full rounded-xl px-4 py-2 text-center text-sm font-semibold shadow-sm transition-all duration-300 text-white",
-            isSpecial
-              ? "bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 shadow-md hover:shadow-lg hover:scale-105"
+            isSpecial || isCyberWow
+              ? "bg-gradient-to-r from-[#0700fe] to-[#fb0c6b] hover:from-[#0700fe]/90 hover:to-[#fb0c6b]/90 shadow-md hover:shadow-lg hover:scale-105"
               : "bg-secondary",
           )}
         >
@@ -234,7 +235,8 @@ export const ProductCard = ({ product }: Props) => {
           href={`/productos/${product.id}`}
           className={twMerge(
             "rounded-xl px-4 py-2 text-sm font-semibold text-secondary border-solid border-1 border-tertiary transition-all duration-300",
-            isSpecial && "hover:bg-orange-50 hover:border-orange-400",
+            (isSpecial || isCyberWow) &&
+              "hover:bg-blue-50 hover:border-[#0700fe]",
           )}
         >
           Ver más
