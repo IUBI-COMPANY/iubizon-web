@@ -21,7 +21,7 @@ export const ProductCard = ({ product }: Props) => {
     return now >= campaignStart && now <= campaignEnd;
   };
 
-  const isCyberWow = product?.ciberWow === true && isCyberWowActive();
+  const isCyberWow = product?.ciberWow && isCyberWowActive();
 
   // Generate descriptive alt text for product card image
   const getProductImageAlt = () => {
