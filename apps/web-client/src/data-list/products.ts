@@ -35,6 +35,7 @@ export interface Product {
   category?: string[];
   note?: string;
   special?: boolean;
+  ciberWow?: boolean;
 }
 
 export interface MediaItem {
@@ -42,9 +43,7 @@ export interface MediaItem {
   src: string;
 }
 
-const DISCOUNT_PERCENTAGE = 0.42; // 42% DISCOUNT
-
-export const products: Product[] = [
+const productsData: Product[] = [
   {
     id: "980W",
     model: "H866A",
@@ -422,8 +421,8 @@ export const products: Product[] = [
     oldStock: 20,
     condition: "new",
     description: "",
-    price: 549.99,
-    oldPrice: 687.5,
+    price: 490.99,
+    oldPrice: 490.99,
     badge: "Nuevo",
     mainImage: "/productos/HY350/HY350.jpg",
     media: [
@@ -814,21 +813,38 @@ export const products: Product[] = [
       Proyector láser de alcance ultracorto PowerLite 805F Full HD 1080p para señalización digital
 `,
   },
-].map(
+];
+
+const DISCOUNT_PERCENTAGE = 0.42; // 42% DISCOUNT
+const DISCOUNT_PERCENTAGE_CIBER_WOW = 0.15; // 20% DISCOUNT
+
+const productPrice = (product: Product): number => {
+  switch (product.condition) {
+    case "reconditioned":
+      return +Math.floor(
+        product.price - (product.price * DISCOUNT_PERCENTAGE || 0),
+      ).toFixed(2);
+    case "new":
+      return discountByCiberWow(product.price);
+    default:
+      return +product.price;
+  }
+};
+
+const discountByCiberWow = (price: number): number =>
+  +Math.floor(price - (price * DISCOUNT_PERCENTAGE_CIBER_WOW || 0)).toFixed(2);
+
+export const products: Product[] = productsData.map(
   (product) =>
     ({
       ...product,
-      price:
-        product.condition === "reconditioned"
-          ? +Math.floor(
-              product.price - (product.price * DISCOUNT_PERCENTAGE || 0),
-            ).toFixed(2)
-          : +product.price,
+      price: productPrice(product),
       ...(product.lumensANSI && {
         throwRatio:
           product.lumensANSI >= 3000
             ? "Proyección media/alta"
             : "Proyección media/estándar",
       }),
+      ciberWow: product.condition === "new",
     }) as Product,
 );

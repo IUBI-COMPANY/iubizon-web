@@ -9,6 +9,10 @@
 @theme {
   --color-primary: #f25c05;
   --color-secondary: #112237;
+
+  --ciberwow-primary: #0700fe;
+  --ciberwow-secondary: #0030ff;
+  --ciberwow-tertiary: #fb0c6b;
 }
 
 @theme inline {
