@@ -79,7 +79,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const title = `${product.name ?? "Producto"}${product.lumens ? ` | ${product.lumens}` : ""} | iubizon`;
+  const title = `${product.name ?? "Producto"}${product.lumensANSI ? ` | ${product.lumensANSI}` : ""} | iubizon`;
   const description =
     product.note ??
     `Compra ${product.name ?? "producto"} original en Perú. Cotiza y recibe asesoría personalizada.`;
@@ -88,7 +88,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (product.name) keywordsArray.push(product.name);
   if (product.brand) keywordsArray.push(product.brand);
   if (product.type) keywordsArray.push(product.type);
-  if (product.lumens) keywordsArray.push(product.lumens);
+  // Ensure we only push strings into the keywords array — convert numbers to string
+  if (typeof product.lumensANSI === "number")
+    keywordsArray.push(String(product.lumensANSI));
   keywordsArray.push("proyector", "accesorio", "repuesto", "iubizon", "Perú");
 
   const imageList = product.media?.length
@@ -244,12 +246,12 @@ export default async function Page({ params }: Props) {
     ...(product.category && {
       category: product.category.join(" > "),
     }),
-    ...(product.lumens && {
+    ...(product.lumensANSI && {
       additionalProperty: [
         {
           "@type": "PropertyValue",
           name: "Lúmenes",
-          value: product.lumens,
+          value: product.lumensANSI,
         },
         ...(product.nativeResolution
           ? [
@@ -333,7 +335,7 @@ export default async function Page({ params }: Props) {
       "@context": "https://schema.org",
       "@type": "VideoObject",
       name: `${product.name || product.model} - Video demostrativo ${index + 1}`,
-      description: `Video demostrativo del ${product.name || product.model} ${product.brand || ""} con ${product.lumens || ""} - ${product.condition === "new" ? "Nuevo" : "Reacondicionado"}`,
+      description: `Video demostrativo del ${product.name || product.model} ${product.brand || ""} con ${product.lumensANSI || ""} - ${product.condition === "new" ? "Nuevo" : "Reacondicionado"}`,
       thumbnailUrl: product.mainImage
         ? `https://www.iubizon.com${product.mainImage}`
         : `https://www.iubizon.com${product.media.find((m) => m.type === "image")?.src || "/images/product-not-found.png"}`,

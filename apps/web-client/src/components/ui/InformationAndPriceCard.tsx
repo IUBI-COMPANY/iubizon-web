@@ -1,14 +1,17 @@
 import React from "react";
 import { Info, XCircle } from "lucide-react";
 import { Product } from "@/data-list/products";
-import { GiftCard } from "./GiftCard";
+import { GiftCardReaconditioned } from "./GiftCardReaconditioned";
+import { GiftCardNews } from "./GiftCardNews";
 import { DetailProductCondition } from "@/data-list/productsCondition";
+import { getWhatsAppMessage } from "@/utils/whatsapp";
 
 interface Props {
   product: Product;
   showModal: boolean;
   setShowModal: (showModal: boolean) => void;
   condition: DetailProductCondition;
+  showCyberWow?: boolean;
 }
 
 export const InformationAndPriceCard = ({
@@ -16,11 +19,12 @@ export const InformationAndPriceCard = ({
   showModal,
   setShowModal,
   condition,
+  showCyberWow = false,
 }: Props) => {
   const options = [
     product?.brand,
     product?.model,
-    product?.lumens,
+    product?.lumensANSI,
     product?.contrastRatio,
     product?.nativeResolution,
     product?.aspectRatio,
@@ -51,15 +55,35 @@ export const InformationAndPriceCard = ({
         )}
         {product?.price && (
           <div className="w-full h-auto my-7">
+            {showCyberWow && (
+              <div className="mb-4 px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg text-white text-center text-sm font-bold flex items-center justify-center gap-2">
+                <span>⚡</span>
+                <span>CYBER WOW - 15% DSCTO</span>
+                <span>⚡</span>
+              </div>
+            )}
+            {showCyberWow && (
+              <div className="mb-2">
+                <p className="text-sm text-secondary/70">Precio antes:</p>
+                <p className="text-xl text-secondary/60 line-through flex items-center gap-1">
+                  <span className="text-sm">S/</span>
+                  <span>{product.price}</span>
+                </p>
+              </div>
+            )}
             <div className="flex flex-wrap gap-7 mb-3">
               <div className="flex items-center justify-start gap-1">
-                {/*<p className="text-base font-bold text-primary flex justify-center items-start gap-1">*/}
-                {/*  <span className="text-[1em]">S/</span>*/}
-                {/*  <span className="text-3xl">{product.price}</span>*/}
-                {/*</p>*/}
-                {/*<span className="text-secondary text-lg font-light ml-1">*/}
-                {/*  c/u*/}
-                {/*</span>*/}
+                <p className="text-base font-bold text-primary flex justify-center items-start gap-1">
+                  <span className="text-[1em]">S/</span>
+                  <span className="text-3xl">
+                    {showCyberWow
+                      ? (product.price * 0.85).toFixed(2)
+                      : product.price}
+                  </span>
+                </p>
+                <span className="text-secondary text-lg font-light ml-1">
+                  c/u
+                </span>
               </div>
               {product?.badge && (
                 <div
@@ -72,6 +96,13 @@ export const InformationAndPriceCard = ({
                 </div>
               )}
             </div>
+            {showCyberWow && (
+              <div className="mb-4">
+                <span className="text-sm font-bold text-green-600">
+                  ¡Ahorrás S/ {(product.price * 0.15).toFixed(2)}!
+                </span>
+              </div>
+            )}
             {product?.sub && (
               <div className="mb-7">
                 <span className="text-sm font-semibold text-secondary">
@@ -98,15 +129,9 @@ export const InformationAndPriceCard = ({
             </span>
           </li>
           {product.stock <= 0 ? (
-            <p className="mt-1 text-sm text-secondary">
+            <p className="mt-1 text-sm text-red-600">
               Lo sentimos ya no queda stock, pero{" "}
-              <a
-                href={`https://wa.me/51972300301?text=Hola%20iubizon,%20quiero%20realizar%20un%20pedido%20del%20modelo%20${product.name}`}
-                target="_blank"
-                className="font-semibold cursor-pointer text-blue-400"
-              >
-                puede solicitarlo a pedido
-              </a>
+              <span className="font-semibold">puede comprarlo a pedido</span>
             </p>
           ) : (
             <p className="mt-1 text-sm text-green-600 font-medium">
@@ -149,21 +174,24 @@ export const InformationAndPriceCard = ({
               </div>
             </li>
           )}
-          {product.type === "Proyector" && (
+          {product?.type === "Proyector" && (
             <li className="items-start">
               <span className="mt-1 text-xl text-primary bg-ambar-500"></span>
               <span className="flex flex-col items-center">
-                <GiftCard />
+                {product?.condition === "new" && <GiftCardNews />}
+                {product?.condition === "reconditioned" && (
+                  <GiftCardReaconditioned />
+                )}
               </span>
             </li>
           )}
         </ul>
         <a
-          href={`https://wa.me/51972300301?text=Hola%20iubizon,%20me%20interesa%20el%20${product.type}%20${product.name}`}
+          href={`https://wa.me/51972300301?text=${getWhatsAppMessage(product)}`}
           target="_blank"
           className="rounded-full mt-10 px-8 py-3 text-base text-center md:text-lg font-medium w-full md:w-auto shadow-lg transition bg-primary text-white hover:bg-primary/90 hover:scale-105 duration-300 flex items-center justify-center gap-2"
         >
-          Contactar para comprar
+          {product.stock <= 0 ? "Comprar a pedido" : "Comprar ahora"}
         </a>
       </div>
     </section>

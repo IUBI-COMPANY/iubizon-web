@@ -261,7 +261,7 @@ export default function AboutUsPage() {
                   Garantía Extendida
                 </h3>
                 <p className="text-gray-600 text-sm">
-                  Hasta 6 meses en reparación y mantenimiento
+                  Hasta 3 meses en reparación y mantenimiento
                 </p>
               </div>
 
@@ -310,7 +310,7 @@ export default function AboutUsPage() {
                 Contáctanos Hoy
               </Link>
               <Link
-                href="/reparaciones"
+                href="/servicios/tecnico"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg font-semibold transition-all duration-300 inline-block"
               >
                 Nuestros Servicios

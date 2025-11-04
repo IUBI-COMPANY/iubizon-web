@@ -20,7 +20,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/repairs",
-        destination: "/reparaciones",
+        destination: "/servicios/tecnico",
+        permanent: true,
+      },
+      {
+        source: "/reparaciones",
+        destination: "/servicios/tecnico",
         permanent: true,
       },
       {

@@ -8,15 +8,29 @@ import { NoFoundComponent } from "@/components/ui/NoFoundComponent";
 import { InformationAndPriceCard } from "@/components/ui/InformationAndPriceCard";
 import React, { useEffect, useState } from "react";
 import { productsCondition } from "@/data-list/productsCondition";
+import { MAGCUBICHY350 } from "./MAGCUBIC-HY350";
 
 interface Props {
   product: Product;
 }
 
+const SPECIAL_PRODUCT_ID =
+  "Proyector-Led-Portatil-Hy350-Magcubic-Full-Hd-1080p-Android";
+
 export default function ProductDetailPage({ product }: Props) {
   const [showModal, setShowModal] = useState(false);
 
   const condition = productsCondition[product.condition];
+
+  // Check if Cyber WOW campaign is active (Nov 3-6, 2025)
+  const isCyberWowActive = () => {
+    const now = new Date();
+    const campaignStart = new Date(2025, 10, 3); // Nov 3
+    const campaignEnd = new Date(2025, 10, 6, 23, 59, 59); // Nov 6 end of day
+    return now >= campaignStart && now <= campaignEnd;
+  };
+
+  const showCyberWow = product.ciberWow && isCyberWowActive();
 
   useEffect(() => {
     document.body.style.overflow = showModal ? "hidden" : "auto";
@@ -24,6 +38,10 @@ export default function ProductDetailPage({ product }: Props) {
       document.body.style.overflow = "auto";
     };
   }, [showModal]);
+
+  if (product.id.toUpperCase() === SPECIAL_PRODUCT_ID.toUpperCase()) {
+    return <MAGCUBICHY350 product={product} />;
+  }
 
   return (
     <>
@@ -37,6 +55,36 @@ export default function ProductDetailPage({ product }: Props) {
           transform: scale(1.05);
         }
       }
+
+      @keyframes cyberShine {
+        0% {
+          left: -100%;
+        }
+        100% {
+          left: 200%;
+        }
+      }
+
+      .cyber-wow-badge {
+        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      }
+
+      .cyber-wow-container {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cyber-wow-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        animation: cyberShine 3s ease-in-out infinite;
+        pointer-events: none;
+      }
     `}
       </style>
       <div className="min-h-screen h-auto flex flex-col w-full bg-white">
@@ -44,9 +92,22 @@ export default function ProductDetailPage({ product }: Props) {
           <NoFoundComponent />
         ) : (
           <div className="content-wrapper px-7 max-w-[1470px] m-auto w-full">
-            <main className="grid grid-cols-12 py-7 md:py-15 w-full relative">
+            <main className="grid grid-cols-12 py-5 w-full relative">
+              {showCyberWow && (
+                <div className="col-span-12 mb-4">
+                  <div className="cyber-wow-badge rounded-lg px-6 py-3 text-white text-center font-bold text-lg flex items-center justify-center gap-3">
+                    <span className="text-2xl">⚡</span>
+                    <span>
+                      CYBER WOW - ¡15% de descuento en productos seleccionados!
+                    </span>
+                    <span className="text-2xl">⚡</span>
+                  </div>
+                </div>
+              )}
               <section className="col-span-12 lg:col-span-8 w-full flex justify-center items-center">
-                <div className="w-full">
+                <div
+                  className={`w-full ${showCyberWow ? "cyber-wow-container" : ""}`}
+                >
                   {/*Product media*/}
                   <MediaCarousel product={product} />
                   <div className="block lg:hidden w-full my-10 mb-10 lg:mb-30">
@@ -55,6 +116,7 @@ export default function ProductDetailPage({ product }: Props) {
                       showModal={showModal}
                       setShowModal={setShowModal}
                       condition={condition}
+                      showCyberWow={showCyberWow}
                     />
                   </div>
                   {/*Product specifications*/}
@@ -115,13 +177,13 @@ export default function ProductDetailPage({ product }: Props) {
                             <div className="text-secondary">{product.type}</div>
                           </div>
                         )}
-                        {product?.lumens && (
+                        {product?.lumensANSI && (
                           <div className="flex flex-col md:flex-row flex-wrap items-start md:items-end">
                             <div className="pr-4 w-[11em] leading-5">
                               Lúmenes:
                             </div>{" "}
                             <div className="text-secondary">
-                              {product.lumens}
+                              {product.lumensANSI}
                             </div>
                           </div>
                         )}
@@ -189,14 +251,16 @@ export default function ProductDetailPage({ product }: Props) {
                         )}
                       </div>
                       <div className="w-full flex flex-col gap-2 text-foreground font-mediun text-[.9em]">
-                        <div className="flex flex-col md:flex-row flex-wrap items-start md:items-end">
-                          <div className="pr-4 w-[11em] leading-5">
-                            Advertencia:
+                        {product.type === "Proyector" && (
+                          <div className="flex flex-col md:flex-row flex-wrap items-start md:items-end">
+                            <div className="pr-4 w-[11em] leading-5">
+                              Advertencia:
+                            </div>
+                            <div className="text-secondary">
+                              Las lámparas del proyector contienen mercurio.
+                            </div>
                           </div>
-                          <div className="text-secondary">
-                            Las lámparas del proyector contienen mercurio.
-                          </div>
-                        </div>
+                        )}
                         {product?.aspectRatio && (
                           <div className="flex flex-col md:flex-row flex-wrap items-start md:items-end">
                             <div className="pr-4 w-[11em] leading-5 ">
@@ -238,6 +302,7 @@ export default function ProductDetailPage({ product }: Props) {
                   showModal={showModal}
                   setShowModal={setShowModal}
                   condition={condition}
+                  showCyberWow={showCyberWow}
                 />
               </div>
             </main>
@@ -246,7 +311,7 @@ export default function ProductDetailPage({ product }: Props) {
                 <div className="text-2xl mb-3 text-secondary font-bold">
                   Descripción del artículo:
                 </div>
-                <p className="pre-line text-base text-black/90">
+                <p className="text-base text-black/90 whitespace-pre-line">
                   {product.note}
                 </p>
               </div>

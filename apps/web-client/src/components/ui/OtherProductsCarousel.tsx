@@ -11,7 +11,26 @@ interface OtherProductsCarouselProps {
 export default function OtherProductsCarousel({
   currentProduct,
 }: OtherProductsCarouselProps) {
-  const products = allProducts.filter((p) => p.id !== currentProduct.id);
+  const products = allProducts
+    .filter((p) => p.id !== currentProduct.id)
+    .sort((a, b) => {
+      // Primero: Productos con ciberWow: true
+      if (a.ciberWow && !b.ciberWow) return -1;
+      if (!a.ciberWow && b.ciberWow) return 1;
+
+      // Segundo: Productos con special: true
+      if (a.special && !b.special) return -1;
+      if (!a.special && b.special) return 1;
+
+      // Tercero: Productos del mismo tipo que currentProduct
+      const aIsSameType = a.type === currentProduct.type;
+      const bIsSameType = b.type === currentProduct.type;
+
+      if (aIsSameType && !bIsSameType) return -1;
+      if (!aIsSameType && bIsSameType) return 1;
+      return 0;
+    });
+
   const [current, setCurrent] = useState(0);
   const [sliderRef, slider] = useKeenSlider<HTMLDivElement>({
     slides: { perView: 3, spacing: 16 },
@@ -57,7 +76,7 @@ export default function OtherProductsCarousel({
           </div>
         )}
         {products.length > 1 && (
-          <div className="flex gap-2 justify-center mt-2">
+          <div className="flex gap-2 justify-center mt-8">
             {products.map((_, idx) => (
               <button
                 key={idx}
