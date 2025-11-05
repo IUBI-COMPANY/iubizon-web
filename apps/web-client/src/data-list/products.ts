@@ -346,6 +346,46 @@ const productsData: Product[] = [
     Versátil y funcional, el PowerLite 98H cuenta con conectividad HDMI y funciones de audio premium.`,
   },
   {
+    id: "98H-reacondicionado",
+    model: "H687A",
+    name: "Epson PowerLite 98H",
+    stock: 0,
+    price: 1400.0,
+    badge: "Oferta",
+    mainImage: "/productos/98H/98h.jpg",
+    media: [
+      { type: "image", src: "/productos/98H/2.jpg" },
+      { type: "video", src: "/productos/98H/98H.mp4" },
+      { type: "image", src: "/productos/98H/3.jpg" },
+      { type: "image", src: "/productos/98H/4.jpg" },
+      { type: "image", src: "/productos/98H/5.jpg" },
+    ],
+    condition: "reconditioned",
+    displayTechnology: "3LCD",
+    lumensANSI: 3000,
+    brand: "Epson",
+    type: "Proyector",
+    contrastRatio: "10,000:1",
+    connectivity: "HDMI estándar, VGA/SVGA D-Sub",
+    features: "Altavoces integrados",
+    nativeResolution: "1024 x 768",
+    aspectRatio: "4:3",
+    throwRatio: "Proyección media/alta",
+    category: [
+      "Electrónica",
+      "TV, Video y Audio para el Hogar",
+      "TV y Video",
+      "Proyectores para Home Theater",
+    ],
+    note: `Con una conectividad de red avanzada y una calidad de imagen excepcional, el PowerLite 98H          
+    ofrece una gran opción para cualquier tipo de sala. La tecnología 3LCD ofrece colores hasta 3x mas 
+    brillantes que otros modelos de la competencia. Los proyectores Epson aseguran imágenes brillantes 
+    y vívidas. Confiable y fácil de usar, el PowerLite 98H cuanta con una resolución XGA, 3.000 lúmenes 
+    de brillo en color y 3.000 lúmenes de brillo en blanco. Proyecte y controle la imagen desde múltiples 
+    dispositivos gracias a la nueva función moderador, compartiendo fácilmente el contenido con la audiencia. 
+    Versátil y funcional, el PowerLite 98H cuenta con conectividad HDMI y funciones de audio premium.`,
+  },
+  {
     id: "EX3210",
     model: "H430A",
     name: "Epson PowerLite EX3210",
