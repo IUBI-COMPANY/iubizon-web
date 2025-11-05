@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-export const CyberWowCountdown = () => {
+export const CountdownComponent = () => {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,

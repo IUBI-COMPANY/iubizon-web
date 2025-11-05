@@ -6,6 +6,7 @@ import Image from "next/image";
 import { productsCondition } from "@/data-list/productsCondition";
 import { products } from "@/data-list/products";
 import { Filter, Package, ShoppingCart, Star } from "lucide-react";
+import { CiberWowCountDownComponent } from "@/components/ui/CiberWowCountDownComponent";
 
 export default function ProductsClientPage() {
   const sortProductsBySpecial = (productsList: typeof products) => {
@@ -68,7 +69,6 @@ export default function ProductsClientPage() {
               Descubre nuestra amplia gama de proyectores Epson nuevos y
               reacondicionados con garantía y soporte técnico especializado
             </p>
-
             {/* Stats Cards */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
@@ -101,6 +101,11 @@ export default function ProductsClientPage() {
           </div>
         </div>
       </section>
+
+      {/* Cyber WOW Banner */}
+      <div className="m-5">
+        <CiberWowCountDownComponent />
+      </div>
 
       {/* Products Section */}
       <main className="max-w-7xl mx-auto px-4 py-10">
