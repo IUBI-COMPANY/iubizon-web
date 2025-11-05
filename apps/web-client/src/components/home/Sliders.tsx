@@ -42,8 +42,7 @@ export const SlidersComponent = () => {
       src: "/images/ciberwow/CyberWow-Desk.png",
       srcMb: "/images/ciberwow/CyberWOW-mb.png",
       alt: "Cyber Wow 2025 iubizon",
-      ctaLink:
-        "/productos/Proyector-Led-Portatil-HY350-Magcubic-Full-Hd-1080p-Android",
+      ctaLink: "/productos",
     },
     {
       id: 2,
