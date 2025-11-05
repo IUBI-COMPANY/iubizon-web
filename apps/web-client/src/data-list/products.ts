@@ -420,7 +420,7 @@ const productsData: Product[] = [
     stock: 2,
     condition: "new",
     description: "Buena proyección, alta calidad de imagen",
-    price: 980.0,
+    price: 2199.0,
     badge: "Nuevo",
     mainImage: "/productos/X39/x39.png",
     media: [
@@ -454,7 +454,7 @@ const productsData: Product[] = [
     stock: 1,
     condition: "new",
     description: "Buena proyección, alta calidad de imagen",
-    price: 999.0,
+    price: 1699.0,
     badge: "Nuevo",
     mainImage: "/productos/520/520.jpg",
     media: [
