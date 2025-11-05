@@ -913,6 +913,7 @@ export const products: Product[] = productsData.map(
             ? "Proyección media/alta"
             : "Proyección media/estándar",
       }),
+      oldPrice: product.price,
       ciberWow: product.condition === "new",
     }) as Product,
 );

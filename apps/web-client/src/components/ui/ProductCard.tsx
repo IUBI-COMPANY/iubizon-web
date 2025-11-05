@@ -161,7 +161,7 @@ export const ProductCard = ({ product }: Props) => {
             : "bg-orange-50",
         )}
       >
-        <div className="flex items-end justify-center gap-1">
+        <div className="flex items-end justify-center gap-3">
           <p
             className={twMerge(
               "text-base font-bold text-primary flex justify-center items-start gap-1 transition-transform duration-300",
@@ -171,10 +171,16 @@ export const ProductCard = ({ product }: Props) => {
             <span className="text-[.7em]">S/</span>
             <span className="text-2xl">{product.price}</span>
           </p>
+          {product?.oldPrice && (
+            <p className="text-sm font-normal text-gray-400 flex justify-center items-start gap-0.5 line-through">
+              <span className="text-[.65em]">S/</span>
+              <span className="text-base">{product.oldPrice}</span>
+            </p>
+          )}
           <span className="text-secondary text-sm font-light ml-1">c/u</span>
         </div>
         {product?.sub && (
-          <p className="text-xs text-secondary/80">{product.sub}</p>
+          <p className="text-xs text-secondary/80 mt-1">{product.sub}</p>
         )}
       </div>
       <div className="flex items-center mt-3 text-sm text-gray-600 mb-1 relative z-10">
