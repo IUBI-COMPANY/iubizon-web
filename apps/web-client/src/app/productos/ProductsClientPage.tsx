@@ -238,17 +238,6 @@ export default function ProductsClientPage() {
                     </span>
                   </div>
                 </div>
-                <div className="text-center md:text-right bg-white rounded-xl p-4 shadow-md border-2 border-emerald-200/50 min-w-[140px]">
-                  <div className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-green-700 bg-clip-text text-transparent">
-                    {productsByCondition.new.products.length}
-                  </div>
-                  <div className="text-sm text-gray-600 font-medium">
-                    productos disponibles
-                  </div>
-                  <div className="text-xs text-emerald-600 mt-1">
-                    🎅 Oferta Navidad
-                  </div>
-                </div>
               </div>
 
               <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
@@ -315,17 +304,6 @@ export default function ProductsClientPage() {
                       Equipos a precios navideños, totalmente funcionales y con
                       garantía
                     </span>
-                  </div>
-                </div>
-                <div className="text-center md:text-right bg-white rounded-xl p-4 shadow-md border-2 border-blue-200/50 min-w-[140px]">
-                  <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">
-                    {productsByCondition.reconditioned.products.length}
-                  </div>
-                  <div className="text-sm text-gray-600 font-medium">
-                    productos disponibles
-                  </div>
-                  <div className="text-xs text-blue-600 mt-1">
-                    🎁 Mejor Precio
                   </div>
                 </div>
               </div>
