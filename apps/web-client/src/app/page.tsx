@@ -6,34 +6,25 @@ import { productsCondition } from "@/data-list/productsCondition";
 import Link from "next/link";
 import { SlidersComponent } from "@/components/home/Sliders";
 import { PromotionSection } from "@/app/PromotionSection";
-import { CiberWowCountDownComponent } from "@/components/ui/CiberWowCountDownComponent";
 
 export default function Home() {
-  // Check if Cyber WOW campaign is active (Nov 3-6, 2025)
-  const isCyberWowActive = () => {
+  // Check if Christmas campaign is active (Dec 1-31, 2025)
+  const isChristmasCampaignActive = () => {
     const now = new Date();
-    const campaignStart = new Date(2025, 10, 3); // Nov 3
-    const campaignEnd = new Date(2025, 10, 6, 23, 59, 59); // Nov 6 end of day
+    const campaignStart = new Date(2025, 11, 1); // Dec 1
+    const campaignEnd = new Date(2025, 12, 31, 23, 59, 59); // Dec 31 end of day
     return now >= campaignStart && now <= campaignEnd;
   };
 
-  const cyberWowActive = isCyberWowActive();
+  const christmasCampaignActive = isChristmasCampaignActive();
 
   const sortProductsBySpecial = (productsList: typeof products) => {
     return [...productsList].sort((a, b) => {
-      // Priority 1: Cyber WOW products first (if campaign is active)
-      if (cyberWowActive) {
-        if (a.ciberWow && !b.ciberWow) return -1;
-        if (!a.ciberWow && b.ciberWow) return 1;
-      }
       // Priority 2: Special products
-      if (a.special === b.special) return 0;
-      return a.special ? -1 : 1;
+      if (a.campaign === b.campaign) return 0;
+      return a.campaign ? -1 : 1;
     });
   };
-
-  // Get Cyber WOW products
-  const cyberWowProducts = products.filter((product) => product.ciberWow);
 
   const productsByCondition = {
     new: {
@@ -60,43 +51,39 @@ export default function Home() {
     <div className="min-h-screen h-auto w-full bg-slate-50">
       <SlidersComponent />
       <main id="lista" className="mx-auto max-w-[1370px] px-6 py-10">
-        {/* Cyber WOW Banner */}
-        <CiberWowCountDownComponent />
-        {/* Cyber WOW Products Section */}
-        {cyberWowActive && cyberWowProducts.length > 0 && (
+        {/* Christmas Products Section */}
+        {christmasCampaignActive && (
           <div className="mb-12">
             <div className="mb-6 text-center">
-              <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-600 px-4 py-2 rounded-full font-bold text-sm mb-3">
-                <span>⚡</span>
-                <span>OFERTAS CYBER WOW</span>
+              <div className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#d90429] to-[#b5001f] text-white px-6 py-3 rounded-full font-bold text-sm mb-4 shadow-lg border-2 border-white uppercase tracking-wide">
+                <span className="text-xl">🎄</span>
+                <span>OFERTAS DE NAVIDAD 2025</span>
+                <span className="text-xl">🎁</span>
               </div>
-              <h2 className="text-3xl font-bold text-secondary">
-                Proyectores con 15% de descuento
+              <h2 className="text-4xl font-black text-[#d90429] mb-2">
+                Proyectores en Oferta Navideña
               </h2>
-              <p className="text-sm text-secondary/70 mt-2 max-w-2xl mx-auto">
-                Aprovecha estos precios especiales solo durante el Cyber WOW.
-                ¡No te quedes sin el tuyo!
+              <p className="text-base text-secondary/80 mt-3 max-w-2xl mx-auto">
+                Aprovecha estos precios especiales solo durante la campaña de
+                Navidad.
+                <span className="block mt-1 font-semibold text-[#d90429]">
+                  ¡No te quedes sin el tuyo! 🎅
+                </span>
               </p>
-            </div>
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {cyberWowProducts.map((product, index) => (
-                <ProductCard key={index} product={product} />
-              ))}
             </div>
           </div>
         )}
-
         <section
-          className={`mb-6 grid gap-3 text-center max-w-[70%] m-auto ${cyberWowActive ? "md:grid-cols-5" : "md:grid-cols-4"}`}
+          className={`mb-6 grid gap-3 text-center max-w-[70%] m-auto ${christmasCampaignActive ? "md:grid-cols-5" : "md:grid-cols-4"}`}
         >
-          {cyberWowActive && (
-            <div className="rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 p-3 shadow-md border border-blue-400 text-white">
+          {christmasCampaignActive && (
+            <div className="rounded-lg bg-gradient-to-br from-[#d90429] to-[#b5001f] p-3 shadow-md border border-white/30 text-white">
               <div className="mx-auto w-9 h-9 rounded-full bg-white/20 flex items-center justify-center mb-2">
-                <span className="text-2xl">⚡</span>
+                <span className="text-2xl">🎄</span>
               </div>
-              <h3 className="font-bold text-sm">Cyber WOW</h3>
+              <h3 className="font-bold text-sm">Navidad 2025</h3>
               <p className="text-[0.65rem] mt-0.5 opacity-90">
-                15% dscto hasta el 6 de nov
+                Ofertas especiales todo diciembre
               </p>
             </div>
           )}

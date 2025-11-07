@@ -34,8 +34,7 @@ export interface Product {
   throwRatio?: string;
   category?: string[];
   note?: string;
-  special?: boolean;
-  ciberWow?: boolean;
+  campaign?: string;
 }
 
 export interface MediaItem {
@@ -579,7 +578,6 @@ const productsData: Product[] = [
         Nota Al emparejar el proyector con el control remoto a través de Bluetooth, podrás utilizar la función de control por voz.
 
     `,
-    special: true,
   },
   {
     id: "ELPAP07",
@@ -923,30 +921,43 @@ const productsData: Product[] = [
   },
 ];
 
-const DISCOUNT_PERCENTAGE = 0.42; // 42% DISCOUNT
-const DISCOUNT_PERCENTAGE_CIBER_WOW = 0.15; // 20% DISCOUNT
+const DISCOUNT_PERCENTAGE = 0.42; // 42% DISCOUNT TO REACONDITIONED
+const DISCOUNT_PERCENTAGE_15_NAVIDAD_TO_NEWS = 0.15; // 15% DISCOUNT
+const DISCOUNT_PERCENTAGE_50_NAVIDAD_TO_REACONDITIONED = 0.42; // 43% DISCOUNT
 
 const productPrice = (product: Product): number => {
   switch (product.condition) {
     case "reconditioned":
-      return +Math.floor(
-        product.price - (product.price * DISCOUNT_PERCENTAGE || 0),
-      ).toFixed(2);
+      return discountByCampaign(
+        product.price,
+        DISCOUNT_PERCENTAGE_50_NAVIDAD_TO_REACONDITIONED,
+      );
     case "new":
-      return discountByCiberWow(product.price);
+      return discountByCampaign(
+        product.price,
+        DISCOUNT_PERCENTAGE_15_NAVIDAD_TO_NEWS,
+      );
     default:
       return +product.price;
   }
 };
 
-const discountByCiberWow = (price: number): number =>
-  +Math.floor(price - (price * DISCOUNT_PERCENTAGE_CIBER_WOW || 0)).toFixed(2);
+const campaignChristmas = (
+  product: Product,
+): Pick<Product, "price" | "campaign"> => ({
+  price: productPrice(product),
+  campaign: "Navidad",
+});
+
+const discountByCampaign = (
+  price: number,
+  DISCOUNT_PERCENTAGE: number,
+): number => +Math.floor(price - (price * DISCOUNT_PERCENTAGE || 0)).toFixed(2);
 
 export const products: Product[] = productsData.map(
   (product) =>
     ({
       ...product,
-      price: productPrice(product),
       ...(product.lumensANSI && {
         throwRatio:
           product.lumensANSI >= 3000
@@ -954,6 +965,6 @@ export const products: Product[] = productsData.map(
             : "Proyección media/estándar",
       }),
       oldPrice: product.price,
-      ciberWow: product.condition === "new",
+      ...campaignChristmas(product),
     }) as Product,
 );

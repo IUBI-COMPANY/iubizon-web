@@ -19,8 +19,8 @@ export default function OtherProductsCarousel({
       if (!a.ciberWow && b.ciberWow) return 1;
 
       // Segundo: Productos con special: true
-      if (a.special && !b.special) return -1;
-      if (!a.special && b.special) return 1;
+      if (a.campaign && !b.campaign) return -1;
+      if (!a.campaign && b.campaign) return 1;
 
       // Tercero: Productos del mismo tipo que currentProduct
       const aIsSameType = a.type === currentProduct.type;

@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useState } from "react";
+import React, { ReactElement, useCallback, useState } from "react";
 import { Pause, Play } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -35,17 +35,27 @@ export const SlidersComponent = () => {
     setIsPaused(!isPaused);
   }, [emblaApi, isPaused]);
 
-  const slides = [
+  interface Slide {
+    id: number;
+    type: string;
+    src?: string;
+    srcMb?: string;
+    alt?: string;
+    ctaLink?: string;
+    content?: ReactElement;
+  }
+
+  const slides: Slide[] = [
+    // {
+    //   id: 1,
+    //   type: "image",
+    //   src: "/images/ciberwow/CyberWow-Desk.png",
+    //   srcMb: "/images/ciberwow/CyberWOW-mb.png",
+    //   alt: "Cyber Wow 2025 iubizon",
+    //   ctaLink: "/productos",
+    // },
     {
       id: 1,
-      type: "image",
-      src: "/images/ciberwow/CyberWow-Desk.png",
-      srcMb: "/images/ciberwow/CyberWOW-mb.png",
-      alt: "Cyber Wow 2025 iubizon",
-      ctaLink: "/productos",
-    },
-    {
-      id: 2,
       type: "content",
       content: (
         <>
@@ -186,7 +196,7 @@ export const SlidersComponent = () => {
                       width={1920}
                       height={1080}
                       className="w-full h-auto object-contain"
-                      priority={slide.id === 2}
+                      priority={slide?.id === 2}
                       sizes="100vw"
                     />
                   </div>
@@ -196,58 +206,60 @@ export const SlidersComponent = () => {
           ))}
         </div>
       </div>
-      <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 flex items-center justify-center gap-2 sm:gap-4 w-auto pointer-events-none">
-        <button
-          onClick={scrollPrev}
-          className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white p-1.5 sm:p-2 rounded-full transition-all border border-white/20 cursor-pointer pointer-events-auto"
-          aria-label="Slide anterior"
-        >
-          <svg
-            className="w-4 h-4 sm:w-6 sm:h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+      {slides.length > 1 && (
+        <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 flex items-center justify-center gap-2 sm:gap-4 w-auto pointer-events-none">
+          <button
+            onClick={scrollPrev}
+            className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white p-1.5 sm:p-2 rounded-full transition-all border border-white/20 cursor-pointer pointer-events-auto"
+            aria-label="Slide anterior"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-        </button>
-        <button
-          onClick={togglePause}
-          className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white p-1.5 sm:p-2 rounded-full transition-all border border-white/20 cursor-pointer pointer-events-auto"
-          aria-label={isPaused ? "Reanudar carousel" : "Pausar carousel"}
-        >
-          {isPaused ? (
-            <Play className="w-4 h-4 sm:w-6 sm:h-6" />
-          ) : (
-            <Pause className="w-4 h-4 sm:w-6 sm:h-6" />
-          )}
-        </button>
+            <svg
+              className="w-4 h-4 sm:w-6 sm:h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+          <button
+            onClick={togglePause}
+            className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white p-1.5 sm:p-2 rounded-full transition-all border border-white/20 cursor-pointer pointer-events-auto"
+            aria-label={isPaused ? "Reanudar carousel" : "Pausar carousel"}
+          >
+            {isPaused ? (
+              <Play className="w-4 h-4 sm:w-6 sm:h-6" />
+            ) : (
+              <Pause className="w-4 h-4 sm:w-6 sm:h-6" />
+            )}
+          </button>
 
-        <button
-          onClick={scrollNext}
-          className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white p-1.5 sm:p-2 rounded-full transition-all border border-white/20 cursor-pointer pointer-events-auto"
-          aria-label="Siguiente slide"
-        >
-          <svg
-            className="w-4 h-4 sm:w-6 sm:h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+          <button
+            onClick={scrollNext}
+            className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white p-1.5 sm:p-2 rounded-full transition-all border border-white/20 cursor-pointer pointer-events-auto"
+            aria-label="Siguiente slide"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </button>
-      </div>
+            <svg
+              className="w-4 h-4 sm:w-6 sm:h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
+        </div>
+      )}
     </div>
   );
 };

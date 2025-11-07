@@ -11,8 +11,8 @@ import { CiberWowCountDownComponent } from "@/components/ui/CiberWowCountDownCom
 export default function ProductsClientPage() {
   const sortProductsBySpecial = (productsList: typeof products) => {
     return [...productsList].sort((a, b) => {
-      if (a.special === b.special) return 0;
-      return a.special ? -1 : 1;
+      if (a.campaign === b.campaign) return 0;
+      return a.campaign ? -1 : 1;
     });
   };
 

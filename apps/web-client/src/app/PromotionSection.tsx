@@ -18,7 +18,7 @@ export const PromotionSection = () => {
       : 0;
 
   return (
-    <section className="relative mt-12 mb-12 rounded-2xl overflow-hidden shadow-2xl border-2 border-[#fb0c6b]/40 min-h-[600px] md:min-h-[500px]">
+    <section className="relative mt-12 mb-12 rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.4)] border-[6px] border-white/20 min-h-[600px] md:min-h-[500px] bg-gradient-to-br from-[#0a1f3d] via-[#1a3a5f] to-[#0d2847]">
       {/* Video de fondo a toda altura */}
       <div className="absolute inset-0 w-full h-full flex items-center justify-center overflow-hidden">
         <video
@@ -26,20 +26,57 @@ export const PromotionSection = () => {
           muted
           loop
           playsInline
-          className="h-full w-auto min-w-full object-cover"
+          className="h-full w-auto min-w-full object-cover opacity-15"
         >
           <source src="/productos/HY350/outboxing.mp4" type="video/mp4" />
         </video>
-        {/* Overlay con gradiente Cyber Wow */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0700fe]/95 via-[#0030ff]/95 to-[#0700fe]/95"></div>
+        {/* Overlay con gradiente mejorado */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0a1f3d]/98 via-[#1a3a5f]/96 to-[#0d2847]/98"></div>
+
+        {/* Efecto de luz ambiental navideño */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#d90429]/10 rounded-full blur-[120px] animate-pulse"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#14532d]/10 rounded-full blur-[120px] animate-pulse delay-700"></div>
       </div>
 
-      {/* Elementos decorativos Cyber Wow */}
+      {/* Elementos decorativos navideños mejorados */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Borde brillante superior */}
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#fb0c6b]/70 to-transparent"></div>
-        {/* Borde brillante inferior */}
-        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#fb0c6b]/70 to-transparent"></div>
+        {/* Copos de nieve flotantes con animación más suave */}
+        <div className="absolute top-[8%] left-[8%] text-white/50 text-3xl animate-[float_3s_ease-in-out_infinite]">
+          ❄️
+        </div>
+        <div className="absolute top-[15%] right-[12%] text-white/40 text-2xl animate-[float_4s_ease-in-out_infinite_0.5s]">
+          ❄️
+        </div>
+        <div className="absolute top-[35%] left-[3%] text-white/45 text-4xl animate-[float_3.5s_ease-in-out_infinite_1s]">
+          ❄️
+        </div>
+        <div className="absolute top-[55%] right-[8%] text-white/50 text-3xl animate-[float_4s_ease-in-out_infinite_1.5s]">
+          ❄️
+        </div>
+        <div className="absolute bottom-[15%] left-[15%] text-white/40 text-2xl animate-[float_3s_ease-in-out_infinite_0.8s]">
+          ❄️
+        </div>
+        <div className="absolute bottom-[25%] right-[20%] text-white/45 text-3xl animate-[float_3.5s_ease-in-out_infinite_1.2s]">
+          ❄️
+        </div>
+        <div className="absolute top-[25%] left-[40%] text-white/35 text-xl animate-[float_4s_ease-in-out_infinite_0.3s]">
+          ⭐
+        </div>
+        <div className="absolute bottom-[40%] right-[35%] text-white/35 text-xl animate-[float_3.5s_ease-in-out_infinite_1.8s]">
+          ✨
+        </div>
+
+        {/* Luces decorativas navideñas en los bordes */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#d90429]/60 to-transparent animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#14532d]/60 to-transparent animate-pulse delay-500"></div>
+
+        {/* Estrellas brillantes en las esquinas */}
+        <div className="absolute top-4 left-4 text-yellow-300/80 text-2xl animate-[spin_4s_linear_infinite]">
+          ⭐
+        </div>
+        <div className="absolute top-4 right-4 text-yellow-300/80 text-2xl animate-[spin_4s_linear_infinite_reverse]">
+          ⭐
+        </div>
       </div>
 
       <div className="relative z-10 h-full flex items-center justify-center p-4 md:p-8 py-8">
@@ -50,66 +87,102 @@ export const PromotionSection = () => {
             <div className="flex flex-col items-center justify-center">
               {/* Imagen del producto con efecto elegante */}
               <div className="relative group w-full max-w-md">
-                {/* Badge de Cyber Wow en la parte superior */}
-                <div className="flex justify-center mb-4">
-                  <div className="inline-flex items-center gap-2 bg-white backdrop-blur-sm px-5 py-2 rounded-full shadow-lg">
-                    <span className="text-lg">⚡</span>
-                    <span className="text-xs font-bold uppercase tracking-wider text-[#0700fe]">
-                      Cyber Wow 2025
-                    </span>
+                {/* Badge de Navidad mejorado */}
+                <div className="flex justify-center mb-6">
+                  <div className="relative">
+                    {/* Resplandor del badge */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#d90429] via-[#14532d] to-[#d90429] blur-xl opacity-60 animate-pulse"></div>
+
+                    {/* Badge principal */}
+                    <div className="relative inline-flex items-center gap-2.5 bg-gradient-to-r from-[#d90429] via-[#b5001f] to-[#d90429] backdrop-blur-sm px-6 py-3 rounded-full shadow-2xl border-[3px] border-white/90 hover:scale-105 transition-transform duration-300">
+                      <span className="text-xl animate-bounce">🎄</span>
+                      <span className="text-sm font-black uppercase tracking-wider text-white drop-shadow-md">
+                        Oferta Navidad 2025
+                      </span>
+                      <span className="text-xl animate-bounce delay-100">
+                        🎁
+                      </span>
+                    </div>
                   </div>
                 </div>
 
-                {/* Resplandor neón */}
-                <div className="absolute -inset-4 bg-gradient-to-r from-[#0700fe]/30 to-[#fb0c6b]/30 rounded-full blur-2xl opacity-75 group-hover:opacity-100 transition-opacity"></div>
+                {/* Resplandor neón navideño mejorado */}
+                <div className="absolute -inset-6 bg-gradient-to-r from-[#d90429]/30 via-[#14532d]/30 to-[#d90429]/30 rounded-full blur-3xl opacity-60 group-hover:opacity-90 transition-all duration-500"></div>
 
-                <div className="relative transform group-hover:scale-[1.03] transition-transform duration-300">
+                <div className="relative transform group-hover:scale-[1.05] transition-all duration-500 group-hover:rotate-1">
+                  {/* Círculo decorativo detrás del producto */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/10 rounded-full blur-2xl"></div>
+
                   <Image
                     src="/productos/HY350/HY350-sin-fondo.png"
-                    alt="Proyector HY350 Magcubic - Oferta Cyber Wow 2025"
+                    alt="Proyector HY350 Magcubic - Oferta Navidad 2025"
                     width={500}
                     height={500}
-                    className="w-full h-auto drop-shadow-2xl"
+                    className="w-full h-auto drop-shadow-[0_20px_40px_rgba(217,4,41,0.3)] relative z-10"
                     priority
                   />
 
-                  {/* Badge de descuento flotante Cyber Wow */}
+                  {/* Badge de descuento mejorado */}
                   {hy350Discount > 0 && (
-                    <div className="absolute -top-4 -right-4 bg-[#fb0c6b] text-white rounded-full w-20 h-20 flex flex-col items-center justify-center shadow-2xl shadow-[#fb0c6b]/60 border-4 border-white animate-pulse">
-                      <span className="text-2xl font-black">
-                        {hy350Discount}%
-                      </span>
-                      <span className="text-xs font-semibold">OFF</span>
+                    <div className="absolute -top-6 -right-6 z-20">
+                      {/* Resplandor del badge de descuento */}
+                      <div className="absolute inset-0 bg-[#d90429] rounded-full blur-2xl opacity-60 animate-pulse"></div>
+
+                      {/* Badge principal */}
+                      <div className="relative bg-gradient-to-br from-[#d90429] to-[#b5001f] text-white rounded-full w-24 h-24 flex flex-col items-center justify-center shadow-2xl shadow-[#d90429]/60 border-[5px] border-white animate-[bounce_2s_ease-in-out_infinite] hover:rotate-12 transition-transform duration-300">
+                        <span className="text-3xl font-black drop-shadow-md">
+                          {hy350Discount}%
+                        </span>
+                        <span className="text-xs font-bold uppercase tracking-wider">
+                          OFF
+                        </span>
+                      </div>
                     </div>
                   )}
+
+                  {/* Partículas decorativas alrededor del producto */}
+                  <div className="absolute top-1/4 -left-8 text-yellow-300/60 text-2xl animate-[float_3s_ease-in-out_infinite]">
+                    ✨
+                  </div>
+                  <div className="absolute top-1/3 -right-8 text-yellow-300/60 text-2xl animate-[float_3.5s_ease-in-out_infinite_0.5s]">
+                    ✨
+                  </div>
                 </div>
 
                 {/* Título y características en móvil */}
-                <div className="mt-4 md:hidden text-white">
-                  <h2 className="text-2xl font-bold text-center mb-3">
+                <div className="mt-6 md:hidden text-white">
+                  <h2 className="text-2xl font-black text-center mb-3 text-white drop-shadow-lg">
                     Proyector HY350 MagCubic
                   </h2>
-                  <p className="text-white/90 text-center mb-4">
-                    ¡Hasta 45% descuento en la mejor tecnología!
+                  <p className="text-white/90 text-center mb-5 font-medium">
+                    ¡La mejor tecnología para estas fiestas!
                   </p>
 
-                  {/* Características para móvil */}
-                  <div className="grid grid-cols-2 gap-2 text-sm">
-                    <div className="flex items-center gap-2">
-                      <span className="text-[#fb0c6b] text-lg">✓</span>
-                      <span className="font-medium">Full HD 1080p / 4K</span>
+                  {/* Características para móvil con mejor diseño */}
+                  <div className="grid grid-cols-1 gap-3 text-sm">
+                    <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/20">
+                      <span className="text-[#d90429] text-xl">✓</span>
+                      <span className="font-semibold text-white">
+                        Full HD 1080p / 4K
+                      </span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-[#fb0c6b] text-lg">✓</span>
-                      <span className="font-medium">580 Lúmenes ANSI</span>
+                    <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/20">
+                      <span className="text-[#14532d] text-xl">✓</span>
+                      <span className="font-semibold text-white">
+                        580 Lúmenes ANSI
+                      </span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-[#fb0c6b] text-lg">✓</span>
-                      <span className="font-medium">Android 11.0</span>
+                    <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/20">
+                      <span className="text-[#d90429] text-xl">✓</span>
+                      <span className="font-semibold text-white">
+                        Android 11.0
+                      </span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-[#fb0c6b] text-lg">✓</span>
-                      <span className="font-medium">Pantalla 150&quot;</span>
+                    <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/20">
+                      <span className="text-[#14532d] text-xl">✓</span>
+                      <span className="font-semibold text-white">
+                        Pantalla hasta 150&quot;
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -119,44 +192,52 @@ export const PromotionSection = () => {
             {/* Columna derecha - Información, Precio y CTA */}
             <div className="flex flex-col justify-center text-white space-y-5">
               {/* Título y características en desktop */}
-              <div className="hidden md:block space-y-4">
-                <h2 className="text-3xl lg:text-5xl font-black text-white drop-shadow-lg">
-                  Proyector HY350 MagCubic
-                </h2>
-                <p className="text-white/90 text-lg font-medium">
-                  ¡Hasta 45% descuento en la mejor tecnología!
-                </p>
+              <div className="hidden md:block space-y-5">
+                <div className="space-y-3">
+                  <h2 className="text-4xl lg:text-6xl font-black text-white drop-shadow-2xl leading-tight">
+                    Proyector HY350 MagCubic
+                  </h2>
+                  <p className="text-white/95 text-xl font-semibold drop-shadow-lg">
+                    ¡La mejor tecnología para estas fiestas! 🎄
+                  </p>
+                </div>
 
-                {/* Características compactas */}
-                <div className="grid grid-cols-2 gap-3 text-sm mt-6">
-                  <div className="flex items-center gap-2 text-white">
-                    <span className="text-[#fb0c6b] text-lg">✓</span>
-                    <span className="font-medium">Full HD 1080p / 4K</span>
+                {/* Características con diseño de tarjetas */}
+                <div className="grid grid-cols-2 gap-3 mt-6">
+                  <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md rounded-xl p-4 border-2 border-white/20 hover:border-[#d90429]/50 transition-all duration-300 hover:scale-105">
+                    <span className="text-[#d90429] text-2xl">✓</span>
+                    <span className="font-bold text-white">
+                      Full HD 1080p / 4K
+                    </span>
                   </div>
-                  <div className="flex items-center gap-2 text-white">
-                    <span className="text-[#fb0c6b] text-lg">✓</span>
-                    <span className="font-medium">580 Lúmenes ANSI</span>
+                  <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md rounded-xl p-4 border-2 border-white/20 hover:border-[#14532d]/50 transition-all duration-300 hover:scale-105">
+                    <span className="text-[#14532d] text-2xl">✓</span>
+                    <span className="font-bold text-white">
+                      580 Lúmenes ANSI
+                    </span>
                   </div>
-                  <div className="flex items-center gap-2 text-white">
-                    <span className="text-[#fb0c6b] text-lg">✓</span>
-                    <span className="font-medium">Android 11.0</span>
+                  <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md rounded-xl p-4 border-2 border-white/20 hover:border-[#d90429]/50 transition-all duration-300 hover:scale-105">
+                    <span className="text-[#d90429] text-2xl">✓</span>
+                    <span className="font-bold text-white">Android 11.0</span>
                   </div>
-                  <div className="flex items-center gap-2 text-white">
-                    <span className="text-[#fb0c6b] text-lg">✓</span>
-                    <span className="font-medium">Pantalla 150&quot;</span>
+                  <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md rounded-xl p-4 border-2 border-white/20 hover:border-[#14532d]/50 transition-all duration-300 hover:scale-105">
+                    <span className="text-[#14532d] text-2xl">✓</span>
+                    <span className="font-bold text-white">
+                      Pantalla 150&quot;
+                    </span>
                   </div>
                 </div>
               </div>
 
               {/* Precios elegantes */}
-              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border-2 border-white/20">
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border-2 border-white/30 hover:border-white/50 transition-all duration-300 shadow-2xl hover:shadow-[0_0_30px_rgba(217,4,41,0.3)]">
                 {hy350Product.oldPrice && (
                   <div className="flex items-center gap-3 mb-3">
                     <span className="text-white/70 line-through text-xl">
                       S/ {hy350Product.oldPrice.toFixed(2)}
                     </span>
                     {hy350Discount > 0 && (
-                      <span className="bg-[#fb0c6b] text-white px-3 py-1.5 rounded-full text-sm font-bold">
+                      <span className="bg-[#d90429] text-white px-3 py-1.5 rounded-full text-sm font-bold border-2 border-white animate-pulse">
                         -{hy350Discount}%
                       </span>
                     )}
@@ -167,30 +248,33 @@ export const PromotionSection = () => {
                     S/ {hy350Product.price.toFixed(2)}
                   </span>
                 </div>
+                <div className="mt-2 text-white/80 text-sm font-semibold">
+                  🎁 Precio especial de Navidad
+                </div>
               </div>
 
-              {/* Mensaje de urgencia */}
-              <div className="bg-white/10 backdrop-blur-md rounded-xl px-5 py-3 border border-white/20 text-center">
+              {/* Mensaje de urgencia navideño */}
+              <div className="bg-[#d90429]/80 backdrop-blur-md rounded-xl px-5 py-3 border-2 border-white/40 text-center hover:scale-105 transition-transform duration-300 shadow-lg">
                 <div className="text-white font-bold text-base">
-                  ⚡ Solo quedan {hy350Product.stock} unidades disponibles
+                  🎁 Solo quedan {hy350Product.stock} unidades para Navidad
                 </div>
-                <div className="text-sm text-white/80 mt-1">
-                  Oferta por tiempo limitado
+                <div className="text-sm text-white/90 mt-1">
+                  Oferta especial navideña por tiempo limitado
                 </div>
               </div>
 
               {/* Botones */}
               <div className="flex flex-col sm:flex-row gap-3">
                 <a
-                  href={`https://wa.me/51972300301?text=Hola%20iubizon,%20quiero%20aprovechar%20la%20oferta%20Cyber%20Wow%20del%20Proyector%20HY350%20MagCubic%20a%20S/%20${hy350Product.price.toFixed(2)}`}
+                  href={`https://wa.me/51972300301?text=Hola%20iubizon,%20quiero%20aprovechar%20la%20oferta%20Navidad%20del%20Proyector%20HY350%20MagCubic%20a%20S/%20${hy350Product.price.toFixed(2)}`}
                   target="_blank"
-                  className="flex-1 bg-white hover:bg-white/90 text-[#0700fe] font-bold py-4 px-8 rounded-full text-center text-base transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="flex-1 bg-[#d90429] hover:bg-[#b5001f] text-white font-bold py-4 px-8 rounded-full text-center text-base transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-2 border-white"
                 >
-                  Comprar ahora
+                  🎄 Comprar ahora
                 </a>
                 <Link
                   href="/productos/Proyector-Led-Portatil-HY350-Magcubic-Full-Hd-1080p-Android"
-                  className="flex-1 bg-white/20 hover:bg-white/30 backdrop-blur-md text-white font-semibold py-4 px-8 rounded-full border-2 border-white/40 hover:border-white/60 transition-all duration-300 text-center text-base"
+                  className="flex-1 bg-white/20 hover:bg-white/30 backdrop-blur-md text-white font-semibold py-4 px-8 rounded-full border-2 border-white hover:border-white transition-all duration-300 text-center text-base hover:scale-105"
                 >
                   Ver detalles
                 </Link>
