@@ -214,7 +214,7 @@ export const ProductCard = ({ product }: Props) => {
           target="_blank"
           className={twMerge(
             "w-full rounded-full px-6 py-2.5 text-center text-sm font-bold shadow-md transition-all duration-300 uppercase tracking-wide",
-            isByCampaign || isChristmas
+            isByCampaign && isNew
               ? "bg-gradient-to-r from-[#d90429] via-[#c41e3a] to-[#d90429] text-white hover:shadow-lg hover:shadow-red-500/40 hover:scale-105"
               : "bg-secondary text-white hover:shadow-lg",
           )}
