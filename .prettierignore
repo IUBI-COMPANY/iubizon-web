@@ -1,0 +1,43 @@
+# Dependencies
+node_modules
+**/node_modules
+
+# Build outputs
+.next
+**/dist
+**/build
+**/.next
+
+# Public assets
+public
+**/public
+
+# Cache and temp files
+.cache
+*.log
+.DS_Store
+
+# Lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode
+.idea
+
+# Build info
+tsconfig.tsbuildinfo
+**/*.tsbuildinfo
+
+# Other
+coverage
+.turbo
+*.min.js
+*.min.css
+
