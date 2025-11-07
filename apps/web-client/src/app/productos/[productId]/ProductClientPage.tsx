@@ -22,15 +22,17 @@ export default function ProductDetailPage({ product }: Props) {
 
   const condition = productsCondition[product.condition];
 
-  // Check if Cyber WOW campaign is active (Nov 3-6, 2025)
-  const isCyberWowActive = () => {
+  // Check if Christmas campaign is active (Nov 1 - Dec 31, 2025)
+  const isChristmasCampaignActive = () => {
     const now = new Date();
-    const campaignStart = new Date(2025, 10, 3); // Nov 3
-    const campaignEnd = new Date(2025, 10, 6, 23, 59, 59); // Nov 6 end of day
+    const campaignStart = new Date(2025, 10, 1); // Nov 1, 2025
+    const campaignEnd = new Date(2025, 11, 31, 23, 59, 59); // Dec 31, 2025 end of day
     return now >= campaignStart && now <= campaignEnd;
   };
 
-  const showCyberWow = product.ciberWow && isCyberWowActive();
+  const showChristmasCampaign = Boolean(
+    product?.campaign && isChristmasCampaignActive(),
+  );
 
   useEffect(() => {
     document.body.style.overflow = showModal ? "hidden" : "auto";
@@ -47,43 +49,88 @@ export default function ProductDetailPage({ product }: Props) {
     <>
       <style>
         {`
-      @keyframes scalePulse {
+      @keyframes sparkle {
         0%, 100% {
+          opacity: 1;
           transform: scale(1);
         }
         50% {
-          transform: scale(1.05);
+          opacity: 0.5;
+          transform: scale(1.2);
         }
       }
 
-      @keyframes cyberShine {
+      @keyframes elegantShine {
         0% {
-          left: -100%;
+          left: -150%;
         }
         100% {
-          left: 200%;
+          left: 150%;
         }
       }
 
-      .cyber-wow-badge {
-        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      @keyframes subtleGlow {
+        0%, 100% {
+          filter: brightness(1);
+        }
+        50% {
+          filter: brightness(1.1);
+        }
       }
 
-      .cyber-wow-container {
+      .christmas-badge {
+        background: linear-gradient(90deg, #1a4d2e 0%, #2d5f3f 50%, #1a4d2e 100%);
+        position: relative;
+        overflow: hidden;
+        animation: subtleGlow 3s ease-in-out infinite;
+      }
+
+      .christmas-badge::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -150%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        animation: elegantShine 4s ease-in-out infinite;
+        pointer-events: none;
+      }
+
+      .gold-star {
+        color: #d4af37;
+        animation: sparkle 2s ease-in-out infinite;
+      }
+
+      .gold-decoration {
+        color: #d4af37;
+        opacity: 0.8;
+      }
+
+      .discount-badge {
+        background: linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #991b1b 100%);
+        border: 2px solid rgba(255, 255, 255, 0.95);
+        box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4), 0 0 20px rgba(220, 38, 38, 0.2);
         position: relative;
         overflow: hidden;
       }
 
-      .cyber-wow-container::before {
+      .discount-badge::before {
         content: '';
         position: absolute;
         top: 0;
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-        animation: cyberShine 3s ease-in-out infinite;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        animation: elegantShine 3s ease-in-out infinite;
         pointer-events: none;
+      }
+
+      .wavy-line {
+        display: inline-block;
+        color: #d4af37;
+        opacity: 0.6;
       }
     `}
       </style>
@@ -93,20 +140,89 @@ export default function ProductDetailPage({ product }: Props) {
         ) : (
           <div className="content-wrapper px-7 max-w-[1470px] m-auto w-full">
             <main className="grid grid-cols-12 py-5 w-full relative">
-              {showCyberWow && (
+              {showChristmasCampaign && (
                 <div className="col-span-12 mb-4">
-                  <div className="cyber-wow-badge rounded-lg px-6 py-3 text-white text-center font-bold text-lg flex items-center justify-center gap-3">
-                    <span className="text-2xl">⚡</span>
-                    <span>
-                      CYBER WOW - ¡15% de descuento en productos seleccionados!
-                    </span>
-                    <span className="text-2xl">⚡</span>
+                  <div className="christmas-badge rounded-lg px-3 md:px-6 py-3 md:py-4 text-white shadow-xl">
+                    <div className="flex items-center justify-center gap-1.5 md:gap-2 flex-wrap">
+                      {/* Left decorative elements */}
+                      <div className="hidden md:flex items-center gap-1.5">
+                        <span className="gold-star text-lg">✦</span>
+                        <span
+                          className="gold-star text-sm"
+                          style={{ animationDelay: "0.5s" }}
+                        >
+                          ✦
+                        </span>
+                        <span className="gold-decoration text-xs">•</span>
+                      </div>
+
+                      {/* Wavy line left */}
+                      <span className="wavy-line hidden lg:inline text-base">
+                        〰
+                      </span>
+
+                      {/* Main content */}
+                      <div className="flex items-center gap-2">
+                        <span className="text-2xl md:text-3xl">🎁</span>
+                        <h2
+                          className="text-lg md:text-2xl font-bold tracking-wide"
+                          style={{ fontFamily: "Georgia, serif" }}
+                        >
+                          Ideas{" "}
+                          <span className="gold-decoration text-base md:text-xl">
+                            para
+                          </span>{" "}
+                          Regalar
+                        </h2>
+                      </div>
+
+                      {/* Wavy line right */}
+                      <span className="wavy-line hidden lg:inline text-base">
+                        〰
+                      </span>
+
+                      {/* Right decorative elements */}
+                      <div className="hidden md:flex items-center gap-1.5">
+                        <span className="gold-decoration text-xs">•</span>
+                        <span
+                          className="gold-star text-sm"
+                          style={{ animationDelay: "1s" }}
+                        >
+                          ✦
+                        </span>
+                        <span
+                          className="gold-star text-lg"
+                          style={{ animationDelay: "1.5s" }}
+                        >
+                          ✦
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Subtitle with discount */}
+                    <div className="mt-2 flex flex-wrap items-center justify-center gap-1.5 md:gap-2">
+                      <span className="text-xs md:text-sm font-bold tracking-wide opacity-90">
+                        NAVIDAD 2025
+                      </span>
+                      <span className="text-sm md:text-base font-bold opacity-80">
+                        •
+                      </span>
+                      <span className="discount-badge px-3 py-1 rounded-md text-xs md:text-sm font-extrabold shadow-lg tracking-wide">
+                        15% DSCTO.
+                      </span>
+                      <span className="text-sm md:text-base font-bold opacity-80 hidden md:inline">
+                        •
+                      </span>
+                      <span className="text-[10px] md:text-xs opacity-75 font-medium">
+                        Válido hasta el 31 de Diciembre
+                      </span>
+                    </div>
                   </div>
                 </div>
               )}
               <section className="col-span-12 lg:col-span-8 w-full flex justify-center items-center">
                 <div
-                  className={`w-full ${showCyberWow ? "cyber-wow-container" : ""}`}
+                  className={`w-full ${showChristmasCampaign ? "christmas-container" : ""}`}
                 >
                   {/*Product media*/}
                   <MediaCarousel product={product} />
@@ -116,7 +232,7 @@ export default function ProductDetailPage({ product }: Props) {
                       showModal={showModal}
                       setShowModal={setShowModal}
                       condition={condition}
-                      showCyberWow={showCyberWow}
+                      showChristmasCampaign={showChristmasCampaign}
                     />
                   </div>
                   {/*Product specifications*/}
@@ -302,7 +418,7 @@ export default function ProductDetailPage({ product }: Props) {
                   showModal={showModal}
                   setShowModal={setShowModal}
                   condition={condition}
-                  showCyberWow={showCyberWow}
+                  showChristmasCampaign={showChristmasCampaign}
                 />
               </div>
             </main>

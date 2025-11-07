@@ -14,10 +14,6 @@ export default function OtherProductsCarousel({
   const products = allProducts
     .filter((p) => p.id !== currentProduct.id)
     .sort((a, b) => {
-      // Primero: Productos con ciberWow: true
-      if (a.ciberWow && !b.ciberWow) return -1;
-      if (!a.ciberWow && b.ciberWow) return 1;
-
       // Segundo: Productos con special: true
       if (a.campaign && !b.campaign) return -1;
       if (!a.campaign && b.campaign) return 1;

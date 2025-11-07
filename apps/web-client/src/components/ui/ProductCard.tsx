@@ -13,11 +13,11 @@ export const ProductCard = ({ product }: Props) => {
   const isNew = product?.condition === "new";
   const isByCampaign = product?.campaign;
 
-  // Check if Christmas campaign is active (Dec 1 - Dec 31, 2025)
+  // Check if Christmas campaign is active (Nov 1 - Dec 31, 2025)
   const isChristmasCampaignActive = () => {
     const now = new Date();
-    const campaignStart = new Date(2025, 11, 1); // Dec 1
-    const campaignEnd = new Date(2025, 11, 31, 23, 59, 59); // Dec 31 end of day
+    const campaignStart = new Date(2025, 10, 1); // Nov 1, 2025
+    const campaignEnd = new Date(2025, 11, 31, 23, 59, 59); // Dec 31, 2025 end of day
     return now >= campaignStart && now <= campaignEnd;
   };
 
@@ -80,7 +80,7 @@ export const ProductCard = ({ product }: Props) => {
       {/* Título del producto */}
       <div className="flex flex-wrap gap-2 item-center relative z-10">
         <Link href={`/productos/${product.id}`}>
-          <h2 className="text-xl font-semibold text-gray-800 transition-colors duration-300 group-hover:text-[#10b981]">
+          <h2 className="text-xl font-semibold text-gray-800 transition-colors duration-300 group-hover:text-[#2d5f3f]">
             {product?.name}
           </h2>
         </Link>
@@ -126,7 +126,7 @@ export const ProductCard = ({ product }: Props) => {
           </span>
         </p>
       ) : (
-        <p className="mt-1 text-xs font-medium text-green-600 relative z-10 transition-all duration-300 group-hover:text-[#10b981] group-hover:font-semibold">
+        <p className="mt-1 text-xs font-medium text-green-600 relative z-10 transition-all duration-300 group-hover:text-[#2d5f3f] group-hover:font-semibold">
           Disponible puedes comprarlo ahora mismo
         </p>
       )}
@@ -151,7 +151,7 @@ export const ProductCard = ({ product }: Props) => {
           </p>
         )}
         {(isByCampaign || isChristmas) && product?.oldPrice && (
-          <div className="mt-2 text-[#10b981] text-xs font-bold uppercase tracking-wide bg-green-50 py-1 px-3 rounded-full inline-block">
+          <div className="mt-2 text-[#2d5f3f] text-xs font-bold uppercase tracking-wide bg-green-50 py-1 px-3 rounded-full inline-block">
             Ahorra S/ {(product.oldPrice - product.price).toFixed(2)}
           </div>
         )}
@@ -159,7 +159,7 @@ export const ProductCard = ({ product }: Props) => {
       {/* Características con checkmarks */}
       <div className="flex items-center mt-3 text-sm text-gray-600 mb-1 relative z-10">
         <svg
-          className="w-5 h-5 text-[#10b981] mr-2"
+          className="w-5 h-5 text-[#2d5f3f] mr-2"
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
@@ -176,7 +176,7 @@ export const ProductCard = ({ product }: Props) => {
       {!isNew && (
         <div className="flex items-center text-sm text-gray-600 mb-1 relative z-10">
           <svg
-            className="w-5 h-5 text-[#10b981] mr-2"
+            className="w-5 h-5 text-[#2d5f3f] mr-2"
             fill="none"
             stroke="currentColor"
             strokeWidth="2"
@@ -193,7 +193,7 @@ export const ProductCard = ({ product }: Props) => {
       )}
       <div className="flex items-center text-sm text-gray-600 mb-1 relative z-10">
         <svg
-          className="w-5 h-5 text-[#10b981] mr-2"
+          className="w-5 h-5 text-[#2d5f3f] mr-2"
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
@@ -215,7 +215,7 @@ export const ProductCard = ({ product }: Props) => {
           className={twMerge(
             "w-full rounded-full px-6 py-2.5 text-center text-sm font-bold shadow-md transition-all duration-300 uppercase tracking-wide",
             isByCampaign && isNew
-              ? "bg-gradient-to-r from-[#d90429] via-[#c41e3a] to-[#d90429] text-white hover:shadow-lg hover:shadow-red-500/40 hover:scale-105"
+              ? "bg-gradient-to-r from-[#2d5f3f] via-[#2d5f1f] to-[#2d5f3f] text-white hover:shadow-lg hover:shadow-green-950/40 hover:scale-105"
               : "bg-secondary text-white hover:shadow-lg",
           )}
         >
