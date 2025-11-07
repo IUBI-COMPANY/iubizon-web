@@ -18,7 +18,7 @@ export const PromotionSection = () => {
       : 0;
 
   return (
-    <section className="relative mt-12 mb-12 rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.4)] border-[6px] border-white/20 min-h-[600px] md:min-h-[500px] bg-gradient-to-br from-[#0a1f3d] via-[#1a3a5f] to-[#0d2847]">
+    <section className="relative mt-12 mb-12 rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)] border-[6px] border-white/10 min-h-[600px] md:min-h-[500px] bg-gradient-to-br from-[#0a0f1a] via-[#0d1520] to-[#050a12]">
       {/* Video de fondo a toda altura */}
       <div className="absolute inset-0 w-full h-full flex items-center justify-center overflow-hidden">
         <video
@@ -26,55 +26,55 @@ export const PromotionSection = () => {
           muted
           loop
           playsInline
-          className="h-full w-auto min-w-full object-cover opacity-15"
+          className="h-full w-auto min-w-full object-cover opacity-10"
         >
           <source src="/productos/HY350/outboxing.mp4" type="video/mp4" />
         </video>
-        {/* Overlay con gradiente mejorado */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0a1f3d]/98 via-[#1a3a5f]/96 to-[#0d2847]/98"></div>
+        {/* Overlay con gradiente oscuro mejorado */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0a0f1a]/98 via-[#0d1520]/96 to-[#050a12]/98"></div>
 
-        {/* Efecto de luz ambiental navideño */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#d90429]/10 rounded-full blur-[120px] animate-pulse"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#14532d]/10 rounded-full blur-[120px] animate-pulse delay-700"></div>
+        {/* Efecto de luz ambiental navideño suave */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#d90429]/5 rounded-full blur-[140px] animate-pulse"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#0f3d1f]/8 rounded-full blur-[140px] animate-pulse delay-700"></div>
       </div>
 
       {/* Elementos decorativos navideños mejorados */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Copos de nieve flotantes con animación más suave */}
-        <div className="absolute top-[8%] left-[8%] text-white/50 text-3xl animate-[float_3s_ease-in-out_infinite]">
+        <div className="absolute top-[8%] left-[8%] text-white/25 text-3xl animate-[float_3s_ease-in-out_infinite]">
           ❄️
         </div>
-        <div className="absolute top-[15%] right-[12%] text-white/40 text-2xl animate-[float_4s_ease-in-out_infinite_0.5s]">
+        <div className="absolute top-[15%] right-[12%] text-white/20 text-2xl animate-[float_4s_ease-in-out_infinite_0.5s]">
           ❄️
         </div>
-        <div className="absolute top-[35%] left-[3%] text-white/45 text-4xl animate-[float_3.5s_ease-in-out_infinite_1s]">
+        <div className="absolute top-[35%] left-[3%] text-white/25 text-4xl animate-[float_3.5s_ease-in-out_infinite_1s]">
           ❄️
         </div>
-        <div className="absolute top-[55%] right-[8%] text-white/50 text-3xl animate-[float_4s_ease-in-out_infinite_1.5s]">
+        <div className="absolute top-[55%] right-[8%] text-white/25 text-3xl animate-[float_4s_ease-in-out_infinite_1.5s]">
           ❄️
         </div>
-        <div className="absolute bottom-[15%] left-[15%] text-white/40 text-2xl animate-[float_3s_ease-in-out_infinite_0.8s]">
+        <div className="absolute bottom-[15%] left-[15%] text-white/20 text-2xl animate-[float_3s_ease-in-out_infinite_0.8s]">
           ❄️
         </div>
-        <div className="absolute bottom-[25%] right-[20%] text-white/45 text-3xl animate-[float_3.5s_ease-in-out_infinite_1.2s]">
+        <div className="absolute bottom-[25%] right-[20%] text-white/25 text-3xl animate-[float_3.5s_ease-in-out_infinite_1.2s]">
           ❄️
         </div>
-        <div className="absolute top-[25%] left-[40%] text-white/35 text-xl animate-[float_4s_ease-in-out_infinite_0.3s]">
+        <div className="absolute top-[25%] left-[40%] text-white/20 text-xl animate-[float_4s_ease-in-out_infinite_0.3s]">
           ⭐
         </div>
-        <div className="absolute bottom-[40%] right-[35%] text-white/35 text-xl animate-[float_3.5s_ease-in-out_infinite_1.8s]">
+        <div className="absolute bottom-[40%] right-[35%] text-white/20 text-xl animate-[float_3.5s_ease-in-out_infinite_1.8s]">
           ✨
         </div>
 
-        {/* Luces decorativas navideñas en los bordes */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#d90429]/60 to-transparent animate-pulse"></div>
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#14532d]/60 to-transparent animate-pulse delay-500"></div>
+        {/* Luces decorativas navideñas en los bordes con verde oscuro */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#0f3d1f]/40 to-transparent animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#0f3d1f]/40 to-transparent animate-pulse delay-500"></div>
 
         {/* Estrellas brillantes en las esquinas */}
-        <div className="absolute top-4 left-4 text-yellow-300/80 text-2xl animate-[spin_4s_linear_infinite]">
+        <div className="absolute top-4 left-4 text-emerald-400/50 text-2xl animate-[spin_4s_linear_infinite]">
           ⭐
         </div>
-        <div className="absolute top-4 right-4 text-yellow-300/80 text-2xl animate-[spin_4s_linear_infinite_reverse]">
+        <div className="absolute top-4 right-4 text-emerald-400/50 text-2xl animate-[spin_4s_linear_infinite_reverse]">
           ⭐
         </div>
       </div>
@@ -91,10 +91,10 @@ export const PromotionSection = () => {
                 <div className="flex justify-center mb-6">
                   <div className="relative">
                     {/* Resplandor del badge */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#d90429] via-[#14532d] to-[#d90429] blur-xl opacity-60 animate-pulse"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#0f3d1f] via-[#14532d] to-[#0f3d1f] blur-xl opacity-40 animate-pulse"></div>
 
-                    {/* Badge principal */}
-                    <div className="relative inline-flex items-center gap-2.5 bg-gradient-to-r from-[#d90429] via-[#b5001f] to-[#d90429] backdrop-blur-sm px-6 py-3 rounded-full shadow-2xl border-[3px] border-white/90 hover:scale-105 transition-transform duration-300">
+                    {/* Badge principal con verde oscuro y solo acento rojo */}
+                    <div className="relative inline-flex items-center gap-2.5 bg-gradient-to-r from-[#14532d] via-[#0f3d1f] to-[#14532d] backdrop-blur-sm px-6 py-3 rounded-full shadow-2xl border-[3px] border-[#d90429]/15 hover:scale-105 transition-transform duration-300">
                       <span className="text-xl animate-bounce">🎄</span>
                       <span className="text-sm font-black uppercase tracking-wider text-white drop-shadow-md">
                         Oferta Navidad 2025
@@ -107,7 +107,7 @@ export const PromotionSection = () => {
                 </div>
 
                 {/* Resplandor neón navideño mejorado */}
-                <div className="absolute -inset-6 bg-gradient-to-r from-[#d90429]/30 via-[#14532d]/30 to-[#d90429]/30 rounded-full blur-3xl opacity-60 group-hover:opacity-90 transition-all duration-500"></div>
+                <div className="absolute -inset-6 bg-gradient-to-r from-[#0f3d1f]/25 via-[#14532d]/25 to-[#0f3d1f]/25 rounded-full blur-3xl opacity-50 group-hover:opacity-80 transition-all duration-500"></div>
 
                 <div className="relative transform group-hover:scale-[1.05] transition-all duration-500 group-hover:rotate-1">
                   {/* Círculo decorativo detrás del producto */}
@@ -118,7 +118,7 @@ export const PromotionSection = () => {
                     alt="Proyector HY350 Magcubic - Oferta Navidad 2025"
                     width={500}
                     height={500}
-                    className="w-full h-auto drop-shadow-[0_20px_40px_rgba(217,4,41,0.3)] relative z-10"
+                    className="w-full h-auto drop-shadow-[0_20px_40px_rgba(15,61,31,0.4)] relative z-10"
                     priority
                   />
 
@@ -254,7 +254,7 @@ export const PromotionSection = () => {
               </div>
 
               {/* Mensaje de urgencia navideño */}
-              <div className="bg-[#d90429]/80 backdrop-blur-md rounded-xl px-5 py-3 border-2 border-white/40 text-center hover:scale-105 transition-transform duration-300 shadow-lg">
+              <div className="bg-gradient-to-r from-[#14532d] to-[#0f3d1f] backdrop-blur-md rounded-xl px-5 py-3 border-2 border-[#d90429]/15 text-center hover:scale-105 transition-transform duration-300 shadow-lg">
                 <div className="text-white font-bold text-base">
                   🎁 Solo quedan {hy350Product.stock} unidades para Navidad
                 </div>
@@ -268,13 +268,13 @@ export const PromotionSection = () => {
                 <a
                   href={`https://wa.me/51972300301?text=Hola%20iubizon,%20quiero%20aprovechar%20la%20oferta%20Navidad%20del%20Proyector%20HY350%20MagCubic%20a%20S/%20${hy350Product.price.toFixed(2)}`}
                   target="_blank"
-                  className="flex-1 bg-[#d90429] hover:bg-[#b5001f] text-white font-bold py-4 px-8 rounded-full text-center text-base transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-2 border-white"
+                  className="flex-1 bg-gradient-to-r from-[#14532d] to-[#0f3d1f] hover:from-[#1a5a37] hover:to-[#14532d] text-white font-bold py-4 px-8 rounded-full text-center text-base transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-2 border-emerald-600/30"
                 >
                   🎄 Comprar ahora
                 </a>
                 <Link
                   href="/productos/Proyector-Led-Portatil-HY350-Magcubic-Full-Hd-1080p-Android"
-                  className="flex-1 bg-white/20 hover:bg-white/30 backdrop-blur-md text-white font-semibold py-4 px-8 rounded-full border-2 border-white hover:border-white transition-all duration-300 text-center text-base hover:scale-105"
+                  className="flex-1 bg-white/15 hover:bg-white/25 backdrop-blur-md text-white font-semibold py-4 px-8 rounded-full border-2 border-white/30 hover:border-white/50 transition-all duration-300 text-center text-base hover:scale-105"
                 >
                   Ver detalles
                 </Link>

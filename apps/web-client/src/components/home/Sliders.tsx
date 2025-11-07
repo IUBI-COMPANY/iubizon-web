@@ -46,16 +46,16 @@ export const SlidersComponent = () => {
   }
 
   const slides: Slide[] = [
-    // {
-    //   id: 1,
-    //   type: "image",
-    //   src: "/images/ciberwow/CyberWow-Desk.png",
-    //   srcMb: "/images/ciberwow/CyberWOW-mb.png",
-    //   alt: "Cyber Wow 2025 iubizon",
-    //   ctaLink: "/productos",
-    // },
     {
       id: 1,
+      type: "image",
+      src: "/images/navidad/banner.png",
+      srcMb: "/images/navidad/banner-mb.png",
+      alt: "Navidad 2025 iubizon",
+      ctaLink: "/productos",
+    },
+    {
+      id: 2,
       type: "content",
       content: (
         <>
