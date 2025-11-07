@@ -8,11 +8,11 @@ import { SlidersComponent } from "@/components/home/Sliders";
 import { PromotionSection } from "@/app/PromotionSection";
 
 export default function Home() {
-  // Check if Christmas campaign is active (Dec 1-31, 2025)
+  // Check if Christmas campaign is active (Nov 1 - Dec 31, 2025)
   const isChristmasCampaignActive = () => {
     const now = new Date();
-    const campaignStart = new Date(2025, 11, 1); // Dec 1
-    const campaignEnd = new Date(2025, 12, 31, 23, 59, 59); // Dec 31 end of day
+    const campaignStart = new Date(2025, 10, 1); // Nov 1, 2025 (month is 0-indexed)
+    const campaignEnd = new Date(2025, 11, 31, 23, 59, 59); // Dec 31, 2025 end of day
     return now >= campaignStart && now <= campaignEnd;
   };
 
@@ -253,7 +253,7 @@ export default function Home() {
 
         {productsByCondition.new.products.length > 0 && (
           <div className="!mt-6 !mb-[3em]">
-            <div className="mb-4">
+            <div className="mb-4 flex items-start justify-between gap-4">
               <div>
                 <h2 className="text-2xl font-bold text-primary">
                   {productsByCondition.new.name}
@@ -265,6 +265,29 @@ export default function Home() {
                   Llévate tu proyector completamente nuevo y con garantía.
                 </p>
               </div>
+              {christmasCampaignActive && (
+                <div className="flex-shrink-0 text-right">
+                  <div className="flex flex-col items-end gap-0.5">
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-lg">🎄</span>
+                      <span className="text-[0.65rem] font-semibold text-secondary/50 uppercase tracking-wide">
+                        Oferta Navidad
+                      </span>
+                    </div>
+                    <div className="flex items-baseline gap-0.5">
+                      <span className="text-3xl font-black text-[#d90429] leading-none">
+                        15
+                      </span>
+                      <span className="text-xl font-bold text-[#d90429]/70">
+                        %
+                      </span>
+                    </div>
+                    <span className="text-[0.65rem] font-medium text-secondary/40 uppercase tracking-wide">
+                      Descuento
+                    </span>
+                  </div>
+                </div>
+              )}
             </div>
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
               {productsByCondition.new.products.map((product, index) => (
@@ -309,7 +332,7 @@ export default function Home() {
         )}
         {productsByCondition.reconditioned.products.length > 0 && (
           <div className="!mt-6 !mb-[3em]">
-            <div className="mb-4">
+            <div className="mb-4 flex items-start justify-between gap-4">
               <div>
                 <h2 className="text-2xl font-bold text-secondary">
                   {productsByCondition.reconditioned.name}
@@ -322,6 +345,29 @@ export default function Home() {
                   garantía
                 </p>
               </div>
+              {christmasCampaignActive && (
+                <div className="flex-shrink-0 text-right">
+                  <div className="flex flex-col items-end gap-0.5">
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-lg">🎁</span>
+                      <span className="text-[0.65rem] font-semibold text-secondary/50 uppercase tracking-wide">
+                        Oferta Navidad
+                      </span>
+                    </div>
+                    <div className="flex items-baseline gap-0.5">
+                      <span className="text-3xl font-black text-[#14532d] leading-none">
+                        42
+                      </span>
+                      <span className="text-xl font-bold text-[#14532d]/70">
+                        %
+                      </span>
+                    </div>
+                    <span className="text-[0.65rem] font-medium text-secondary/40 uppercase tracking-wide">
+                      Descuento
+                    </span>
+                  </div>
+                </div>
+              )}
             </div>
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
               {productsByCondition.reconditioned.products.map(

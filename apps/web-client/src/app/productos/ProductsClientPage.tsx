@@ -9,6 +9,16 @@ import { Filter, Package, ShoppingCart, Star } from "lucide-react";
 import { CiberWowCountDownComponent } from "@/components/ui/CiberWowCountDownComponent";
 
 export default function ProductsClientPage() {
+  // Check if Christmas campaign is active (Nov 1 - Dec 31, 2025)
+  const isChristmasCampaignActive = () => {
+    const now = new Date();
+    const campaignStart = new Date(2025, 10, 1); // Nov 1, 2025 (month is 0-indexed)
+    const campaignEnd = new Date(2025, 11, 31, 23, 59, 59); // Dec 31, 2025 end of day
+    return now >= campaignStart && now <= campaignEnd;
+  };
+
+  const christmasCampaignActive = isChristmasCampaignActive();
+
   const sortProductsBySpecial = (productsList: typeof products) => {
     return [...productsList].sort((a, b) => {
       if (a.campaign === b.campaign) return 0;
@@ -181,16 +191,41 @@ export default function ProductsClientPage() {
 
             <div className="bg-gradient-to-br from-white to-green-50/30 rounded-2xl p-8 shadow-sm border-2 border-emerald-100/50">
               <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
-                <div>
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="relative">
-                      <Star className="w-8 h-8 text-yellow-500 animate-pulse" />
-                      <div className="absolute inset-0 w-8 h-8 text-yellow-500 blur-sm animate-pulse"></div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-3 justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="relative">
+                        <Star className="w-8 h-8 text-yellow-500 animate-pulse" />
+                        <div className="absolute inset-0 w-8 h-8 text-yellow-500 blur-sm animate-pulse"></div>
+                      </div>
+                      <h2 className="text-3xl font-bold text-color-secondary">
+                        {productsByCondition.new.name}
+                      </h2>
+                      <span className="text-2xl">🎁</span>
                     </div>
-                    <h2 className="text-3xl font-bold text-color-secondary">
-                      {productsByCondition.new.name}
-                    </h2>
-                    <span className="text-2xl">🎁</span>
+                    {christmasCampaignActive && (
+                      <div className="flex-shrink-0 text-right">
+                        <div className="flex flex-col items-end gap-0.5">
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-lg">🎄</span>
+                            <span className="text-[0.65rem] font-semibold text-secondary/50 uppercase tracking-wide">
+                              Oferta Navidad
+                            </span>
+                          </div>
+                          <div className="flex items-baseline gap-0.5">
+                            <span className="text-3xl font-black text-[#d90429] leading-none">
+                              15
+                            </span>
+                            <span className="text-xl font-bold text-[#d90429]/70">
+                              %
+                            </span>
+                          </div>
+                          <span className="text-[0.65rem] font-medium text-secondary/40 uppercase tracking-wide">
+                            Descuento
+                          </span>
+                        </div>
+                      </div>
+                    )}
                   </div>
                   <p className="text-gray-600 mt-2 max-w-2xl">
                     {productsByCondition.new.description}
@@ -235,16 +270,41 @@ export default function ProductsClientPage() {
 
             <div className="bg-gradient-to-br from-white to-blue-50/30 rounded-2xl p-8 shadow-sm border-2 border-blue-100/50">
               <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
-                <div>
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="relative">
-                      <ShoppingCart className="w-8 h-8 text-green-500" />
-                      <div className="absolute inset-0 w-8 h-8 text-green-500 blur-sm"></div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-3 justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="relative">
+                        <ShoppingCart className="w-8 h-8 text-green-500" />
+                        <div className="absolute inset-0 w-8 h-8 text-green-500 blur-sm"></div>
+                      </div>
+                      <h2 className="text-3xl font-bold text-color-secondary">
+                        {productsByCondition.reconditioned.name}
+                      </h2>
+                      <span className="text-2xl">♻️</span>
                     </div>
-                    <h2 className="text-3xl font-bold text-color-secondary">
-                      {productsByCondition.reconditioned.name}
-                    </h2>
-                    <span className="text-2xl">♻️</span>
+                    {christmasCampaignActive && (
+                      <div className="flex-shrink-0 text-right">
+                        <div className="flex flex-col items-end gap-0.5">
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-lg">🎁</span>
+                            <span className="text-[0.65rem] font-semibold text-secondary/50 uppercase tracking-wide">
+                              Oferta Navidad
+                            </span>
+                          </div>
+                          <div className="flex items-baseline gap-0.5">
+                            <span className="text-3xl font-black text-[#14532d] leading-none">
+                              42
+                            </span>
+                            <span className="text-xl font-bold text-[#14532d]/70">
+                              %
+                            </span>
+                          </div>
+                          <span className="text-[0.65rem] font-medium text-secondary/40 uppercase tracking-wide">
+                            Descuento
+                          </span>
+                        </div>
+                      </div>
+                    )}
                   </div>
                   <p className="text-gray-600 mt-2 max-w-2xl">
                     {productsByCondition.reconditioned.description}

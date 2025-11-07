@@ -923,14 +923,14 @@ const productsData: Product[] = [
 
 const DISCOUNT_PERCENTAGE = 0.42; // 42% DISCOUNT TO REACONDITIONED
 const DISCOUNT_PERCENTAGE_15_NAVIDAD_TO_NEWS = 0.15; // 15% DISCOUNT
-const DISCOUNT_PERCENTAGE_50_NAVIDAD_TO_REACONDITIONED = 0.42; // 43% DISCOUNT
+const DISCOUNT_PERCENTAGE_42_NAVIDAD_TO_REACONDITIONED = 0.42; // 43% DISCOUNT
 
 const productPrice = (product: Product): number => {
   switch (product.condition) {
     case "reconditioned":
       return discountByCampaign(
         product.price,
-        DISCOUNT_PERCENTAGE_50_NAVIDAD_TO_REACONDITIONED,
+        DISCOUNT_PERCENTAGE_42_NAVIDAD_TO_REACONDITIONED,
       );
     case "new":
       return discountByCampaign(

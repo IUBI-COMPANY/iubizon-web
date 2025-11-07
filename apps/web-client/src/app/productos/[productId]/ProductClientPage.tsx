@@ -34,6 +34,9 @@ export default function ProductDetailPage({ product }: Props) {
     product?.campaign && isChristmasCampaignActive(),
   );
 
+  // Calculate discount percentage based on product condition
+  const discountPercentage = product.condition === "new" ? 15 : 42;
+
   useEffect(() => {
     document.body.style.overflow = showModal ? "hidden" : "auto";
     return () => {
@@ -208,7 +211,7 @@ export default function ProductDetailPage({ product }: Props) {
                         •
                       </span>
                       <span className="discount-badge px-3 py-1 rounded-md text-xs md:text-sm font-extrabold shadow-lg tracking-wide">
-                        15% DSCTO.
+                        {discountPercentage}% DSCTO.
                       </span>
                       <span className="text-sm md:text-base font-bold opacity-80 hidden md:inline">
                         •
