@@ -23,6 +23,7 @@ export async function sendTechnicalServiceEmail(
     address: formTechnicalService?.address,
     status: "new_lead",
     terms_and_conditions: formTechnicalService?.terms_and_conditions,
+    createdBy: "user",
   });
 
   try {
