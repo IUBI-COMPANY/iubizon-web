@@ -265,18 +265,11 @@ export const PromotionSection = () => {
 
               {/* Botones */}
               <div className="flex flex-col sm:flex-row gap-3">
-                <a
-                  href={`https://wa.me/51972300301?text=Hola%20iubizon,%20quiero%20aprovechar%20la%20oferta%20Navidad%20del%20Proyector%20HY350%20MagCubic%20a%20S/%20${hy350Product.price.toFixed(2)}`}
-                  target="_blank"
+                <Link
+                  href="/productos/Proyector-Led-Portatil-HY350-Magcubic-Full-Hd-1080p-Android"
                   className="flex-1 bg-gradient-to-r from-[#14532d] to-[#0f3d1f] hover:from-[#1a5a37] hover:to-[#14532d] text-white font-bold py-4 px-8 rounded-full text-center text-base transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 border-2 border-emerald-600/30"
                 >
                   🎄 Comprar ahora
-                </a>
-                <Link
-                  href="/productos/Proyector-Led-Portatil-HY350-Magcubic-Full-Hd-1080p-Android"
-                  className="flex-1 bg-white/15 hover:bg-white/25 backdrop-blur-md text-white font-semibold py-4 px-8 rounded-full border-2 border-white/30 hover:border-white/50 transition-all duration-300 text-center text-base hover:scale-105"
-                >
-                  Ver detalles
                 </Link>
               </div>
             </div>
