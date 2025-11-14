@@ -16,7 +16,7 @@ export const getWhatsAppMessage = (product: Product): string => {
 🆔 Id producto: ${product?.id}
 🛍 Producto: 1 x ${product?.type} ${product?.name} (${condition})${isPedido ? " - *A PEDIDO*" : ""}
 🔗 Link producto: https://iubizon.com/productos/${product?.id}
-💰 Total: S/${product?.price}
+💰 *Total a Pagar: S/${product.totalPayment?.toFixed(2)}*
 
 ${isPedido ? "⚠️ *Producto a pedido:* Consultaremos disponibilidad y tiempo de entrega." : ""}
 

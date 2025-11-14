@@ -13,7 +13,7 @@ export default function ProductsClientPage() {
   const isChristmasCampaignActive = () => {
     const now = new Date();
     const campaignStart = new Date(2025, 10, 1); // Nov 1, 2025 (month is 0-indexed)
-    const campaignEnd = new Date(2025, 11, 31, 23, 59, 59); // Dec 31, 2025 end of day
+    const campaignEnd = new Date(2025, 12, 31, 23, 59, 59); // Dec 31, 2025 end of day
     return now >= campaignStart && now <= campaignEnd;
   };
 
@@ -214,7 +214,7 @@ export default function ProductsClientPage() {
                           </div>
                           <div className="flex items-baseline gap-0.5">
                             <span className="text-3xl font-black text-[#d90429] leading-none">
-                              15
+                              20
                             </span>
                             <span className="text-xl font-bold text-[#d90429]/70">
                               %

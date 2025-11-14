@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { Product } from "@/data-list/products";
 import { twMerge } from "tailwind-merge";
-import { getWhatsAppMessage } from "@/utils/whatsapp";
 
 interface Props {
   product: Product;
@@ -208,29 +207,17 @@ export const ProductCard = ({ product }: Props) => {
         Garantía de {product?.condition === "new" ? "12 meses" : "6 meses"}
       </div>
       {/* Botones */}
-      <div className="mt-3 grid gap-2 grid-cols-[1fr_auto] row-span-1 items-end relative z-10">
-        <a
-          href={`https://wa.me/51972300301?text=${getWhatsAppMessage(product)}`}
-          target="_blank"
+      <div className="w-full mt-3 relative z-10">
+        <Link
+          href={`/productos/${product.id}`}
           className={twMerge(
-            "w-full rounded-full px-6 py-2.5 text-center text-sm font-bold shadow-md transition-all duration-300 uppercase tracking-wide",
+            "block w-full rounded-full px-6 py-2.5 text-center text-sm font-bold shadow-md transition-all duration-300 uppercase tracking-wide",
             isByCampaign && isNew
               ? "bg-gradient-to-r from-[#2d5f3f] via-[#2d5f1f] to-[#2d5f3f] text-white hover:shadow-lg hover:shadow-green-950/40 hover:scale-105"
               : "bg-secondary text-white hover:shadow-lg",
           )}
         >
           {product.stock <= 0 ? "Comprar a pedido" : "Comprar ahora"}
-        </a>
-        <Link
-          href={`/productos/${product.id}`}
-          className={twMerge(
-            "rounded-full px-4 py-2.5 text-sm font-semibold border-2 transition-all duration-300 hover:scale-105",
-            isByCampaign || isChristmas
-              ? "text-gray-700 border-gray-300 hover:bg-gray-100"
-              : "text-secondary border-tertiary hover:bg-gray-100",
-          )}
-        >
-          Ver más
         </Link>
       </div>
     </article>
