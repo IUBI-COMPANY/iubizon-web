@@ -35,7 +35,7 @@ export default function ProductDetailPage({ product }: Props) {
   );
 
   // Calculate discount percentage based on product condition
-  const discountPercentage = product.condition === "new" ? 15 : 42;
+  const discountPercentage = product.condition === "new" ? 20 : 42;
 
   useEffect(() => {
     document.body.style.overflow = showModal ? "hidden" : "auto";

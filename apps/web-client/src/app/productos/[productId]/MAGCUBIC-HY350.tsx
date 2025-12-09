@@ -313,23 +313,31 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
           {/* Price Display with Discount */}
           <div
-            className="mb-8 flex items-center justify-center gap-4 flex-wrap"
+            className="mb-8"
             style={{
               opacity: Math.max(0, 1 - scrollY / 400),
               transition: "opacity 0.1s ease-out",
             }}
           >
-            <div className="flex items-center gap-3">
-              <span className="text-gray-400 line-through text-xl md:text-2xl">
-                s/ {originalPrice.toFixed(2)}
-              </span>
-              <span className="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold">
-                -{discountPercentage}%
-              </span>
+            <div className="flex items-center justify-center gap-4 flex-wrap mb-2">
+              <div className="flex items-center gap-3">
+                <span className="text-gray-400 line-through text-xl md:text-2xl">
+                  s/ {originalPrice.toFixed(2)}
+                </span>
+                <span className="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+                  -{discountPercentage}%
+                </span>
+              </div>
+              <div className="text-4xl md:text-5xl font-bold text-white">
+                s/ {discountedPrice.toFixed(2)}
+              </div>
             </div>
-            <div className="text-4xl md:text-5xl font-bold text-white">
-              s/ {discountedPrice.toFixed(2)}
-            </div>
+            <p className="text-white/60 text-sm md:text-base text-center">
+              + IGV • Total a pagar:{" "}
+              <span className="text-white/90 font-semibold">
+                s/ {product.totalPayment?.toFixed(2)}
+              </span>
+            </p>
           </div>
 
           <div
@@ -801,6 +809,113 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
           </div>
         </div>
       </section>
+
+      {/* Price Details Section - NUEVO */}
+      <section className="py-20 px-4 bg-black relative overflow-hidden">
+        <div className="max-w-4xl mx-auto relative z-10">
+          <h2 className="text-3xl md:text-5xl font-bold text-center mb-4">
+            Detalle de
+            <span className="block mt-2 bg-gradient-to-r from-white via-red-600 to-white bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(220,38,38,0.3)]">
+              Precios 🎄
+            </span>
+          </h2>
+          <p className="text-center text-red-600/60 mb-12 text-sm">
+            🎁 Precios Especiales de Navidad 2025 ⭐
+          </p>
+
+          <div className="bg-gradient-to-br from-gray-900 to-black border-2 border-red-600/30 rounded-2xl p-8 shadow-2xl shadow-red-600/20">
+            {/* Precio Original */}
+            <div className="flex items-center justify-between mb-4 pb-4 border-b border-gray-800">
+              <span className="text-gray-400 text-lg">Precio Regular:</span>
+              <span className="text-2xl font-bold text-gray-400 line-through">
+                S/ {originalPrice.toFixed(2)}
+              </span>
+            </div>
+
+            {/* Descuento */}
+            <div className="flex items-center justify-between mb-4 pb-4 border-b border-gray-800">
+              <span className="text-green-400 text-lg font-semibold">
+                Descuento Navidad ({discountPercentage}%):
+              </span>
+              <span className="text-2xl font-bold text-green-400">
+                - S/ {(originalPrice - discountedPrice).toFixed(2)}
+              </span>
+            </div>
+
+            {/* Precio con Descuento */}
+            <div className="flex items-center justify-between mb-4 pb-4 border-b border-gray-800">
+              <span className="text-white text-lg font-semibold">
+                Precio con Descuento:
+              </span>
+              <span className="text-2xl font-bold text-white">
+                S/ {discountedPrice.toFixed(2)}
+              </span>
+            </div>
+
+            {/* SubTotal */}
+            <div className="flex items-center justify-between mb-4 pb-4 border-b border-gray-800">
+              <span className="text-gray-400 text-lg">SubTotal:</span>
+              <span className="text-xl font-semibold text-gray-300">
+                S/ {product.subTotal?.toFixed(2)}
+              </span>
+            </div>
+
+            {/* IGV */}
+            <div className="flex items-center justify-between mb-6 pb-6 border-b-2 border-red-600/30">
+              <span className="text-gray-400 text-lg">IGV (18%):</span>
+              <span className="text-xl font-semibold text-gray-300">
+                S/ {product.IGV?.toFixed(2)}
+              </span>
+            </div>
+
+            {/* Total a Pagar */}
+            <div className="bg-gradient-to-r from-red-600/20 to-green-600/20 rounded-xl p-6">
+              <div className="flex items-center justify-between">
+                <span className="text-2xl font-bold text-white">
+                  Total a Pagar:
+                </span>
+                <span className="text-4xl font-black bg-gradient-to-r from-red-500 to-green-500 bg-clip-text text-transparent">
+                  S/ {product.totalPayment?.toFixed(2)}
+                </span>
+              </div>
+            </div>
+
+            {/* Nota informativa */}
+            <div className="mt-6 text-center">
+              <p className="text-sm text-gray-500">
+                ℹ️ Los precios incluyen IGV y están sujetos a disponibilidad de
+                stock
+              </p>
+            </div>
+          </div>
+
+          {/* Beneficios adicionales */}
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-gradient-to-br from-green-900/30 to-emerald-900/30 border border-green-600/30 rounded-xl p-4 text-center">
+              <div className="text-3xl mb-2">✨</div>
+              <h4 className="text-green-400 font-bold mb-1">Ahorro Real</h4>
+              <p className="text-xs text-gray-400">
+                S/ {(originalPrice - discountedPrice).toFixed(2)} de descuento
+              </p>
+            </div>
+            <div className="bg-gradient-to-br from-red-900/30 to-rose-900/30 border border-red-600/30 rounded-xl p-4 text-center">
+              <div className="text-3xl mb-2">🎁</div>
+              <h4 className="text-red-400 font-bold mb-1">Oferta Limitada</h4>
+              <p className="text-xs text-gray-400">
+                Solo durante la campaña navideña
+              </p>
+            </div>
+            <div className="bg-gradient-to-br from-blue-900/30 to-indigo-900/30 border border-blue-600/30 rounded-xl p-4 text-center">
+              <div className="text-3xl mb-2">🎄</div>
+              <h4 className="text-blue-400 font-bold mb-1">Envío Incluido</h4>
+              <p className="text-xs text-gray-400">
+                Gratis en Lima Metropolitana
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section
         id="comprar"
@@ -1044,6 +1159,12 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
             <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2 drop-shadow-lg">
               s/ {discountedPrice.toFixed(2)}
             </div>
+            <p className="text-white/70 text-sm md:text-base mb-2">
+              + IGV • Total a pagar:{" "}
+              <span className="text-white font-semibold">
+                s/ {product.totalPayment?.toFixed(2)}
+              </span>
+            </p>
             <p className="text-white text-base md:text-lg font-semibold">
               🎁 ¡Ahorra s/ {(originalPrice - discountedPrice).toFixed(2)} HOY!
               🎄

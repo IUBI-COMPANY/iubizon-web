@@ -7,7 +7,7 @@ export type Classification =
 
 export type ProductCondition = "new" | "reconditioned";
 
-export interface Product {
+export interface Product extends Price {
   id: string;
   model: string;
   name?: string;
@@ -15,8 +15,6 @@ export interface Product {
   oldStock?: number;
   stock: number;
   description?: string;
-  price: number;
-  oldPrice?: number;
   sub?: string;
   badge?: string;
   mainImage?: string;
@@ -37,6 +35,15 @@ export interface Product {
   campaign?: string;
 }
 
+interface Price {
+  oldPrice?: number;
+  price: number;
+  discount?: number;
+  subTotal?: number;
+  IGV?: number;
+  totalPayment?: number;
+}
+
 export interface MediaItem {
   type: string;
   src: string;
@@ -49,7 +56,7 @@ const productsData: Product[] = [
     name: "Epson PowerLite 980W",
     SN: "X4ZF9600474",
     condition: "new",
-    stock: 1,
+    stock: 0,
     description: "Buena proyección, detalles estéticos",
     price: 2300.0,
     badge: "Top venta",
@@ -308,7 +315,7 @@ const productsData: Product[] = [
     id: "98H",
     model: "H687A",
     name: "Epson PowerLite 98H",
-    stock: 2,
+    stock: 0,
     price: 1400.0,
     badge: "Oferta",
     mainImage: "/productos/98H/98h.jpg",
@@ -456,7 +463,7 @@ const productsData: Product[] = [
     id: "X39",
     model: "H855A",
     name: "Epson PowerLite X39",
-    stock: 2,
+    stock: 1,
     condition: "new",
     description: "Buena proyección, alta calidad de imagen",
     price: 2199.0,
@@ -529,7 +536,6 @@ const productsData: Product[] = [
     condition: "new",
     description: "",
     price: 490.99,
-    oldPrice: 490.99,
     badge: "Nuevo",
     mainImage: "/productos/HY350/HY350.jpg",
     media: [
@@ -583,7 +589,7 @@ const productsData: Product[] = [
     id: "ELPAP07",
     model: "V12H418P12",
     name: "Adaptador Epson ELPAP07 Módulo Inalámbrico WiFi",
-    stock: 4,
+    stock: 1,
     oldStock: 20,
     condition: "new",
     description: "Accesorio de proyección",
@@ -725,7 +731,7 @@ const productsData: Product[] = [
     id: "ELPAP10",
     model: "V12H731P02",
     name: "Adaptador Epson ELPAP10 Módulo Inalámbrico WiFi",
-    stock: 2,
+    stock: 1,
     oldStock: 20,
     condition: "new",
     description: "Accesorio de proyección",
@@ -921,37 +927,62 @@ const productsData: Product[] = [
   },
 ];
 
-const DISCOUNT_PERCENTAGE_15_NAVIDAD_TO_NEWS = 0.15; // 15% DISCOUNT
-const DISCOUNT_PERCENTAGE_42_NAVIDAD_TO_REACONDITIONED = 0.42; // 43% DISCOUNT
+export const DISCOUNT_PERCENTAGE_NAVIDAD_TO_NEWS = 0.2; // 20% DISCOUNT
+export const DISCOUNT_PERCENTAGE_42_NAVIDAD_TO_REACONDITIONED = 0.42; // 42% DISCOUNT
+export const IGV_RATE = 0.18; // 18% IGV (Peru tax rate)
 
-const productPrice = (product: Product): number => {
+const calcProductPrices = (
+  product: Product,
+  percentageDiscount: number = 0,
+): Price => {
+  const originalPrice = product.price;
+
+  // Si NO hay descuento: el IGV está incluido en el precio
+  if (percentageDiscount === 0) {
+    const totalPayment = originalPrice;
+    const subTotal = +(totalPayment / (1 + IGV_RATE)).toFixed(2);
+    const IGV = +(subTotal * IGV_RATE).toFixed(2);
+
+    return {
+      oldPrice: undefined,
+      price: originalPrice,
+      discount: undefined,
+      subTotal,
+      IGV,
+      totalPayment,
+    };
+  }
+
+  // Si SÍ hay descuento: el IGV se calcula aparte
+  const discountAmount = +(originalPrice * percentageDiscount).toFixed(2);
+  const newPrice = +(originalPrice - discountAmount).toFixed(2);
+  const subTotal = newPrice;
+  const IGV = +(subTotal * IGV_RATE).toFixed(2);
+  const totalPayment = +(subTotal + IGV).toFixed(2);
+
+  return {
+    oldPrice: originalPrice, // Precio original (para tachar)
+    price: newPrice, // Precio con descuento (destacado)
+    discount: discountAmount, // Monto del descuento
+    subTotal, // Base para IGV
+    IGV, // 18% del subTotal
+    totalPayment, // Precio final a pagar
+  };
+};
+
+const calcProductPricesDetails = (product: Product): Price => {
   switch (product.condition) {
     case "reconditioned":
-      return discountByCampaign(
-        product.price,
+      return calcProductPrices(
+        product,
         DISCOUNT_PERCENTAGE_42_NAVIDAD_TO_REACONDITIONED,
       );
     case "new":
-      return discountByCampaign(
-        product.price,
-        DISCOUNT_PERCENTAGE_15_NAVIDAD_TO_NEWS,
-      );
+      return calcProductPrices(product, DISCOUNT_PERCENTAGE_NAVIDAD_TO_NEWS);
     default:
-      return +product.price;
+      return calcProductPrices(product);
   }
 };
-
-const campaignChristmas = (
-  product: Product,
-): Pick<Product, "price" | "campaign"> => ({
-  price: productPrice(product),
-  campaign: "Navidad",
-});
-
-const discountByCampaign = (
-  price: number,
-  DISCOUNT_PERCENTAGE: number,
-): number => +Math.floor(price - (price * DISCOUNT_PERCENTAGE || 0)).toFixed(2);
 
 export const products: Product[] = productsData.map(
   (product) =>
@@ -963,7 +994,7 @@ export const products: Product[] = productsData.map(
             ? "Proyección media/alta"
             : "Proyección media/estándar",
       }),
-      oldPrice: product.price,
-      ...campaignChristmas(product),
+      ...calcProductPricesDetails(product),
+      campaign: "Navidad",
     }) as Product,
 );

@@ -276,7 +276,7 @@ export default function Home() {
                     </div>
                     <div className="flex items-baseline gap-0.5">
                       <span className="text-3xl font-black text-[#d90429] leading-none">
-                        15
+                        20
                       </span>
                       <span className="text-xl font-bold text-[#d90429]/70">
                         %
