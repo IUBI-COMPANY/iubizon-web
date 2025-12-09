@@ -20,13 +20,16 @@ export async function sendContactEmail(
   });
 
   try {
-    const response = await fetch(`${process.env.IUBI_CRM_API}/emails/contact`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    const response = await fetch(
+      `https://api-iubisales.web.app/emails/contact`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(mapFormContact(formContact)),
       },
-      body: JSON.stringify(mapFormContact(formContact)),
-    });
+    );
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);

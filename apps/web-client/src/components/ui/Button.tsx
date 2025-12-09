@@ -14,8 +14,10 @@ type ButtonStyleVariant =
   | "link"
   | "ghost";
 
-interface Props
-  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "style"> {
+interface Props extends Omit<
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  "style"
+> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   styleVariant?: ButtonStyleVariant;
