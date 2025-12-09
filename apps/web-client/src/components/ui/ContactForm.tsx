@@ -10,14 +10,14 @@ import { Select } from "@/components/ui/Select";
 import countriesISO from "@/data-list/countriesISO.json";
 import { TextArea } from "@/components/ui/TextArea";
 import { Form } from "@/components/ui/Form";
-import { useTransition } from "react";
+import { useTransition, useState } from "react";
 import { SendIcon } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 interface ContactFormProps {
   serverActionSendContactEmail: (
     formData: Omit<Contact, "hostname">,
-  ) => Promise<void>;
+  ) => Promise<{ success: boolean; error?: string }>;
 }
 
 interface FormData {
@@ -33,6 +33,7 @@ export const ContactForm = ({
   serverActionSendContactEmail,
 }: ContactFormProps) => {
   const [isPending, startTransition] = useTransition();
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   const schema: ObjectSchema<FormData> = yup.object({
     firstName: yup.string().required(),
@@ -66,8 +67,15 @@ export const ContactForm = ({
   const { required, error, errorMessage } = useFormUtils({ errors, schema });
 
   const onSubmit = (formData: FormData) => {
+    setErrorMsg(null); // Limpiar errores anteriores
     startTransition(async () => {
-      await serverActionSendContactEmail(formData);
+      const result = await serverActionSendContactEmail(formData);
+      if (!result.success) {
+        setErrorMsg(
+          result.error ||
+            "Error al enviar el mensaje. Por favor, intenta nuevamente.",
+        );
+      }
     });
   };
 
@@ -230,6 +238,16 @@ export const ContactForm = ({
                 )}
               />
             </div>
+            {errorMsg && (
+              <div className="md:col-span-4">
+                <div
+                  className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded relative"
+                  role="alert"
+                >
+                  <span className="block sm:inline">{errorMsg}</span>
+                </div>
+              </div>
+            )}
             <div className="md:col-span-4">
               <Button
                 type="submit"

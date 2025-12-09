@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 
 export async function sendContactEmail(
   formContact: Omit<Contact, "hostname">,
-): Promise<void> {
+): Promise<{ success: boolean; error?: string }> {
   const mapFormContact = (formContact: Omit<Contact, "hostname">) => ({
     contact: {
       firstName: formContact?.firstName,
@@ -32,12 +32,20 @@ export async function sendContactEmail(
     );
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      console.error(`HTTP error! status: ${response.status}`);
+      return {
+        success: false,
+        error: `Error al enviar el mensaje. Código: ${response.status}`,
+      };
     }
-
-    redirect("/contacto/exitoso");
   } catch (error) {
     console.error("Error sending email: ", error);
-    throw error;
+    return {
+      success: false,
+      error: "Error al enviar el mensaje. Por favor, intenta nuevamente.",
+    };
   }
+
+  // Redirect debe estar fuera del try/catch
+  redirect("/contacto/exitoso");
 }
