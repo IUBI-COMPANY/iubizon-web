@@ -1,3 +1,5 @@
+import { orderBy } from "lodash";
+
 export type Classification =
   | "premium"
   | "standard"
@@ -56,7 +58,7 @@ const productsData: Product[] = [
     name: "Epson PowerLite 980W",
     SN: "X4ZF9600474",
     condition: "new",
-    stock: 0,
+    stock: 1,
     description: "Buena proyección, detalles estéticos",
     price: 2300.0,
     badge: "Top venta",
@@ -315,7 +317,7 @@ const productsData: Product[] = [
     id: "98H",
     model: "H687A",
     name: "Epson PowerLite 98H",
-    stock: 0,
+    stock: 3,
     price: 1400.0,
     badge: "Oferta",
     mainImage: "/productos/98H/98h.jpg",
@@ -355,7 +357,7 @@ const productsData: Product[] = [
     id: "98H-reacondicionado",
     model: "H687A",
     name: "Epson PowerLite 98H",
-    stock: 0,
+    stock: 2,
     price: 1400.0,
     badge: "Oferta",
     mainImage: "/productos/98H/98h.jpg",
@@ -528,6 +530,107 @@ const productsData: Product[] = [
     note: `Proyector ideal para aulas de estudio bien iluminadas y pequeños auditorios. Resolución WXGA ideal para presentaciones multimedia. Lámpara con durabilidad de hasta 12,000 horas.`,
   },
   {
+    id: "X49",
+    model: "V11H982020",
+    name: "Epson PowerLite X49",
+    stock: 1,
+    condition: "new",
+    description: "Buena proyección, alta calidad de imagen",
+    price: 2200.0,
+    badge: "Nuevo",
+    mainImage: "/productos/X49/front.jpg",
+    media: [
+      { type: "image", src: "/productos/X49/front.jpg" },
+      { type: "image", src: "/productos/X49/left.jpg" },
+      { type: "image", src: "/productos/X49/right.jpg" },
+      { type: "image", src: "/productos/X49/top.jpg" },
+    ],
+    displayTechnology: "3LCD",
+    lumensANSI: 3600,
+    brand: "Epson",
+    type: "Proyector",
+    contrastRatio: "16000:1",
+    connectivity: "VGA/SVGA, USB, HDMI Estándar, HDMI Micro",
+    features: "Altavoces integrados",
+    nativeResolution: "1024 x 768",
+    aspectRatio: "4:3",
+    throwRatio: "Proyección media/alta",
+    category: [
+      "Electrónica",
+      "TV, Video y Audio para el Hogar",
+      "TV y Video",
+      "Proyectores para Home Theater",
+    ],
+    note: `Proyector ideal para aulas de estudio bien iluminadas y pequeños auditorios. Resolución WXGA ideal para presentaciones multimedia. Lámpara con durabilidad de hasta 12,000 horas.`,
+  },
+  {
+    id: "109W",
+    model: "V11H861020",
+    name: "Epson PowerLite 109W",
+    stock: 1,
+    condition: "new",
+    description: "Buena proyección, alta calidad de imagen",
+    price: 2800.0,
+    badge: "Nuevo",
+    mainImage: "/productos/109W/front.jpg",
+    media: [
+      { type: "image", src: "/productos/109W/front.jpg" },
+      { type: "image", src: "/productos/109W/left.jpg" },
+      { type: "image", src: "/productos/109W/right.jpg" },
+      { type: "image", src: "/productos/109W/top.jpg" },
+    ],
+    displayTechnology: "3LCD",
+    lumensANSI: 4000,
+    brand: "Epson",
+    type: "Proyector",
+    contrastRatio: "16000:1",
+    connectivity: "VGA/SVGA, USB, HDMI Estándar, HDMI Micro",
+    features: "Altavoces integrados",
+    nativeResolution: "1024 x 768",
+    aspectRatio: "4:3",
+    throwRatio: "Proyección media/alta",
+    category: [
+      "Electrónica",
+      "TV, Video y Audio para el Hogar",
+      "TV y Video",
+      "Proyectores para Home Theater",
+    ],
+    note: `Proyector ideal para aulas de estudio bien iluminadas y pequeños auditorios. Resolución WXGA ideal para presentaciones multimedia. Lámpara con durabilidad de hasta 12,000 horas.`,
+  },
+  {
+    id: "109W-1",
+    model: "V11H861020",
+    name: "Epson PowerLite 109W",
+    stock: 1,
+    condition: "reconditioned",
+    description: "Buena proyección, alta calidad de imagen",
+    price: 2800.0,
+    badge: "Nuevo",
+    mainImage: "/productos/109W/front.jpg",
+    media: [
+      { type: "image", src: "/productos/109W/front.jpg" },
+      { type: "image", src: "/productos/109W/right.jpg" },
+      { type: "image", src: "/productos/109W/top.jpg" },
+    ],
+    displayTechnology: "3LCD",
+    lumensANSI: 4000,
+    brand: "Epson",
+    type: "Proyector",
+    contrastRatio: "16000:1",
+    connectivity: "VGA/SVGA, USB, HDMI Estándar, HDMI Micro",
+    features: "Altavoces integrados",
+    nativeResolution: "1024 x 768",
+    aspectRatio: "4:3",
+    throwRatio: "Proyección media/alta",
+    category: [
+      "Electrónica",
+      "TV, Video y Audio para el Hogar",
+      "TV y Video",
+      "Proyectores para Home Theater",
+    ],
+    note: `Proyector ideal para aulas de estudio bien iluminadas y pequeños auditorios. Resolución WXGA ideal para presentaciones multimedia. Lámpara con durabilidad de hasta 12,000 horas.`,
+  },
+  {
     id: "Proyector-Led-Portatil-HY350-Magcubic-Full-Hd-1080p-Android",
     model: "HY350",
     name: "Proyector Led Portátil HY350 Magcubic Full Hd 1080p Android",
@@ -589,7 +692,7 @@ const productsData: Product[] = [
     id: "ELPAP07",
     model: "V12H418P12",
     name: "Adaptador Epson ELPAP07 Módulo Inalámbrico WiFi",
-    stock: 1,
+    stock: 4,
     oldStock: 20,
     condition: "new",
     description: "Accesorio de proyección",
@@ -731,7 +834,7 @@ const productsData: Product[] = [
     id: "ELPAP10",
     model: "V12H731P02",
     name: "Adaptador Epson ELPAP10 Módulo Inalámbrico WiFi",
-    stock: 1,
+    stock: 6,
     oldStock: 20,
     condition: "new",
     description: "Accesorio de proyección",
@@ -984,17 +1087,21 @@ const calcProductPricesDetails = (product: Product): Price => {
   }
 };
 
-export const products: Product[] = productsData.map(
-  (product) =>
-    ({
-      ...product,
-      ...(product.lumensANSI && {
-        throwRatio:
-          product.lumensANSI >= 3000
-            ? "Proyección media/alta"
-            : "Proyección media/estándar",
-      }),
-      ...calcProductPricesDetails(product),
-      campaign: "Navidad",
-    }) as Product,
+export const products: Product[] = orderBy(
+  productsData.map(
+    (product) =>
+      ({
+        ...product,
+        ...(product.lumensANSI && {
+          throwRatio:
+            product.lumensANSI >= 3000
+              ? "Proyección media/alta"
+              : "Proyección media/estándar",
+        }),
+        ...calcProductPricesDetails(product),
+        campaign: "Navidad",
+      }) as Product,
+  ),
+  ["type", "stock"],
+  ["desc", "desc"],
 );
