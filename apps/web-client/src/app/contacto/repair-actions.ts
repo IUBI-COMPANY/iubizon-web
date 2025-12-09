@@ -45,7 +45,7 @@ export async function sendRepairRequest(
 
   try {
     const response = await fetch(
-      `${process.env.IUBI_CRM_API}/emails/repair-request`,
+      `https://api-iubisales.web.app/emails/repair-request`,
       {
         method: "POST",
         headers: {
