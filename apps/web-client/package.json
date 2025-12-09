@@ -7,7 +7,6 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint iubizon-web",
     "eslint:check": "eslint src",
     "type:check": "tsc --noEmit",
     "prettier:check": "prettier . --check",
@@ -34,14 +33,13 @@
     "yup": "^1.7.1"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4.1.17",
     "@types/lodash": "^4.17.21",
     "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.0.7",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "15.1.3",
     "prettier": "^3.7.4",
     "tailwindcss": "^4.1.17",
     "typescript": "^5"
