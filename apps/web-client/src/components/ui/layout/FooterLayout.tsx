@@ -138,7 +138,7 @@ export const FooterLayout = () => {
           </div>
           <div className="mt-6 w-full">
             <span className="font-bold text-white mb-3 block text-center md:text-right">
-              Medios de pago
+              Aceptamos todos los medios de pago
             </span>
             <div className="flex flex-wrap gap-3 justify-center md:justify-end items-center">
               {/* Transferencia Bancaria */}
@@ -161,25 +161,25 @@ export const FooterLayout = () => {
                 </svg>
               </div>
               {/* Efectivo */}
-              <div className="bg-white rounded-lg p-1.5 w-14 h-10 flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
-                <svg viewBox="0 0 24 24" className="w-7 h-7" fill="none">
+              <div className="bg-white rounded-lg p-1.5 w-14 h-10 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-shadow">
+                <svg viewBox="0 0 24 24" className="w-12 h-9" fill="none">
                   {/* Billete */}
                   <rect
-                    x="2"
-                    y="6"
-                    width="20"
-                    height="12"
-                    rx="2"
+                    x="1"
+                    y="5"
+                    width="22"
+                    height="14"
+                    rx="2.5"
                     fill="#059669"
                     opacity="0.2"
                     stroke="#059669"
-                    strokeWidth="1.5"
+                    strokeWidth="2"
                   />
                   {/* Símbolo S/ */}
                   <text
                     x="12"
                     y="15"
-                    fontSize="7"
+                    fontSize="9"
                     fontWeight="bold"
                     fill="#059669"
                     textAnchor="middle"
@@ -188,14 +188,8 @@ export const FooterLayout = () => {
                     S/
                   </text>
                   {/* Decoración del billete */}
-                  <circle cx="6" cy="12" r="1.5" fill="#059669" opacity="0.4" />
-                  <circle
-                    cx="18"
-                    cy="12"
-                    r="1.5"
-                    fill="#059669"
-                    opacity="0.4"
-                  />
+                  <circle cx="5" cy="12" r="2" fill="#059669" opacity="0.5" />
+                  <circle cx="19" cy="12" r="2" fill="#059669" opacity="0.5" />
                 </svg>
               </div>
               {/* BCP */}
@@ -237,6 +231,110 @@ export const FooterLayout = () => {
                   height={40}
                   className="w-full h-full object-contain"
                 />
+              </div>
+              {/* Tarjetas de Crédito/Débito */}
+              <div className="flex flex-col items-center gap-1">
+                <div className="bg-white rounded-lg p-1.5 w-14 h-10 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-shadow">
+                  <svg viewBox="0 0 24 24" className="w-12 h-9" fill="none">
+                    {/* Tarjeta */}
+                    <rect
+                      x="2"
+                      y="5"
+                      width="20"
+                      height="14"
+                      rx="2"
+                      fill="#3b82f6"
+                      opacity="0.2"
+                      stroke="#3b82f6"
+                      strokeWidth="1.5"
+                    />
+                    {/* Banda magnética */}
+                    <rect
+                      x="2"
+                      y="9"
+                      width="20"
+                      height="3"
+                      fill="#3b82f6"
+                      opacity="0.6"
+                    />
+                    {/* Chip */}
+                    <rect
+                      x="4"
+                      y="13.5"
+                      width="3"
+                      height="3"
+                      rx="0.5"
+                      fill="#fbbf24"
+                      stroke="#f59e0b"
+                      strokeWidth="0.5"
+                    />
+                    {/* Líneas de texto */}
+                    <line
+                      x1="8"
+                      y1="15"
+                      x2="16"
+                      y2="15"
+                      stroke="#3b82f6"
+                      strokeWidth="1"
+                      opacity="0.4"
+                    />
+                  </svg>
+                </div>
+              </div>
+              {/* Cheques */}
+              <div className="flex flex-col items-center gap-1">
+                <div className="bg-white rounded-lg p-1.5 w-14 h-10 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-shadow">
+                  <svg viewBox="0 0 24 24" className="w-12 h-9" fill="none">
+                    {/* Cheque */}
+                    <rect
+                      x="2"
+                      y="6"
+                      width="20"
+                      height="12"
+                      rx="1"
+                      fill="#8b5cf6"
+                      opacity="0.2"
+                      stroke="#8b5cf6"
+                      strokeWidth="1.5"
+                    />
+                    {/* Líneas de escritura */}
+                    <line
+                      x1="4"
+                      y1="10"
+                      x2="10"
+                      y2="10"
+                      stroke="#8b5cf6"
+                      strokeWidth="1"
+                      opacity="0.6"
+                    />
+                    <line
+                      x1="4"
+                      y1="13"
+                      x2="14"
+                      y2="13"
+                      stroke="#8b5cf6"
+                      strokeWidth="1"
+                      opacity="0.6"
+                    />
+                    <line
+                      x1="4"
+                      y1="16"
+                      x2="8"
+                      y2="16"
+                      stroke="#8b5cf6"
+                      strokeWidth="1"
+                      opacity="0.6"
+                    />
+                    {/* Símbolo de firma */}
+                    <path
+                      d="M16 14 Q17 13, 18 14 T20 14"
+                      stroke="#8b5cf6"
+                      strokeWidth="1.5"
+                      fill="none"
+                      opacity="0.6"
+                    />
+                  </svg>
+                </div>
               </div>
             </div>
           </div>
