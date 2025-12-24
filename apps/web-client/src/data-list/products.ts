@@ -7,7 +7,7 @@ export type Classification =
   | "clearance"
   | "wholesale";
 
-export type ProductCondition = "new" | "reconditioned";
+export type ProductCondition = "gama-alta" | "new" | "reconditioned";
 
 export interface Product extends Price {
   id: string;
@@ -35,6 +35,9 @@ export interface Product extends Price {
   category?: string[];
   note?: string;
   campaign?: string;
+  classification?: Classification;
+  technicalSheetUrl?: string;
+  gama?: "baja" | "media" | "alta" | "muy alta";
 }
 
 interface Price {
@@ -52,6 +55,346 @@ export interface MediaItem {
 }
 
 const productsData: Product[] = [
+  {
+    id: "ELPAP07",
+    model: "V12H418P12",
+    name: "Adaptador Epson ELPAP07 Módulo Inalámbrico WiFi",
+    stock: 4,
+    oldStock: 20,
+    condition: "new",
+    description: "Accesorio de proyección",
+    price: 230.0,
+    badge: "Nuevo",
+    mainImage: "/productos/ELPAP07/ELPAP07.jpg",
+    media: [
+      { type: "image", src: "/productos/ELPAP07/ELPAP07.jpg" },
+      { type: "image", src: "/productos/ELPAP07/1.webp" },
+      { type: "image", src: "/productos/ELPAP07/2.webp" },
+      { type: "image", src: "/productos/ELPAP07/3.webp" },
+      { type: "image", src: "/productos/ELPAP07/4.webp" },
+      { type: "image", src: "/productos/ELPAP07/example.webp" },
+      { type: "image", src: "/productos/ELPAP07/packaging.jpg" },
+    ],
+    connectivity: "Wireless/ USB type A/ 802.11 b/g/n",
+    brand: "Epson",
+    type: "Adaptador",
+    category: [
+      "Electrónica",
+      "TV, Video y Audio para el Hogar",
+      "TV y Video",
+      "Accesorios para Proyectores",
+    ],
+    note: `
+      Este adaptador de red inalámbrica de alta velocidad se conecta directamente a ciertos proyectores Epson que permiten un acceso rápido y fácil a la red LAN o redes peer-to-peer y sin cables. Cuando se utiliza con Epson EasyMP Monitor y el software Network Projection, los usuarios pueden acceder de forma remota y controlar los proyectores sobre la red Wi-Fi.
+      Compatible con los siguientes proyectores:
+        Home Entertainment ProjectorsHome Cinema 3000 2D/3D Full HD 1080p 3LCD Projector
+
+      Proyectores multimedia:
+      BrightLink 425Wi Interactive WXGA 3LCD Projector with Wall Mount
+      BrightLink 430i Interactive XGA 3LCD Projector with Wall Mount
+      BrightLink 435Wi Interactive WXGA 3LCD Projector with Wall Mount
+      BrightLink 436Wi Interactive WXGA 3LCD Projector
+      BrightLink 475Wi Interactive WXGA 3LCD Projector – Refurbished
+      BrightLink 475Wi Interactive WXGA 3LCD Projector with Mount
+      BrightLink 480i Interactive XGA 3LCD Projector – Refurbished
+      BrightLink 480i Interactive XGA 3LCD Projector with Mount
+      BrightLink 485Wi Interactive WXGA 3LCD Projector – Refurbished
+      BrightLink 485Wi Interactive WXGA 3LCD Projector with Mount
+      BrightLink 575Wi Interactive WXGA 3LCD Projector
+      BrightLink 585Wi Interactive WXGA 3LCD Projector
+      BrightLink 595Wi Interactive WXGA 3LCD Projector
+      BrightLink Pro 1410Wi Meeting Room Productivity Tool with Wall Mount
+      BrightLink® Pro 1420Wi Collaborative Whiteboarding Solution
+      BrightLink® Pro 1430Wi Collaborative Whiteboarding Solution with Touch
+      EX3220 SVGA 3LCD Projector
+      EX5220 Wireless XGA 3LCD Projector
+      EX5230 Pro XGA 3LCD Projector
+      EX6220 WXGA 3LCD Projector
+      EX7220 Wireless WXGA 3LCD Projector
+      EX7230 Pro HD WXGA 3LCD Projector
+      EX7235 Pro Wireless HD WXGA 3LCD Projector
+      PowerLite 1222 Wireless XGA 3LCD Projector
+      PowerLite 1262W Wireless WXGA 3LCD Projector
+      PowerLite 1263W Wireless HD WXGA 3LCD Projector
+      PowerLite 1760W Multimedia Projector
+      PowerLite 1761W WXGA 3LCD Projector
+      PowerLite 1770W Multimedia Projector
+      PowerLite 1771W WXGA 3LCD Projector
+      PowerLite 1775W Multimedia Projector
+      PowerLite 1776W WXGA 3LCD Projector
+      PowerLite 1835 XGA 3LCD Projector
+      PowerLite 1945W WXGA 3LCD Projector
+      PowerLite 1955 XGA 3LCD Projector
+      PowerLite 1965 XGA 3LCD Projector
+      PowerLite 1975W WXGA Wireless 3LCD Multimedia Projector
+      PowerLite 1985WU WUXGA Wireless 3LCD Projector
+      PowerLite 420 XGA 3LCD Projector
+      PowerLite 425W WXGA 3LCD Projector
+      PowerLite 430 XGA 3LCD Projector
+      PowerLite 435W WXGA 3LCD Projector
+      PowerLite 4650 XGA 3LCD Projector
+      PowerLite 470 XGA 3LCD Projector
+      PowerLite 4750W WXGA 3LCD Projector
+      PowerLite 475W WXGA 3LCD Projector
+      PowerLite 480 XGA 3LCD Projector
+      PowerLite 4855WU WUXGA 3LCD Projector
+      PowerLite 485W WXGA 3LCD Projector
+      PowerLite 520 XGA 3LCD Projector
+      PowerLite 525W WXGA 3LCD Projector
+      PowerLite 530 XGA 3LCD Projector
+      PowerLite 530 XGA 3LCD Projector for SMART
+      PowerLite 535W WXGA 3LCD Projector
+      PowerLite 570 XGA 3LCD Projector
+      PowerLite 575W WXGA 3LCD Projector
+      PowerLite 580 XGA 3LCD Projector
+      PowerLite 580 XGA 3LCD Projector for SMART
+      PowerLite 585W WXGA 3LCD Projector
+      PowerLite 585W WXGA 3LCD Projector for SMART
+      PowerLite 905 XGA 3LCD Projector
+      PowerLite 915W WXGA 3LCD Projector
+      PowerLite 935W WXGA 3LCD Projector
+      PowerLite 95 XGA 3LCD Projector
+      PowerLite 955W WXGA 3LCD Projector
+      PowerLite 955WH WXGA 3LCD Projector
+      PowerLite 965 XGA 3LCD Projector
+      PowerLite 965H XGA 3LCD Projector
+      PowerLite 96W WXGA 3LCD Projector
+      PowerLite 97 XGA 3LCD Projector
+      PowerLite 97H XGA 3LCD Projector
+      PowerLite 98 XGA 3LCD Projector
+      PowerLite 98H XGA 3LCD Projector
+      PowerLite 99W WXGA 3LCD Projector
+      PowerLite 99WH WXGA 3LCD Projector
+      PowerLite D6150 XGA 3LCD Projector
+      PowerLite D6155W WXGA 3LCD Projector
+      PowerLite D6250 XGA 3LCD Projector
+      PowerLite Pro G6050W WXGA 3LCD Projector with Standard Lens
+      PowerLite Pro G6050WNL WXGA 3LCD Projector without Lens
+      PowerLite Pro G6070W WXGA 3LCD Projector with Standard Lens
+      PowerLite Pro G6150NL XGA 3LCD Projector without Lens
+      PowerLite Pro G6170 XGA 3LCD Projector with Standard Lens
+      PowerLite Pro G6270W WXGA 3LCD Projector with Standard Lens
+      PowerLite Pro G6450WU WUXGA 3LCD Projector with Standard Lens
+      PowerLite Pro G6450WUNL WUXGA 3LCD Projector without Lens
+      PowerLite Pro G6470WU WUXGA 3LCD Projector with Standard Lens
+      PowerLite Pro G6550WU WUXGA 3LCD Projector with Standard Lens
+      PowerLite Pro G6550WUNL WUXGA 3LCD Projector without Lens
+      PowerLite Pro G6570WU WUXGA 3LCD Projector with Standard Lens
+      PowerLite Pro G6750WU WUXGA 3LCD Projector with Standard Lens
+      PowerLite Pro G6750WUNL WUXGA 3LCD Projector without Lens
+      PowerLite Pro G6770WU WUXGA 3LCD Projector with Standard Lens
+      PowerLite Pro Z8150NL XGA 3LCD Projector
+      PowerLite Pro Z8250NL XGA 3LCD Projector
+      PowerLite Pro Z8255NL XGA 3LCD Projector
+      PowerLite Pro Z8350WNL WXGA 3LCD Projector without Lens
+      PowerLite Pro Z8450WUNL WUXGA 3LCD Projector
+      PowerLite Pro Z8455WUNL WUXGA 3LCD Projector
+      PowerLite S17 SVGA 3LCD Projector
+      PowerLite S27 SVGA 3LCD Projector
+      PowerLite W17 WXGA 3LCD Projector
+      PowerLite W29 WXGA 3LCD Projector
+      PowerLite X17 XGA 3LCD Projector
+      PowerLite X27 XGA 3LCD Projector
+    `,
+  },
+  {
+    id: "ELPAP10",
+    model: "V12H731P02",
+    name: "Adaptador Epson ELPAP10 Módulo Inalámbrico WiFi",
+    stock: 6,
+    oldStock: 20,
+    condition: "new",
+    description: "Accesorio de proyección",
+    price: 370.0,
+    badge: "Nuevo",
+    mainImage: "/productos/ELPAP10/ELPAP10.jpg",
+    media: [
+      { type: "image", src: "/productos/ELPAP10/ELPAP10.jpg" },
+      { type: "image", src: "/productos/ELPAP10/1.jpg" },
+      { type: "image", src: "/productos/ELPAP10/2.jpg" },
+      { type: "image", src: "/productos/ELPAP10/3.jpg" },
+      { type: "image", src: "/productos/ELPAP10/example.webp" },
+      { type: "image", src: "/productos/ELPAP10/packaging.jpg" },
+    ],
+    connectivity: "Wireless/ USB type A/ 802.11 b/g/n",
+    brand: "Epson",
+    type: "Adaptador",
+    category: [
+      "Electrónica",
+      "TV, Video y Audio para el Hogar",
+      "TV y Video",
+      "Accesorios para Proyectores",
+    ],
+    note: `Este adaptador de red inalámbrico de alta velocidad se conecta directamente a ciertos proyectores Epson, lo que permite un acceso rápido y fácil a la LAN o redes punto a punto sin cables. Cuando se utilizan con el software Epson EasyMP Monitor y Network Projection, los usuarios pueden acceder de forma remota y controlar proyectores a través de la LAN inalámbrica.
+     
+      Compatible con los siguientes proyectores:
+          Proyector Láser Epson LS100 Full HD 3LCD
+          Proyector Epson Home Cinema 760HD
+          Proyectores Portátiles Para El Trabajo
+          Proyector Epson PowerLite W05+
+          Proyector Epson PowerLite S41+
+          Proyector Epson PowerLite X05+
+          Proyector Epson PowerLite X41+
+          Proyector Epson VS250 SVGA 3LCD
+          Proyector PowerLite 1771W WXGA 3LCD
+          Proyector Epson PowerLite 2042 XGA 3LCD
+          Proyector Epson PowerLite 2142W WXGA 3LCD
+          Proyector Inalámbrico PowerLite 2247U Full HD WUXGA 3LCD
+          Proyector Láser Epson PowerLite L400U WUXGA 3LCD
+          Proyector Láser Epson PowerLite L500W WXGA 3LCD
+          Proyector Láser Epson PowerLite L610 XGA 3LCD
+          Proyector Láser Epson PowerLite L510U WUXGA 3LCD
+          Proyector Láser Epson PowerLite L610W WXGA 3LCD
+          Proyector Epson PowerLite 5535U WUXGA 3LCD
+          Proyector Epson PowerLite 5520W WXGA 3LCD
+          Proyector Epson PowerLite 5510 XGA 3LCD
+          Proyector Epson PowerLite 2040 XGA 3LCD
+          Proyector Epson PowerLite 2140W WXGA 3LCD
+          Proyector Inalámbrico Epson PowerLite 2065 XGA 3LCD
+          Proyector Inalámbrico Epson PowerLite 2155W WXGA 3LCD
+          Proyector Inalámbrico Epson PowerLite 2165W WXGA 3LCD
+          Proyector Inalámbrico Epson PowerLite 2250U Full HD WUXGA 3LCD
+          Proyector Inalámbrico Epson PowerLite 2255U Full HD WUXGA 3LCD
+          Proyector Inalámbrico Epson PowerLite 2265U Full HD WUXGA 3LCD
+          Proyector Inalámbrico PowerLite 2245U Full HD WUXGA 3LCD
+          Proyector Epson PowerLite S31+
+          Proyector PowerLite W32+
+          Proyector PowerLite 1985WU WUXGA Wireless 3LCD
+          Proyector Epson Powerlite Pro G7500U c/ 4K Enhancement y Lente Estándar
+          Proyector Epson PowerLite Pro G7000W c/ lente estándar
+          Proyector Epson PowerLite Pro G7100 c/ Lente estándar
+          Proyector Epson PowerLite Pro G7200W c/ Lente estándar
+          Proyector Epson PowerLite Pro G7805 XGA 3LCD con lente estándar
+          Proyector Epson PowerLite Pro G7905U c/ 4K Enhancement y Lente Estándar
+          Proyector Epson Pro L1100U Láser c/ 4K Enhancement y Lente Estándar
+          Proyector Epson Pro L1200U c/ 4K Enhancement y Lente Estándar
+          Proyector Epson Pro L1505U Láser c/4K Enhancement y Lente Estándar
+          Proyector PowerLite Pro G7400U c/ 4K Enhancement y Lente Estándar
+          Proyector Pro L1405U Láser c/4K Enhancement y Lente Estándar
+          Proyector Láser Interactivo Epson BrightLink 710Ui WUXGA 3LCD
+          Proyector Láser Interactivo Epson BrightLink Pro 1470Ui WUXGA 3LCD
+          Proyector Interactivo Epson BrightLink Pro 1450Ui Full HD
+          Proyector Interactivo Epson BrightLink Pro 1460Ui Full HD
+          Proyector Interactivo Epson BrightLink 675Wi+
+          Proyector Interactivo Epson BrightLink 685Wi+
+          Proyector Interactivo Epson BrightLink 695Wi+
+    `,
+  },
+  {
+    id: "ELPAP11",
+    model: "V12H005A02",
+    name: "Adaptador Epson ELPAP11 Modulo Inalámbrico WiFi",
+    stock: 7,
+    oldStock: 20,
+    condition: "new",
+    description: "Accesorio de proyección",
+    price: 570.0,
+    badge: "Nuevo",
+    mainImage: "/productos/ELPAP11/ELPAP11.jpg",
+    media: [
+      { type: "image", src: "/productos/ELPAP11/ELPAP11.jpg" },
+      { type: "image", src: "/productos/ELPAP11/1.jpg" },
+      { type: "image", src: "/productos/ELPAP11/2.jpg" },
+      { type: "image", src: "/productos/ELPAP11/3.jpg" },
+      { type: "image", src: "/productos/ELPAP11/4.jpg" },
+      { type: "image", src: "/productos/ELPAP11/example.webp" },
+      { type: "image", src: "/productos/ELPAP11/packaging.jpg" },
+    ],
+    connectivity: "Wireless/ USB type A/ 802.11 b/g/n",
+    brand: "Epson",
+    type: "Adaptador",
+    category: [
+      "Electrónica",
+      "TV, Video y Audio para el Hogar",
+      "TV y Video",
+      "Accesorios para Proyectores",
+    ],
+    note: `Epson ELPAP11 Modulo Inalambrico es un modulo inalambrico de alta velocidad se conecta directamente a proyectores Epson seleccionados, lo que permite un acceso rápido y fácil a la LAN o redes de igual a igual sin cables.
+
+    Cuando se utiliza con el software Epson Projector Management o iProjection, los usuarios pueden acceder y controlar los proyectores de forma remota a través de la LAN inalámbrica.
+    
+    Carasteristicas:
+      Alineado con los estándares 802.11 b / g / n
+      Utiliza conector USB tipo A
+      Compatible con PC o Mac
+      Capaz de transmitir audio
+    
+    
+    Compatible con proyectores Epson: 
+    
+    Proyectores de cine en casa:
+      Proyector Home Cinema 880 3LCD 1080p
+    
+    Proyectores portátiles para el trabajo:
+      Proyector láser inalámbrico Pro EX11000 3LCD Full HD 1080p
+    
+    Proyectores para salas de reuniones para el trabajo:
+      Proyector láser PowerLite L770U 3LCD con mejora 4K
+      Proyector láser PowerLite L775U 3LCD con mejora 4K
+      Proyector láser PowerLite L570U 3LCD con mejora 4K
+      Proyector láser PowerLite L630U Full HD WUXGA 3LCD
+      Proyector láser PowerLite L730U Full HD WUXGA 3LCD
+      Proyector láser de largo alcance PowerLite L520U Full HD WUXGA 3LCD
+      Proyector láser PowerLite L520W WXGA 3LCD
+      Proyector láser PowerLite L530U Full HD WUXGA 3LCD
+    
+    Proyectores para grandes espacios:
+      EB-PU2116W Proyector láser 3LCD de 16 000 lúmenes con mejora 4K
+      EB-PU2120W Proyector láser 3LCD de 20 000 lúmenes con mejora 4K
+      EB-PU2216B Proyector láser para espacios grandes 3LCD de 16 000 lúmenes con mejora 4K
+      EB-PU2220B Proyector láser para espacios grandes 3LCD de 20 000 lúmenes con mejora 4K
+      EB-PU2113W Proyector láser 3LCD de 13 000 lúmenes con mejora 4K
+      EB-PU2213B Proyector láser 3LCD de 13 000 lúmenes con mejora 4K
+      EB-PU1008B Proyector láser WUXGA 3LCD con mejora 4K
+      Proyector láser 3LCD WUXGA EB-PU1008W con mejora 4K
+      EB-PU2010B Proyector láser WUXGA 3LCD con mejora 4K
+      EB-PU2010W Proyector láser WUXGA 3LCD con mejora 4K
+      EB-PU1006W Proyector láser WUXGA 3LCD con mejora 4K
+      EB-PU1007B WUXGA 3LCD Laser Projector with 4K Enhancement
+      EB-PU1007W WUXGA 3LCD Laser Projector with 4K Enhancement  
+    
+    Proyectores interactivos y herramientas de colaboración:
+      BrightLink 760Wi WXGA 3LCD Pantalla láser interactiva sin lámpara
+      BrightLink 770Fi 1080p 3LCD Pantalla láser sin lámpara interactiva de alcance ultracorto
+      Pantalla láser interactiva BrightLink 725Wi WXGA 3LCD
+      Pantalla láser interactiva BrightLink 735Fi 1080p 3LCD
+      Pantalla láser interactiva BrightLink 1480Fi 1080p 3LCD
+      Pantalla láser interactiva BrightLink 1485Fi 1080p 3LCD
+    
+    Proyectores de aula:
+      Pantalla láser sin lámpara PowerLite 810E 3LCD de tiro corto extremo con mejora 4K
+      Pantalla láser sin lámpara PowerLite L210W WXGA 3LCD con conexión inalámbrica integrada
+      Pantalla láser PowerLite L260F 1080p 3LCD sin lámpara con conexión inalámbrica integrada
+      Pantalla láser PowerLite L265F 1080p 3LCD sin lámpara con conexión inalámbrica integrada
+      Pantalla láser sin lámpara PowerLite 775F 1080p 3LCD de alcance ultracorto
+      PowerLite L210SF Wireless 1080p 3LCD Pantalla láser sin lámpara de tiro corto
+      PowerLite L210SW Wireless WXGA 3LCD Pantalla láser sin lámpara de tiro corto
+      Pantalla láser sin lámpara PowerLite de 760 W inalámbrica WXGA 3LCD de alcance ultracorto
+      Pantalla láser sin lámpara PowerLite 770F 1080p 3LCD de alcance ultracorto
+      PowerLite L255F 1080p 3LCD Standard-Throw Laser Projector with Built-in Wireless
+      PowerLite L250F 1080p 3LCD Standard-Throw Laser Projector with Built-in Wireless
+      PowerLite L200X 3LCD XGA Laser Projector with Built-in Wireless
+      PowerLite L200W 3LCD WXGA Laser Projector with Built-in Wireless
+      PowerLite L200SW Wireless WXGA 3LCD Short-throw Laser Display
+      PowerLite L200SX Wireless XGA 3LCD Short-throw Laser Display
+      PowerLite 725W WXGA 3LCD Ultra Short-throw Laser Display
+      PowerLite 720 XGA 3LCD Ultra Short-throw Laser Display
+      PowerLite 750F Full HD 1080p Ultra Short-throw Laser Projector with Built-in Wireless
+      PowerLite 755F Full HD 1080p Ultra Short-throw Laser Projector for Digital Signage with Built-in Wireless
+      PowerLite 800F Full HD 1080p Ultra Short-throw Laser Projector for Classrooms
+      PowerLite 118 3LCD XGA Classroom Projector with Dual HDMI
+      Proyector de aula PowerLite 119W 3LCD WXGA con HDMI doble
+      Proyector de aula PowerLite 982W 3LCD WXGA con HDMI doble
+      Proyector de aula PowerLite W49 3LCD WXGA con HDMI
+      Proyector de aula PowerLite X49 3LCD XGA con HDMI
+    
+    Señalización digital:
+      Proyector láser de corto alcance PowerLite L630SU Full HD WUXGA
+      Proyector láser de corto alcance PowerLite L635SU Full HD WUXGA
+      Proyector láser PowerLite L735U Full HD WUXGA 3LCD
+      Proyector láser de alcance ultracorto PowerLite 805F Full HD 1080p para señalización digital
+`,
+  },
   {
     id: "980W",
     model: "H866A",
@@ -168,31 +511,41 @@ const productsData: Product[] = [
     Epson PowerLite 975W es el mejor proyector para el aula de clase o sala de reuninoes.  Cuenta con 3.600 lúmenes de brillo en color y blanco otorgando imágenes claras.  Su lámpara de 10,000 horas en modo Normal lo convierte en tu mejor aliado en costo de operación.`,
   },
   {
-    id: "1925W",
+    id: "proyector-powerlite-1945w-wxga-3lcd",
     model: "V11H314020",
-    name: "Epson PowerLite 1925W",
-    stock: 0,
+    name: "Proyector PowerLite 1945W WXGA 3LCD",
+    stock: 1,
     oldStock: 1,
     description: "Buena proyección, detalles estéticos",
-    price: 2800.0,
-    mainImage: "/productos/1925W/1925w.jpg",
+    price: 1300.0,
+    mainImage: "/productos/1945W/front.jpg",
     media: [
-      { type: "image", src: "/productos/1925W/2.jpg" },
-      { type: "video", src: "/productos/1925W/1925W.mp4" },
-      { type: "image", src: "/productos/1925W/3.jpg" },
-      { type: "image", src: "/productos/1925W/4.jpg" },
-      { type: "image", src: "/productos/1925W/5.jpg" },
+      { type: "image", src: "/productos/1945W/front.jpg" },
+      { type: "image", src: "/productos/1945W/left.jpg" },
+      { type: "image", src: "/productos/1945W/right.jpg" },
+      { type: "image", src: "/productos/1945W/back.jpg" },
     ],
     condition: "reconditioned",
+    classification: "clearance",
     displayTechnology: "3LCD",
-    lumensANSI: 4000,
+    lumensANSI: 4200,
     brand: "Epson",
     type: "Proyector",
-    contrastRatio: "2.000:1",
-    connectivity: "HDMI/MHL",
+    connectivity:
+      "DisplayPort\n" +
+      "HDMI\n" +
+      "Computer: D-sub 15 pin x 2\n" +
+      "Video: RCA\n" +
+      "Wired Network: RJ-45\n" +
+      "Wireless Network: WLAN\n" +
+      "Serial: RS-232c\n" +
+      "Monitor-Out: D-sub 15 pin\n" +
+      "USB (Type A1): For document camera\n" +
+      "USB (Type A2): For PC-free\n" +
+      "USB (Type B): For computer",
     features: "Altavoces integrados",
-    nativeResolution: "1280x800",
-    aspectRatio: "16:10",
+    nativeResolution: "1280 x 800 (WXGA)",
+    aspectRatio: "Native 16:10",
     throwRatio: "Proyección media/alta",
     category: [
       "Electrónica",
@@ -200,7 +553,12 @@ const productsData: Product[] = [
       "TV y Video",
       "Proyectores para Home Theater",
     ],
-    note: `Este potente proyector produce imágenes vívidas y de alta calidad, pero aún incluye una serie de características fáciles de usar, como un módulo inalámbrico para una fácil configuración inalámbrica. Con la tecnología Epson 3LCD y 4000 lúmenes de salida de luz de color y blanco, tus presentaciones aparecerán en cualquier entorno. Con conectividad digital HDMI y resolución WXGA, puede proyectar películas HD y más. Red de conectividad: RJ-45, LAN, S-Video, USB x 3, Estándar HDMI, VGA/SVGA D-Sub Modos de vídeo 720p, 1080i, 480p, 480i`,
+    note: `Proyector con ajuste automático e inalámbrico
+El Powerlite 1945W, ideal para entornos profesionales y educativos, combina perfectamente resultados de calidad y características a un precio asequible.
+
+4200 lúmenes en blanco
+4200 lúmenes en color
+Resolución WXGA y Inalábrico`,
   },
   {
     id: "970",
@@ -689,344 +1047,100 @@ const productsData: Product[] = [
     `,
   },
   {
-    id: "ELPAP07",
-    model: "V12H418P12",
-    name: "Adaptador Epson ELPAP07 Módulo Inalámbrico WiFi",
-    stock: 4,
-    oldStock: 20,
+    id: "proyector-laser-powerlite-l520w-wxga-de-largo-alcance",
+    model: "V11HA31020",
+    name: "Proyector Láser PowerLite L520W WXGA de Largo Alcance",
+    stock: 5,
     condition: "new",
-    description: "Accesorio de proyección",
-    price: 230.0,
+    description: "Muy Buena proyección, alta calidad de imagen",
+    price: 15900.0,
     badge: "Nuevo",
-    mainImage: "/productos/ELPAP07/ELPAP07.jpg",
+    mainImage: "/productos/L520W/front.jpg",
     media: [
-      { type: "image", src: "/productos/ELPAP07/ELPAP07.jpg" },
-      { type: "image", src: "/productos/ELPAP07/1.webp" },
-      { type: "image", src: "/productos/ELPAP07/2.webp" },
-      { type: "image", src: "/productos/ELPAP07/3.webp" },
-      { type: "image", src: "/productos/ELPAP07/4.webp" },
-      { type: "image", src: "/productos/ELPAP07/example.webp" },
-      { type: "image", src: "/productos/ELPAP07/packaging.jpg" },
+      { type: "image", src: "/productos/L520W/front.jpg" },
+      { type: "video", src: "/productos/L520W/l520w.mp4" },
+      { type: "image", src: "/productos/L520W/right.jpg" },
+      { type: "image", src: "/productos/L520W/left.jpg" },
+      { type: "image", src: "/productos/L520W/back.jpg" },
+      { type: "image", src: "/productos/L520W/top.jpg" },
     ],
-    connectivity: "Wireless/ USB type A/ 802.11 b/g/n",
+    displayTechnology: "3LCD de 3 chips",
+    lumensANSI: 5200,
     brand: "Epson",
-    type: "Adaptador",
+    type: "Proyector",
+    contrastRatio: "16000:1",
+    connectivity: "VGA/SVGA, USB, HDMI Estándar, HDMI Micro",
+    features: "Altavoces integrados",
+    nativeResolution: "1280 x 800",
+    aspectRatio: "16:10",
+    throwRatio: "Proyección buena/alta",
+    technicalSheetUrl:
+      "https://mediaserver.goepson.com/ImConvServlet/imconv/16cd56b44c6d4a5ead9aab0bb7244c289528b87f/original?assetDescr=Ficha-t%C3%A9cnica-PowerLite_L520W.pdf",
     category: [
       "Electrónica",
       "TV, Video y Audio para el Hogar",
       "TV y Video",
-      "Accesorios para Proyectores",
+      "Proyectores para Home Theater",
     ],
-    note: `
-      Este adaptador de red inalámbrica de alta velocidad se conecta directamente a ciertos proyectores Epson que permiten un acceso rápido y fácil a la red LAN o redes peer-to-peer y sin cables. Cuando se utiliza con Epson EasyMP Monitor y el software Network Projection, los usuarios pueden acceder de forma remota y controlar los proyectores sobre la red Wi-Fi.
-      Compatible con los siguientes proyectores:
-        Home Entertainment ProjectorsHome Cinema 3000 2D/3D Full HD 1080p 3LCD Projector
+    gama: "alta",
+    note: `Calidad de imagen 3LCD de 3 chips: con hasta 5200 lúmenes de igual color y brillo blanco1 para colores vibrantes y ricos
 
-      Proyectores multimedia:
-      BrightLink 425Wi Interactive WXGA 3LCD Projector with Wall Mount
-      BrightLink 430i Interactive XGA 3LCD Projector with Wall Mount
-      BrightLink 435Wi Interactive WXGA 3LCD Projector with Wall Mount
-      BrightLink 436Wi Interactive WXGA 3LCD Projector
-      BrightLink 475Wi Interactive WXGA 3LCD Projector – Refurbished
-      BrightLink 475Wi Interactive WXGA 3LCD Projector with Mount
-      BrightLink 480i Interactive XGA 3LCD Projector – Refurbished
-      BrightLink 480i Interactive XGA 3LCD Projector with Mount
-      BrightLink 485Wi Interactive WXGA 3LCD Projector – Refurbished
-      BrightLink 485Wi Interactive WXGA 3LCD Projector with Mount
-      BrightLink 575Wi Interactive WXGA 3LCD Projector
-      BrightLink 585Wi Interactive WXGA 3LCD Projector
-      BrightLink 595Wi Interactive WXGA 3LCD Projector
-      BrightLink Pro 1410Wi Meeting Room Productivity Tool with Wall Mount
-      BrightLink® Pro 1420Wi Collaborative Whiteboarding Solution
-      BrightLink® Pro 1430Wi Collaborative Whiteboarding Solution with Touch
-      EX3220 SVGA 3LCD Projector
-      EX5220 Wireless XGA 3LCD Projector
-      EX5230 Pro XGA 3LCD Projector
-      EX6220 WXGA 3LCD Projector
-      EX7220 Wireless WXGA 3LCD Projector
-      EX7230 Pro HD WXGA 3LCD Projector
-      EX7235 Pro Wireless HD WXGA 3LCD Projector
-      PowerLite 1222 Wireless XGA 3LCD Projector
-      PowerLite 1262W Wireless WXGA 3LCD Projector
-      PowerLite 1263W Wireless HD WXGA 3LCD Projector
-      PowerLite 1760W Multimedia Projector
-      PowerLite 1761W WXGA 3LCD Projector
-      PowerLite 1770W Multimedia Projector
-      PowerLite 1771W WXGA 3LCD Projector
-      PowerLite 1775W Multimedia Projector
-      PowerLite 1776W WXGA 3LCD Projector
-      PowerLite 1835 XGA 3LCD Projector
-      PowerLite 1945W WXGA 3LCD Projector
-      PowerLite 1955 XGA 3LCD Projector
-      PowerLite 1965 XGA 3LCD Projector
-      PowerLite 1975W WXGA Wireless 3LCD Multimedia Projector
-      PowerLite 1985WU WUXGA Wireless 3LCD Projector
-      PowerLite 420 XGA 3LCD Projector
-      PowerLite 425W WXGA 3LCD Projector
-      PowerLite 430 XGA 3LCD Projector
-      PowerLite 435W WXGA 3LCD Projector
-      PowerLite 4650 XGA 3LCD Projector
-      PowerLite 470 XGA 3LCD Projector
-      PowerLite 4750W WXGA 3LCD Projector
-      PowerLite 475W WXGA 3LCD Projector
-      PowerLite 480 XGA 3LCD Projector
-      PowerLite 4855WU WUXGA 3LCD Projector
-      PowerLite 485W WXGA 3LCD Projector
-      PowerLite 520 XGA 3LCD Projector
-      PowerLite 525W WXGA 3LCD Projector
-      PowerLite 530 XGA 3LCD Projector
-      PowerLite 530 XGA 3LCD Projector for SMART
-      PowerLite 535W WXGA 3LCD Projector
-      PowerLite 570 XGA 3LCD Projector
-      PowerLite 575W WXGA 3LCD Projector
-      PowerLite 580 XGA 3LCD Projector
-      PowerLite 580 XGA 3LCD Projector for SMART
-      PowerLite 585W WXGA 3LCD Projector
-      PowerLite 585W WXGA 3LCD Projector for SMART
-      PowerLite 905 XGA 3LCD Projector
-      PowerLite 915W WXGA 3LCD Projector
-      PowerLite 935W WXGA 3LCD Projector
-      PowerLite 95 XGA 3LCD Projector
-      PowerLite 955W WXGA 3LCD Projector
-      PowerLite 955WH WXGA 3LCD Projector
-      PowerLite 965 XGA 3LCD Projector
-      PowerLite 965H XGA 3LCD Projector
-      PowerLite 96W WXGA 3LCD Projector
-      PowerLite 97 XGA 3LCD Projector
-      PowerLite 97H XGA 3LCD Projector
-      PowerLite 98 XGA 3LCD Projector
-      PowerLite 98H XGA 3LCD Projector
-      PowerLite 99W WXGA 3LCD Projector
-      PowerLite 99WH WXGA 3LCD Projector
-      PowerLite D6150 XGA 3LCD Projector
-      PowerLite D6155W WXGA 3LCD Projector
-      PowerLite D6250 XGA 3LCD Projector
-      PowerLite Pro G6050W WXGA 3LCD Projector with Standard Lens
-      PowerLite Pro G6050WNL WXGA 3LCD Projector without Lens
-      PowerLite Pro G6070W WXGA 3LCD Projector with Standard Lens
-      PowerLite Pro G6150NL XGA 3LCD Projector without Lens
-      PowerLite Pro G6170 XGA 3LCD Projector with Standard Lens
-      PowerLite Pro G6270W WXGA 3LCD Projector with Standard Lens
-      PowerLite Pro G6450WU WUXGA 3LCD Projector with Standard Lens
-      PowerLite Pro G6450WUNL WUXGA 3LCD Projector without Lens
-      PowerLite Pro G6470WU WUXGA 3LCD Projector with Standard Lens
-      PowerLite Pro G6550WU WUXGA 3LCD Projector with Standard Lens
-      PowerLite Pro G6550WUNL WUXGA 3LCD Projector without Lens
-      PowerLite Pro G6570WU WUXGA 3LCD Projector with Standard Lens
-      PowerLite Pro G6750WU WUXGA 3LCD Projector with Standard Lens
-      PowerLite Pro G6750WUNL WUXGA 3LCD Projector without Lens
-      PowerLite Pro G6770WU WUXGA 3LCD Projector with Standard Lens
-      PowerLite Pro Z8150NL XGA 3LCD Projector
-      PowerLite Pro Z8250NL XGA 3LCD Projector
-      PowerLite Pro Z8255NL XGA 3LCD Projector
-      PowerLite Pro Z8350WNL WXGA 3LCD Projector without Lens
-      PowerLite Pro Z8450WUNL WUXGA 3LCD Projector
-      PowerLite Pro Z8455WUNL WUXGA 3LCD Projector
-      PowerLite S17 SVGA 3LCD Projector
-      PowerLite S27 SVGA 3LCD Projector
-      PowerLite W17 WXGA 3LCD Projector
-      PowerLite W29 WXGA 3LCD Projector
-      PowerLite X17 XGA 3LCD Projector
-      PowerLite X27 XGA 3LCD Projector
-    `,
+Imágenes de pantalla ancha brillantes: con resolución WXGA nativa y Actuación a las 16:10
+
+Tecnología láser de vanguardia: cuenta con una fuente de luz láser de 20.000 horas prácticamente libre de mantenimiento2
+
+Proyección flexible: tamaño de pantalla de hasta 280" con capacidad de pantalla dividida3 para visualización en paralelo
+
+Instalación simplificada: flexibilidad de 360 grados, zoom óptico de 1.6x, zoom electrónico, corrección trapezoidal horizontal y vertical, Quick Corner® y más
+
+Conexión en red inalámbrica opcional: visualización desde dispositivos móviles PC, Mac®, ChromebookTM, iPhone®, iPad® y AndroidTM4
+
+Variedad de opciones de conectividad: HDBaseTTM, HDMI®, VGA, RJ-45, RS-232 y herramientas de gestión de control
+
+Nitidez y detalle notables: con una relación de contraste dinámico de hasta 2.500.000:1
+
+Modos de brillo personalizado y brillo constante: para maximizar la vida útil de la fuente de luz y proporcionar un nivel de brillo constante
+
+Herramientas de control y gestión remota: para una instalación y un funcionamiento sencillos`,
   },
   {
-    id: "ELPAP10",
-    model: "V12H731P02",
-    name: "Adaptador Epson ELPAP10 Módulo Inalámbrico WiFi",
-    stock: 6,
-    oldStock: 20,
-    condition: "new",
-    description: "Accesorio de proyección",
-    price: 370.0,
-    badge: "Nuevo",
-    mainImage: "/productos/ELPAP10/ELPAP10.jpg",
-    media: [
-      { type: "image", src: "/productos/ELPAP10/ELPAP10.jpg" },
-      { type: "image", src: "/productos/ELPAP10/1.jpg" },
-      { type: "image", src: "/productos/ELPAP10/2.jpg" },
-      { type: "image", src: "/productos/ELPAP10/3.jpg" },
-      { type: "image", src: "/productos/ELPAP10/example.webp" },
-      { type: "image", src: "/productos/ELPAP10/packaging.jpg" },
-    ],
-    connectivity: "Wireless/ USB type A/ 802.11 b/g/n",
-    brand: "Epson",
-    type: "Adaptador",
-    category: [
-      "Electrónica",
-      "TV, Video y Audio para el Hogar",
-      "TV y Video",
-      "Accesorios para Proyectores",
-    ],
-    note: `Este adaptador de red inalámbrico de alta velocidad se conecta directamente a ciertos proyectores Epson, lo que permite un acceso rápido y fácil a la LAN o redes punto a punto sin cables. Cuando se utilizan con el software Epson EasyMP Monitor y Network Projection, los usuarios pueden acceder de forma remota y controlar proyectores a través de la LAN inalámbrica.
-     
-      Compatible con los siguientes proyectores:
-          Proyector Láser Epson LS100 Full HD 3LCD
-          Proyector Epson Home Cinema 760HD
-          Proyectores Portátiles Para El Trabajo
-          Proyector Epson PowerLite W05+
-          Proyector Epson PowerLite S41+
-          Proyector Epson PowerLite X05+
-          Proyector Epson PowerLite X41+
-          Proyector Epson VS250 SVGA 3LCD
-          Proyector PowerLite 1771W WXGA 3LCD
-          Proyector Epson PowerLite 2042 XGA 3LCD
-          Proyector Epson PowerLite 2142W WXGA 3LCD
-          Proyector Inalámbrico PowerLite 2247U Full HD WUXGA 3LCD
-          Proyector Láser Epson PowerLite L400U WUXGA 3LCD
-          Proyector Láser Epson PowerLite L500W WXGA 3LCD
-          Proyector Láser Epson PowerLite L610 XGA 3LCD
-          Proyector Láser Epson PowerLite L510U WUXGA 3LCD
-          Proyector Láser Epson PowerLite L610W WXGA 3LCD
-          Proyector Epson PowerLite 5535U WUXGA 3LCD
-          Proyector Epson PowerLite 5520W WXGA 3LCD
-          Proyector Epson PowerLite 5510 XGA 3LCD
-          Proyector Epson PowerLite 2040 XGA 3LCD
-          Proyector Epson PowerLite 2140W WXGA 3LCD
-          Proyector Inalámbrico Epson PowerLite 2065 XGA 3LCD
-          Proyector Inalámbrico Epson PowerLite 2155W WXGA 3LCD
-          Proyector Inalámbrico Epson PowerLite 2165W WXGA 3LCD
-          Proyector Inalámbrico Epson PowerLite 2250U Full HD WUXGA 3LCD
-          Proyector Inalámbrico Epson PowerLite 2255U Full HD WUXGA 3LCD
-          Proyector Inalámbrico Epson PowerLite 2265U Full HD WUXGA 3LCD
-          Proyector Inalámbrico PowerLite 2245U Full HD WUXGA 3LCD
-          Proyector Epson PowerLite S31+
-          Proyector PowerLite W32+
-          Proyector PowerLite 1985WU WUXGA Wireless 3LCD
-          Proyector Epson Powerlite Pro G7500U c/ 4K Enhancement y Lente Estándar
-          Proyector Epson PowerLite Pro G7000W c/ lente estándar
-          Proyector Epson PowerLite Pro G7100 c/ Lente estándar
-          Proyector Epson PowerLite Pro G7200W c/ Lente estándar
-          Proyector Epson PowerLite Pro G7805 XGA 3LCD con lente estándar
-          Proyector Epson PowerLite Pro G7905U c/ 4K Enhancement y Lente Estándar
-          Proyector Epson Pro L1100U Láser c/ 4K Enhancement y Lente Estándar
-          Proyector Epson Pro L1200U c/ 4K Enhancement y Lente Estándar
-          Proyector Epson Pro L1505U Láser c/4K Enhancement y Lente Estándar
-          Proyector PowerLite Pro G7400U c/ 4K Enhancement y Lente Estándar
-          Proyector Pro L1405U Láser c/4K Enhancement y Lente Estándar
-          Proyector Láser Interactivo Epson BrightLink 710Ui WUXGA 3LCD
-          Proyector Láser Interactivo Epson BrightLink Pro 1470Ui WUXGA 3LCD
-          Proyector Interactivo Epson BrightLink Pro 1450Ui Full HD
-          Proyector Interactivo Epson BrightLink Pro 1460Ui Full HD
-          Proyector Interactivo Epson BrightLink 675Wi+
-          Proyector Interactivo Epson BrightLink 685Wi+
-          Proyector Interactivo Epson BrightLink 695Wi+
-    `,
-  },
-  {
-    id: "ELPAP11",
-    model: "V12H005A02",
-    name: "Adaptador Epson ELPAP11 Modulo Inalámbrico WiFi",
+    id: "proyector-laser-inalambrico-powerlite-l210w-wxga-3lcd",
+    model: "V11HA70020",
+    name: "Proyector Láser Inalámbrico PowerLite L210W WXGA 3LCD",
     stock: 7,
-    oldStock: 20,
     condition: "new",
-    description: "Accesorio de proyección",
-    price: 570.0,
+    description: "Muy Buena proyección, alta calidad de imagen",
+    price: 9000.0,
     badge: "Nuevo",
-    mainImage: "/productos/ELPAP11/ELPAP11.jpg",
+    mainImage: "/productos/L210W/front.jpg",
     media: [
-      { type: "image", src: "/productos/ELPAP11/ELPAP11.jpg" },
-      { type: "image", src: "/productos/ELPAP11/1.jpg" },
-      { type: "image", src: "/productos/ELPAP11/2.jpg" },
-      { type: "image", src: "/productos/ELPAP11/3.jpg" },
-      { type: "image", src: "/productos/ELPAP11/4.jpg" },
-      { type: "image", src: "/productos/ELPAP11/example.webp" },
-      { type: "image", src: "/productos/ELPAP11/packaging.jpg" },
+      { type: "image", src: "/productos/L210W/front.jpg" },
+      { type: "image", src: "/productos/L210W/front2.jpg" },
+      { type: "image", src: "/productos/L210W/right.jpg" },
+      { type: "image", src: "/productos/L210W/left.jpg" },
+      { type: "image", src: "/productos/L210W/back.jpg" },
+      { type: "image", src: "/productos/L210W/top.jpg" },
     ],
-    connectivity: "Wireless/ USB type A/ 802.11 b/g/n",
+    displayTechnology: "3LCD de 3 chips",
+    lumensANSI: 4500,
     brand: "Epson",
-    type: "Adaptador",
+    type: "Proyector",
+    contrastRatio: "16000:1",
+    connectivity: "VGA/SVGA, USB, HDMI Estándar, HDMI Micro",
+    features: "Altavoces integrados",
+    nativeResolution: "1280 x 800",
+    aspectRatio: "16:10",
+    throwRatio: "Proyección buena/alta",
+    technicalSheetUrl:
+      "https://mediaserver.goepson.com/ImConvServlet/imconv/e084731526576f1c69ab7b8e10349cb292ac5788/original?assetDescr=Especificaciones-POWERLITE-L210W.pdf",
     category: [
       "Electrónica",
       "TV, Video y Audio para el Hogar",
       "TV y Video",
-      "Accesorios para Proyectores",
+      "Proyectores para Home Theater",
     ],
-    note: `Epson ELPAP11 Modulo Inalambrico es un modulo inalambrico de alta velocidad se conecta directamente a proyectores Epson seleccionados, lo que permite un acceso rápido y fácil a la LAN o redes de igual a igual sin cables.
-
-    Cuando se utiliza con el software Epson Projector Management o iProjection, los usuarios pueden acceder y controlar los proyectores de forma remota a través de la LAN inalámbrica.
-    
-    Carasteristicas:
-      Alineado con los estándares 802.11 b / g / n
-      Utiliza conector USB tipo A
-      Compatible con PC o Mac
-      Capaz de transmitir audio
-    
-    
-    Compatible con proyectores Epson: 
-    
-    Proyectores de cine en casa:
-      Proyector Home Cinema 880 3LCD 1080p
-    
-    Proyectores portátiles para el trabajo:
-      Proyector láser inalámbrico Pro EX11000 3LCD Full HD 1080p
-    
-    Proyectores para salas de reuniones para el trabajo:
-      Proyector láser PowerLite L770U 3LCD con mejora 4K
-      Proyector láser PowerLite L775U 3LCD con mejora 4K
-      Proyector láser PowerLite L570U 3LCD con mejora 4K
-      Proyector láser PowerLite L630U Full HD WUXGA 3LCD
-      Proyector láser PowerLite L730U Full HD WUXGA 3LCD
-      Proyector láser de largo alcance PowerLite L520U Full HD WUXGA 3LCD
-      Proyector láser PowerLite L520W WXGA 3LCD
-      Proyector láser PowerLite L530U Full HD WUXGA 3LCD
-    
-    Proyectores para grandes espacios:
-      EB-PU2116W Proyector láser 3LCD de 16 000 lúmenes con mejora 4K
-      EB-PU2120W Proyector láser 3LCD de 20 000 lúmenes con mejora 4K
-      EB-PU2216B Proyector láser para espacios grandes 3LCD de 16 000 lúmenes con mejora 4K
-      EB-PU2220B Proyector láser para espacios grandes 3LCD de 20 000 lúmenes con mejora 4K
-      EB-PU2113W Proyector láser 3LCD de 13 000 lúmenes con mejora 4K
-      EB-PU2213B Proyector láser 3LCD de 13 000 lúmenes con mejora 4K
-      EB-PU1008B Proyector láser WUXGA 3LCD con mejora 4K
-      Proyector láser 3LCD WUXGA EB-PU1008W con mejora 4K
-      EB-PU2010B Proyector láser WUXGA 3LCD con mejora 4K
-      EB-PU2010W Proyector láser WUXGA 3LCD con mejora 4K
-      EB-PU1006W Proyector láser WUXGA 3LCD con mejora 4K
-      EB-PU1007B WUXGA 3LCD Laser Projector with 4K Enhancement
-      EB-PU1007W WUXGA 3LCD Laser Projector with 4K Enhancement  
-    
-    Proyectores interactivos y herramientas de colaboración:
-      BrightLink 760Wi WXGA 3LCD Pantalla láser interactiva sin lámpara
-      BrightLink 770Fi 1080p 3LCD Pantalla láser sin lámpara interactiva de alcance ultracorto
-      Pantalla láser interactiva BrightLink 725Wi WXGA 3LCD
-      Pantalla láser interactiva BrightLink 735Fi 1080p 3LCD
-      Pantalla láser interactiva BrightLink 1480Fi 1080p 3LCD
-      Pantalla láser interactiva BrightLink 1485Fi 1080p 3LCD
-    
-    Proyectores de aula:
-      Pantalla láser sin lámpara PowerLite 810E 3LCD de tiro corto extremo con mejora 4K
-      Pantalla láser sin lámpara PowerLite L210W WXGA 3LCD con conexión inalámbrica integrada
-      Pantalla láser PowerLite L260F 1080p 3LCD sin lámpara con conexión inalámbrica integrada
-      Pantalla láser PowerLite L265F 1080p 3LCD sin lámpara con conexión inalámbrica integrada
-      Pantalla láser sin lámpara PowerLite 775F 1080p 3LCD de alcance ultracorto
-      PowerLite L210SF Wireless 1080p 3LCD Pantalla láser sin lámpara de tiro corto
-      PowerLite L210SW Wireless WXGA 3LCD Pantalla láser sin lámpara de tiro corto
-      Pantalla láser sin lámpara PowerLite de 760 W inalámbrica WXGA 3LCD de alcance ultracorto
-      Pantalla láser sin lámpara PowerLite 770F 1080p 3LCD de alcance ultracorto
-      PowerLite L255F 1080p 3LCD Standard-Throw Laser Projector with Built-in Wireless
-      PowerLite L250F 1080p 3LCD Standard-Throw Laser Projector with Built-in Wireless
-      PowerLite L200X 3LCD XGA Laser Projector with Built-in Wireless
-      PowerLite L200W 3LCD WXGA Laser Projector with Built-in Wireless
-      PowerLite L200SW Wireless WXGA 3LCD Short-throw Laser Display
-      PowerLite L200SX Wireless XGA 3LCD Short-throw Laser Display
-      PowerLite 725W WXGA 3LCD Ultra Short-throw Laser Display
-      PowerLite 720 XGA 3LCD Ultra Short-throw Laser Display
-      PowerLite 750F Full HD 1080p Ultra Short-throw Laser Projector with Built-in Wireless
-      PowerLite 755F Full HD 1080p Ultra Short-throw Laser Projector for Digital Signage with Built-in Wireless
-      PowerLite 800F Full HD 1080p Ultra Short-throw Laser Projector for Classrooms
-      PowerLite 118 3LCD XGA Classroom Projector with Dual HDMI
-      Proyector de aula PowerLite 119W 3LCD WXGA con HDMI doble
-      Proyector de aula PowerLite 982W 3LCD WXGA con HDMI doble
-      Proyector de aula PowerLite W49 3LCD WXGA con HDMI
-      Proyector de aula PowerLite X49 3LCD XGA con HDMI
-    
-    Señalización digital:
-      Proyector láser de corto alcance PowerLite L630SU Full HD WUXGA
-      Proyector láser de corto alcance PowerLite L635SU Full HD WUXGA
-      Proyector láser PowerLite L735U Full HD WUXGA 3LCD
-      Proyector láser de alcance ultracorto PowerLite 805F Full HD 1080p para señalización digital
-`,
+    gama: "alta",
+    note: `Promueva la participación en el aula con el versátil proyector láser sin lámpara PowerLite® L210W. Con 4.500 lúmenes de brillo1, el L210W ofrece imágenes vibrantes a todos en el aula a un valor excepcional. Diseñado para su comodidad, esta solución flexible cuenta con resolución WXGA, produce una imagen hasta 16 veces más grande que una pantalla plana de 75" e incluye una fuente de luz láser de 20.000 horas prácticamente libre de mantenimiento, para un rendimiento simple y confiable. Perfecto para el aprendizaje colaborativo, brinda conectividad inalámbrica con capacidad de transmisión para compartir contenido convenientemente desde computadoras portátiles y dispositivos móviles.`,
   },
 ];
 

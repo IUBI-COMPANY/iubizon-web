@@ -27,10 +27,19 @@ export default function Home() {
   };
 
   const productsByCondition = {
+    "gama-alta": {
+      ...productsCondition["gama-alta"],
+      products: sortProductsBySpecial(
+        products.filter((products) => products.gama === "alta"),
+      ),
+    },
     new: {
       ...productsCondition.new,
       products: sortProductsBySpecial(
-        products.filter((products) => products.condition === "new"),
+        products.filter(
+          (products) =>
+            products.condition === "new" && products.gama !== "alta",
+        ),
       ),
     },
     reconditioned: {
@@ -251,6 +260,55 @@ export default function Home() {
           </div>
         </section>
 
+        {productsByCondition["gama-alta"].products.length > 0 && (
+          <div className="!mt-6 !mb-[3em]">
+            <div className="mb-4 flex items-start justify-between gap-4">
+              <div>
+                <h2 className="text-2xl font-bold text-primary">
+                  {productsByCondition["gama-alta"].name}
+                </h2>
+                <p className="text-sm text-secondary/70 max-w-[60em]">
+                  {productsByCondition["gama-alta"].description}
+                </p>
+                <p className="text-primary text-[.8em] mt-2 font-medium">
+                  Llévate tu proyector de gama alta completamente nuevo y con
+                  garantía.
+                </p>
+              </div>
+              {christmasCampaignActive && (
+                <div className="flex-shrink-0 text-right">
+                  <div className="flex flex-col items-end gap-0.5">
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-lg">🎄</span>
+                      <span className="text-[0.65rem] font-semibold text-secondary/50 uppercase tracking-wide">
+                        Oferta Navidad
+                      </span>
+                    </div>
+                    <div className="flex items-baseline gap-0.5">
+                      <span className="text-3xl font-black text-[#d90429] leading-none">
+                        20
+                      </span>
+                      <span className="text-xl font-bold text-[#d90429]/70">
+                        %
+                      </span>
+                    </div>
+                    <span className="text-[0.65rem] font-medium text-secondary/40 uppercase tracking-wide">
+                      Descuento
+                    </span>
+                  </div>
+                </div>
+              )}
+            </div>
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {productsByCondition["gama-alta"].products.map(
+                (product, index) => (
+                  <ProductCard key={index} product={product} />
+                ),
+              )}
+            </div>
+          </div>
+        )}
+
         {productsByCondition.new.products.length > 0 && (
           <div className="!mt-6 !mb-[3em]">
             <div className="mb-4 flex items-start justify-between gap-4">
@@ -393,7 +451,7 @@ export default function Home() {
             <div className="bg-white p-4 rounded-lg border border-slate-100">
               <h3 className="font-bold text-secondary mb-2 flex items-start gap-2">
                 <span className="text-primary">❓</span>
-                ¿Los equipos reacondicionados son confiables?
+                ¿Los equipos de Exhibición / Reacondicionado son confiables?
               </h3>
               <p className="text-sm text-secondary/70 pl-6">
                 Sí, todos pasan por limpieza profunda, reemplazo de componentes
@@ -418,8 +476,8 @@ export default function Home() {
                 ¿Incluyen accesorios?
               </h3>
               <p className="text-sm text-secondary/70 pl-6">
-                Todos los proyectores incluyen cable de poder y control remoto.
-                Cables HDMI y soportes se venden por separado.
+                Todos los proyectores incluyen cable de poder, cable HDMI y
+                control remoto. Los soportes se venden por separado.
               </p>
             </div>
 
@@ -441,7 +499,7 @@ export default function Home() {
               </h3>
               <p className="text-sm text-secondary/70 pl-6">
                 Sí, con el 50% puedes reservar tu equipo. El stock se actualiza
-                en tiempo real.
+                constantemente.
               </p>
             </div>
 
@@ -539,7 +597,7 @@ export default function Home() {
                 <span className="text-primary text-xl">✓</span>
                 <div>
                   <p className="font-semibold text-secondary">
-                    Reacondicionado profesional
+                    Exhibición / Reacondicionado profesional
                   </p>
                   <p className="text-sm text-secondary/70">
                     Limpieza profunda y pruebas exhaustivas de funcionamiento

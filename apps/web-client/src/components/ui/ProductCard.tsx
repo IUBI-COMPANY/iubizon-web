@@ -10,6 +10,7 @@ interface Props {
 
 export const ProductCard = ({ product }: Props) => {
   const isNew = product?.condition === "new";
+  const isClearance = product?.classification === "clearance";
   const isByCampaign = product?.campaign;
 
   // Check if Christmas campaign is active (Nov 1 - Dec 31, 2025)
@@ -38,13 +39,15 @@ export const ProductCard = ({ product }: Props) => {
       className={twMerge(
         "keen-slider__slide flex flex-col h-full group rounded-3xl p-5 bg-white relative overflow-hidden transition-all duration-300",
         // Productos reacondicionados - Borde secondary (prioridad)
-        !isNew
-          ? "border-[1px] border-[#99a1af] shadow-lg hover:shadow-xl hover:shadow-secondary/20"
-          : // Productos NUEVOS en campaña - Borde rojo/navideño
-            isByCampaign || isChristmas
-            ? "border-[1px] border-[#d90429] shadow-lg hover:shadow-xl hover:shadow-red-500/20"
-            : // Productos nuevos normales - Borde gris
-              "border border-gray-300/50 shadow-sm hover:shadow-md",
+        isClearance
+          ? "border-[2px] border-[#d90429] shadow-lg hover:shadow-xl hover:shadow-red-500/20"
+          : !isNew
+            ? "border-[1px] border-[#99a1af] shadow-lg hover:shadow-xl hover:shadow-secondary/20"
+            : // Productos NUEVOS en campaña - Borde rojo/navideño
+              isByCampaign || isChristmas
+              ? "border-[1px] border-[#d90429] shadow-lg hover:shadow-xl hover:shadow-red-500/20"
+              : // Productos nuevos normales - Borde gris
+                "border border-gray-300/50 shadow-sm hover:shadow-md",
       )}
     >
       <div className="mb-3 relative z-10">
@@ -57,7 +60,7 @@ export const ProductCard = ({ product }: Props) => {
                 isNew ? "bg-primary text-white" : "bg-secondary/70 text-white",
               )}
             >
-              {isNew ? "Nuevo" : "Reacondicionado"}
+              {isClearance ? "De Remate" : isNew ? "Nuevo" : "Reacondicionado"}
             </span>
           )}
           {/* Badge Oferta Navidad - para TODOS en campaña */}

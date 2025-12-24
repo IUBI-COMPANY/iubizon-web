@@ -410,6 +410,22 @@ export default function ProductDetailPage({ product }: Props) {
                             </div>
                           </div>
                         )}
+                        {product?.technicalSheetUrl && (
+                          <div className="flex flex-col md:flex-row flex-wrap items-start md:items-end">
+                            <div className="pr-4 w-[11em] leading-5 ">
+                              Ficha técnica:
+                            </div>{" "}
+                            <div className="text-secondary">
+                              <a
+                                href={product.technicalSheetUrl}
+                                target="_blank"
+                                className="text-blue-500 hover:underline"
+                              >
+                                ¡Click aquí!
+                              </a>
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>

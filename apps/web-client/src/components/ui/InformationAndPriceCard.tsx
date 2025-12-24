@@ -40,19 +40,29 @@ export const InformationAndPriceCard = ({
             {product.name || product.model}
           </h1>
 
-          {/* 2. BADGE DE CAMPAÑA NAVIDEÑA (compacto) */}
-          {showChristmasCampaign && product?.oldPrice && (
-            <div className="mb-3 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-emerald-600 to-green-600 text-white text-xs font-bold">
-              <span>🎄</span>
-              <span>
-                -
-                {Math.round(
-                  ((product.oldPrice - product.price) / product.oldPrice) * 100,
-                )}
-                % OFF
-              </span>
-            </div>
-          )}
+          <div className="tags flex flex-wrap gap-1">
+            {/* 2. BADGE DE CAMPAÑA NAVIDEÑA (compacto) */}
+            {showChristmasCampaign && product?.oldPrice && (
+              <div className="mb-3 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-emerald-600 to-green-600 text-white text-xs font-bold">
+                <span>🎄</span>
+                <span>
+                  -
+                  {Math.round(
+                    ((product.oldPrice - product.price) / product.oldPrice) *
+                      100,
+                  )}
+                  % OFF
+                </span>
+              </div>
+            )}
+
+            {product.classification === "clearance" && (
+              <div className="mb-3 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-emerald-600 to-green-600 text-white text-xs font-bold">
+                <span>🤑</span>
+                <span>Precio de remate</span>
+              </div>
+            )}
+          </div>
 
           {/* 3. STOCK Y DISPONIBILIDAD (compacto) */}
           <div className="mb-4 p-3 rounded-lg bg-gradient-to-r from-gray-50 to-white border border-gray-200">
