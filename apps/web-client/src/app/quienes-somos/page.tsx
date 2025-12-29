@@ -8,7 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title:
       "Quiénes Somos - Expertos en Proyectores y Tecnología Educativa | iubizon",
     description:
-      "Conoce la historia de iubizon, empresa especialista en proyectores y tecnología educativa en Lima. Equipo con 5 años de experiencia brindando soluciones innovadoras desde 2023.",
+      "Conoce la historia de iubizon, empresa especialista en proyectores y tecnología educativa en Lima. Equipo con 5 años de experiencia brindando soluciones innovadoras desde 2020.",
     keywords: [
       "quienes somos iubizon",
       "empresa proyectores Lima",
@@ -30,7 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
         "Quiénes Somos - Expertos en Proyectores y Tecnología Educativa | iubizon",
       url: "https://www.iubizon.com/quienes-somos",
       description:
-        "Conoce la historia de iubizon, empresa especialista en proyectores y tecnología educativa en Lima. Equipo con 5 años de experiencia desde 2023.",
+        "Conoce la historia de iubizon, empresa especialista en proyectores y tecnología educativa en Lima. Equipo con 5 años de experiencia desde 2020.",
       images: [
         {
           url: "https://www.iubizon.com/tu-mundo-multimedia.jpg",
@@ -46,7 +46,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: "Quiénes Somos - Expertos en Proyectores | iubizon",
       description:
-        "Conoce la historia de iubizon, empresa especialista en proyectores y tecnología educativa en Lima desde 2023.",
+        "Conoce la historia de iubizon, empresa especialista en proyectores y tecnología educativa en Lima desde 2020.",
       images: [
         {
           url: "https://www.iubizon.com/tu-mundo-multimedia.jpg",
@@ -87,7 +87,7 @@ function generateStructuredData() {
       "Empresa líder en proyectores y tecnología educativa en Lima, Perú. Especialistas en soluciones Epson para empresas y centros educativos.",
     url: "https://www.iubizon.com/quienes-somos",
     logo: "https://www.iubizon.com/images/logo.png",
-    foundingDate: "2023",
+    foundingDate: "2020",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Pje. los Jazmines 181",
@@ -154,7 +154,7 @@ export default function AboutUsPage() {
               </h1>
               <p className="text-xl md:text-2xl text-gray-100 max-w-3xl mx-auto mb-8">
                 Somos Iubizon, especialistas en proyectores y tecnología
-                educativa en el Perú desde 2023, con un equipo de expertos
+                educativa en el Perú desde 2020, con un equipo de expertos
                 comprometidos con brindar soluciones innovadoras.
               </p>
               <div className="flex justify-center">
@@ -191,23 +191,23 @@ export default function AboutUsPage() {
                   itemProp="description"
                 >
                   <p>
-                    Desde <strong>2023</strong>, Iubizon nació con una visión
+                    Desde <strong>2020</strong>, Iubizon nació con una visión
                     clara: reunir a los mejores{" "}
                     <strong>especialistas en proyectores</strong> para ofrecer
-                    soluciones tecnológicas de vanguardia. Aunque somos una
-                    empresa joven con <strong>1 año en el mercado</strong>,
-                    nuestros especialistas cuentan con{" "}
-                    <strong>5 años de experiencia individual</strong> en el
-                    sector.
+                    soluciones tecnológicas de alto nivel. Contamos con un
+                    equipo que suma más de{" "}
+                    <strong>5 años de experiencia en el mercado</strong>,
+                    brindando asesoría, implementación y soporte especializado
+                    en cada proyecto.
                   </p>
                   <p>
-                    Nos hemos establecido rápidamente como{" "}
+                    Nos hemos consolidado como{" "}
                     <strong>distribuidores de Epson</strong> y otras marcas
-                    reconocidas. Somos{" "}
-                    <strong>consultores especializados</strong> que entienden
-                    las necesidades únicas de cada cliente y ofrecemos
-                    soluciones personalizadas con{" "}
-                    <strong>garantía extendida de hasta 6 meses</strong>.
+                    reconocidas del sector. Actuamos como{" "}
+                    <strong>consultores especializados</strong>, entendiendo las
+                    necesidades reales de cada cliente para ofrecer soluciones
+                    personalizadas, con <strong>garantía</strong> y
+                    acompañamiento técnico continuo.
                   </p>
                 </div>
               </div>
