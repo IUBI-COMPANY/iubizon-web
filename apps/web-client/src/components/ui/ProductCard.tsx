@@ -13,7 +13,6 @@ export const ProductCard = ({ product }: Props) => {
   const isClearance = product?.classification === "clearance";
   const isByCampaign = product?.campaign;
 
-
   // Generate descriptive alt text for product card image
   const getProductImageAlt = () => {
     const productName = product?.name || "Proyector";
@@ -51,13 +50,13 @@ export const ProductCard = ({ product }: Props) => {
                 isNew ? "bg-primary text-white" : "bg-secondary/70 text-white",
               )}
             >
-              {isClearance ? "De Remate" : isNew ? "Nuevo" : "Reacondicionado"}
+              {isClearance ? "De Remate" : isNew ? "Premium" : "Exhibición"}
             </span>
           )}
           {/* Badge Oferta - para productos en campaña con color azul oscuro */}
           {isByCampaign && (
             <span className="rounded-full px-3 py-1 text-xs font-bold bg-secondary text-white absolute top-1 right-1 shadow-lg flex items-center gap-1 border-2 border-white uppercase tracking-wide">
-              <span>Oferta Especial</span>
+              <span>Oferta del Verano</span>
             </span>
           )}
           <Image
