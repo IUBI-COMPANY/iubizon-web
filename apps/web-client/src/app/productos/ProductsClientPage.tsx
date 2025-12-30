@@ -125,7 +125,7 @@ export default function ProductsClientPage() {
             <div className="bg-gradient-to-br from-white to-blue-50/30 rounded-2xl p-8 shadow-sm border-2 border-blue-100/50">
               <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
                 <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-3">
+                  <div className="flex items-center gap-3 mb-3 flex-wrap">
                     <div className="flex items-center gap-3">
                       <div className="relative">
                         <Star className="w-8 h-8 text-yellow-500" />
@@ -135,6 +135,10 @@ export default function ProductsClientPage() {
                         {productsByCondition.new.name}
                       </h2>
                     </div>
+                    <span className="inline-flex items-center gap-1 bg-gradient-to-r from-primary to-primary/80 text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-md">
+                      <span>🔥</span>
+                      <span>17% DSCTO</span>
+                    </span>
                   </div>
                   <p className="text-gray-600 mt-2 max-w-2xl">
                     {productsByCondition.new.description}
@@ -162,7 +166,7 @@ export default function ProductsClientPage() {
             <div className="bg-gradient-to-br from-white to-gray-50/30 rounded-2xl p-8 shadow-sm border-2 border-gray-100/50">
               <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
                 <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-3">
+                  <div className="flex items-center gap-3 mb-3 flex-wrap">
                     <div className="flex items-center gap-3">
                       <div className="relative">
                         <ShoppingCart className="w-8 h-8 text-green-500" />
@@ -173,6 +177,10 @@ export default function ProductsClientPage() {
                       </h2>
                       <span className="text-2xl">♻️</span>
                     </div>
+                    <span className="inline-flex items-center gap-1 bg-gradient-to-r from-red-600 to-red-500 text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-md animate-pulse">
+                      <span>💥</span>
+                      <span>42% DSCTO</span>
+                    </span>
                   </div>
                   <p className="text-gray-600 mt-2 max-w-2xl">
                     {productsByCondition.reconditioned.description}
