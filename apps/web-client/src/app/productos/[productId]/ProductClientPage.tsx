@@ -22,17 +22,6 @@ export default function ProductDetailPage({ product }: Props) {
 
   const condition = productsCondition[product.condition];
 
-  // Check if Christmas campaign is active (DISABLED - Campaign ended)
-  const isChristmasCampaignActive = () => {
-    return false; // Campaign disabled
-  };
-
-  const showChristmasCampaign = Boolean(
-    product?.campaign && isChristmasCampaignActive(),
-  );
-
-  // Calculate discount percentage based on product condition
-  const discountPercentage = product.condition === "new" ? 20 : 42;
 
   useEffect(() => {
     document.body.style.overflow = showModal ? "hidden" : "auto";
@@ -47,183 +36,14 @@ export default function ProductDetailPage({ product }: Props) {
 
   return (
     <>
-      <style>
-        {`
-      @keyframes sparkle {
-        0%, 100% {
-          opacity: 1;
-          transform: scale(1);
-        }
-        50% {
-          opacity: 0.5;
-          transform: scale(1.2);
-        }
-      }
-
-      @keyframes elegantShine {
-        0% {
-          left: -150%;
-        }
-        100% {
-          left: 150%;
-        }
-      }
-
-      @keyframes subtleGlow {
-        0%, 100% {
-          filter: brightness(1);
-        }
-        50% {
-          filter: brightness(1.1);
-        }
-      }
-
-      .christmas-badge {
-        background: linear-gradient(90deg, #0a2540 0%, #0d3a5f 50%, #0a2540 100%);
-        position: relative;
-        overflow: hidden;
-        animation: subtleGlow 3s ease-in-out infinite;
-      }
-
-      .christmas-badge::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -150%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-        animation: elegantShine 4s ease-in-out infinite;
-        pointer-events: none;
-      }
-
-      .gold-star {
-        color: #d4af37;
-        animation: sparkle 2s ease-in-out infinite;
-      }
-
-      .gold-decoration {
-        color: #d4af37;
-        opacity: 0.8;
-      }
-
-      .discount-badge {
-        background: linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #991b1b 100%);
-        border: 2px solid rgba(255, 255, 255, 0.95);
-        box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4), 0 0 20px rgba(220, 38, 38, 0.2);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .discount-badge::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-        animation: elegantShine 3s ease-in-out infinite;
-        pointer-events: none;
-      }
-
-      .wavy-line {
-        display: inline-block;
-        color: #d4af37;
-        opacity: 0.6;
-      }
-    `}
-      </style>
       <div className="min-h-screen h-auto flex flex-col w-full bg-white">
         {!product ? (
           <NoFoundComponent />
         ) : (
           <div className="content-wrapper px-7 max-w-[1470px] m-auto w-full">
             <main className="grid grid-cols-12 py-5 w-full relative">
-              {showChristmasCampaign && (
-                <div className="col-span-12 mb-4">
-                  <div className="christmas-badge rounded-lg px-3 md:px-6 py-3 md:py-4 text-white shadow-xl">
-                    <div className="flex items-center justify-center gap-1.5 md:gap-2 flex-wrap">
-                      {/* Left decorative elements */}
-                      <div className="hidden md:flex items-center gap-1.5">
-                        <span className="gold-star text-lg">✦</span>
-                        <span
-                          className="gold-star text-sm"
-                          style={{ animationDelay: "0.5s" }}
-                        >
-                          ✦
-                        </span>
-                        <span className="gold-decoration text-xs">•</span>
-                      </div>
-
-                      {/* Wavy line left */}
-                      <span className="wavy-line hidden lg:inline text-base">
-                        〰
-                      </span>
-
-                      {/* Main content */}
-                      <div className="flex items-center gap-2">
-                        <span className="text-2xl md:text-3xl">🎁</span>
-                        <h2
-                          className="text-lg md:text-2xl font-bold tracking-wide"
-                          style={{ fontFamily: "Georgia, serif" }}
-                        >
-                          Ideas{" "}
-                          <span className="gold-decoration text-base md:text-xl">
-                            para
-                          </span>{" "}
-                          Regalar
-                        </h2>
-                      </div>
-
-                      {/* Wavy line right */}
-                      <span className="wavy-line hidden lg:inline text-base">
-                        〰
-                      </span>
-
-                      {/* Right decorative elements */}
-                      <div className="hidden md:flex items-center gap-1.5">
-                        <span className="gold-decoration text-xs">•</span>
-                        <span
-                          className="gold-star text-sm"
-                          style={{ animationDelay: "1s" }}
-                        >
-                          ✦
-                        </span>
-                        <span
-                          className="gold-star text-lg"
-                          style={{ animationDelay: "1.5s" }}
-                        >
-                          ✦
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Subtitle with discount */}
-                    <div className="mt-2 flex flex-wrap items-center justify-center gap-1.5 md:gap-2">
-                      <span className="text-xs md:text-sm font-bold tracking-wide opacity-90">
-                        NAVIDAD 2025
-                      </span>
-                      <span className="text-sm md:text-base font-bold opacity-80">
-                        •
-                      </span>
-                      <span className="discount-badge px-3 py-1 rounded-md text-xs md:text-sm font-extrabold shadow-lg tracking-wide">
-                        {discountPercentage}% DSCTO.
-                      </span>
-                      <span className="text-sm md:text-base font-bold opacity-80 hidden md:inline">
-                        •
-                      </span>
-                      <span className="text-[10px] md:text-xs opacity-75 font-medium">
-                        Válido hasta el 31 de Diciembre
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              )}
               <section className="col-span-12 lg:col-span-8 w-full flex justify-center items-center">
-                <div
-                  className={`w-full ${showChristmasCampaign ? "christmas-container" : ""}`}
-                >
+                <div className="w-full">
                   {/*Product media*/}
                   <MediaCarousel product={product} />
                   <div className="block lg:hidden w-full my-10 mb-10 lg:mb-30">
@@ -232,7 +52,6 @@ export default function ProductDetailPage({ product }: Props) {
                       showModal={showModal}
                       setShowModal={setShowModal}
                       condition={condition}
-                      showChristmasCampaign={showChristmasCampaign}
                     />
                   </div>
                   {/*Product specifications*/}
@@ -434,7 +253,6 @@ export default function ProductDetailPage({ product }: Props) {
                   showModal={showModal}
                   setShowModal={setShowModal}
                   condition={condition}
-                  showChristmasCampaign={showChristmasCampaign}
                 />
               </div>
             </main>

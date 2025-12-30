@@ -12,8 +12,9 @@ export const ProductCard = ({ product }: Props) => {
   const isNew = product?.condition === "new";
   const isClearance = product?.classification === "clearance";
   const isByCampaign = product?.campaign;
-  const isChristmas = false; // Control de campaña navideña (desactivada)
 
+  // Calcular porcentaje de descuento según condición
+  const discountPercentage = product?.condition === "reconditioned" ? 42 : 17;
 
   // Generate descriptive alt text for product card image
   const getProductImageAlt = () => {
@@ -56,11 +57,11 @@ export const ProductCard = ({ product }: Props) => {
             </span>
           )}
 
-          {/* Badge de descuento 20% OFF */}
+          {/* Badge de descuento - dinámico según condición */}
           <div className="absolute top-1 right-1 z-10">
             <div className="bg-gradient-to-br from-red-600 to-red-700 text-white px-3 py-1.5 rounded-full shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-300">
               <div className="flex items-center gap-1">
-                <span className="text-xs font-black">20%</span>
+                <span className="text-xs font-black">{discountPercentage}%</span>
                 <span className="text-[0.65rem] font-bold">OFF</span>
               </div>
             </div>
