@@ -49,7 +49,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
             {/* Close Button */}
             <button
               onClick={() => setIsVideoModalOpen(false)}
-              className="absolute -top-2 right-2 md:-top-12 md:right-0 z-10 text-white hover:text-[#fb0c6b] transition-colors bg-black/50 md:bg-transparent rounded-full p-2 md:p-0"
+              className="absolute -top-2 right-2 md:-top-12 md:right-0 z-10 text-white hover:text-orange-400 transition-colors bg-black/50 md:bg-transparent rounded-full p-2 md:p-0"
               aria-label="Cerrar video"
             >
               <svg
@@ -69,7 +69,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
             {/* Video Container */}
             <div
-              className="relative w-full aspect-video rounded-none md:rounded-2xl overflow-hidden shadow-2xl shadow-blue-600/20 border-2 border-blue-600/30"
+              className="relative w-full aspect-video rounded-none md:rounded-2xl overflow-hidden shadow-2xl shadow-orange-500/20 border-2 border-orange-400/30"
               onClick={(e) => e.stopPropagation()}
             >
               <video autoPlay controls className="w-full h-full object-contain">
@@ -94,13 +94,13 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
           <source src="/productos/HY350/outboxing.mp4" type="video/mp4" />
         </video>
 
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-900/60 via-slate-900/40 to-black" />
+        <div className="absolute inset-0 bg-gradient-to-b from-orange-600/50 via-amber-900/40 to-black" />
 
         {/* Elementos decorativos flotantes */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
           {/* Círculo 1 */}
           <div
-            className="absolute w-32 h-32 border-2 border-blue-500/20 rounded-full"
+            className="absolute w-32 h-32 border-2 border-orange-400/30 rounded-full"
             style={{
               left: "10%",
               top: "15%",
@@ -109,7 +109,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
           />
           {/* Círculo 2 */}
           <div
-            className="absolute w-24 h-24 border-2 border-cyan-400/20 rounded-full"
+            className="absolute w-24 h-24 border-2 border-amber-400/30 rounded-full"
             style={{
               left: "80%",
               top: "25%",
@@ -132,14 +132,14 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
         <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
           <div className="mb-6 inline-block">
-            <span className="text-sm md:text-base font-semibold tracking-[0.3em] uppercase bg-gradient-to-r from-white via-blue-600 to-white bg-clip-text text-transparent">
-              MagCubic HY350 - Oferta Especial
+            <span className="text-sm md:text-base font-semibold tracking-[0.3em] uppercase bg-gradient-to-r from-white via-orange-400 to-white bg-clip-text text-transparent">
+              MagCubic HY350 - Oferta de Verano
             </span>
           </div>
 
           {/* Urgency Banner */}
-          <div className="mb-4 inline-flex items-center gap-2 bg-blue-600 px-4 py-2 rounded-full text-sm font-bold animate-pulse">
-            <span>⚡ OFERTA LIMITADA</span>
+          <div className="mb-4 inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-amber-500 px-4 py-2 rounded-full text-sm font-bold animate-pulse shadow-lg shadow-orange-500/50">
+            <span>☀️ OFERTA DE VERANO</span>
           </div>
 
           <h1
@@ -150,13 +150,13 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
               transition: "transform 0.1s ease-out, opacity 0.1s ease-out",
             }}
           >
-            <span className="block bg-gradient-to-r from-white via-blue-400 to-cyan-300 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(59,130,246,0.8)] filter brightness-125">
+            <span className="block bg-gradient-to-r from-yellow-200 via-orange-400 to-amber-300 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(251,146,60,0.8)] filter brightness-125">
               Proyección
             </span>
             <span className="block mt-2 text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.6)]">
               Multimedia
             </span>
-            <span className="block mt-2 bg-gradient-to-r from-cyan-400 via-blue-300 to-indigo-500 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(59,130,246,0.8)] filter brightness-125">
+            <span className="block mt-2 bg-gradient-to-r from-amber-400 via-orange-400 to-red-500 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(251,146,60,0.8)] filter brightness-125">
               Inteligente
             </span>
           </h1>
@@ -184,7 +184,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
                 <span className="text-gray-400 line-through text-xl md:text-2xl">
                   s/ {originalPrice.toFixed(2)}
                 </span>
-                <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+                <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg shadow-orange-500/50">
                   -{discountPercentage}%
                 </span>
               </div>
@@ -209,15 +209,15 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
           >
             <a
               href={`https://wa.me/51972300301?text=${getWhatsAppMessage(product)}`}
-              className="group relative bg-white text-blue-600 px-10 py-5 rounded-full text-lg font-semibold overflow-hidden transition-all transform hover:scale-105 shadow-lg shadow-white/30 animate-pulse"
+              className="group relative bg-gradient-to-r from-orange-500 via-amber-500 to-orange-500 text-white px-10 py-5 rounded-full text-lg font-semibold overflow-hidden transition-all transform hover:scale-105 shadow-xl shadow-orange-500/50 animate-pulse hover:shadow-orange-500/70"
             >
               <span className="relative z-10">
-                ⚡ SÍ, LO QUIERO AHORA · s/ {discountedPrice.toFixed(2)}
+                ☀️ SÍ, LO QUIERO AHORA · s/ {discountedPrice.toFixed(2)}
               </span>
             </a>
             <button
               onClick={() => setIsVideoModalOpen(true)}
-              className="border-2 border-white/30 backdrop-blur-sm text-white px-10 py-5 rounded-full text-lg font-semibold hover:bg-white/10 hover:border-white/60 transition-all shadow-lg"
+              className="border-2 border-orange-400/50 backdrop-blur-sm text-white px-10 py-5 rounded-full text-lg font-semibold hover:bg-orange-500/20 hover:border-orange-400/80 transition-all shadow-lg"
             >
               ▶ Ver Video
             </button>
@@ -252,8 +252,8 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-blue-600/30 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-blue-600 rounded-full mt-2 animate-pulse" />
+          <div className="w-6 h-10 border-2 border-orange-400/40 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-gradient-to-b from-orange-400 to-amber-500 rounded-full mt-2 animate-pulse" />
           </div>
         </div>
       </section>
@@ -261,40 +261,40 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
       {/* Product Showcase Grid */}
       <section
         id="galeria"
-        className="py-32 px-4 bg-gradient-to-b from-black via-blue-900/5 to-black relative overflow-hidden"
+        className="py-32 px-4 bg-gradient-to-b from-black via-orange-900/10 to-black relative overflow-hidden"
       >
         {/* Texto decorativo de fondo */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
-          <h2 className="text-[20vw] md:text-[15vw] font-black text-white/5 whitespace-nowrap">
+          <h2 className="text-[20vw] md:text-[15vw] font-black text-orange-500/5 whitespace-nowrap">
             HY350
           </h2>
         </div>
 
         {/* Círculos decorativos flotantes */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-20 right-10 w-64 h-64 border-4 border-blue-600/10 rounded-full animate-pulse" />
+          <div className="absolute top-20 right-10 w-64 h-64 border-4 border-orange-400/15 rounded-full animate-pulse" />
           <div
-            className="absolute bottom-40 left-10 w-48 h-48 border-4 border-cyan-600/10 rounded-full animate-pulse"
+            className="absolute bottom-40 left-10 w-48 h-48 border-4 border-amber-400/15 rounded-full animate-pulse"
             style={{ animationDelay: "1s" }}
           />
-          <div className="absolute top-1/2 right-1/4 w-32 h-32 bg-gradient-to-br from-blue-600/5 to-cyan-600/5 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 right-1/4 w-32 h-32 bg-gradient-to-br from-orange-500/10 to-amber-500/10 rounded-full blur-3xl" />
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
           <h2 className="text-4xl md:text-6xl font-bold text-center mb-4">
             Características
-            <span className="block mt-2 bg-gradient-to-r from-white via-blue-600 to-white bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(59,130,246,0.3)]">
+            <span className="block mt-2 bg-gradient-to-r from-yellow-200 via-orange-400 to-amber-300 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(251,146,60,0.5)]">
               Innovadoras
             </span>
           </h2>
-          <p className="text-center text-blue-600/60 mb-20 text-sm">
-            ⭐ Especial Oferta Limitada
+          <p className="text-center text-orange-400/70 mb-20 text-sm">
+            ☀️ Especial Oferta de Verano
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {/* Image 1 - Funcionalidad Táctil */}
             <article className="flex flex-col">
-              <div className="relative w-full h-auto rounded-3xl overflow-hidden group bg-gray-900 mb-6 ring-2 ring-blue-600/20">
+              <div className="relative w-full h-auto rounded-3xl overflow-hidden group bg-gray-900 mb-6 ring-2 ring-orange-400/30">
                 <Image
                   src="/productos/HY350/1.webp"
                   alt="Control Táctil Intuitivo - MagCubic HY350"
@@ -317,7 +317,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
             {/* Image 2 - 580 Lúmenes y 30K horas */}
             <article className="flex flex-col">
-              <div className="relative w-full h-auto rounded-3xl overflow-hidden group bg-gray-900 mb-6 ring-2 ring-blue-600/20">
+              <div className="relative w-full h-auto rounded-3xl overflow-hidden group bg-gray-900 mb-6 ring-2 ring-orange-400/30">
                 <Image
                   src="/productos/HY350/2.webp"
                   alt="580 Lúmenes ANSI y 30,000 horas de vida útil - MagCubic HY350"
@@ -340,7 +340,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
             {/* Image 3 - Soporte 4K Full Width */}
             <article className="md:col-span-2 flex flex-col">
-              <div className="relative w-full h-auto rounded-3xl overflow-hidden group bg-gray-900 mb-6 ring-2 ring-blue-600/20">
+              <div className="relative w-full h-auto rounded-3xl overflow-hidden group bg-gray-900 mb-6 ring-2 ring-orange-400/30">
                 <Image
                   src="/productos/HY350/3.webp"
                   alt="Soporte 4K y resolución nativa 1920x1080P - Proyector MagCubic HY350"
@@ -366,7 +366,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
             {/* Image 4 - Enfoque Electrónico */}
             <article className="flex flex-col">
-              <div className="relative w-full h-auto rounded-3xl overflow-hidden group bg-gray-900 mb-6 ring-2 ring-blue-600/20">
+              <div className="relative w-full h-auto rounded-3xl overflow-hidden group bg-gray-900 mb-6 ring-2 ring-orange-400/30">
                 <Image
                   src="/productos/HY350/4.webp"
                   alt="Pantalla 4K con Enfoque Electrónico automático - MagCubic HY350"
@@ -389,7 +389,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
             {/* Image 5 - Corrección Automática */}
             <article className="flex flex-col">
-              <div className="relative w-full h-auto rounded-3xl overflow-hidden group bg-gray-900 mb-6 ring-2 ring-blue-600/20">
+              <div className="relative w-full h-auto rounded-3xl overflow-hidden group bg-gray-900 mb-6 ring-2 ring-orange-400/30">
                 <Image
                   src="/productos/HY350/5.webp"
                   alt="Corrección Trapezoidal Automática 4D - Proyector MagCubic HY350"
@@ -417,36 +417,36 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
       <section className="py-32 px-4 bg-black relative overflow-hidden">
         {/* Texto decorativo de fondo con gradiente */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
-          <h2 className="text-[18vw] md:text-[12vw] font-black bg-gradient-to-r from-blue-600/10 via-green-600/10 to-blue-600/10 bg-clip-text text-transparent whitespace-nowrap rotate-[-5deg]">
+          <h2 className="text-[18vw] md:text-[12vw] font-black bg-gradient-to-r from-orange-400/10 via-amber-400/10 to-orange-400/10 bg-clip-text text-transparent whitespace-nowrap rotate-[-5deg]">
             CONECTIVIDAD
           </h2>
         </div>
 
         {/* Formas geométricas decorativas */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-32 left-20 w-40 h-40 border-4 border-blue-600/10 rotate-45 animate-pulse" />
+          <div className="absolute top-32 left-20 w-40 h-40 border-4 border-orange-400/15 rotate-45 animate-pulse" />
           <div
-            className="absolute bottom-32 right-32 w-56 h-56 border-4 border-cyan-600/10 rounded-full animate-pulse"
+            className="absolute bottom-32 right-32 w-56 h-56 border-4 border-amber-400/15 rounded-full animate-pulse"
             style={{ animationDelay: "1.5s" }}
           />
-          <div className="absolute top-1/3 right-10 w-24 h-24 bg-blue-600/5 blur-2xl rounded-full" />
+          <div className="absolute top-1/3 right-10 w-24 h-24 bg-orange-500/10 blur-2xl rounded-full" />
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
           <h2 className="text-4xl md:text-6xl font-bold text-center mb-4">
             Conectividad y
-            <span className="block mt-2 bg-gradient-to-r from-white via-blue-600 to-white bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(59,130,246,0.3)]">
+            <span className="block mt-2 bg-gradient-to-r from-yellow-200 via-orange-400 to-amber-300 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(251,146,60,0.5)]">
               Versatilidad
             </span>
           </h2>
-          <p className="text-center text-blue-600/60 mb-20 text-sm">
-            ⭐ Especial Oferta Limitada
+          <p className="text-center text-orange-400/70 mb-20 text-sm">
+            ☀️ Especial Oferta de Verano
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {/* Feature 1 - Conectividad WiFi */}
             <article className="flex flex-col">
-              <div className="relative w-full h-auto rounded-2xl overflow-hidden bg-gray-900 mb-6 group ring-2 ring-blue-600/20">
+              <div className="relative w-full h-auto rounded-2xl overflow-hidden bg-gray-900 mb-6 group ring-2 ring-orange-400/30">
                 <Image
                   src="/productos/HY350/6.webp"
                   alt="Conectividad WiFi 6 para iPhone y Android - Proyector MagCubic HY350"
@@ -469,7 +469,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
             {/* Feature 2 - Pantalla de 150" */}
             <article className="flex flex-col">
-              <div className="relative w-full h-auto rounded-2xl overflow-hidden bg-gray-900 mb-6 group ring-2 ring-blue-600/20">
+              <div className="relative w-full h-auto rounded-2xl overflow-hidden bg-gray-900 mb-6 group ring-2 ring-orange-400/30">
                 <Image
                   src="/productos/HY350/7.webp"
                   alt="Pantalla de proyección gigante hasta 150 pulgadas - MagCubic HY350"
@@ -492,7 +492,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
             {/* Feature 3 - Conectores */}
             <article className="flex flex-col">
-              <div className="relative w-full h-auto rounded-2xl overflow-hidden bg-gray-900 mb-6 group ring-2 ring-blue-600/20">
+              <div className="relative w-full h-auto rounded-2xl overflow-hidden bg-gray-900 mb-6 group ring-2 ring-orange-400/30">
                 <Image
                   src="/productos/HY350/8.webp"
                   alt="Múltiples puertos: USB, HDMI, Audio Jack, Power - MagCubic HY350"
@@ -523,13 +523,13 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
       >
         {/* Textos decorativos de fondo múltiples */}
         <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
-          <div className="absolute top-1/4 -left-20 text-[15vw] md:text-[10vw] font-black text-blue-600/5 rotate-[-15deg] whitespace-nowrap">
+          <div className="absolute top-1/4 -left-20 text-[15vw] md:text-[10vw] font-black text-orange-400/10 rotate-[-15deg] whitespace-nowrap">
             SPECS
           </div>
-          <div className="absolute bottom-1/4 -right-20 text-[15vw] md:text-[10vw] font-black text-green-600/5 rotate-[15deg] whitespace-nowrap">
+          <div className="absolute bottom-1/4 -right-20 text-[15vw] md:text-[10vw] font-black text-amber-400/10 rotate-[15deg] whitespace-nowrap">
             TECH
           </div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[25vw] md:text-[18vw] font-black text-white/3 whitespace-nowrap">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[25vw] md:text-[18vw] font-black text-orange-500/5 whitespace-nowrap">
             HY350
           </div>
         </div>
@@ -537,96 +537,96 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
         <div className="max-w-5xl mx-auto relative z-10">
           <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold text-center mb-3 md:mb-4">
             Especificaciones
-            <span className="block mt-2 bg-gradient-to-r from-white via-blue-600 to-white bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(59,130,246,0.3)]">
+            <span className="block mt-2 bg-gradient-to-r from-yellow-200 via-orange-400 to-amber-300 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(251,146,60,0.5)]">
               Técnicas
             </span>
           </h2>
-          <p className="text-center text-blue-600/60 mb-12 md:mb-20 text-xs md:text-sm">
-            Oferta Especial
+          <p className="text-center text-orange-400/70 mb-12 md:mb-20 text-xs md:text-sm">
+            ☀️ Oferta de Verano
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 md:gap-x-20 gap-y-4 md:gap-y-8">
             <div className="group">
-              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-blue-600 transition-colors">
+              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-orange-400 transition-colors">
                 <span className="text-gray-400 text-sm md:text-lg">Brillo</span>
-                <span className="text-white text-base md:text-xl font-semibold group-hover:text-blue-600 transition-colors text-right">
+                <span className="text-white text-base md:text-xl font-semibold group-hover:text-orange-400 transition-colors text-right">
                   {product.lumensANSI} lúmenes ANSI
                 </span>
               </div>
             </div>
 
             <div className="group">
-              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-blue-600 transition-colors">
+              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-orange-400 transition-colors">
                 <span className="text-gray-400 text-sm md:text-lg">
                   Resolución
                 </span>
-                <span className="text-white text-base md:text-xl font-semibold group-hover:text-blue-600 transition-colors text-right">
+                <span className="text-white text-base md:text-xl font-semibold group-hover:text-orange-400 transition-colors text-right">
                   {product.nativeResolution}
                 </span>
               </div>
             </div>
 
             <div className="group">
-              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-blue-600 transition-colors">
+              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-orange-400 transition-colors">
                 <span className="text-gray-400 text-sm md:text-lg">
                   Sistema Operativo
                 </span>
-                <span className="text-white text-base md:text-xl font-semibold group-hover:text-blue-600 transition-colors text-right">
+                <span className="text-white text-base md:text-xl font-semibold group-hover:text-orange-400 transition-colors text-right">
                   Android 11.0
                 </span>
               </div>
             </div>
 
             <div className="group">
-              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-blue-600 transition-colors">
+              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-orange-400 transition-colors">
                 <span className="text-gray-400 text-sm md:text-lg">
                   Procesador
                 </span>
-                <span className="text-white text-base md:text-xl font-semibold group-hover:text-blue-600 transition-colors text-right">
+                <span className="text-white text-base md:text-xl font-semibold group-hover:text-orange-400 transition-colors text-right">
                   Allwinner H713 Quad-Core
                 </span>
               </div>
             </div>
 
             <div className="group">
-              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-blue-600 transition-colors">
+              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-orange-400 transition-colors">
                 <span className="text-gray-400 text-sm md:text-lg">
                   Memoria
                 </span>
-                <span className="text-white text-base md:text-xl font-semibold group-hover:text-blue-600 transition-colors text-right">
+                <span className="text-white text-base md:text-xl font-semibold group-hover:text-orange-400 transition-colors text-right">
                   2GB RAM + 32GB ROM
                 </span>
               </div>
             </div>
 
             <div className="group">
-              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-blue-600 transition-colors">
+              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-orange-400 transition-colors">
                 <span className="text-gray-400 text-sm md:text-lg">
                   Conectividad
                 </span>
-                <span className="text-white text-base md:text-xl font-semibold group-hover:text-blue-600 transition-colors text-right">
+                <span className="text-white text-base md:text-xl font-semibold group-hover:text-orange-400 transition-colors text-right">
                   WiFi 6 • Bluetooth 5.0
                 </span>
               </div>
             </div>
 
             <div className="group">
-              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-blue-600 transition-colors">
+              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-orange-400 transition-colors">
                 <span className="text-gray-400 text-sm md:text-lg">
                   Tamaño de proyección
                 </span>
-                <span className="text-white text-base md:text-xl font-semibold group-hover:text-blue-600 transition-colors text-right">
+                <span className="text-white text-base md:text-xl font-semibold group-hover:text-orange-400 transition-colors text-right">
                   Hasta 150&quot;
                 </span>
               </div>
             </div>
 
             <div className="group">
-              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-blue-600 transition-colors">
+              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-orange-400 transition-colors">
                 <span className="text-gray-400 text-sm md:text-lg">
                   Nivel de ruido
                 </span>
-                <span className="text-white text-base md:text-xl font-semibold group-hover:text-blue-600 transition-colors text-right">
+                <span className="text-white text-base md:text-xl font-semibold group-hover:text-orange-400 transition-colors text-right">
                   {"< 35 dB"}
                 </span>
               </div>
@@ -634,31 +634,31 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
           </div>
 
           {/* Additional Features */}
-          <div className="mt-12 md:mt-20 p-6 md:p-10 bg-gradient-to-br from-blue-600/20 to-cyan-600/20 backdrop-blur-sm rounded-3xl border border-blue-600/20 shadow-lg shadow-blue-600/10">
+          <div className="mt-12 md:mt-20 p-6 md:p-10 bg-gradient-to-br from-orange-500/20 to-amber-500/20 backdrop-blur-sm rounded-3xl border border-orange-400/30 shadow-lg shadow-orange-500/10">
             <h3 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-center flex items-center justify-center gap-2 md:gap-3 flex-wrap">
               <span>Características Adicionales</span>
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 text-gray-300">
               <div className="flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 flex-shrink-0" />
+                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-orange-400 to-amber-400 flex-shrink-0" />
                 <span className="text-sm md:text-base">
                   Enfoque eléctrico con control remoto
                 </span>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 flex-shrink-0" />
+                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-orange-400 to-amber-400 flex-shrink-0" />
                 <span className="text-sm md:text-base">
                   Corrección trapezoidal automática
                 </span>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 flex-shrink-0" />
+                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-orange-400 to-amber-400 flex-shrink-0" />
                 <span className="text-sm md:text-base">
                   Zoom ajustable 50% - 100%
                 </span>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 flex-shrink-0" />
+                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-orange-400 to-amber-400 flex-shrink-0" />
                 <span className="text-sm md:text-base">
                   Control por voz vía Bluetooth
                 </span>
@@ -673,15 +673,15 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
         <div className="max-w-4xl mx-auto relative z-10">
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-4">
             Detalle de
-            <span className="block mt-2 bg-gradient-to-r from-white via-blue-600 to-white bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(59,130,246,0.3)]">
+            <span className="block mt-2 bg-gradient-to-r from-yellow-200 via-orange-400 to-amber-300 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(251,146,60,0.5)]">
               Precios
             </span>
           </h2>
-          <p className="text-center text-blue-600/60 mb-12 text-sm">
-            ⭐ Precios Especiales - Oferta Limitada
+          <p className="text-center text-orange-400/70 mb-12 text-sm">
+            ☀️ Oferta de Verano - Precios Especiales
           </p>
 
-          <div className="bg-gradient-to-br from-gray-900 to-black border-2 border-blue-600/30 rounded-2xl p-8 shadow-2xl shadow-blue-600/20">
+          <div className="bg-gradient-to-br from-gray-900 to-black border-2 border-orange-400/30 rounded-2xl p-8 shadow-2xl shadow-orange-500/20">
             {/* Precio Original */}
             <div className="flex items-center justify-between mb-4 pb-4 border-b border-gray-800">
               <span className="text-gray-400 text-lg">Precio Regular:</span>
@@ -692,10 +692,10 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
             {/* Descuento */}
             <div className="flex items-center justify-between mb-4 pb-4 border-b border-gray-800">
-              <span className="text-cyan-400 text-lg font-semibold">
+              <span className="text-orange-400 text-lg font-semibold">
                 Descuento Especial ({discountPercentage}%):
               </span>
-              <span className="text-2xl font-bold text-cyan-400">
+              <span className="text-2xl font-bold text-orange-400">
                 - S/ {(originalPrice - discountedPrice).toFixed(2)}
               </span>
             </div>
@@ -719,7 +719,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
             </div>
 
             {/* IGV */}
-            <div className="flex items-center justify-between mb-6 pb-6 border-b-2 border-blue-600/30">
+            <div className="flex items-center justify-between mb-6 pb-6 border-b-2 border-orange-400/30">
               <span className="text-gray-400 text-lg">IGV (18%):</span>
               <span className="text-xl font-semibold text-gray-300">
                 S/ {product.IGV?.toFixed(2)}
@@ -727,12 +727,12 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
             </div>
 
             {/* Total a Pagar */}
-            <div className="bg-gradient-to-r from-blue-600/20 to-cyan-600/20 rounded-xl p-6">
+            <div className="bg-gradient-to-r from-orange-500/20 to-amber-500/20 rounded-xl p-6">
               <div className="flex items-center justify-between">
                 <span className="text-2xl font-bold text-white">
                   Total a Pagar:
                 </span>
-                <span className="text-4xl font-black bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
+                <span className="text-4xl font-black bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
                   S/ {product.totalPayment?.toFixed(2)}
                 </span>
               </div>
@@ -749,23 +749,23 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
           {/* Beneficios adicionales */}
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-gradient-to-br from-cyan-900/30 to-blue-900/30 border border-cyan-600/30 rounded-xl p-4 text-center">
+            <div className="bg-gradient-to-br from-orange-900/30 to-amber-900/30 border border-orange-400/30 rounded-xl p-4 text-center">
               <div className="text-3xl mb-2">✨</div>
-              <h4 className="text-cyan-400 font-bold mb-1">Ahorro Real</h4>
+              <h4 className="text-orange-400 font-bold mb-1">Ahorro Real</h4>
               <p className="text-xs text-gray-400">
                 S/ {(originalPrice - discountedPrice).toFixed(2)} de descuento
               </p>
             </div>
-            <div className="bg-gradient-to-br from-blue-900/30 to-indigo-900/30 border border-blue-600/30 rounded-xl p-4 text-center">
-              <div className="text-3xl mb-2">⚡</div>
-              <h4 className="text-blue-400 font-bold mb-1">Oferta Limitada</h4>
+            <div className="bg-gradient-to-br from-amber-900/30 to-yellow-900/30 border border-amber-400/30 rounded-xl p-4 text-center">
+              <div className="text-3xl mb-2">☀️</div>
+              <h4 className="text-amber-400 font-bold mb-1">Oferta de Verano</h4>
               <p className="text-xs text-gray-400">
                 Solo por tiempo limitado
               </p>
             </div>
-            <div className="bg-gradient-to-br from-indigo-900/30 to-purple-900/30 border border-indigo-600/30 rounded-xl p-4 text-center">
+            <div className="bg-gradient-to-br from-yellow-900/30 to-orange-900/30 border border-yellow-400/30 rounded-xl p-4 text-center">
               <div className="text-3xl mb-2">🚚</div>
-              <h4 className="text-indigo-400 font-bold mb-1">Envío Incluido</h4>
+              <h4 className="text-yellow-400 font-bold mb-1">Envío Incluido</h4>
               <p className="text-xs text-gray-400">
                 Gratis en Lima Metropolitana
               </p>
@@ -779,51 +779,51 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
         id="comprar"
         className="relative py-20 md:py-32 px-4 overflow-hidden"
       >
-        {/* Background con gradiente moderno */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-indigo-800 to-purple-900" />
+        {/* Background con gradiente veraniego */}
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-600 via-amber-600 to-yellow-600" />
 
         {/* Capa de overlay con patrón */}
         <div
           className="absolute inset-0 opacity-10"
           style={{
-            backgroundImage: `radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
-                             radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
-                             radial-gradient(circle at 40% 20%, rgba(99, 102, 241, 0.3) 0%, transparent 50%)`,
+            backgroundImage: `radial-gradient(circle at 20% 50%, rgba(251, 146, 60, 0.4) 0%, transparent 50%),
+                             radial-gradient(circle at 80% 80%, rgba(245, 158, 11, 0.4) 0%, transparent 50%),
+                             radial-gradient(circle at 40% 20%, rgba(249, 115, 22, 0.4) 0%, transparent 50%)`,
           }}
         />
 
         {/* Efectos de partículas sutiles */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Partículas azules */}
-          <div className="absolute top-[10%] left-[15%] w-3 h-3 bg-blue-400 rounded-full blur-sm animate-pulse shadow-lg shadow-blue-400/50" />
+          {/* Partículas naranjas */}
+          <div className="absolute top-[10%] left-[15%] w-3 h-3 bg-orange-300 rounded-full blur-sm animate-pulse shadow-lg shadow-orange-300/50" />
           <div
-            className="absolute top-[30%] right-[20%] w-2 h-2 bg-cyan-300 rounded-full blur-sm animate-pulse shadow-lg shadow-cyan-300/50"
+            className="absolute top-[30%] right-[20%] w-2 h-2 bg-amber-300 rounded-full blur-sm animate-pulse shadow-lg shadow-amber-300/50"
             style={{ animationDelay: "0.5s" }}
           />
           <div
-            className="absolute bottom-[40%] left-[25%] w-2.5 h-2.5 bg-blue-500 rounded-full blur-sm animate-pulse shadow-lg shadow-blue-500/50"
+            className="absolute bottom-[40%] left-[25%] w-2.5 h-2.5 bg-orange-400 rounded-full blur-sm animate-pulse shadow-lg shadow-orange-400/50"
             style={{ animationDelay: "1s" }}
           />
           <div
-            className="absolute top-[60%] right-[35%] w-2 h-2 bg-indigo-400 rounded-full blur-sm animate-pulse shadow-lg shadow-indigo-400/50"
+            className="absolute top-[60%] right-[35%] w-2 h-2 bg-yellow-400 rounded-full blur-sm animate-pulse shadow-lg shadow-yellow-400/50"
             style={{ animationDelay: "1.5s" }}
           />
 
-          {/* Partículas púrpuras */}
+          {/* Partículas amarillas */}
           <div
-            className="absolute top-[20%] right-[10%] w-2.5 h-2.5 bg-purple-400 rounded-full blur-sm animate-pulse shadow-lg shadow-purple-400/50"
+            className="absolute top-[20%] right-[10%] w-2.5 h-2.5 bg-amber-400 rounded-full blur-sm animate-pulse shadow-lg shadow-amber-400/50"
             style={{ animationDelay: "0.3s" }}
           />
           <div
-            className="absolute bottom-[30%] right-[15%] w-2 h-2 bg-violet-300 rounded-full blur-sm animate-pulse shadow-lg shadow-violet-300/50"
+            className="absolute bottom-[30%] right-[15%] w-2 h-2 bg-yellow-300 rounded-full blur-sm animate-pulse shadow-lg shadow-yellow-300/50"
             style={{ animationDelay: "0.8s" }}
           />
           <div
-            className="absolute top-[50%] left-[30%] w-3 h-3 bg-purple-500 rounded-full blur-sm animate-pulse shadow-lg shadow-purple-500/50"
+            className="absolute top-[50%] left-[30%] w-3 h-3 bg-orange-500 rounded-full blur-sm animate-pulse shadow-lg shadow-orange-500/50"
             style={{ animationDelay: "1.2s" }}
           />
           <div
-            className="absolute bottom-[20%] left-[40%] w-2 h-2 bg-indigo-400 rounded-full blur-sm animate-pulse shadow-lg shadow-indigo-400/50"
+            className="absolute bottom-[20%] left-[40%] w-2 h-2 bg-amber-400 rounded-full blur-sm animate-pulse shadow-lg shadow-amber-400/50"
             style={{ animationDelay: "1.7s" }}
           />
 
@@ -833,28 +833,28 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
             style={{ animationDelay: "0.6s" }}
           />
           <div
-            className="absolute bottom-[50%] left-[10%] w-2.5 h-2.5 bg-cyan-200 rounded-full blur-sm animate-pulse shadow-lg shadow-cyan-200/50"
+            className="absolute bottom-[50%] left-[10%] w-2.5 h-2.5 bg-yellow-200 rounded-full blur-sm animate-pulse shadow-lg shadow-yellow-200/50"
             style={{ animationDelay: "1.3s" }}
           />
           <div
-            className="absolute top-[70%] left-[50%] w-2 h-2 bg-blue-300 rounded-full blur-sm animate-pulse shadow-lg shadow-blue-300/50"
+            className="absolute top-[70%] left-[50%] w-2 h-2 bg-orange-300 rounded-full blur-sm animate-pulse shadow-lg shadow-orange-300/50"
             style={{ animationDelay: "0.9s" }}
           />
         </div>
 
         {/* Decoraciones geométricas sutiles */}
         <div className="absolute inset-0 overflow-hidden opacity-10">
-          <div className="absolute top-10 left-10 w-32 h-32 border-2 border-blue-400 rounded-full animate-pulse" />
+          <div className="absolute top-10 left-10 w-32 h-32 border-2 border-orange-300 rounded-full animate-pulse" />
           <div
-            className="absolute top-20 right-20 w-24 h-24 border-2 border-purple-400/60 rotate-45 animate-pulse"
+            className="absolute top-20 right-20 w-24 h-24 border-2 border-amber-300/60 rotate-45 animate-pulse"
             style={{ animationDelay: "0.5s" }}
           />
           <div
-            className="absolute bottom-20 left-1/4 w-20 h-20 border-2 border-cyan-400 animate-pulse"
+            className="absolute bottom-20 left-1/4 w-20 h-20 border-2 border-yellow-300 animate-pulse"
             style={{ animationDelay: "1s" }}
           />
           <div
-            className="absolute bottom-10 right-1/3 w-28 h-28 border-2 border-indigo-400/60 rounded-full animate-pulse"
+            className="absolute bottom-10 right-1/3 w-28 h-28 border-2 border-orange-300/60 rounded-full animate-pulse"
             style={{ animationDelay: "1.5s" }}
           />
         </div>
@@ -864,29 +864,29 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           {/* Urgency Indicator */}
-          <div className="mb-4 md:mb-6 inline-flex items-center gap-2 bg-blue-600 px-3 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-base font-bold animate-pulse shadow-lg shadow-blue-600/50">
+          <div className="mb-4 md:mb-6 inline-flex items-center gap-2 bg-gradient-to-r from-orange-600 to-amber-600 px-3 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-base font-bold animate-pulse shadow-lg shadow-orange-500/50">
             <span className="relative flex h-2 w-2 md:h-3 md:w-3">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 md:h-3 md:w-3 bg-white"></span>
             </span>
             <span className="leading-tight">
-              ⚡ ÚLTIMAS UNIDADES - OFERTA LIMITADA
+              ☀️ ÚLTIMAS UNIDADES - OFERTA DE VERANO
             </span>
           </div>
 
           <div className="mb-3 md:mb-4 text-3xl md:text-4xl animate-bounce">
-            🎯
+            ☀️
           </div>
           <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold mb-3 md:mb-4 px-2 leading-tight">
-            <span className="block bg-gradient-to-r from-cyan-200 via-blue-400 to-cyan-200 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(59,130,246,0.8)] filter brightness-125">
+            <span className="block bg-gradient-to-r from-yellow-200 via-orange-300 to-yellow-200 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(251,146,60,0.8)] filter brightness-125">
               No Dejes Pasar
             </span>
-            <span className="block mt-2 bg-gradient-to-r from-purple-300 via-indigo-400 to-purple-300 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(139,92,246,0.8)] filter brightness-125">
+            <span className="block mt-2 bg-gradient-to-r from-amber-200 via-orange-400 to-amber-200 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(245,158,11,0.8)] filter brightness-125">
               Esta Oferta
             </span>
           </h2>
           <p className="text-white mb-4 md:mb-6 text-base md:text-xl font-semibold drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">
-            Oferta Especial - Descuento Exclusivo
+            Oferta de Verano - Descuento Exclusivo
           </p>
 
           {/* Price Section */}
@@ -927,12 +927,12 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
               <>
                 <div className="w-full bg-white/20 rounded-full h-2 md:h-3 mb-2">
                   <div
-                    className="bg-gradient-to-r from-blue-400 to-white h-2 md:h-3 rounded-full animate-pulse"
+                    className="bg-gradient-to-r from-orange-400 to-amber-400 h-2 md:h-3 rounded-full animate-pulse"
                     style={{ width: `${(product.stock / 10) * 100}%` }}
                   ></div>
                 </div>
                 <p className="text-white text-xs md:text-sm font-semibold animate-pulse leading-tight">
-                  ⚡ ¡Solo quedan {product.stock} unidades! Se están agotando
+                  ☀️ ¡Solo quedan {product.stock} unidades! Se están agotando
                   rápido
                 </p>
               </>
@@ -942,7 +942,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
           {/* CTA Button */}
           <Link
             href={`https://wa.me/51972300301?text=${getWhatsAppMessage(product)}`}
-            className="inline-flex items-center justify-center gap-2 md:gap-3 bg-white hover:bg-white/90 text-blue-600 px-8 md:px-16 py-5 md:py-7 rounded-full text-base md:text-xl lg:text-2xl font-bold hover:shadow-2xl transition-all transform hover:scale-105 mb-6 animate-pulse w-full sm:w-auto max-w-full shadow-lg"
+            className="inline-flex items-center justify-center gap-2 md:gap-3 bg-white hover:bg-white/90 text-orange-600 px-8 md:px-16 py-5 md:py-7 rounded-full text-base md:text-xl lg:text-2xl font-bold hover:shadow-2xl transition-all transform hover:scale-105 mb-6 animate-pulse w-full sm:w-auto max-w-full shadow-lg"
           >
             <span className="text-center leading-tight">
               ⚡ SÍ, LO QUIERO CON DESCUENTO
@@ -964,7 +964,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
           {/* Risk Reversal - Garantías */}
           <div className="mt-6 md:mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 max-w-3xl mx-auto">
-            <div className="bg-white/5 backdrop-blur-sm border border-blue-600/20 rounded-xl p-3 md:p-4">
+            <div className="bg-white/5 backdrop-blur-sm border border-orange-400/30 rounded-xl p-3 md:p-4">
               <div className="text-2xl md:text-3xl mb-1 md:mb-2">🚚</div>
               <h4 className="font-bold text-white mb-1 text-sm md:text-base">
                 Envío GRATIS
@@ -973,7 +973,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
                 En Lima Metropolitana
               </p>
             </div>
-            <div className="bg-white/5 backdrop-blur-sm border border-blue-600/20 rounded-xl p-3 md:p-4">
+            <div className="bg-white/5 backdrop-blur-sm border border-orange-400/30 rounded-xl p-3 md:p-4">
               <div className="text-2xl md:text-3xl mb-1 md:mb-2">🛡️</div>
               <h4 className="font-bold text-white mb-1 text-sm md:text-base">
                 Garantía 1 Año
@@ -982,7 +982,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
                 Cubierta por fabricante
               </p>
             </div>
-            <div className="bg-white/5 backdrop-blur-sm border border-blue-600/20 rounded-xl p-3 md:p-4">
+            <div className="bg-white/5 backdrop-blur-sm border border-orange-400/30 rounded-xl p-3 md:p-4">
               <div className="text-2xl md:text-3xl mb-1 md:mb-2">💳</div>
               <h4 className="font-bold text-white mb-1 text-sm md:text-base">
                 Pago Seguro
@@ -996,21 +996,21 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
           {/* Social Proof */}
           <div className="mt-6 md:mt-8 flex items-center justify-center gap-2 text-xs md:text-sm flex-wrap">
             <div className="flex -space-x-2">
-              <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-blue-600 border-2 border-white flex items-center justify-center text-xs">
+              <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-orange-500 border-2 border-white flex items-center justify-center text-xs">
                 👤
               </div>
-              <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-indigo-600 border-2 border-white flex items-center justify-center text-xs">
+              <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-amber-500 border-2 border-white flex items-center justify-center text-xs">
                 👤
               </div>
-              <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-blue-600 border-2 border-white flex items-center justify-center text-xs">
+              <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-orange-500 border-2 border-white flex items-center justify-center text-xs">
                 👤
               </div>
-              <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-indigo-600 border-2 border-white flex items-center justify-center text-xs">
+              <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-amber-500 border-2 border-white flex items-center justify-center text-xs">
                 👤
               </div>
             </div>
             <p className="text-gray-300 text-center leading-tight">
-              <span className="text-blue-200 font-bold">+16 clientes</span>{" "}
+              <span className="text-orange-200 font-bold">+16 clientes</span>{" "}
               compraron esta semana
             </p>
           </div>

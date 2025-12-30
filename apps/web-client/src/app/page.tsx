@@ -221,9 +221,15 @@ export default function Home() {
           <div className="!mt-6 !mb-[3em]">
             <div className="mb-4 flex items-start justify-between gap-4">
               <div>
-                <h2 className="text-2xl font-bold text-primary">
-                  {productsByCondition["gama-alta"].name}
-                </h2>
+                <div className="flex items-center gap-3 flex-wrap">
+                  <h2 className="text-2xl font-bold text-primary">
+                    {productsByCondition["gama-alta"].name}
+                  </h2>
+                  <span className="inline-flex items-center gap-1 bg-gradient-to-r from-primary to-primary/80 text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-md">
+                    <span>🔥</span>
+                    <span>17% DSCTO</span>
+                  </span>
+                </div>
                 <p className="text-sm text-secondary/70 max-w-[60em]">
                   {productsByCondition["gama-alta"].description}
                 </p>
@@ -247,9 +253,15 @@ export default function Home() {
           <div className="!mt-6 !mb-[3em]">
             <div className="mb-4 flex items-start justify-between gap-4">
               <div>
-                <h2 className="text-2xl font-bold text-primary">
-                  {productsByCondition.new.name}
-                </h2>
+                <div className="flex items-center gap-3 flex-wrap">
+                  <h2 className="text-2xl font-bold text-primary">
+                    {productsByCondition.new.name}
+                  </h2>
+                  <span className="inline-flex items-center gap-1 bg-gradient-to-r from-primary to-primary/80 text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-md">
+                    <span>🔥</span>
+                    <span>17% DSCTO</span>
+                  </span>
+                </div>
                 <p className="text-sm text-secondary/70 max-w-[60em]">
                   {productsByCondition.new.description}
                 </p>
@@ -300,9 +312,15 @@ export default function Home() {
           <div className="!mt-6 !mb-[3em]">
             <div className="mb-4 flex items-start justify-between gap-4">
               <div>
-                <h2 className="text-2xl font-bold text-secondary">
-                  {productsByCondition.reconditioned.name}
-                </h2>
+                <div className="flex items-center gap-3 flex-wrap">
+                  <h2 className="text-2xl font-bold text-secondary">
+                    {productsByCondition.reconditioned.name}
+                  </h2>
+                  <span className="inline-flex items-center gap-1 bg-gradient-to-r from-red-600 to-red-500 text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-md animate-pulse">
+                    <span>💥</span>
+                    <span>42% DSCTO</span>
+                  </span>
+                </div>
                 <p className="text-sm text-secondary/70 max-w-[60em]">
                   {productsByCondition.reconditioned.description}
                 </p>
