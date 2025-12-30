@@ -47,14 +47,6 @@ export const SlidersComponent = () => {
 
   const slides: Slide[] = [
     {
-      id: 1,
-      type: "image",
-      src: "/images/navidad/banner.png",
-      srcMb: "/images/navidad/banner-mb.png",
-      alt: "Navidad 2025 iubizon",
-      ctaLink: "/productos",
-    },
-    {
       id: 2,
       type: "content",
       content: (
@@ -71,7 +63,7 @@ export const SlidersComponent = () => {
           </video>
           <div className="w-full h-full flex flex-col justify-center items-center text-center text-white relative z-30 px-3 sm:px-6 lg:px-8 py-6 sm:py-8 mt-10 md:mt-1 text-sm">
             <div className="flex-1 flex flex-col lg:flex-row items-center justify-center w-full max-w-7xl gap-3 sm:gap-4 lg:gap-8">
-              <div className="flex flex-col items-center lg:items-start justify-center text-center lg:text-left max-w-2xl w-full">
+              <div className="flex flex-col items-center lg:items-start justify-center text-center lg:text-left max-w-2xl w-full my-15">
                 <h1 className="mt-2.5 sm:mt-3 md:mt-4 text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight">
                   Venta y Servicio técnico de Proyectores
                 </h1>
