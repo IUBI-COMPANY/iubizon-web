@@ -38,10 +38,17 @@ export const InformationAndPriceCard = ({
             {product.name || product.model}
           </h1>
 
-          <div className="tags flex flex-wrap gap-1">
+          <div className="tags flex flex-wrap gap-2 mb-3">
+            {/* Badge de descuento de verano */}
+            {product.oldPrice && product.oldPrice > product.price && (
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-cyan-600 to-blue-600 text-white text-xs md:text-sm font-bold shadow-md">
+                <span>☀️</span>
+                <span>{product.condition === "reconditioned" ? "42" : "17"}% OFF</span>
+              </div>
+            )}
 
             {product.classification === "clearance" && (
-              <div className="mb-3 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-emerald-600 to-green-600 text-white text-xs font-bold">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-emerald-600 to-green-600 text-white text-xs font-bold">
                 <span>🤑</span>
                 <span>Precio de remate</span>
               </div>

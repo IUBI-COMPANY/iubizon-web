@@ -22,6 +22,9 @@ export default function ProductDetailPage({ product }: Props) {
 
   const condition = productsCondition[product.condition];
 
+  // Calcular porcentaje de descuento
+  const discountPercentage = product.condition === "reconditioned" ? 42 : 17;
+  const hasDiscount = product.oldPrice && product.oldPrice > product.price;
 
   useEffect(() => {
     document.body.style.overflow = showModal ? "hidden" : "auto";
@@ -42,6 +45,75 @@ export default function ProductDetailPage({ product }: Props) {
         ) : (
           <div className="content-wrapper px-7 max-w-[1470px] m-auto w-full">
             <main className="grid grid-cols-12 py-5 w-full relative">
+              {/* Banner de Oferta de Verano */}
+              {hasDiscount && (
+                <div className="col-span-12 mb-6">
+                  <div className="relative rounded-2xl px-4 md:px-8 py-4 md:py-6 overflow-hidden shadow-xl bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-700">
+                    {/* Patrón de fondo sutil */}
+                    <div
+                      className="absolute inset-0 opacity-10"
+                      style={{
+                        backgroundImage: `radial-gradient(circle at 20% 50%, rgba(34,211,238,0.4) 0%, transparent 50%),
+                                         radial-gradient(circle at 80% 80%, rgba(251,191,36,0.4) 0%, transparent 50%)`,
+                      }}
+                    />
+
+                    {/* Destellos animados */}
+                    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                      <div className="absolute top-2 left-[10%] w-2 h-2 bg-yellow-300 rounded-full blur-sm animate-pulse" />
+                      <div
+                        className="absolute top-4 right-[15%] w-1.5 h-1.5 bg-cyan-300 rounded-full blur-sm animate-pulse"
+                        style={{ animationDelay: "0.5s" }}
+                      />
+                      <div
+                        className="absolute bottom-3 left-[30%] w-2 h-2 bg-white rounded-full blur-sm animate-pulse"
+                        style={{ animationDelay: "1s" }}
+                      />
+                      <div
+                        className="absolute bottom-2 right-[25%] w-1.5 h-1.5 bg-orange-300 rounded-full blur-sm animate-pulse"
+                        style={{ animationDelay: "1.5s" }}
+                      />
+                    </div>
+
+                    <div className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-6 text-center">
+                      {/* Emojis decorativos izquierda */}
+                      <div className="hidden md:flex items-center gap-2 text-2xl">
+                        <span className="animate-bounce" style={{ animationDelay: "0s" }}>☀️</span>
+                        <span className="animate-bounce" style={{ animationDelay: "0.2s" }}>🌊</span>
+                      </div>
+
+                      {/* Contenido principal */}
+                      <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
+                        <div className="flex items-center gap-2">
+                          <span className="text-lg md:text-xl lg:text-2xl">🌴</span>
+                          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold tracking-wide text-white">
+                            Oferta de <span className="text-yellow-300">Verano</span>
+                          </h2>
+                        </div>
+
+                        <div className="flex items-center gap-2">
+                          <span className="hidden md:inline text-white/70 text-lg">•</span>
+                          <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-1.5 rounded-full text-base md:text-lg font-black shadow-lg animate-pulse">
+                            {discountPercentage}% DSCTO.
+                          </span>
+                          <span className="hidden md:inline text-white/70 text-lg">•</span>
+                        </div>
+
+                        <span className="text-xs md:text-sm text-cyan-100 font-medium">
+                          Válido hasta el 31 de Marzo
+                        </span>
+                      </div>
+
+                      {/* Emojis decorativos derecha */}
+                      <div className="hidden md:flex items-center gap-2 text-2xl">
+                        <span className="animate-bounce" style={{ animationDelay: "0.4s" }}>🌺</span>
+                        <span className="animate-bounce" style={{ animationDelay: "0.6s" }}>⭐</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               <section className="col-span-12 lg:col-span-8 w-full flex justify-center items-center">
                 <div className="w-full">
                   {/*Product media*/}
