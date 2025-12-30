@@ -252,8 +252,8 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-blue-600/30 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-blue-600 rounded-full mt-2 animate-pulse" />
+          <div className="w-6 h-10 border-2 border-orange-400/40 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-gradient-to-b from-orange-400 to-amber-500 rounded-full mt-2 animate-pulse" />
           </div>
         </div>
       </section>
@@ -261,18 +261,18 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
       {/* Product Showcase Grid */}
       <section
         id="galeria"
-        className="py-32 px-4 bg-gradient-to-b from-black via-blue-900/5 to-black relative overflow-hidden"
+        className="py-32 px-4 bg-gradient-to-b from-black via-orange-900/10 to-black relative overflow-hidden"
       >
         {/* Texto decorativo de fondo */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
-          <h2 className="text-[20vw] md:text-[15vw] font-black text-white/5 whitespace-nowrap">
+          <h2 className="text-[20vw] md:text-[15vw] font-black text-orange-500/5 whitespace-nowrap">
             HY350
           </h2>
         </div>
 
         {/* Círculos decorativos flotantes */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-20 right-10 w-64 h-64 border-4 border-blue-600/10 rounded-full animate-pulse" />
+          <div className="absolute top-20 right-10 w-64 h-64 border-4 border-orange-400/15 rounded-full animate-pulse" />
           <div
             className="absolute bottom-40 left-10 w-48 h-48 border-4 border-amber-400/15 rounded-full animate-pulse"
             style={{ animationDelay: "1s" }}
@@ -294,7 +294,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {/* Image 1 - Funcionalidad Táctil */}
             <article className="flex flex-col">
-              <div className="relative w-full h-auto rounded-3xl overflow-hidden group bg-gray-900 mb-6 ring-2 ring-blue-600/20">
+              <div className="relative w-full h-auto rounded-3xl overflow-hidden group bg-gray-900 mb-6 ring-2 ring-orange-400/30">
                 <Image
                   src="/productos/HY350/1.webp"
                   alt="Control Táctil Intuitivo - MagCubic HY350"
@@ -317,7 +317,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
             {/* Image 2 - 580 Lúmenes y 30K horas */}
             <article className="flex flex-col">
-              <div className="relative w-full h-auto rounded-3xl overflow-hidden group bg-gray-900 mb-6 ring-2 ring-blue-600/20">
+              <div className="relative w-full h-auto rounded-3xl overflow-hidden group bg-gray-900 mb-6 ring-2 ring-orange-400/30">
                 <Image
                   src="/productos/HY350/2.webp"
                   alt="580 Lúmenes ANSI y 30,000 horas de vida útil - MagCubic HY350"
@@ -340,7 +340,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
             {/* Image 3 - Soporte 4K Full Width */}
             <article className="md:col-span-2 flex flex-col">
-              <div className="relative w-full h-auto rounded-3xl overflow-hidden group bg-gray-900 mb-6 ring-2 ring-blue-600/20">
+              <div className="relative w-full h-auto rounded-3xl overflow-hidden group bg-gray-900 mb-6 ring-2 ring-orange-400/30">
                 <Image
                   src="/productos/HY350/3.webp"
                   alt="Soporte 4K y resolución nativa 1920x1080P - Proyector MagCubic HY350"
@@ -366,7 +366,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
             {/* Image 4 - Enfoque Electrónico */}
             <article className="flex flex-col">
-              <div className="relative w-full h-auto rounded-3xl overflow-hidden group bg-gray-900 mb-6 ring-2 ring-blue-600/20">
+              <div className="relative w-full h-auto rounded-3xl overflow-hidden group bg-gray-900 mb-6 ring-2 ring-orange-400/30">
                 <Image
                   src="/productos/HY350/4.webp"
                   alt="Pantalla 4K con Enfoque Electrónico automático - MagCubic HY350"
@@ -389,7 +389,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
             {/* Image 5 - Corrección Automática */}
             <article className="flex flex-col">
-              <div className="relative w-full h-auto rounded-3xl overflow-hidden group bg-gray-900 mb-6 ring-2 ring-blue-600/20">
+              <div className="relative w-full h-auto rounded-3xl overflow-hidden group bg-gray-900 mb-6 ring-2 ring-orange-400/30">
                 <Image
                   src="/productos/HY350/5.webp"
                   alt="Corrección Trapezoidal Automática 4D - Proyector MagCubic HY350"
@@ -424,29 +424,29 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
         {/* Formas geométricas decorativas */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-32 left-20 w-40 h-40 border-4 border-blue-600/10 rotate-45 animate-pulse" />
+          <div className="absolute top-32 left-20 w-40 h-40 border-4 border-orange-400/15 rotate-45 animate-pulse" />
           <div
-            className="absolute bottom-32 right-32 w-56 h-56 border-4 border-cyan-600/10 rounded-full animate-pulse"
+            className="absolute bottom-32 right-32 w-56 h-56 border-4 border-amber-400/15 rounded-full animate-pulse"
             style={{ animationDelay: "1.5s" }}
           />
-          <div className="absolute top-1/3 right-10 w-24 h-24 bg-blue-600/5 blur-2xl rounded-full" />
+          <div className="absolute top-1/3 right-10 w-24 h-24 bg-orange-500/10 blur-2xl rounded-full" />
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
           <h2 className="text-4xl md:text-6xl font-bold text-center mb-4">
             Conectividad y
-            <span className="block mt-2 bg-gradient-to-r from-white via-blue-600 to-white bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(59,130,246,0.3)]">
+            <span className="block mt-2 bg-gradient-to-r from-yellow-200 via-orange-400 to-amber-300 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(251,146,60,0.5)]">
               Versatilidad
             </span>
           </h2>
-          <p className="text-center text-blue-600/60 mb-20 text-sm">
-            ⭐ Especial Oferta Limitada
+          <p className="text-center text-orange-400/70 mb-20 text-sm">
+            ☀️ Especial Oferta de Verano
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {/* Feature 1 - Conectividad WiFi */}
             <article className="flex flex-col">
-              <div className="relative w-full h-auto rounded-2xl overflow-hidden bg-gray-900 mb-6 group ring-2 ring-blue-600/20">
+              <div className="relative w-full h-auto rounded-2xl overflow-hidden bg-gray-900 mb-6 group ring-2 ring-orange-400/30">
                 <Image
                   src="/productos/HY350/6.webp"
                   alt="Conectividad WiFi 6 para iPhone y Android - Proyector MagCubic HY350"
@@ -469,7 +469,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
             {/* Feature 2 - Pantalla de 150" */}
             <article className="flex flex-col">
-              <div className="relative w-full h-auto rounded-2xl overflow-hidden bg-gray-900 mb-6 group ring-2 ring-blue-600/20">
+              <div className="relative w-full h-auto rounded-2xl overflow-hidden bg-gray-900 mb-6 group ring-2 ring-orange-400/30">
                 <Image
                   src="/productos/HY350/7.webp"
                   alt="Pantalla de proyección gigante hasta 150 pulgadas - MagCubic HY350"
@@ -547,86 +547,86 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 md:gap-x-20 gap-y-4 md:gap-y-8">
             <div className="group">
-              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-blue-600 transition-colors">
+              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-orange-400 transition-colors">
                 <span className="text-gray-400 text-sm md:text-lg">Brillo</span>
-                <span className="text-white text-base md:text-xl font-semibold group-hover:text-blue-600 transition-colors text-right">
+                <span className="text-white text-base md:text-xl font-semibold group-hover:text-orange-400 transition-colors text-right">
                   {product.lumensANSI} lúmenes ANSI
                 </span>
               </div>
             </div>
 
             <div className="group">
-              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-blue-600 transition-colors">
+              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-orange-400 transition-colors">
                 <span className="text-gray-400 text-sm md:text-lg">
                   Resolución
                 </span>
-                <span className="text-white text-base md:text-xl font-semibold group-hover:text-blue-600 transition-colors text-right">
+                <span className="text-white text-base md:text-xl font-semibold group-hover:text-orange-400 transition-colors text-right">
                   {product.nativeResolution}
                 </span>
               </div>
             </div>
 
             <div className="group">
-              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-blue-600 transition-colors">
+              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-orange-400 transition-colors">
                 <span className="text-gray-400 text-sm md:text-lg">
                   Sistema Operativo
                 </span>
-                <span className="text-white text-base md:text-xl font-semibold group-hover:text-blue-600 transition-colors text-right">
+                <span className="text-white text-base md:text-xl font-semibold group-hover:text-orange-400 transition-colors text-right">
                   Android 11.0
                 </span>
               </div>
             </div>
 
             <div className="group">
-              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-blue-600 transition-colors">
+              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-orange-400 transition-colors">
                 <span className="text-gray-400 text-sm md:text-lg">
                   Procesador
                 </span>
-                <span className="text-white text-base md:text-xl font-semibold group-hover:text-blue-600 transition-colors text-right">
+                <span className="text-white text-base md:text-xl font-semibold group-hover:text-orange-400 transition-colors text-right">
                   Allwinner H713 Quad-Core
                 </span>
               </div>
             </div>
 
             <div className="group">
-              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-blue-600 transition-colors">
+              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-orange-400 transition-colors">
                 <span className="text-gray-400 text-sm md:text-lg">
                   Memoria
                 </span>
-                <span className="text-white text-base md:text-xl font-semibold group-hover:text-blue-600 transition-colors text-right">
+                <span className="text-white text-base md:text-xl font-semibold group-hover:text-orange-400 transition-colors text-right">
                   2GB RAM + 32GB ROM
                 </span>
               </div>
             </div>
 
             <div className="group">
-              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-blue-600 transition-colors">
+              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-orange-400 transition-colors">
                 <span className="text-gray-400 text-sm md:text-lg">
                   Conectividad
                 </span>
-                <span className="text-white text-base md:text-xl font-semibold group-hover:text-blue-600 transition-colors text-right">
+                <span className="text-white text-base md:text-xl font-semibold group-hover:text-orange-400 transition-colors text-right">
                   WiFi 6 • Bluetooth 5.0
                 </span>
               </div>
             </div>
 
             <div className="group">
-              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-blue-600 transition-colors">
+              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-orange-400 transition-colors">
                 <span className="text-gray-400 text-sm md:text-lg">
                   Tamaño de proyección
                 </span>
-                <span className="text-white text-base md:text-xl font-semibold group-hover:text-blue-600 transition-colors text-right">
+                <span className="text-white text-base md:text-xl font-semibold group-hover:text-orange-400 transition-colors text-right">
                   Hasta 150&quot;
                 </span>
               </div>
             </div>
 
             <div className="group">
-              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-blue-600 transition-colors">
+              <div className="flex justify-between items-baseline py-4 md:py-6 border-b border-gray-800 hover:border-orange-400 transition-colors">
                 <span className="text-gray-400 text-sm md:text-lg">
                   Nivel de ruido
                 </span>
-                <span className="text-white text-base md:text-xl font-semibold group-hover:text-blue-600 transition-colors text-right">
+                <span className="text-white text-base md:text-xl font-semibold group-hover:text-orange-400 transition-colors text-right">
                   {"< 35 dB"}
                 </span>
               </div>
@@ -673,15 +673,15 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
         <div className="max-w-4xl mx-auto relative z-10">
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-4">
             Detalle de
-            <span className="block mt-2 bg-gradient-to-r from-white via-blue-600 to-white bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(59,130,246,0.3)]">
+            <span className="block mt-2 bg-gradient-to-r from-yellow-200 via-orange-400 to-amber-300 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(251,146,60,0.5)]">
               Precios
             </span>
           </h2>
-          <p className="text-center text-blue-600/60 mb-12 text-sm">
-            ⭐ Precios Especiales - Oferta Limitada
+          <p className="text-center text-orange-400/70 mb-12 text-sm">
+            ☀️ Oferta de Verano - Precios Especiales
           </p>
 
-          <div className="bg-gradient-to-br from-gray-900 to-black border-2 border-blue-600/30 rounded-2xl p-8 shadow-2xl shadow-blue-600/20">
+          <div className="bg-gradient-to-br from-gray-900 to-black border-2 border-orange-400/30 rounded-2xl p-8 shadow-2xl shadow-orange-500/20">
             {/* Precio Original */}
             <div className="flex items-center justify-between mb-4 pb-4 border-b border-gray-800">
               <span className="text-gray-400 text-lg">Precio Regular:</span>
@@ -692,10 +692,10 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
             {/* Descuento */}
             <div className="flex items-center justify-between mb-4 pb-4 border-b border-gray-800">
-              <span className="text-cyan-400 text-lg font-semibold">
+              <span className="text-orange-400 text-lg font-semibold">
                 Descuento Especial ({discountPercentage}%):
               </span>
-              <span className="text-2xl font-bold text-cyan-400">
+              <span className="text-2xl font-bold text-orange-400">
                 - S/ {(originalPrice - discountedPrice).toFixed(2)}
               </span>
             </div>
@@ -719,7 +719,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
             </div>
 
             {/* IGV */}
-            <div className="flex items-center justify-between mb-6 pb-6 border-b-2 border-blue-600/30">
+            <div className="flex items-center justify-between mb-6 pb-6 border-b-2 border-orange-400/30">
               <span className="text-gray-400 text-lg">IGV (18%):</span>
               <span className="text-xl font-semibold text-gray-300">
                 S/ {product.IGV?.toFixed(2)}
@@ -794,36 +794,36 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
         {/* Efectos de partículas sutiles */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Partículas azules */}
-          <div className="absolute top-[10%] left-[15%] w-3 h-3 bg-blue-400 rounded-full blur-sm animate-pulse shadow-lg shadow-blue-400/50" />
+          {/* Partículas naranjas */}
+          <div className="absolute top-[10%] left-[15%] w-3 h-3 bg-orange-300 rounded-full blur-sm animate-pulse shadow-lg shadow-orange-300/50" />
           <div
-            className="absolute top-[30%] right-[20%] w-2 h-2 bg-cyan-300 rounded-full blur-sm animate-pulse shadow-lg shadow-cyan-300/50"
+            className="absolute top-[30%] right-[20%] w-2 h-2 bg-amber-300 rounded-full blur-sm animate-pulse shadow-lg shadow-amber-300/50"
             style={{ animationDelay: "0.5s" }}
           />
           <div
-            className="absolute bottom-[40%] left-[25%] w-2.5 h-2.5 bg-blue-500 rounded-full blur-sm animate-pulse shadow-lg shadow-blue-500/50"
+            className="absolute bottom-[40%] left-[25%] w-2.5 h-2.5 bg-orange-400 rounded-full blur-sm animate-pulse shadow-lg shadow-orange-400/50"
             style={{ animationDelay: "1s" }}
           />
           <div
-            className="absolute top-[60%] right-[35%] w-2 h-2 bg-indigo-400 rounded-full blur-sm animate-pulse shadow-lg shadow-indigo-400/50"
+            className="absolute top-[60%] right-[35%] w-2 h-2 bg-yellow-400 rounded-full blur-sm animate-pulse shadow-lg shadow-yellow-400/50"
             style={{ animationDelay: "1.5s" }}
           />
 
-          {/* Partículas púrpuras */}
+          {/* Partículas amarillas */}
           <div
-            className="absolute top-[20%] right-[10%] w-2.5 h-2.5 bg-purple-400 rounded-full blur-sm animate-pulse shadow-lg shadow-purple-400/50"
+            className="absolute top-[20%] right-[10%] w-2.5 h-2.5 bg-amber-400 rounded-full blur-sm animate-pulse shadow-lg shadow-amber-400/50"
             style={{ animationDelay: "0.3s" }}
           />
           <div
-            className="absolute bottom-[30%] right-[15%] w-2 h-2 bg-violet-300 rounded-full blur-sm animate-pulse shadow-lg shadow-violet-300/50"
+            className="absolute bottom-[30%] right-[15%] w-2 h-2 bg-yellow-300 rounded-full blur-sm animate-pulse shadow-lg shadow-yellow-300/50"
             style={{ animationDelay: "0.8s" }}
           />
           <div
-            className="absolute top-[50%] left-[30%] w-3 h-3 bg-purple-500 rounded-full blur-sm animate-pulse shadow-lg shadow-purple-500/50"
+            className="absolute top-[50%] left-[30%] w-3 h-3 bg-orange-500 rounded-full blur-sm animate-pulse shadow-lg shadow-orange-500/50"
             style={{ animationDelay: "1.2s" }}
           />
           <div
-            className="absolute bottom-[20%] left-[40%] w-2 h-2 bg-indigo-400 rounded-full blur-sm animate-pulse shadow-lg shadow-indigo-400/50"
+            className="absolute bottom-[20%] left-[40%] w-2 h-2 bg-amber-400 rounded-full blur-sm animate-pulse shadow-lg shadow-amber-400/50"
             style={{ animationDelay: "1.7s" }}
           />
 
@@ -833,11 +833,11 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
             style={{ animationDelay: "0.6s" }}
           />
           <div
-            className="absolute bottom-[50%] left-[10%] w-2.5 h-2.5 bg-cyan-200 rounded-full blur-sm animate-pulse shadow-lg shadow-cyan-200/50"
+            className="absolute bottom-[50%] left-[10%] w-2.5 h-2.5 bg-yellow-200 rounded-full blur-sm animate-pulse shadow-lg shadow-yellow-200/50"
             style={{ animationDelay: "1.3s" }}
           />
           <div
-            className="absolute top-[70%] left-[50%] w-2 h-2 bg-blue-300 rounded-full blur-sm animate-pulse shadow-lg shadow-blue-300/50"
+            className="absolute top-[70%] left-[50%] w-2 h-2 bg-orange-300 rounded-full blur-sm animate-pulse shadow-lg shadow-orange-300/50"
             style={{ animationDelay: "0.9s" }}
           />
         </div>
@@ -942,7 +942,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
           {/* CTA Button */}
           <Link
             href={`https://wa.me/51972300301?text=${getWhatsAppMessage(product)}`}
-            className="inline-flex items-center justify-center gap-2 md:gap-3 bg-white hover:bg-white/90 text-blue-600 px-8 md:px-16 py-5 md:py-7 rounded-full text-base md:text-xl lg:text-2xl font-bold hover:shadow-2xl transition-all transform hover:scale-105 mb-6 animate-pulse w-full sm:w-auto max-w-full shadow-lg"
+            className="inline-flex items-center justify-center gap-2 md:gap-3 bg-white hover:bg-white/90 text-orange-600 px-8 md:px-16 py-5 md:py-7 rounded-full text-base md:text-xl lg:text-2xl font-bold hover:shadow-2xl transition-all transform hover:scale-105 mb-6 animate-pulse w-full sm:w-auto max-w-full shadow-lg"
           >
             <span className="text-center leading-tight">
               ⚡ SÍ, LO QUIERO CON DESCUENTO
