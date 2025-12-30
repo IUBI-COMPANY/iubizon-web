@@ -94,177 +94,37 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
           <source src="/productos/HY350/outboxing.mp4" type="video/mp4" />
         </video>
 
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-600/60 via-green-700/10 to-black" />
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-900/60 via-slate-900/40 to-black" />
 
-        {/* Copos de nieve decorativos */}
+        {/* Elementos decorativos flotantes */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
-          {/* Copo 1 - Grande, caída lenta */}
+          {/* Círculo 1 */}
           <div
-            className="absolute text-6xl font-bold text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]"
+            className="absolute w-32 h-32 border-2 border-blue-500/20 rounded-full"
             style={{
               left: "10%",
-              top: "5%",
-              animation:
-                "fall 12s linear infinite, sway 3s ease-in-out infinite",
-              filter:
-                "drop-shadow(0 0 8px rgba(255,255,255,0.9)) drop-shadow(0 0 15px rgba(147,197,253,0.5))",
+              top: "15%",
+              animation: "floatSlow 8s ease-in-out infinite",
             }}
-          >
-            ❅
-          </div>
-          {/* Copo 2 - Mediano, caída media */}
+          />
+          {/* Círculo 2 */}
           <div
-            className="absolute text-4xl font-bold text-white"
-            style={{
-              left: "25%",
-              top: "20%",
-              animation:
-                "fall 10s linear infinite 2s, sway 4s ease-in-out infinite",
-              filter:
-                "drop-shadow(0 0 8px rgba(255,255,255,0.9)) drop-shadow(0 0 15px rgba(147,197,253,0.5))",
-            }}
-          >
-            ❅
-          </div>
-
-          {/* Copo 3 - Pequeño, caída rápida */}
-          <div
-            className="absolute text-3xl font-bold text-white"
-            style={{
-              left: "45%",
-              top: "35%",
-              animation:
-                "fall 8s linear infinite 1s, sway 2.5s ease-in-out infinite",
-              filter:
-                "drop-shadow(0 0 6px rgba(255,255,255,0.8)) drop-shadow(0 0 12px rgba(147,197,253,0.4))",
-            }}
-          >
-            ❅
-          </div>
-
-          {/* Copo 4 - Grande, caída lenta */}
-          <div
-            className="absolute text-5xl font-bold text-white"
-            style={{
-              left: "65%",
-              top: "50%",
-              animation:
-                "fall 14s linear infinite 3s, sway 3.5s ease-in-out infinite",
-              filter:
-                "drop-shadow(0 0 8px rgba(255,255,255,0.9)) drop-shadow(0 0 15px rgba(147,197,253,0.5))",
-            }}
-          >
-            ❅
-          </div>
-
-          {/* Copo 5 - Mediano */}
-          <div
-            className="absolute text-4xl font-bold text-white"
+            className="absolute w-24 h-24 border-2 border-cyan-400/20 rounded-full"
             style={{
               left: "80%",
-              top: "15%",
-              animation:
-                "fall 11s linear infinite 4s, sway 3s ease-in-out infinite",
-              filter:
-                "drop-shadow(0 0 8px rgba(255,255,255,0.9)) drop-shadow(0 0 15px rgba(147,197,253,0.5))",
+              top: "25%",
+              animation: "floatSlow 10s ease-in-out infinite 2s",
             }}
-          >
-            ❅
-          </div>
-
-          {/* Copo 6 - Pequeño */}
-          <div
-            className="absolute text-3xl font-bold text-white"
-            style={{
-              left: "15%",
-              top: "60%",
-              animation:
-                "fall 9s linear infinite 5s, sway 2s ease-in-out infinite",
-              filter:
-                "drop-shadow(0 0 6px rgba(255,255,255,0.8)) drop-shadow(0 0 12px rgba(147,197,253,0.4))",
-            }}
-          >
-            ❅
-          </div>
-
-          {/* Copo 7 - Grande */}
-          <div
-            className="absolute text-6xl font-bold text-white"
-            style={{
-              left: "35%",
-              top: "70%",
-              animation:
-                "fall 13s linear infinite 6s, sway 4s ease-in-out infinite",
-              filter:
-                "drop-shadow(0 0 8px rgba(255,255,255,0.9)) drop-shadow(0 0 15px rgba(147,197,253,0.5))",
-            }}
-          >
-            ❅
-          </div>
-
-          {/* Copo 8 - Mediano */}
-          <div
-            className="absolute text-4xl font-bold text-white"
-            style={{
-              left: "55%",
-              top: "30%",
-              animation:
-                "fall 10s linear infinite 2.5s, sway 3.5s ease-in-out infinite",
-              filter:
-                "drop-shadow(0 0 8px rgba(255,255,255,0.9)) drop-shadow(0 0 15px rgba(147,197,253,0.5))",
-            }}
-          >
-            ❅
-          </div>
-
-          {/* Copo 9 - Pequeño */}
-          <div
-            className="absolute text-3xl font-bold text-white"
-            style={{
-              left: "75%",
-              top: "45%",
-              animation:
-                "fall 8.5s linear infinite 7s, sway 2.5s ease-in-out infinite",
-              filter:
-                "drop-shadow(0 0 6px rgba(255,255,255,0.8)) drop-shadow(0 0 12px rgba(147,197,253,0.4))",
-            }}
-          >
-            ❅
-          </div>
-
-          {/* Copo 10 - Grande */}
-          <div
-            className="absolute text-5xl font-bold text-white"
-            style={{
-              left: "90%",
-              top: "55%",
-              animation:
-                "fall 12s linear infinite 1.5s, sway 3s ease-in-out infinite",
-              filter:
-                "drop-shadow(0 0 8px rgba(255,255,255,0.9)) drop-shadow(0 0 15px rgba(147,197,253,0.5))",
-            }}
-          >
-            ❅
-          </div>
+          />
 
           {/* Estilos de animación */}
           <style jsx>{`
-            @keyframes fall {
-              0% {
-                transform: translateY(-50px) rotate(0deg);
-              }
-              100% {
-                transform: translateY(100vh) rotate(360deg);
-              }
-            }
-
-            @keyframes sway {
-              0%,
-              100% {
-                transform: translateX(0);
+            @keyframes floatSlow {
+              0%, 100% {
+                transform: translateY(0) translateX(0);
               }
               50% {
-                transform: translateX(30px);
+                transform: translateY(-30px) translateX(20px);
               }
             }
           `}</style>
@@ -279,7 +139,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
           {/* Urgency Banner */}
           <div className="mb-4 inline-flex items-center gap-2 bg-blue-600 px-4 py-2 rounded-full text-sm font-bold animate-pulse">
-            <span>🎅 OFERTA NAVIDEÑA - LIMITADA</span>
+            <span>⚡ OFERTA LIMITADA</span>
           </div>
 
           <h1
@@ -290,13 +150,13 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
               transition: "transform 0.1s ease-out, opacity 0.1s ease-out",
             }}
           >
-            <span className="block bg-gradient-to-r from-white via-red-500 to-yellow-200 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(239,68,68,0.8)] filter brightness-125">
+            <span className="block bg-gradient-to-r from-white via-blue-400 to-cyan-300 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(59,130,246,0.8)] filter brightness-125">
               Proyección
             </span>
             <span className="block mt-2 text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.6)]">
               Multimedia
             </span>
-            <span className="block mt-2 bg-gradient-to-r from-green-400 via-emerald-300 to-green-500 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(34,197,94,0.8)] filter brightness-125">
+            <span className="block mt-2 bg-gradient-to-r from-cyan-400 via-blue-300 to-indigo-500 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(59,130,246,0.8)] filter brightness-125">
               Inteligente
             </span>
           </h1>
@@ -352,7 +212,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
               className="group relative bg-white text-blue-600 px-10 py-5 rounded-full text-lg font-semibold overflow-hidden transition-all transform hover:scale-105 shadow-lg shadow-white/30 animate-pulse"
             >
               <span className="relative z-10">
-                🎁 SÍ, LO QUIERO AHORA · s/ {discountedPrice.toFixed(2)}
+                ⚡ SÍ, LO QUIERO AHORA · s/ {discountedPrice.toFixed(2)}
               </span>
             </a>
             <button
@@ -401,12 +261,12 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
       {/* Product Showcase Grid */}
       <section
         id="galeria"
-        className="py-32 px-4 bg-gradient-to-b from-black via-red-900/5 to-black relative overflow-hidden"
+        className="py-32 px-4 bg-gradient-to-b from-black via-blue-900/5 to-black relative overflow-hidden"
       >
         {/* Texto decorativo de fondo */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
           <h2 className="text-[20vw] md:text-[15vw] font-black text-white/5 whitespace-nowrap">
-            NAVIDAD
+            HY350
           </h2>
         </div>
 
@@ -414,21 +274,21 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-20 right-10 w-64 h-64 border-4 border-blue-600/10 rounded-full animate-pulse" />
           <div
-            className="absolute bottom-40 left-10 w-48 h-48 border-4 border-green-600/10 rounded-full animate-pulse"
+            className="absolute bottom-40 left-10 w-48 h-48 border-4 border-cyan-600/10 rounded-full animate-pulse"
             style={{ animationDelay: "1s" }}
           />
-          <div className="absolute top-1/2 right-1/4 w-32 h-32 bg-gradient-to-br from-blue-600/5 to-green-600/5 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 right-1/4 w-32 h-32 bg-gradient-to-br from-blue-600/5 to-cyan-600/5 rounded-full blur-3xl" />
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
           <h2 className="text-4xl md:text-6xl font-bold text-center mb-4">
             Características
             <span className="block mt-2 bg-gradient-to-r from-white via-blue-600 to-white bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(59,130,246,0.3)]">
-              Innovadoras 🎄
+              Innovadoras
             </span>
           </h2>
           <p className="text-center text-blue-600/60 mb-20 text-sm">
-            🎁 Especial Navidad 2025 ⭐
+            ⭐ Especial Oferta Limitada
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -566,7 +426,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-32 left-20 w-40 h-40 border-4 border-blue-600/10 rotate-45 animate-pulse" />
           <div
-            className="absolute bottom-32 right-32 w-56 h-56 border-4 border-green-600/10 rounded-full animate-pulse"
+            className="absolute bottom-32 right-32 w-56 h-56 border-4 border-cyan-600/10 rounded-full animate-pulse"
             style={{ animationDelay: "1.5s" }}
           />
           <div className="absolute top-1/3 right-10 w-24 h-24 bg-blue-600/5 blur-2xl rounded-full" />
@@ -576,11 +436,11 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
           <h2 className="text-4xl md:text-6xl font-bold text-center mb-4">
             Conectividad y
             <span className="block mt-2 bg-gradient-to-r from-white via-blue-600 to-white bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(59,130,246,0.3)]">
-              Versatilidad 🎄
+              Versatilidad
             </span>
           </h2>
           <p className="text-center text-blue-600/60 mb-20 text-sm">
-            🎁 Especial Navidad 2025 ⭐
+            ⭐ Especial Oferta Limitada
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -774,33 +634,31 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
           </div>
 
           {/* Additional Features */}
-          <div className="mt-12 md:mt-20 p-6 md:p-10 bg-gradient-to-br from-blue-600/20 to-green-600/20 backdrop-blur-sm rounded-3xl border border-blue-600/20 shadow-lg shadow-blue-600/10">
+          <div className="mt-12 md:mt-20 p-6 md:p-10 bg-gradient-to-br from-blue-600/20 to-cyan-600/20 backdrop-blur-sm rounded-3xl border border-blue-600/20 shadow-lg shadow-blue-600/10">
             <h3 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-center flex items-center justify-center gap-2 md:gap-3 flex-wrap">
-              <span>🎄</span>
               <span>Características Adicionales</span>
-              <span>🎁</span>
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 text-gray-300">
               <div className="flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-600 to-green-600 flex-shrink-0" />
+                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 flex-shrink-0" />
                 <span className="text-sm md:text-base">
                   Enfoque eléctrico con control remoto
                 </span>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-600 to-green-600 flex-shrink-0" />
+                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 flex-shrink-0" />
                 <span className="text-sm md:text-base">
                   Corrección trapezoidal automática
                 </span>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-600 to-green-600 flex-shrink-0" />
+                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 flex-shrink-0" />
                 <span className="text-sm md:text-base">
                   Zoom ajustable 50% - 100%
                 </span>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-600 to-green-600 flex-shrink-0" />
+                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 flex-shrink-0" />
                 <span className="text-sm md:text-base">
                   Control por voz vía Bluetooth
                 </span>
@@ -810,17 +668,17 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
         </div>
       </section>
 
-      {/* Price Details Section - NUEVO */}
+      {/* Price Details Section */}
       <section className="py-20 px-4 bg-black relative overflow-hidden">
         <div className="max-w-4xl mx-auto relative z-10">
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-4">
             Detalle de
             <span className="block mt-2 bg-gradient-to-r from-white via-blue-600 to-white bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(59,130,246,0.3)]">
-              Precios 🎄
+              Precios
             </span>
           </h2>
           <p className="text-center text-blue-600/60 mb-12 text-sm">
-            🎁 Precios Especiales de Navidad 2025 ⭐
+            ⭐ Precios Especiales - Oferta Limitada
           </p>
 
           <div className="bg-gradient-to-br from-gray-900 to-black border-2 border-blue-600/30 rounded-2xl p-8 shadow-2xl shadow-blue-600/20">
@@ -834,10 +692,10 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
             {/* Descuento */}
             <div className="flex items-center justify-between mb-4 pb-4 border-b border-gray-800">
-              <span className="text-green-400 text-lg font-semibold">
-                Descuento Navidad ({discountPercentage}%):
+              <span className="text-cyan-400 text-lg font-semibold">
+                Descuento Especial ({discountPercentage}%):
               </span>
-              <span className="text-2xl font-bold text-green-400">
+              <span className="text-2xl font-bold text-cyan-400">
                 - S/ {(originalPrice - discountedPrice).toFixed(2)}
               </span>
             </div>
@@ -869,12 +727,12 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
             </div>
 
             {/* Total a Pagar */}
-            <div className="bg-gradient-to-r from-blue-600/20 to-green-600/20 rounded-xl p-6">
+            <div className="bg-gradient-to-r from-blue-600/20 to-cyan-600/20 rounded-xl p-6">
               <div className="flex items-center justify-between">
                 <span className="text-2xl font-bold text-white">
                   Total a Pagar:
                 </span>
-                <span className="text-4xl font-black bg-gradient-to-r from-red-500 to-green-500 bg-clip-text text-transparent">
+                <span className="text-4xl font-black bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
                   S/ {product.totalPayment?.toFixed(2)}
                 </span>
               </div>
@@ -891,23 +749,23 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
           {/* Beneficios adicionales */}
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-gradient-to-br from-green-900/30 to-emerald-900/30 border border-green-600/30 rounded-xl p-4 text-center">
+            <div className="bg-gradient-to-br from-cyan-900/30 to-blue-900/30 border border-cyan-600/30 rounded-xl p-4 text-center">
               <div className="text-3xl mb-2">✨</div>
-              <h4 className="text-green-400 font-bold mb-1">Ahorro Real</h4>
+              <h4 className="text-cyan-400 font-bold mb-1">Ahorro Real</h4>
               <p className="text-xs text-gray-400">
                 S/ {(originalPrice - discountedPrice).toFixed(2)} de descuento
               </p>
             </div>
-            <div className="bg-gradient-to-br from-red-900/30 to-rose-900/30 border border-blue-600/30 rounded-xl p-4 text-center">
-              <div className="text-3xl mb-2">🎁</div>
-              <h4 className="text-red-400 font-bold mb-1">Oferta Limitada</h4>
+            <div className="bg-gradient-to-br from-blue-900/30 to-indigo-900/30 border border-blue-600/30 rounded-xl p-4 text-center">
+              <div className="text-3xl mb-2">⚡</div>
+              <h4 className="text-blue-400 font-bold mb-1">Oferta Limitada</h4>
               <p className="text-xs text-gray-400">
-                Solo durante la campaña navideña
+                Solo por tiempo limitado
               </p>
             </div>
-            <div className="bg-gradient-to-br from-blue-900/30 to-indigo-900/30 border border-blue-600/30 rounded-xl p-4 text-center">
-              <div className="text-3xl mb-2">🎄</div>
-              <h4 className="text-blue-400 font-bold mb-1">Envío Incluido</h4>
+            <div className="bg-gradient-to-br from-indigo-900/30 to-purple-900/30 border border-indigo-600/30 rounded-xl p-4 text-center">
+              <div className="text-3xl mb-2">🚚</div>
+              <h4 className="text-indigo-400 font-bold mb-1">Envío Incluido</h4>
               <p className="text-xs text-gray-400">
                 Gratis en Lima Metropolitana
               </p>
@@ -921,197 +779,82 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
         id="comprar"
         className="relative py-20 md:py-32 px-4 overflow-hidden"
       >
-        {/* Background con gradiente Navideño mejorado */}
-        <div className="absolute inset-0 bg-gradient-to-br from-red-700 via-green-800 to-red-900" />
+        {/* Background con gradiente moderno */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-indigo-800 to-purple-900" />
 
         {/* Capa de overlay con patrón */}
         <div
           className="absolute inset-0 opacity-10"
           style={{
-            backgroundImage: `radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.3) 0%, transparent 50%),
-                             radial-gradient(circle at 80% 80%, rgba(34, 197, 94, 0.3) 0%, transparent 50%),
-                             radial-gradient(circle at 40% 20%, rgba(220, 38, 38, 0.3) 0%, transparent 50%)`,
+            backgroundImage: `radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
+                             radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
+                             radial-gradient(circle at 40% 20%, rgba(99, 102, 241, 0.3) 0%, transparent 50%)`,
           }}
         />
 
-        {/* Efecto de luces navideñas brillantes */}
+        {/* Efectos de partículas sutiles */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Luces rojas */}
-          <div className="absolute top-[10%] left-[15%] w-3 h-3 bg-red-400 rounded-full blur-sm animate-pulse shadow-lg shadow-red-400/50" />
+          {/* Partículas azules */}
+          <div className="absolute top-[10%] left-[15%] w-3 h-3 bg-blue-400 rounded-full blur-sm animate-pulse shadow-lg shadow-blue-400/50" />
           <div
-            className="absolute top-[30%] right-[20%] w-2 h-2 bg-red-300 rounded-full blur-sm animate-pulse shadow-lg shadow-red-300/50"
+            className="absolute top-[30%] right-[20%] w-2 h-2 bg-cyan-300 rounded-full blur-sm animate-pulse shadow-lg shadow-cyan-300/50"
             style={{ animationDelay: "0.5s" }}
           />
           <div
-            className="absolute bottom-[40%] left-[25%] w-2.5 h-2.5 bg-red-500 rounded-full blur-sm animate-pulse shadow-lg shadow-red-500/50"
+            className="absolute bottom-[40%] left-[25%] w-2.5 h-2.5 bg-blue-500 rounded-full blur-sm animate-pulse shadow-lg shadow-blue-500/50"
             style={{ animationDelay: "1s" }}
           />
           <div
-            className="absolute top-[60%] right-[35%] w-2 h-2 bg-red-400 rounded-full blur-sm animate-pulse shadow-lg shadow-red-400/50"
+            className="absolute top-[60%] right-[35%] w-2 h-2 bg-indigo-400 rounded-full blur-sm animate-pulse shadow-lg shadow-indigo-400/50"
             style={{ animationDelay: "1.5s" }}
           />
 
-          {/* Luces verdes */}
+          {/* Partículas púrpuras */}
           <div
-            className="absolute top-[20%] right-[10%] w-2.5 h-2.5 bg-green-400 rounded-full blur-sm animate-pulse shadow-lg shadow-green-400/50"
+            className="absolute top-[20%] right-[10%] w-2.5 h-2.5 bg-purple-400 rounded-full blur-sm animate-pulse shadow-lg shadow-purple-400/50"
             style={{ animationDelay: "0.3s" }}
           />
           <div
-            className="absolute bottom-[30%] right-[15%] w-2 h-2 bg-green-300 rounded-full blur-sm animate-pulse shadow-lg shadow-green-300/50"
+            className="absolute bottom-[30%] right-[15%] w-2 h-2 bg-violet-300 rounded-full blur-sm animate-pulse shadow-lg shadow-violet-300/50"
             style={{ animationDelay: "0.8s" }}
           />
           <div
-            className="absolute top-[50%] left-[30%] w-3 h-3 bg-green-500 rounded-full blur-sm animate-pulse shadow-lg shadow-green-500/50"
+            className="absolute top-[50%] left-[30%] w-3 h-3 bg-purple-500 rounded-full blur-sm animate-pulse shadow-lg shadow-purple-500/50"
             style={{ animationDelay: "1.2s" }}
           />
           <div
-            className="absolute bottom-[20%] left-[40%] w-2 h-2 bg-green-400 rounded-full blur-sm animate-pulse shadow-lg shadow-green-400/50"
+            className="absolute bottom-[20%] left-[40%] w-2 h-2 bg-indigo-400 rounded-full blur-sm animate-pulse shadow-lg shadow-indigo-400/50"
             style={{ animationDelay: "1.7s" }}
           />
 
-          {/* Luces blancas/doradas */}
+          {/* Partículas blancas */}
           <div
-            className="absolute top-[40%] right-[30%] w-2 h-2 bg-yellow-200 rounded-full blur-sm animate-pulse shadow-lg shadow-yellow-200/50"
+            className="absolute top-[40%] right-[30%] w-2 h-2 bg-white rounded-full blur-sm animate-pulse shadow-lg shadow-white/50"
             style={{ animationDelay: "0.6s" }}
           />
           <div
-            className="absolute bottom-[50%] left-[10%] w-2.5 h-2.5 bg-white rounded-full blur-sm animate-pulse shadow-lg shadow-white/50"
+            className="absolute bottom-[50%] left-[10%] w-2.5 h-2.5 bg-cyan-200 rounded-full blur-sm animate-pulse shadow-lg shadow-cyan-200/50"
             style={{ animationDelay: "1.3s" }}
           />
           <div
-            className="absolute top-[70%] left-[50%] w-2 h-2 bg-yellow-300 rounded-full blur-sm animate-pulse shadow-lg shadow-yellow-300/50"
+            className="absolute top-[70%] left-[50%] w-2 h-2 bg-blue-300 rounded-full blur-sm animate-pulse shadow-lg shadow-blue-300/50"
             style={{ animationDelay: "0.9s" }}
           />
         </div>
 
-        {/* Copos de nieve decorativos - CTA Section */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
-          {/* Copo 1 */}
-          <div
-            className="absolute text-5xl font-bold text-white"
-            style={{
-              left: "8%",
-              top: "10%",
-              animation:
-                "fallCTA 15s linear infinite, swayCTA 3.5s ease-in-out infinite",
-              filter:
-                "drop-shadow(0 0 8px rgba(255,255,255,0.9)) drop-shadow(0 0 15px rgba(147,197,253,0.5))",
-            }}
-          >
-            ❅
-          </div>
-
-          {/* Copo 2 */}
-          <div
-            className="absolute text-3xl font-bold text-white"
-            style={{
-              left: "30%",
-              top: "5%",
-              animation:
-                "fallCTA 12s linear infinite 2s, swayCTA 4s ease-in-out infinite",
-              filter:
-                "drop-shadow(0 0 6px rgba(255,255,255,0.8)) drop-shadow(0 0 12px rgba(147,197,253,0.4))",
-            }}
-          >
-            ❅
-          </div>
-
-          {/* Copo 3 */}
-          <div
-            className="absolute text-4xl font-bold text-white"
-            style={{
-              left: "50%",
-              top: "15%",
-              animation:
-                "fallCTA 13s linear infinite 1s, swayCTA 3s ease-in-out infinite",
-              filter:
-                "drop-shadow(0 0 7px rgba(255,255,255,0.85)) drop-shadow(0 0 13px rgba(147,197,253,0.45))",
-            }}
-          >
-            ❅
-          </div>
-
-          {/* Copo 4 */}
-          <div
-            className="absolute text-3xl font-bold text-white"
-            style={{
-              left: "70%",
-              top: "8%",
-              animation:
-                "fallCTA 11s linear infinite 3s, swayCTA 3.5s ease-in-out infinite",
-              filter:
-                "drop-shadow(0 0 6px rgba(255,255,255,0.8)) drop-shadow(0 0 12px rgba(147,197,253,0.4))",
-            }}
-          >
-            ❅
-          </div>
-
-          {/* Copo 5 */}
-          <div
-            className="absolute text-5xl font-bold text-white"
-            style={{
-              left: "90%",
-              top: "12%",
-              animation:
-                "fallCTA 14s linear infinite 4s, swayCTA 4s ease-in-out infinite",
-              filter:
-                "drop-shadow(0 0 8px rgba(255,255,255,0.9)) drop-shadow(0 0 15px rgba(147,197,253,0.5))",
-            }}
-          >
-            ❅
-          </div>
-
-          {/* Copo 6 */}
-          <div
-            className="absolute text-4xl font-bold text-white"
-            style={{
-              left: "20%",
-              top: "20%",
-              animation:
-                "fallCTA 16s linear infinite 5s, swayCTA 3s ease-in-out infinite",
-              filter:
-                "drop-shadow(0 0 7px rgba(255,255,255,0.85)) drop-shadow(0 0 13px rgba(147,197,253,0.45))",
-            }}
-          >
-            ❅
-          </div>
-
-          {/* Estilos de animación para copos en CTA */}
-          <style jsx>{`
-            @keyframes fallCTA {
-              0% {
-                transform: translateY(0) rotate(0deg);
-              }
-              100% {
-                transform: translateY(calc(100vh - 100px)) rotate(360deg);
-              }
-            }
-
-            @keyframes swayCTA {
-              0%,
-              100% {
-                transform: translateX(0);
-              }
-              50% {
-                transform: translateX(25px);
-              }
-            }
-          `}</style>
-        </div>
-
-        {/* Decoraciones geométricas Navideñas sutiles */}
+        {/* Decoraciones geométricas sutiles */}
         <div className="absolute inset-0 overflow-hidden opacity-10">
-          <div className="absolute top-10 left-10 w-32 h-32 border-2 border-green-400 rounded-full animate-pulse" />
+          <div className="absolute top-10 left-10 w-32 h-32 border-2 border-blue-400 rounded-full animate-pulse" />
           <div
-            className="absolute top-20 right-20 w-24 h-24 border-2 border-white/60 rotate-45 animate-pulse"
+            className="absolute top-20 right-20 w-24 h-24 border-2 border-purple-400/60 rotate-45 animate-pulse"
             style={{ animationDelay: "0.5s" }}
           />
           <div
-            className="absolute bottom-20 left-1/4 w-20 h-20 border-2 border-green-400 animate-pulse"
+            className="absolute bottom-20 left-1/4 w-20 h-20 border-2 border-cyan-400 animate-pulse"
             style={{ animationDelay: "1s" }}
           />
           <div
-            className="absolute bottom-10 right-1/3 w-28 h-28 border-2 border-white/60 rounded-full animate-pulse"
+            className="absolute bottom-10 right-1/3 w-28 h-28 border-2 border-indigo-400/60 rounded-full animate-pulse"
             style={{ animationDelay: "1.5s" }}
           />
         </div>
@@ -1121,24 +864,24 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           {/* Urgency Indicator */}
-          <div className="mb-4 md:mb-6 inline-flex items-center gap-2 bg-green-600 px-3 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-base font-bold animate-pulse shadow-lg shadow-green-600/50">
+          <div className="mb-4 md:mb-6 inline-flex items-center gap-2 bg-blue-600 px-3 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-base font-bold animate-pulse shadow-lg shadow-blue-600/50">
             <span className="relative flex h-2 w-2 md:h-3 md:w-3">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 md:h-3 md:w-3 bg-white"></span>
             </span>
             <span className="leading-tight">
-              🎄 ÚLTIMAS UNIDADES - OFERTA NAVIDEÑA 🎁
+              ⚡ ÚLTIMAS UNIDADES - OFERTA LIMITADA
             </span>
           </div>
 
           <div className="mb-3 md:mb-4 text-3xl md:text-4xl animate-bounce">
-            🎅
+            🎯
           </div>
           <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold mb-3 md:mb-4 px-2 leading-tight">
-            <span className="block bg-gradient-to-r from-yellow-200 via-red-500 to-yellow-200 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(239,68,68,0.8)] filter brightness-125">
+            <span className="block bg-gradient-to-r from-cyan-200 via-blue-400 to-cyan-200 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(59,130,246,0.8)] filter brightness-125">
               No Dejes Pasar
             </span>
-            <span className="block mt-2 bg-gradient-to-r from-green-300 via-emerald-400 to-green-300 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(34,197,94,0.8)] filter brightness-125">
+            <span className="block mt-2 bg-gradient-to-r from-purple-300 via-indigo-400 to-purple-300 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(139,92,246,0.8)] filter brightness-125">
               Esta Oferta
             </span>
           </h2>
@@ -1152,7 +895,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
               <span className="text-white/70 line-through text-lg md:text-2xl lg:text-3xl">
                 s/ {originalPrice.toFixed(2)}
               </span>
-              <span className="bg-green-600 text-white px-3 md:px-4 py-1 md:py-2 rounded-full text-sm md:text-lg font-bold animate-pulse shadow-lg shadow-green-600/50">
+              <span className="bg-blue-600 text-white px-3 md:px-4 py-1 md:py-2 rounded-full text-sm md:text-lg font-bold animate-pulse shadow-lg shadow-blue-600/50">
                 AHORRA {discountPercentage}%
               </span>
             </div>
@@ -1166,8 +909,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
               </span>
             </p>
             <p className="text-white text-base md:text-lg font-semibold">
-              🎁 ¡Ahorra s/ {(originalPrice - discountedPrice).toFixed(2)} HOY!
-              🎄
+              ⚡ ¡Ahorra s/ {(originalPrice - discountedPrice).toFixed(2)} HOY!
             </p>
           </div>
 
@@ -1177,7 +919,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
               <span className="text-white text-sm md:text-base">
                 Stock disponible:
               </span>
-              <span className="text-green-200 font-bold text-sm md:text-base">
+              <span className="text-blue-200 font-bold text-sm md:text-base">
                 {product.stock > 0 ? `${product.stock} unidades` : "Consultar"}
               </span>
             </div>
@@ -1185,13 +927,13 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
               <>
                 <div className="w-full bg-white/20 rounded-full h-2 md:h-3 mb-2">
                   <div
-                    className="bg-gradient-to-r from-green-400 to-white h-2 md:h-3 rounded-full animate-pulse"
+                    className="bg-gradient-to-r from-blue-400 to-white h-2 md:h-3 rounded-full animate-pulse"
                     style={{ width: `${(product.stock / 10) * 100}%` }}
                   ></div>
                 </div>
                 <p className="text-white text-xs md:text-sm font-semibold animate-pulse leading-tight">
-                  🎄 ¡Solo quedan {product.stock} unidades! Se están agotando
-                  rápido 🎁
+                  ⚡ ¡Solo quedan {product.stock} unidades! Se están agotando
+                  rápido
                 </p>
               </>
             )}
@@ -1203,7 +945,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
             className="inline-flex items-center justify-center gap-2 md:gap-3 bg-white hover:bg-white/90 text-blue-600 px-8 md:px-16 py-5 md:py-7 rounded-full text-base md:text-xl lg:text-2xl font-bold hover:shadow-2xl transition-all transform hover:scale-105 mb-6 animate-pulse w-full sm:w-auto max-w-full shadow-lg"
           >
             <span className="text-center leading-tight">
-              🎁 SÍ, LO QUIERO CON DESCUENTO
+              ⚡ SÍ, LO QUIERO CON DESCUENTO
             </span>
             <svg
               className="w-5 h-5 md:w-7 md:h-7 flex-shrink-0"
@@ -1222,7 +964,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
 
           {/* Risk Reversal - Garantías */}
           <div className="mt-6 md:mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 max-w-3xl mx-auto">
-            <div className="bg-white/5 backdrop-blur-sm border border-green-600/20 rounded-xl p-3 md:p-4">
+            <div className="bg-white/5 backdrop-blur-sm border border-blue-600/20 rounded-xl p-3 md:p-4">
               <div className="text-2xl md:text-3xl mb-1 md:mb-2">🚚</div>
               <h4 className="font-bold text-white mb-1 text-sm md:text-base">
                 Envío GRATIS
@@ -1231,7 +973,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
                 En Lima Metropolitana
               </p>
             </div>
-            <div className="bg-white/5 backdrop-blur-sm border border-green-600/20 rounded-xl p-3 md:p-4">
+            <div className="bg-white/5 backdrop-blur-sm border border-blue-600/20 rounded-xl p-3 md:p-4">
               <div className="text-2xl md:text-3xl mb-1 md:mb-2">🛡️</div>
               <h4 className="font-bold text-white mb-1 text-sm md:text-base">
                 Garantía 1 Año
@@ -1240,7 +982,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
                 Cubierta por fabricante
               </p>
             </div>
-            <div className="bg-white/5 backdrop-blur-sm border border-green-600/20 rounded-xl p-3 md:p-4">
+            <div className="bg-white/5 backdrop-blur-sm border border-blue-600/20 rounded-xl p-3 md:p-4">
               <div className="text-2xl md:text-3xl mb-1 md:mb-2">💳</div>
               <h4 className="font-bold text-white mb-1 text-sm md:text-base">
                 Pago Seguro
@@ -1254,28 +996,28 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
           {/* Social Proof */}
           <div className="mt-6 md:mt-8 flex items-center justify-center gap-2 text-xs md:text-sm flex-wrap">
             <div className="flex -space-x-2">
-              <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-green-600 border-2 border-white flex items-center justify-center text-xs">
+              <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-blue-600 border-2 border-white flex items-center justify-center text-xs">
+                👤
+              </div>
+              <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-indigo-600 border-2 border-white flex items-center justify-center text-xs">
                 👤
               </div>
               <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-blue-600 border-2 border-white flex items-center justify-center text-xs">
                 👤
               </div>
-              <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-green-600 border-2 border-white flex items-center justify-center text-xs">
-                👤
-              </div>
-              <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-blue-600 border-2 border-white flex items-center justify-center text-xs">
+              <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-indigo-600 border-2 border-white flex items-center justify-center text-xs">
                 👤
               </div>
             </div>
             <p className="text-gray-300 text-center leading-tight">
-              <span className="text-green-200 font-bold">+16 clientes</span>{" "}
+              <span className="text-blue-200 font-bold">+16 clientes</span>{" "}
               compraron esta semana
             </p>
           </div>
 
           <p className="text-xs md:text-sm text-gray-500 mt-4 md:mt-6 px-4 leading-relaxed">
-            🎄 Soporte técnico especializado • Instalación guiada • Asesoría
-            personalizada 🎁
+            ⚡ Soporte técnico especializado • Instalación guiada • Asesoría
+            personalizada
           </p>
         </div>
       </section>
