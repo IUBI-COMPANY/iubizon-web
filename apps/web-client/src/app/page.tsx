@@ -7,7 +7,6 @@ import Link from "next/link";
 import { SlidersComponent } from "@/components/home/Sliders";
 
 export default function Home() {
-
   const sortProductsBySpecial = (productsList: typeof products) => {
     return [...productsList].sort((a, b) => {
       // Priority 2: Special products
@@ -50,9 +49,7 @@ export default function Home() {
     <div className="min-h-screen h-auto w-full bg-slate-50">
       <SlidersComponent />
       <main id="lista" className="mx-auto max-w-[1370px] px-6 py-10">
-        <section
-          className="mb-6 grid gap-3 text-center max-w-[70%] m-auto md:grid-cols-4"
-        >
+        <section className="mb-6 grid gap-3 text-center max-w-[70%] m-auto md:grid-cols-4">
           <div className="rounded-lg bg-white p-3 shadow-sm border border-slate-100">
             <div className="mx-auto w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center mb-2">
               <svg
@@ -297,7 +294,7 @@ export default function Home() {
               A UN PRECIO ESPECIAL
             </p>
             <p className="text-sm opacity-95">
-              Entrega inmediata • Prueba de funcionamiento • Con garantía
+              Prueba de funcionamiento • Con garantía
             </p>
             <a
               href="https://wa.me/51972300301?text=Hola%20iubizon,%20quiero%20un%20lote%20de%20"

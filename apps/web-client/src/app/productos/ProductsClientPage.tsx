@@ -9,7 +9,6 @@ import { Filter, Package, ShoppingCart, Star } from "lucide-react";
 import { CiberWowCountDownComponent } from "@/components/ui/CiberWowCountDownComponent";
 
 export default function ProductsClientPage() {
-
   const sortProductsBySpecial = (productsList: typeof products) => {
     return [...productsList].sort((a, b) => {
       if (a.campaign === b.campaign) return 0;
@@ -68,7 +67,8 @@ export default function ProductsClientPage() {
               Nuestros Productos
             </h1>
             <p className="text-xl text-gray-100 max-w-3xl mx-auto mb-8 drop-shadow-lg">
-              Descubre nuestra amplia gama de proyectores con ofertas especiales.
+              Descubre nuestra amplia gama de proyectores con ofertas
+              especiales.
               <span className="block mt-2 text-blue-300 font-semibold">
                 Garantía extendida y soporte técnico especializado
               </span>
@@ -145,7 +145,8 @@ export default function ProductsClientPage() {
                   </p>
                   <div className="mt-3 inline-flex items-center gap-2 bg-secondary text-white px-4 py-2 rounded-full text-sm font-semibold shadow-md">
                     <span>
-                      Llévate tu proyector completamente nuevo con garantía extendida
+                      Llévate tu proyector completamente nuevo con garantía
+                      extendida
                     </span>
                   </div>
                 </div>
@@ -222,7 +223,7 @@ export default function ProductsClientPage() {
               A UN PRECIO ESPECIAL
             </p>
             <p className="text-sm opacity-95">
-              Entrega inmediata • Prueba de funcionamiento • Con garantía
+              Prueba de funcionamiento • Con garantía
             </p>
             <a
               href="https://wa.me/51972300301?text=Hola%20iubizon,%20quiero%20un%20lote%20de%20"
@@ -245,8 +246,8 @@ export default function ProductsClientPage() {
               </h3>
             </div>
             <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-              Todos nuestros productos vienen con garantía extendida y
-              soporte técnico especializado
+              Todos nuestros productos vienen con garantía extendida y soporte
+              técnico especializado
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm">
               <div className="bg-white rounded-xl px-5 py-3 shadow-md border-2 border-green-200/50 hover:scale-105 transition-transform duration-300">
