@@ -13,7 +13,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
   const [scrollY, setScrollY] = useState(0);
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
-  // Precios reales del producto (Campaña Navideña 2025)
+  // Precios reales del producto
   const originalPrice = product.oldPrice || 549.99;
   const discountedPrice = product.price || 423.0;
   const discountPercentage = Math.round(
@@ -273,7 +273,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
         <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
           <div className="mb-6 inline-block">
             <span className="text-sm md:text-base font-semibold tracking-[0.3em] uppercase bg-gradient-to-r from-white via-red-600 to-white bg-clip-text text-transparent">
-              🎄 MagCubic HY350 - Navidad 2025 🎁
+              MagCubic HY350 - Proyector LED Portátil
             </span>
           </div>
 
@@ -424,11 +424,11 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
           <h2 className="text-4xl md:text-6xl font-bold text-center mb-4">
             Características
             <span className="block mt-2 bg-gradient-to-r from-white via-red-600 to-white bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(220,38,38,0.3)]">
-              Innovadoras 🎄
+              Innovadoras
             </span>
           </h2>
           <p className="text-center text-red-600/60 mb-20 text-sm">
-            🎁 Especial Navidad 2025 ⭐
+            Tecnología de última generación
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -576,11 +576,11 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
           <h2 className="text-4xl md:text-6xl font-bold text-center mb-4">
             Conectividad y
             <span className="block mt-2 bg-gradient-to-r from-white via-red-600 to-white bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(220,38,38,0.3)]">
-              Versatilidad 🎄
+              Versatilidad
             </span>
           </h2>
           <p className="text-center text-red-600/60 mb-20 text-sm">
-            🎁 Especial Navidad 2025 ⭐
+            Máxima compatibilidad y conexión
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -678,11 +678,11 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
           <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold text-center mb-3 md:mb-4">
             Especificaciones
             <span className="block mt-2 bg-gradient-to-r from-white via-red-600 to-white bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(220,38,38,0.3)]">
-              Técnicas 🎄
+              Técnicas
             </span>
           </h2>
           <p className="text-center text-red-600/60 mb-12 md:mb-20 text-xs md:text-sm">
-            🎁 Especial Navidad 2025 ⭐
+            Detalles completos del producto
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 md:gap-x-20 gap-y-4 md:gap-y-8">
@@ -776,9 +776,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
           {/* Additional Features */}
           <div className="mt-12 md:mt-20 p-6 md:p-10 bg-gradient-to-br from-red-600/20 to-green-600/20 backdrop-blur-sm rounded-3xl border border-red-600/20 shadow-lg shadow-red-600/10">
             <h3 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-center flex items-center justify-center gap-2 md:gap-3 flex-wrap">
-              <span>🎄</span>
               <span>Características Adicionales</span>
-              <span>🎁</span>
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 text-gray-300">
               <div className="flex items-center gap-3">
@@ -816,11 +814,11 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-4">
             Detalle de
             <span className="block mt-2 bg-gradient-to-r from-white via-red-600 to-white bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(220,38,38,0.3)]">
-              Precios 🎄
+              Precios
             </span>
           </h2>
           <p className="text-center text-red-600/60 mb-12 text-sm">
-            🎁 Precios Especiales de Navidad 2025 ⭐
+            Precio especial disponible
           </p>
 
           <div className="bg-gradient-to-br from-gray-900 to-black border-2 border-red-600/30 rounded-2xl p-8 shadow-2xl shadow-red-600/20">
@@ -835,7 +833,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
             {/* Descuento */}
             <div className="flex items-center justify-between mb-4 pb-4 border-b border-gray-800">
               <span className="text-green-400 text-lg font-semibold">
-                Descuento Navidad ({discountPercentage}%):
+                Descuento Especial ({discountPercentage}%):
               </span>
               <span className="text-2xl font-bold text-green-400">
                 - S/ {(originalPrice - discountedPrice).toFixed(2)}
@@ -906,7 +904,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
               </p>
             </div>
             <div className="bg-gradient-to-br from-blue-900/30 to-indigo-900/30 border border-blue-600/30 rounded-xl p-4 text-center">
-              <div className="text-3xl mb-2">🎄</div>
+              <div className="text-3xl mb-2">📦</div>
               <h4 className="text-blue-400 font-bold mb-1">Envío Incluido</h4>
               <p className="text-xs text-gray-400">
                 Gratis en Lima Metropolitana
@@ -1127,12 +1125,12 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
               <span className="relative inline-flex rounded-full h-2 w-2 md:h-3 md:w-3 bg-white"></span>
             </span>
             <span className="leading-tight">
-              🎄 ÚLTIMAS UNIDADES - OFERTA NAVIDEÑA 🎁
+              ÚLTIMAS UNIDADES - OFERTA ESPECIAL
             </span>
           </div>
 
           <div className="mb-3 md:mb-4 text-3xl md:text-4xl animate-bounce">
-            🎅
+            🔥
           </div>
           <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold mb-3 md:mb-4 px-2 leading-tight">
             <span className="block bg-gradient-to-r from-yellow-200 via-red-500 to-yellow-200 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(239,68,68,0.8)] filter brightness-125">
@@ -1143,7 +1141,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
             </span>
           </h2>
           <p className="text-white mb-4 md:mb-6 text-base md:text-xl font-semibold drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">
-            🎄 Navidad 2025 - Descuento Exclusivo 🎁
+            Descuento Exclusivo por Tiempo Limitado
           </p>
 
           {/* Price Section */}
@@ -1166,8 +1164,7 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
               </span>
             </p>
             <p className="text-white text-base md:text-lg font-semibold">
-              🎁 ¡Ahorra s/ {(originalPrice - discountedPrice).toFixed(2)} HOY!
-              🎄
+              ¡Ahorra s/ {(originalPrice - discountedPrice).toFixed(2)} HOY!
             </p>
           </div>
 
@@ -1190,8 +1187,8 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
                   ></div>
                 </div>
                 <p className="text-white text-xs md:text-sm font-semibold animate-pulse leading-tight">
-                  🎄 ¡Solo quedan {product.stock} unidades! Se están agotando
-                  rápido 🎁
+                  ¡Solo quedan {product.stock} unidades! Se están agotando
+                  rápido
                 </p>
               </>
             )}
@@ -1274,8 +1271,8 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
           </div>
 
           <p className="text-xs md:text-sm text-gray-500 mt-4 md:mt-6 px-4 leading-relaxed">
-            🎄 Soporte técnico especializado • Instalación guiada • Asesoría
-            personalizada 🎁
+            Soporte técnico especializado • Instalación guiada • Asesoría
+            personalizada
           </p>
         </div>
       </section>

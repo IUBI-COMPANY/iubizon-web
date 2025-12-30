@@ -5,18 +5,8 @@ import Image from "next/image";
 import { productsCondition } from "@/data-list/productsCondition";
 import Link from "next/link";
 import { SlidersComponent } from "@/components/home/Sliders";
-import { PromotionSection } from "@/app/PromotionSection";
 
 export default function Home() {
-  // Check if Christmas campaign is active (Nov 1 - Dec 31, 2025)
-  const isChristmasCampaignActive = () => {
-    const now = new Date();
-    const campaignStart = new Date(2025, 10, 1); // Nov 1, 2025 (month is 0-indexed)
-    const campaignEnd = new Date(2025, 11, 31, 23, 59, 59); // Dec 31, 2025 end of day
-    return now >= campaignStart && now <= campaignEnd;
-  };
-
-  const christmasCampaignActive = isChristmasCampaignActive();
 
   const sortProductsBySpecial = (productsList: typeof products) => {
     return [...productsList].sort((a, b) => {
@@ -60,42 +50,7 @@ export default function Home() {
     <div className="min-h-screen h-auto w-full bg-slate-50">
       <SlidersComponent />
       <main id="lista" className="mx-auto max-w-[1370px] px-6 py-10">
-        {/* Christmas Products Section */}
-        {christmasCampaignActive && (
-          <div className="mb-12">
-            <div className="mb-6 text-center">
-              <div className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#d90429] to-[#b5001f] text-white px-6 py-3 rounded-full font-bold text-sm mb-4 shadow-lg border-2 border-white uppercase tracking-wide">
-                <span className="text-xl">🎄</span>
-                <span>OFERTAS DE NAVIDAD 2025</span>
-                <span className="text-xl">🎁</span>
-              </div>
-              <h2 className="text-4xl font-black text-[#d90429] mb-2">
-                Proyectores en Oferta Navideña
-              </h2>
-              <p className="text-base text-secondary/80 mt-3 max-w-2xl mx-auto">
-                Aprovecha estos precios especiales solo durante la campaña de
-                Navidad.
-                <span className="block mt-1 font-semibold text-[#d90429]">
-                  ¡No te quedes sin el tuyo! 🎅
-                </span>
-              </p>
-            </div>
-          </div>
-        )}
-        <section
-          className={`mb-6 grid gap-3 text-center max-w-[70%] m-auto ${christmasCampaignActive ? "md:grid-cols-5" : "md:grid-cols-4"}`}
-        >
-          {christmasCampaignActive && (
-            <div className="rounded-lg bg-gradient-to-br from-[#d90429] to-[#b5001f] p-3 shadow-md border border-white/30 text-white">
-              <div className="mx-auto w-9 h-9 rounded-full bg-white/20 flex items-center justify-center mb-2">
-                <span className="text-2xl">🎄</span>
-              </div>
-              <h3 className="font-bold text-sm">Navidad 2025</h3>
-              <p className="text-[0.65rem] mt-0.5 opacity-90">
-                Ofertas especiales todo diciembre
-              </p>
-            </div>
-          )}
+        <section className="mb-6 grid gap-3 text-center max-w-[70%] m-auto md:grid-cols-4">
           <div className="rounded-lg bg-white p-3 shadow-sm border border-slate-100">
             <div className="mx-auto w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center mb-2">
               <svg
@@ -275,29 +230,6 @@ export default function Home() {
                   garantía.
                 </p>
               </div>
-              {christmasCampaignActive && (
-                <div className="flex-shrink-0 text-right">
-                  <div className="flex flex-col items-end gap-0.5">
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-lg">🎄</span>
-                      <span className="text-[0.65rem] font-semibold text-secondary/50 uppercase tracking-wide">
-                        Oferta Navidad
-                      </span>
-                    </div>
-                    <div className="flex items-baseline gap-0.5">
-                      <span className="text-3xl font-black text-[#d90429] leading-none">
-                        20
-                      </span>
-                      <span className="text-xl font-bold text-[#d90429]/70">
-                        %
-                      </span>
-                    </div>
-                    <span className="text-[0.65rem] font-medium text-secondary/40 uppercase tracking-wide">
-                      Descuento
-                    </span>
-                  </div>
-                </div>
-              )}
             </div>
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
               {productsByCondition["gama-alta"].products.map(
@@ -323,29 +255,6 @@ export default function Home() {
                   Llévate tu proyector completamente nuevo y con garantía.
                 </p>
               </div>
-              {christmasCampaignActive && (
-                <div className="flex-shrink-0 text-right">
-                  <div className="flex flex-col items-end gap-0.5">
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-lg">🎄</span>
-                      <span className="text-[0.65rem] font-semibold text-secondary/50 uppercase tracking-wide">
-                        Oferta Navidad
-                      </span>
-                    </div>
-                    <div className="flex items-baseline gap-0.5">
-                      <span className="text-3xl font-black text-[#d90429] leading-none">
-                        20
-                      </span>
-                      <span className="text-xl font-bold text-[#d90429]/70">
-                        %
-                      </span>
-                    </div>
-                    <span className="text-[0.65rem] font-medium text-secondary/40 uppercase tracking-wide">
-                      Descuento
-                    </span>
-                  </div>
-                </div>
-              )}
             </div>
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
               {productsByCondition.new.products.map((product, index) => (
@@ -355,8 +264,6 @@ export default function Home() {
           </div>
         )}
 
-        {/* Sección Promocional Cyber Wow - HY350 */}
-        <PromotionSection />
 
         {quantityProjectors >= 3 && (
           <section className="mt-10 mb-[5em] md:mt-[10em] rounded-2xl p-6 text-center shadow-sm text-white  bg-gradient-to-br from-secondary/90 via-secondary to-secondary/90 relative">
@@ -403,29 +310,6 @@ export default function Home() {
                   garantía
                 </p>
               </div>
-              {christmasCampaignActive && (
-                <div className="flex-shrink-0 text-right">
-                  <div className="flex flex-col items-end gap-0.5">
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-lg">🎁</span>
-                      <span className="text-[0.65rem] font-semibold text-secondary/50 uppercase tracking-wide">
-                        Oferta Navidad
-                      </span>
-                    </div>
-                    <div className="flex items-baseline gap-0.5">
-                      <span className="text-3xl font-black text-[#14532d] leading-none">
-                        42
-                      </span>
-                      <span className="text-xl font-bold text-[#14532d]/70">
-                        %
-                      </span>
-                    </div>
-                    <span className="text-[0.65rem] font-medium text-secondary/40 uppercase tracking-wide">
-                      Descuento
-                    </span>
-                  </div>
-                </div>
-              )}
             </div>
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
               {productsByCondition.reconditioned.products.map(

@@ -12,16 +12,8 @@ export const ProductCard = ({ product }: Props) => {
   const isNew = product?.condition === "new";
   const isClearance = product?.classification === "clearance";
   const isByCampaign = product?.campaign;
+  const isChristmas = false; // Control de campaña navideña (desactivada)
 
-  // Check if Christmas campaign is active (Nov 1 - Dec 31, 2025)
-  const isChristmasCampaignActive = () => {
-    const now = new Date();
-    const campaignStart = new Date(2025, 10, 1); // Nov 1, 2025
-    const campaignEnd = new Date(2025, 11, 31, 23, 59, 59); // Dec 31, 2025 end of day
-    return now >= campaignStart && now <= campaignEnd;
-  };
-
-  const isChristmas = product?.campaign && isChristmasCampaignActive();
 
   // Generate descriptive alt text for product card image
   const getProductImageAlt = () => {
@@ -43,8 +35,8 @@ export const ProductCard = ({ product }: Props) => {
           ? "border-[2px] border-[#d90429] shadow-lg hover:shadow-xl hover:shadow-red-500/20"
           : !isNew
             ? "border-[1px] border-[#99a1af] shadow-lg hover:shadow-xl hover:shadow-secondary/20"
-            : // Productos NUEVOS en campaña - Borde rojo/navideño
-              isByCampaign || isChristmas
+            : // Productos NUEVOS en campaña - Borde especial
+              isByCampaign
               ? "border-[1px] border-[#d90429] shadow-lg hover:shadow-xl hover:shadow-red-500/20"
               : // Productos nuevos normales - Borde gris
                 "border border-gray-300/50 shadow-sm hover:shadow-md",
@@ -56,20 +48,24 @@ export const ProductCard = ({ product }: Props) => {
           {product?.condition && (
             <span
               className={twMerge(
-                "rounded-full px-2.5 py-1 text-xs font-semibold absolute top-1 left-1 shadow-md transition-transform duration-300",
+                "rounded-full px-2.5 py-1 text-xs font-semibold absolute top-1 left-1 shadow-md transition-transform duration-300 z-10",
                 isNew ? "bg-primary text-white" : "bg-secondary/70 text-white",
               )}
             >
               {isClearance ? "De Remate" : isNew ? "Nuevo" : "Reacondicionado"}
             </span>
           )}
-          {/* Badge Oferta Navidad - para TODOS en campaña */}
-          {(isByCampaign || isChristmas) && (
-            <span className="rounded-full px-3 py-1 text-xs font-bold bg-gradient-to-r from-[#d90429] via-[#c41e3a] to-[#d90429] text-white absolute top-1 right-1 shadow-lg flex items-center gap-1 animate-float border-2 border-white uppercase tracking-wide">
-              <span className="text-sm">🎄</span>
-              <span>Oferta Navidad</span>
-            </span>
-          )}
+
+          {/* Badge de descuento 20% OFF */}
+          <div className="absolute top-1 right-1 z-10">
+            <div className="bg-gradient-to-br from-red-600 to-red-700 text-white px-3 py-1.5 rounded-full shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-300">
+              <div className="flex items-center gap-1">
+                <span className="text-xs font-black">20%</span>
+                <span className="text-[0.65rem] font-bold">OFF</span>
+              </div>
+            </div>
+          </div>
+
           <Image
             src={product?.mainImage || "product-not-found.png"}
             width={300}
@@ -152,11 +148,6 @@ export const ProductCard = ({ product }: Props) => {
             {product.sub}
           </p>
         )}
-        {(isByCampaign || isChristmas) && product?.oldPrice && (
-          <div className="mt-2 text-[#2d5f3f] text-xs font-bold uppercase tracking-wide bg-green-50 py-1 px-3 rounded-full inline-block">
-            Ahorra S/ {(product.oldPrice - product.price).toFixed(2)}
-          </div>
-        )}
       </div>
       {/* Características con checkmarks */}
       <div className="flex items-center mt-3 text-sm text-gray-600 mb-1 relative z-10">
@@ -213,12 +204,7 @@ export const ProductCard = ({ product }: Props) => {
       <div className="w-full mt-3 relative z-10">
         <Link
           href={`/productos/${product.id}`}
-          className={twMerge(
-            "block w-full rounded-full px-6 py-2.5 text-center text-sm font-bold shadow-md transition-all duration-300 uppercase tracking-wide",
-            isByCampaign && isNew
-              ? "bg-gradient-to-r from-[#2d5f3f] via-[#2d5f1f] to-[#2d5f3f] text-white hover:shadow-lg hover:shadow-green-950/40 hover:scale-105"
-              : "bg-secondary text-white hover:shadow-lg",
-          )}
+          className="block w-full rounded-full px-6 py-2.5 text-center text-sm font-bold shadow-md transition-all duration-300 uppercase tracking-wide bg-secondary text-white hover:shadow-lg hover:scale-105"
         >
           {product.stock <= 0 ? "Comprar a pedido" : "Comprar ahora"}
         </Link>

@@ -11,7 +11,6 @@ interface Props {
   showModal: boolean;
   setShowModal: (showModal: boolean) => void;
   condition: DetailProductCondition;
-  showChristmasCampaign?: boolean;
 }
 
 export const InformationAndPriceCard = ({
@@ -19,7 +18,6 @@ export const InformationAndPriceCard = ({
   showModal,
   setShowModal,
   condition,
-  showChristmasCampaign = false,
 }: Props) => {
   return (
     <>
@@ -41,20 +39,6 @@ export const InformationAndPriceCard = ({
           </h1>
 
           <div className="tags flex flex-wrap gap-1">
-            {/* 2. BADGE DE CAMPAÑA NAVIDEÑA (compacto) */}
-            {showChristmasCampaign && product?.oldPrice && (
-              <div className="mb-3 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-emerald-600 to-green-600 text-white text-xs font-bold">
-                <span>🎄</span>
-                <span>
-                  -
-                  {Math.round(
-                    ((product.oldPrice - product.price) / product.oldPrice) *
-                      100,
-                  )}
-                  % OFF
-                </span>
-              </div>
-            )}
 
             {product.classification === "clearance" && (
               <div className="mb-3 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-emerald-600 to-green-600 text-white text-xs font-bold">

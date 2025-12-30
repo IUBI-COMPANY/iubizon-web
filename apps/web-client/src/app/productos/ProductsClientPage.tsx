@@ -9,15 +9,8 @@ import { Filter, Package, ShoppingCart, Star } from "lucide-react";
 import { CiberWowCountDownComponent } from "@/components/ui/CiberWowCountDownComponent";
 
 export default function ProductsClientPage() {
-  // Check if Christmas campaign is active (Nov 1 - Dec 31, 2025)
-  const isChristmasCampaignActive = () => {
-    const now = new Date();
-    const campaignStart = new Date(2025, 10, 1); // Nov 1, 2025 (month is 0-indexed)
-    const campaignEnd = new Date(2025, 12, 31, 23, 59, 59); // Dec 31, 2025 end of day
-    return now >= campaignStart && now <= campaignEnd;
-  };
-
-  const christmasCampaignActive = isChristmasCampaignActive();
+  // Control de campaña navideña (desactivada)
+  const christmasCampaignActive = false;
 
   const sortProductsBySpecial = (productsList: typeof products) => {
     return [...productsList].sort((a, b) => {
@@ -56,7 +49,7 @@ export default function ProductsClientPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
-      {/* Hero Section - Temática Navideña */}
+      {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-[#0a0f1a] via-[#0d1520] to-[#050a12] overflow-hidden">
         {/* Imagen de fondo con overlay oscuro */}
         <div className="absolute inset-0">
@@ -71,61 +64,19 @@ export default function ProductsClientPage() {
           <div className="absolute inset-0 bg-gradient-to-br from-[#0a0f1a]/98 via-[#0d1520]/96 to-[#050a12]/98" />
         </div>
 
-        {/* Efectos de luz navideños */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Resplandor verde navideño */}
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#0f3d1f]/10 rounded-full blur-[140px] animate-pulse"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#14532d]/10 rounded-full blur-[140px] animate-pulse delay-700"></div>
-
-          {/* Copos de nieve decorativos */}
-          <div className="absolute top-[5%] left-[10%] text-white/20 text-2xl animate-[float_3s_ease-in-out_infinite]">
-            ❄️
-          </div>
-          <div className="absolute top-[15%] right-[15%] text-white/15 text-3xl animate-[float_4s_ease-in-out_infinite_0.5s]">
-            ❄️
-          </div>
-          <div className="absolute top-[8%] left-[60%] text-white/20 text-xl animate-[float_3.5s_ease-in-out_infinite_1s]">
-            ✨
-          </div>
-          <div className="absolute top-[20%] right-[40%] text-white/15 text-2xl animate-[float_4s_ease-in-out_infinite_1.5s]">
-            ⭐
-          </div>
-          <div className="absolute top-[12%] left-[80%] text-white/20 text-xl animate-[float_3s_ease-in-out_infinite_0.8s]">
-            ❄️
-          </div>
-
-          {/* Luces decorativas en el borde superior */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#0f3d1f]/30 to-transparent"></div>
-        </div>
-
         <div className="relative z-10 max-w-7xl mx-auto px-4 py-20">
           <div className="text-center">
-            {/* Badge de Navidad */}
-            <div className="flex justify-center mb-6">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0f3d1f] via-[#14532d] to-[#0f3d1f] blur-xl opacity-40 animate-pulse"></div>
-                <div className="relative inline-flex items-center gap-2 bg-gradient-to-r from-[#14532d] via-[#0f3d1f] to-[#14532d] backdrop-blur-sm px-5 py-2 rounded-full shadow-2xl border-2 border-[#d90429]/15">
-                  <span className="text-lg">🎄</span>
-                  <span className="text-xs font-bold uppercase tracking-wider text-white">
-                    Ofertas Navideñas 2025
-                  </span>
-                  <span className="text-lg">🎁</span>
-                </div>
-              </div>
-            </div>
-
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-2xl">
-              🎄 Nuestros Productos Navideños
+              Nuestros Productos
             </h1>
             <p className="text-xl text-gray-100 max-w-3xl mx-auto mb-8 drop-shadow-lg">
-              Descubre nuestra amplia gama de proyectores con ofertas especiales
-              de Navidad.
-              <span className="block mt-2 text-emerald-300 font-semibold">
-                Garantía extendida y soporte técnico especializado 🎁
+              Descubre nuestra amplia gama de proyectores nuevos y reacondicionados.
+              <span className="block mt-2 text-gray-300 font-semibold">
+                Garantía y soporte técnico especializado
               </span>
             </p>
 
-            {/* Stats Cards con temática navideña */}
+            {/* Stats Cards */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
               <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border-2 border-white/20 hover:border-emerald-500/30 transition-all duration-300 hover:scale-105 hover:bg-white/15">
                 <Package className="w-6 h-6 text-emerald-400 mx-auto mb-2" />
@@ -156,17 +107,6 @@ export default function ProductsClientPage() {
                 <div className="text-sm text-gray-200">Marcas</div>
               </div>
             </div>
-
-            {/* Mensaje especial de Navidad */}
-            <div className="mt-8 inline-block">
-              <div className="bg-gradient-to-r from-[#14532d] to-[#0f3d1f] backdrop-blur-md rounded-full px-6 py-3 border-2 border-[#d90429]/15 shadow-lg">
-                <p className="text-white font-semibold text-sm flex items-center gap-2">
-                  <span className="text-lg">🎅</span>
-                  Envío gratis en Lima • Garantía extendida • Regalos especiales
-                  <span className="text-lg">🎁</span>
-                </p>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -181,13 +121,9 @@ export default function ProductsClientPage() {
 
       {/* Products Section */}
       <main className="max-w-7xl mx-auto px-4 py-10">
-        {/* New Products - Temática Navideña */}
+        {/* New Products */}
         {productsByCondition.new.products.length > 0 && (
           <section className="mb-16 relative">
-            {/* Decoración navideña sutil */}
-            <div className="absolute top-0 right-0 text-6xl opacity-5 pointer-events-none">
-              🎄
-            </div>
 
             <div className="bg-gradient-to-br from-white to-green-50/30 rounded-2xl p-8 shadow-sm border-2 border-emerald-100/50">
               <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
@@ -203,40 +139,10 @@ export default function ProductsClientPage() {
                       </h2>
                       <span className="text-2xl">🎁</span>
                     </div>
-                    {christmasCampaignActive && (
-                      <div className="flex-shrink-0 text-right">
-                        <div className="flex flex-col items-end gap-0.5">
-                          <div className="flex items-center gap-1.5">
-                            <span className="text-lg">🎄</span>
-                            <span className="text-[0.65rem] font-semibold text-secondary/50 uppercase tracking-wide">
-                              Oferta Navidad
-                            </span>
-                          </div>
-                          <div className="flex items-baseline gap-0.5">
-                            <span className="text-3xl font-black text-[#d90429] leading-none">
-                              20
-                            </span>
-                            <span className="text-xl font-bold text-[#d90429]/70">
-                              %
-                            </span>
-                          </div>
-                          <span className="text-[0.65rem] font-medium text-secondary/40 uppercase tracking-wide">
-                            Descuento
-                          </span>
-                        </div>
-                      </div>
-                    )}
                   </div>
                   <p className="text-gray-600 mt-2 max-w-2xl">
                     {productsByCondition.new.description}
                   </p>
-                  <div className="mt-3 inline-flex items-center gap-2 bg-gradient-to-r from-[#14532d] to-[#0f3d1f] text-white px-4 py-2 rounded-full text-sm font-semibold shadow-md">
-                    <span>🎄</span>
-                    <span>
-                      Llévate tu proyector completamente nuevo con garantía
-                      navideña extendida
-                    </span>
-                  </div>
                 </div>
               </div>
 
@@ -249,13 +155,9 @@ export default function ProductsClientPage() {
           </section>
         )}
 
-        {/* Reconditioned Products - Temática Navideña */}
+        {/* Reconditioned Products */}
         {productsByCondition.reconditioned.products.length > 0 && (
           <section className="mb-16 relative">
-            {/* Decoración navideña sutil */}
-            <div className="absolute top-0 left-0 text-6xl opacity-5 pointer-events-none">
-              ⭐
-            </div>
 
             <div className="bg-gradient-to-br from-white to-blue-50/30 rounded-2xl p-8 shadow-sm border-2 border-blue-100/50">
               <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
@@ -271,37 +173,14 @@ export default function ProductsClientPage() {
                       </h2>
                       <span className="text-2xl">♻️</span>
                     </div>
-                    {christmasCampaignActive && (
-                      <div className="flex-shrink-0 text-right">
-                        <div className="flex flex-col items-end gap-0.5">
-                          <div className="flex items-center gap-1.5">
-                            <span className="text-lg">🎁</span>
-                            <span className="text-[0.65rem] font-semibold text-secondary/50 uppercase tracking-wide">
-                              Oferta Navidad
-                            </span>
-                          </div>
-                          <div className="flex items-baseline gap-0.5">
-                            <span className="text-3xl font-black text-[#14532d] leading-none">
-                              42
-                            </span>
-                            <span className="text-xl font-bold text-[#14532d]/70">
-                              %
-                            </span>
-                          </div>
-                          <span className="text-[0.65rem] font-medium text-secondary/40 uppercase tracking-wide">
-                            Descuento
-                          </span>
-                        </div>
-                      </div>
-                    )}
                   </div>
                   <p className="text-gray-600 mt-2 max-w-2xl">
                     {productsByCondition.reconditioned.description}
                   </p>
                   <div className="mt-3 inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-md">
-                    <span>❄️</span>
+                    <span>✓</span>
                     <span>
-                      Equipos a precios navideños, totalmente funcionales y con
+                      Equipos a precios especiales, totalmente funcionales y con
                       garantía
                     </span>
                   </div>
@@ -348,23 +227,19 @@ export default function ProductsClientPage() {
           </section>
         )}
 
-        {/* Guarantee Information - Temática Navideña */}
+        {/* Guarantee Information */}
         <div className="mt-12 relative overflow-hidden">
-          {/* Fondo decorativo navideño */}
+          {/* Fondo decorativo */}
           <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-white to-green-50 rounded-2xl"></div>
-          <div className="absolute top-0 right-0 text-8xl opacity-5">🎄</div>
-          <div className="absolute bottom-0 left-0 text-6xl opacity-5">⭐</div>
 
           <div className="relative p-8 rounded-2xl text-center border-2 border-emerald-200/50 shadow-sm">
             <div className="flex items-center justify-center gap-2 mb-4">
-              <span className="text-2xl">🎁</span>
               <h3 className="text-2xl font-bold text-color-secondary">
-                Garantía y Calidad Asegurada esta Navidad
+                Garantía y Calidad Asegurada
               </h3>
-              <span className="text-2xl">🎄</span>
             </div>
             <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-              Todos nuestros productos vienen con garantía extendida navideña y
+              Todos nuestros productos vienen con garantía y
               soporte técnico especializado
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm">
@@ -392,13 +267,6 @@ export default function ProductsClientPage() {
                   <span>Soporte técnico especializado</span>
                 </div>
               </div>
-            </div>
-
-            {/* Mensaje especial de Navidad */}
-            <div className="mt-6 inline-flex items-center gap-2 bg-gradient-to-r from-[#14532d] to-[#0f3d1f] text-white px-6 py-3 rounded-full font-semibold shadow-lg">
-              <span>🎅</span>
-              <span>Compra ahora y recibe tu regalo navideño especial</span>
-              <span>🎁</span>
             </div>
           </div>
         </div>

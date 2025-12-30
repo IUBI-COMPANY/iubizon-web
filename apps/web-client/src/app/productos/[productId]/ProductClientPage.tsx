@@ -22,12 +22,9 @@ export default function ProductDetailPage({ product }: Props) {
 
   const condition = productsCondition[product.condition];
 
-  // Check if Christmas campaign is active (Nov 1 - Dec 31, 2025)
+  // Check if Christmas campaign is active (DISABLED - Campaign ended)
   const isChristmasCampaignActive = () => {
-    const now = new Date();
-    const campaignStart = new Date(2025, 10, 1); // Nov 1, 2025
-    const campaignEnd = new Date(2025, 11, 31, 23, 59, 59); // Dec 31, 2025 end of day
-    return now >= campaignStart && now <= campaignEnd;
+    return false; // Campaign disabled
   };
 
   const showChristmasCampaign = Boolean(
@@ -82,7 +79,7 @@ export default function ProductDetailPage({ product }: Props) {
       }
 
       .christmas-badge {
-        background: linear-gradient(90deg, #1a4d2e 0%, #2d5f3f 50%, #1a4d2e 100%);
+        background: linear-gradient(90deg, #0a2540 0%, #0d3a5f 50%, #0a2540 100%);
         position: relative;
         overflow: hidden;
         animation: subtleGlow 3s ease-in-out infinite;
