@@ -1145,8 +1145,8 @@ Herramientas de control y gestión remota: para una instalación y un funcionami
   },
 ];
 
-export const DISCOUNT_PERCENTAGE_NAVIDAD_TO_NEWS = 0.2; // 20% DISCOUNT
-export const DISCOUNT_PERCENTAGE_42_NAVIDAD_TO_REACONDITIONED = 0.42; // 42% DISCOUNT
+export const DISCOUNT_PERCENTAGE_SUMMER_TO_NEWS = 0.17; // 17% DISCOUNT
+export const DISCOUNT_PERCENTAGE_42_TO_REACONDITIONED = 0.42; // 42% DISCOUNT
 export const IGV_RATE = 0.18; // 18% IGV (Peru tax rate)
 
 const calcProductPrices = (
@@ -1193,10 +1193,10 @@ const calcProductPricesDetails = (product: Product): Price => {
     case "reconditioned":
       return calcProductPrices(
         product,
-        DISCOUNT_PERCENTAGE_42_NAVIDAD_TO_REACONDITIONED,
+        DISCOUNT_PERCENTAGE_42_TO_REACONDITIONED,
       );
     case "new":
-      return calcProductPrices(product, DISCOUNT_PERCENTAGE_NAVIDAD_TO_NEWS);
+      return calcProductPrices(product, DISCOUNT_PERCENTAGE_SUMMER_TO_NEWS);
     default:
       return calcProductPrices(product);
   }

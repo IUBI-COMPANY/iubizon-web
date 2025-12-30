@@ -13,15 +13,6 @@ export const ProductCard = ({ product }: Props) => {
   const isClearance = product?.classification === "clearance";
   const isByCampaign = product?.campaign;
 
-  // Check if Christmas campaign is active (Nov 1 - Dec 31, 2025)
-  const isChristmasCampaignActive = () => {
-    const now = new Date();
-    const campaignStart = new Date(2025, 10, 1); // Nov 1, 2025
-    const campaignEnd = new Date(2025, 11, 31, 23, 59, 59); // Dec 31, 2025 end of day
-    return now >= campaignStart && now <= campaignEnd;
-  };
-
-  const isChristmas = product?.campaign && isChristmasCampaignActive();
 
   // Generate descriptive alt text for product card image
   const getProductImageAlt = () => {
@@ -43,9 +34,9 @@ export const ProductCard = ({ product }: Props) => {
           ? "border-[2px] border-[#d90429] shadow-lg hover:shadow-xl hover:shadow-red-500/20"
           : !isNew
             ? "border-[1px] border-[#99a1af] shadow-lg hover:shadow-xl hover:shadow-secondary/20"
-            : // Productos NUEVOS en campaña - Borde rojo/navideño
-              isByCampaign || isChristmas
-              ? "border-[1px] border-[#d90429] shadow-lg hover:shadow-xl hover:shadow-red-500/20"
+            : // Productos NUEVOS en campaña - Borde azul oscuro (secondary)
+              isByCampaign
+              ? "border-[1px] border-secondary shadow-lg hover:shadow-xl hover:shadow-secondary/20"
               : // Productos nuevos normales - Borde gris
                 "border border-gray-300/50 shadow-sm hover:shadow-md",
       )}
@@ -63,11 +54,10 @@ export const ProductCard = ({ product }: Props) => {
               {isClearance ? "De Remate" : isNew ? "Nuevo" : "Reacondicionado"}
             </span>
           )}
-          {/* Badge Oferta Navidad - para TODOS en campaña */}
-          {(isByCampaign || isChristmas) && (
-            <span className="rounded-full px-3 py-1 text-xs font-bold bg-gradient-to-r from-[#d90429] via-[#c41e3a] to-[#d90429] text-white absolute top-1 right-1 shadow-lg flex items-center gap-1 animate-float border-2 border-white uppercase tracking-wide">
-              <span className="text-sm">🎄</span>
-              <span>Oferta Navidad</span>
+          {/* Badge Oferta - para productos en campaña con color azul oscuro */}
+          {isByCampaign && (
+            <span className="rounded-full px-3 py-1 text-xs font-bold bg-secondary text-white absolute top-1 right-1 shadow-lg flex items-center gap-1 border-2 border-white uppercase tracking-wide">
+              <span>Oferta Especial</span>
             </span>
           )}
           <Image
@@ -152,8 +142,8 @@ export const ProductCard = ({ product }: Props) => {
             {product.sub}
           </p>
         )}
-        {(isByCampaign || isChristmas) && product?.oldPrice && (
-          <div className="mt-2 text-[#2d5f3f] text-xs font-bold uppercase tracking-wide bg-green-50 py-1 px-3 rounded-full inline-block">
+        {isByCampaign && product?.oldPrice && (
+          <div className="mt-2 text-secondary text-xs font-bold uppercase tracking-wide bg-secondary/10 py-1 px-3 rounded-full inline-block">
             Ahorra S/ {(product.oldPrice - product.price).toFixed(2)}
           </div>
         )}
@@ -213,12 +203,7 @@ export const ProductCard = ({ product }: Props) => {
       <div className="w-full mt-3 relative z-10">
         <Link
           href={`/productos/${product.id}`}
-          className={twMerge(
-            "block w-full rounded-full px-6 py-2.5 text-center text-sm font-bold shadow-md transition-all duration-300 uppercase tracking-wide",
-            isByCampaign && isNew
-              ? "bg-gradient-to-r from-[#2d5f3f] via-[#2d5f1f] to-[#2d5f3f] text-white hover:shadow-lg hover:shadow-green-950/40 hover:scale-105"
-              : "bg-secondary text-white hover:shadow-lg",
-          )}
+          className="block w-full rounded-full px-6 py-2.5 text-center text-sm font-bold shadow-md transition-all duration-300 uppercase tracking-wide bg-secondary text-white hover:shadow-lg hover:scale-105"
         >
           {product.stock <= 0 ? "Comprar a pedido" : "Comprar ahora"}
         </Link>
