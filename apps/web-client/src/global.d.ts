@@ -15,6 +15,14 @@ interface Contact {
 }
 
 interface TechnicalService {
+  //Organization Fields
+  service_type: string;
+  doc_type?: string;
+  doc_number?: string;
+  social_reason?: string;
+  quantity?: number;
+
+  //Generic Fields
   full_name: string;
   first_name?: string;
   last_name?: string;
@@ -24,7 +32,7 @@ interface TechnicalService {
   product_name?: string;
   description_device_fault?: string;
   description_other_fault?: string;
-  service_type?: string;
+  modality_service?: string;
   visit_date?: string;
   visit_time?: string;
   department?: string;

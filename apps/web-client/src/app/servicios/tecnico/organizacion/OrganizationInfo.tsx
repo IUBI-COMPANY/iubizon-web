@@ -11,8 +11,8 @@ import { useFormUtils } from "@/hooks/useFormUtils";
 import { Select } from "@/components/ui/Select";
 import countriesISO from "@/data-list/countriesISO.json";
 import { Button } from "@/components/ui/Button";
-import { RepairStep2 } from "@/components/ui/RetailTechnicalServiceForm";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { OrganizationRepairStep2 } from "@/components/ui/OrganizationsTechnicalServiceForm";
 
 interface Props {
   globalStep: number;
@@ -24,14 +24,14 @@ interface Props {
   hideControls?: boolean;
 }
 
-export const ClientInformation = ({
+export const OrganizationInfo = ({
   globalStep,
   repairsFormData,
   setRepairsFormData,
   addLocalStorageData,
   setCurrentStepToLocalStorage,
 }: Props) => {
-  const schema: ObjectSchema<RepairStep2> = yup.object({
+  const schema: ObjectSchema<OrganizationRepairStep2> = yup.object({
     first_name: yup.string().required(),
     last_name: yup.string().required(),
     email: yup.string().email().required(),
@@ -49,7 +49,7 @@ export const ClientInformation = ({
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<RepairStep2>({
+  } = useForm<OrganizationRepairStep2>({
     resolver: yupResolver(schema),
     defaultValues: {
       first_name: repairsFormData?.first_name || "",
@@ -70,7 +70,7 @@ export const ClientInformation = ({
     return new RegExp(regex);
   };
 
-  const onSubmit = (formData: RepairStep2) => {
+  const onSubmit = (formData: OrganizationRepairStep2) => {
     setRepairsFormData({ ...repairsFormData, ...formData });
     addLocalStorageData(formData);
     setCurrentStepToLocalStorage(globalStep + 1);
