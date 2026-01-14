@@ -1,23 +1,33 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import BaseLayout from "@/app/dashboard";
 import ProductsPage from "@/app/dashboard/productos";
+import ProductForm from "@/app/dashboard/productos/form";
+import { ProductProvider } from "@/app/dashboard/productos/context";
 import BannersPage from "@/app/dashboard/banners";
 import CategoriesPage from "@/app/dashboard/categorias";
+import CategoryForm from "@/app/dashboard/categorias/form";
+import { CategoryProvider } from "@/app/dashboard/categorias/context";
 import { ThemeProvider } from "@/components/theme-provider";
 
 export default function App() {
   return (
     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<BaseLayout />}>
-            <Route index element={<Navigate to="/dashboard" replace />} />
-            <Route path="dashboard" element={<DashboardContent />} />
-            <Route path="productos" element={<ProductsPage />} />
-            <Route path="categorias" element={<CategoriesPage />} />
-            <Route path="banners" element={<BannersPage />} />
-          </Route>
-        </Routes>
+        <ProductProvider>
+          <CategoryProvider>
+            <Routes>
+              <Route path="/" element={<BaseLayout />}>
+                <Route index element={<Navigate to="/dashboard" replace />} />
+                <Route path="dashboard" element={<DashboardContent />} />
+                <Route path="productos" element={<ProductsPage />} />
+                <Route path="productos/nuevo" element={<ProductForm />} />
+                <Route path="categorias" element={<CategoriesPage />} />
+                <Route path="categorias/nuevo" element={<CategoryForm />} />
+                <Route path="banners" element={<BannersPage />} />
+              </Route>
+            </Routes>
+          </CategoryProvider>
+        </ProductProvider>
       </BrowserRouter>
     </ThemeProvider>
   );
