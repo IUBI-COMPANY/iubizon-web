@@ -54,7 +54,7 @@ export default function CategoriesPage() {
 
       children.forEach((child) => {
         result.push(child);
-        // Recursivamente agregar hijos de este hijo
+        // Recursivamente, agregar hijos de este hijo
         addChildren(child.id, level + 1);
       });
     };
