@@ -1,4 +1,4 @@
-import { ProductCondition } from "@/data-list/products";
+import type { ProductCondition } from "@/data-list/products";
 
 export interface DetailProductCondition {
   name: string;
