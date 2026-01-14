@@ -28,6 +28,8 @@ export const DeviceInformation = ({
   setCurrentStepToLocalStorage,
 }: Props) => {
   const schema: ObjectSchema<RepairStep1> = yup.object({
+    service_type: yup.string().required(),
+    quantity: yup.number().required().min(1, "La cantidad debe ser al menos 1"),
     product_name: yup.string().required(),
     description_device_fault: yup.string().required(),
     description_other_fault: yup.string().when("description_device_fault", {
@@ -45,6 +47,8 @@ export const DeviceInformation = ({
   } = useForm<RepairStep1>({
     resolver: yupResolver(schema),
     defaultValues: {
+      service_type: repairsFormData?.service_type || "maintenance",
+      quantity: repairsFormData?.quantity || 1,
       product_name: repairsFormData?.product_name || "",
       description_device_fault: repairsFormData?.description_device_fault || "",
       description_other_fault: repairsFormData?.description_other_fault || "",

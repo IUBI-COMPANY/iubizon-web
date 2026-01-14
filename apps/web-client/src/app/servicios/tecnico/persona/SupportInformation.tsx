@@ -39,33 +39,33 @@ export const SupportInformation = ({
   setLoading,
 }: Props) => {
   const schema: ObjectSchema<RepairStep3> = yup.object({
-    service_modality: yup.string().required(),
-    visit_date: yup.string().when("service_modality", {
+    modality_service: yup.string().required(),
+    visit_date: yup.string().when("modality_service", {
       is: "house",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
-    visit_time: yup.string().when("service_modality", {
+    visit_time: yup.string().when("modality_service", {
       is: "house",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
-    district: yup.string().when("service_modality", {
+    district: yup.string().when("modality_service", {
       is: "house || shipping",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
-    address: yup.string().when("service_modality", {
+    address: yup.string().when("modality_service", {
       is: "house || shipping",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
-    department: yup.string().when("service_modality", {
+    department: yup.string().when("modality_service", {
       is: "shipping",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
-    province: yup.string().when("service_modality", {
+    province: yup.string().when("modality_service", {
       is: "shipping",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
@@ -81,7 +81,7 @@ export const SupportInformation = ({
   } = useForm<RepairStep3>({
     resolver: yupResolver(schema),
     defaultValues: {
-      service_modality: repairsFormData?.service_modality || "local",
+      modality_service: repairsFormData?.modality_service || "local",
       visit_date: repairsFormData?.visit_date || "",
       visit_time: repairsFormData?.visit_time || "",
       department: repairsFormData?.department || "",
@@ -93,9 +93,9 @@ export const SupportInformation = ({
 
   const { required, error, errorMessage } = useFormUtils({ errors, schema });
 
-  const isLocalVisit = watch("service_modality") === "local";
-  const isHouseVisit = watch("service_modality") === "house";
-  const isShipping = watch("service_modality") === "shipping";
+  const isLocalVisit = watch("modality_service") === "local";
+  const isHouseVisit = watch("modality_service") === "house";
+  const isShipping = watch("modality_service") === "shipping";
 
   const departmentSelected = watch("department");
   const _departmentSelected = peruUbigeo.find(
@@ -144,7 +144,7 @@ export const SupportInformation = ({
             <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
               <div className="sm:col-span-2">
                 <Controller
-                  name="service_modality"
+                  name="modality_service"
                   control={control}
                   render={({ field: { onChange, value, name } }) => (
                     <RadioGroup
