@@ -4,6 +4,7 @@ import {
   IconListDetails,
   IconSettings,
   IconPackage,
+  IconFolders,
 } from "@tabler/icons-react";
 import { NavMain } from "@/components/nav-main";
 import { NavSecondary } from "@/components/nav-secondary";
@@ -27,7 +28,7 @@ const data = {
   },
   navMain: [
     {
-      title: "Dashboard",
+      title: "Home",
       url: "/dashboard",
       icon: IconDashboard,
     },
@@ -35,6 +36,11 @@ const data = {
       title: "Productos",
       url: "/productos",
       icon: IconPackage,
+    },
+    {
+      title: "Categorías",
+      url: "/categorias",
+      icon: IconFolders,
     },
     {
       title: "Banners",

@@ -30,13 +30,13 @@ interface GeneralInfo {
   additionalInformationRTE: string;
 }
 
-export interface CategorySEO {
+interface CategorySEO {
   title?: string;
   description?: string;
   keywords?: string[];
 }
 
-export interface Category {
+interface Category {
   id: string; // UUID o slug
   name: string; // "Electronics"
   slug: string; // "electronics"
