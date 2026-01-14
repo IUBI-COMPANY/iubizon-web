@@ -1,4 +1,4 @@
-import { Classification } from "@/data-list/products";
+import type { Classification } from "@/data-list/products";
 
 interface DetailClassification {
   name: string;
