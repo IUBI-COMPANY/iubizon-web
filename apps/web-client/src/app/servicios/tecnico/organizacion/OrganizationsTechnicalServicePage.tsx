@@ -1,7 +1,6 @@
 "use client";
 
 import { Metadata } from "next";
-import { TechnicalServiceForm } from "@/components/ui/TechnicalServiceForm";
 import {
   CheckCircle,
   Clock,
@@ -13,6 +12,7 @@ import {
 import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
+import { OrganizationsTechnicalServiceForm } from "@/components/ui/OrganizationsTechnicalServiceForm";
 
 export const metadata: Metadata = {
   title:
@@ -20,6 +20,20 @@ export const metadata: Metadata = {
   description:
     "Servicio técnico profesional de proyectores en Lima. Mantenimiento preventivo, reparaciones especializadas y soporte técnico con garantía. Técnicos expertos en todas las marcas.",
   keywords: [
+    "mantenimiento de proyectores para empresas",
+    "mantenimiento de proyectores para colegios",
+    "reparación de proyectores para escuelas",
+    "reparación de proyectores para universidades",
+    "reparación de proyectores para oficinas",
+    "servicio técnico de proyectores",
+    "arreglo de proyectores en Lima",
+    "arreglo y mantenimiento preventivo de proyectores Perú",
+    "iubizon",
+    "proyectores Epson",
+    "proyectores BenQ",
+    "proyectores Optoma",
+    "soporte de proyectores",
+    "repuestos de proyectores",
     "servicio técnico proyectores",
     "reparación proyectores Lima",
     "mantenimiento proyectores",
@@ -36,16 +50,18 @@ export const metadata: Metadata = {
   authors: [{ name: "iubizon" }],
   creator: "iubizon",
   publisher: "iubizon",
-  metadataBase: new URL("https://www.iubizon.com/servicios/tecnico"),
+  metadataBase: new URL(
+    "https://www.iubizon.com/servicios/tecnico/organizacion",
+  ),
   alternates: {
-    canonical: "https://www.iubizon.com/servicios/tecnico",
+    canonical: "https://www.iubizon.com/servicios/tecnico/organizacion",
   },
   openGraph: {
     title:
       "Servicio Técnico de Proyectores | Mantenimiento y Reparación Especializada",
     description:
       "Servicio técnico profesional de proyectores en Lima. Mantenimiento preventivo, reparaciones especializadas y soporte técnico con garantía.",
-    url: "https://www.iubizon.com/servicios/tecnico",
+    url: "https://www.iubizon.com/servicios/tecnico/organizacion",
     siteName: "iubizon",
     images: [
       {
@@ -78,7 +94,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function TechnicalServicePage() {
+export default function OrganizationsTechnicalServicePage() {
   return (
     <main>
       <Head>
@@ -90,8 +106,8 @@ export default function TechnicalServicePage() {
               "@type": "LocalBusiness",
               name: "iubizon",
               image: "https://www.iubizon.com/images/logo.png",
-              "@id": "https://www.iubizon.com/servicios/tecnico",
-              url: "https://www.iubizon.com/servicios/tecnico",
+              "@id": "https://www.iubizon.com/servicios/tecnico/organizacion",
+              url: "https://www.iubizon.com/servicios/tecnico/organizacion",
               telephone: "+51 972 300 301",
               address: {
                 "@type": "PostalAddress",
@@ -123,13 +139,13 @@ export default function TechnicalServicePage() {
       >
         <div className="absolute inset-0">
           <Image
-            src="/images/proyectores-reparaciones.webp"
+            src="/images/organizacion-reparacion.jpg"
             alt="Servicio técnico de proyectores Epson, BenQ, Sony en Lima"
             fill
             className="object-cover opacity-50"
             priority
           />
-          <div className="absolute inset-0 bg-blue-900/50"></div>
+          <div className="absolute inset-0 bg-blue-500/20"></div>
         </div>
       </header>
       <section
@@ -141,16 +157,18 @@ export default function TechnicalServicePage() {
           <div className="relative z-10 h-auto px-[2em] pt-[3em] 2xl:pt-[5em] flex flex-col justify-center items-center text-center">
             <div className="max-w-4xl mx-auto mb-8">
               <h1 className="text-3xl md:text-[2.5em] font-bold text-white mb-4 leading-tight">
-                Servicio Técnico de Proyectores
+                Mantenimiento y reparación de Proyectores para Instituciones y
+                Empresas
               </h1>
               <p className="text-lg md:text-xl text-blue-100 mb-6 max-w-3xl mx-auto">
                 Soluciones profesionales en mantenimiento, diagnóstico y
-                reparación de proyectores en Lima. Garantía, repuestos
-                originales y atención a domicilio para todas las marcas.
+                reparación de proyectores en Lima para instituciones y/o
+                empresas. Ofrecemos garantía, repuestos para todas las marcas
+                originales y atención 24/7.
               </p>
             </div>
           </div>
-          <TechnicalServiceForm />
+          <OrganizationsTechnicalServiceForm />
         </div>
       </section>
       <section

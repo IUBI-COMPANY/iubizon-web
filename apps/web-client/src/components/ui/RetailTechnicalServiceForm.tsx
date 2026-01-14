@@ -12,7 +12,11 @@ import { useRouter } from "next/navigation";
 
 export type RepairStep1 = Pick<
   TechnicalService,
-  "product_name" | "description_device_fault" | "description_other_fault"
+  | "service_type"
+  | "quantity"
+  | "product_name"
+  | "description_device_fault"
+  | "description_other_fault"
 >;
 
 export type RepairStep2 = Pick<
@@ -22,7 +26,7 @@ export type RepairStep2 = Pick<
 
 export type RepairStep3 = Pick<
   TechnicalService,
-  | "service_type"
+  | "modality_service"
   | "visit_date"
   | "visit_time"
   | "department"
@@ -32,7 +36,7 @@ export type RepairStep3 = Pick<
   | "terms_and_conditions"
 >;
 
-export const TechnicalServiceForm = () => {
+export const RetailTechnicalServiceForm = () => {
   const [globalStep, setGlobalStep] = useState(0);
   const [repairsFormData, setRepairsFormData] = useState<
     Partial<TechnicalService>
@@ -111,7 +115,7 @@ export const TechnicalServiceForm = () => {
             localStorage.removeItem("currentStep");
             localStorage.removeItem("formData");
             setTimeout(() => {
-              window.location.href = "/servicios/tecnico";
+              window.location.href = "/servicios/tecnico/persona";
             }, 100);
             return 0;
           }

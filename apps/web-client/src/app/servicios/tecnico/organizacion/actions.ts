@@ -14,7 +14,7 @@ export async function sendTechnicalServiceEmail(
     product_name: formTechnicalService?.product_name,
     description_device_fault: formTechnicalService?.description_device_fault,
     description_other_fault: formTechnicalService?.description_other_fault,
-    modality_service: formTechnicalService?.modality_service,
+    service_type: formTechnicalService?.service_type,
     visit_date: formTechnicalService?.visit_date,
     visit_time: formTechnicalService?.visit_time,
     department: formTechnicalService?.department,
@@ -28,7 +28,7 @@ export async function sendTechnicalServiceEmail(
 
   try {
     const response = await fetch(
-      `https://api-iubisales.web.app/iubizon/services/technical/person`,
+      `https://api-iubisales.web.app/iubizon/services/technical`,
       {
         method: "POST",
         headers: {

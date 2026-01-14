@@ -8,7 +8,7 @@ import { useFormUtils } from "@/hooks/useFormUtils";
 import React from "react";
 import { Button } from "@/components/ui/Button";
 import { Select } from "@/components/ui/Select";
-import { RepairStep1 } from "@/components/ui/TechnicalServiceForm";
+import { RepairStep1 } from "@/components/ui/RetailTechnicalServiceForm";
 import { ArrowRight } from "lucide-react";
 import { TextArea } from "@/components/ui/TextArea";
 
@@ -28,6 +28,8 @@ export const DeviceInformation = ({
   setCurrentStepToLocalStorage,
 }: Props) => {
   const schema: ObjectSchema<RepairStep1> = yup.object({
+    service_type: yup.string().required(),
+    quantity: yup.number().required().min(1, "La cantidad debe ser al menos 1"),
     product_name: yup.string().required(),
     description_device_fault: yup.string().required(),
     description_other_fault: yup.string().when("description_device_fault", {
@@ -45,6 +47,8 @@ export const DeviceInformation = ({
   } = useForm<RepairStep1>({
     resolver: yupResolver(schema),
     defaultValues: {
+      service_type: repairsFormData?.service_type || "maintenance",
+      quantity: repairsFormData?.quantity || 1,
       product_name: repairsFormData?.product_name || "",
       description_device_fault: repairsFormData?.description_device_fault || "",
       description_other_fault: repairsFormData?.description_other_fault || "",

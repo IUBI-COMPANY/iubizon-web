@@ -29,7 +29,7 @@ interface Props {
   setLoading: (loading: boolean) => void;
 }
 
-export const SupportInformation = ({
+export const OrganizationSupportInformation = ({
   globalStep,
   repairsFormData,
   setRepairsFormData,
