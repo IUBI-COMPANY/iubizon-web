@@ -3,6 +3,7 @@ import {
   IconDashboard,
   IconListDetails,
   IconSettings,
+  IconPackage,
 } from "@tabler/icons-react";
 import { NavMain } from "@/components/nav-main";
 import { NavSecondary } from "@/components/nav-secondary";
@@ -27,12 +28,17 @@ const data = {
   navMain: [
     {
       title: "Dashboard",
-      url: "#",
+      url: "/dashboard",
       icon: IconDashboard,
     },
     {
+      title: "Productos",
+      url: "/productos",
+      icon: IconPackage,
+    },
+    {
       title: "Banners",
-      url: "#",
+      url: "/banners",
       icon: IconListDetails,
     },
   ],
