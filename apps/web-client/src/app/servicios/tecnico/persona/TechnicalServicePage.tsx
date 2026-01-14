@@ -4,15 +4,18 @@ import { Metadata } from "next";
 import { TechnicalServiceForm } from "@/components/ui/TechnicalServiceForm";
 import {
   CheckCircle,
-  Clock,
+
   MapPin,
   Phone,
-  Shield,
+
   Wrench,
 } from "lucide-react";
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaShieldAlt, FaRegClock, FaWrench } from 'react-icons/fa';
 import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 export const metadata: Metadata = {
   title:
@@ -79,6 +82,51 @@ export const metadata: Metadata = {
 };
 
 export default function TechnicalServicePage() {
+  const gallery = [
+    {
+      src: "/images/proyectores-reparaciones.webp",
+      alt: "Reparación de proyectores en taller",
+      caption: "Reparación y pruebas en nuestro taller especializado",
+    },
+    {
+      src: "/images/foto-proyectores.jpeg",
+      alt: "Técnico revisando proyector",
+      caption: "Diagnóstico técnico a domicilio o en taller",
+    },
+    {
+      src: "/images/education-projectors.jpg",
+      alt: "Proyectores para educación",
+      caption: "Soluciones para aulas y centros educativos",
+    },
+    {
+      src: "/images/seo-banner.jpg",
+      alt: "Servicio técnico profesional",
+      caption: "Atención rápida y garantía en todas nuestras reparaciones",
+    },
+  ];
+
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') setSelectedIndex(null);
+      if (e.key === 'ArrowRight' && selectedIndex !== null) {
+        setSelectedIndex((selectedIndex + 1) % gallery.length);
+      }
+      if (e.key === 'ArrowLeft' && selectedIndex !== null) {
+        setSelectedIndex((selectedIndex - 1 + gallery.length) % gallery.length);
+      }
+    }
+
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [selectedIndex, gallery.length]);
+
+  useEffect(() => {
+    if (selectedIndex !== null) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = '';
+  }, [selectedIndex]);
+
   return (
     <main>
       <Head>
@@ -123,7 +171,7 @@ export default function TechnicalServicePage() {
       >
         <div className="absolute inset-0">
           <Image
-            src="/images/proyectores-reparaciones.webp"
+            src="/images/foto-proyectores.jpeg"
             alt="Servicio técnico de proyectores Epson, BenQ, Sony en Lima"
             fill
             className="object-cover opacity-50"
@@ -311,58 +359,230 @@ export default function TechnicalServicePage() {
               proyectores Epson, BenQ, Sony y más en Lima. Técnicos expertos y
               repuestos originales.
             </p>
+              <div className="py-12" aria-labelledby="why-us-title">
+                  <div className="max-w-6xl mx-auto px-4">
+
+
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                          <article className="text-center" aria-label="Garantía de servicio">
+                              <motion.div
+                                  className="relative bg-white rounded-lg p-6 shadow-md cursor-pointer focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-blue-100"
+                                  role="button"
+                                  tabIndex={0}
+                                  initial={{ y: 0 }}
+                                  whileHover={{ y: -6, scale: 1.02 }}
+                                  whileTap={{ scale: 0.995 }}
+                                  transition={{ type: 'spring', stiffness: 280, damping: 20 }}
+                              >
+                                  <motion.div
+                                      className="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
+                                      initial={{ scale: 1 }}
+                                      whileHover={{ scale: 1.08 }}
+                                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                                      aria-hidden="true"
+                                  >
+                                      <motion.span
+                                          className="text-blue-600 w-10 h-10"
+                                          initial={{ rotate: 0 }}
+                                          whileHover={{ rotate: 18 }}
+                                          transition={{ type: 'spring', stiffness: 260, damping: 18 }}
+                                      >
+                                          <FaShieldAlt className="w-10 h-10" aria-label="Escudo" />
+                                      </motion.span>
+                                  </motion.div>
+
+                                  <h3 className="text-xl font-bold text-color-secondary mb-4">
+                                          Garantía de Servicio
+                                  </h3>
+                                  <p className="text-gray-600">
+                                      3 meses de garantía en todas nuestras reparaciones de proyectores Epson, BenQ, Sony y más.
+                                  </p>
+
+                                  <motion.button
+                                      className="mt-4 text-sm text-indigo-600 font-medium hover:underline focus:outline-none"
+                                      whileTap={{ scale: 0.98 }}
+                                      aria-label="Ver más sobre Garantía de Servicio"
+                                  >
+
+                                  </motion.button>
+                              </motion.div>
+                          </article>
+
+                          <article className="text-center" aria-label="Atención rápida">
+                              <motion.div
+                                  className="relative bg-white rounded-lg p-6 shadow-md cursor-pointer focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-orange-100"
+                                  role="button"
+                                  tabIndex={0}
+                                  initial={{ y: 0 }}
+                                  whileHover={{ y: -6, scale: 1.02 }}
+                                  whileTap={{ scale: 0.995 }}
+                                  transition={{ type: 'spring', stiffness: 280, damping: 20 }}
+                              >
+                                  <motion.div
+                                      className="bg-orange-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
+                                      initial={{ scale: 1 }}
+                                      whileHover={{ scale: 1.08 }}
+                                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                                      aria-hidden="true"
+                                  >
+                                      <motion.span
+                                          className="text-orange-600 w-10 h-10"
+                                          initial={{ rotate: 0 }}
+                                          whileHover={{ rotate: 18 }}
+                                          transition={{ type: 'spring', stiffness: 260, damping: 18 }}
+                                      >
+                                          <FaRegClock className="w-10 h-10" aria-label="Reloj" />
+                                      </motion.span>
+                                  </motion.div>
+
+                                  <h3 className="text-xl font-bold text-color-secondary mb-4">
+                                      Atención Rápida
+                                  </h3>
+                                  <p className="text-gray-600">
+                                      Respondemos en menos de 24 horas y servicio a domicilio en Lima.
+                                  </p>
+
+                                  <motion.button
+                                      className="mt-4 text-sm text-indigo-600 font-medium hover:underline focus:outline-none"
+                                      whileTap={{ scale: 0.98 }}
+                                      aria-label="Ver más sobre Atención Rápida"
+                                  >
+
+                                  </motion.button>
+                              </motion.div>
+                          </article>
+
+                          <article className="text-center" aria-label="Técnicos especializados">
+                              <motion.div
+                                  className="relative bg-white rounded-lg p-6 shadow-md cursor-pointer focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-green-100"
+                                  role="button"
+                                  tabIndex={0}
+                                  initial={{ y: 0 }}
+                                  whileHover={{ y: -6, scale: 1.02 }}
+                                  whileTap={{ scale: 0.995 }}
+                                  transition={{ type: 'spring', stiffness: 280, damping: 20 }}
+                              >
+                                  <motion.div
+                                      className="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
+                                      initial={{ scale: 1 }}
+                                      whileHover={{ scale: 1.08 }}
+                                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                                      aria-hidden="true"
+                                  >
+                                      <motion.span
+                                          className="text-green-600 w-10 h-10"
+                                          initial={{ rotate: 0 }}
+                                          whileHover={{ rotate: 18 }}
+                                          transition={{ type: 'spring', stiffness: 260, damping: 18 }}
+                                      >
+                                          <FaWrench className="w-10 h-10" aria-label="Herramienta" />
+                                      </motion.span>
+                                  </motion.div>
+
+                                  <h3 className="text-xl font-bold text-color-secondary mb-4">
+                                      Técnicos Especializados
+                                  </h3>
+                                  <p className="text-gray-600">
+                                      Especialistas con años de experiencia en reparación y mantenimiento de proyectores Epson, BenQ, Sony y más.
+                                  </p>
+
+                                  <motion.button
+                                      className="mt-4 text-sm text-indigo-600 font-medium hover:underline focus:outline-none"
+                                      whileTap={{ scale: 0.98 }}
+                                      aria-label="Ver más sobre Técnicos Especializados"
+                                  >
+
+                                  </motion.button>
+                              </motion.div>
+                          </article>
+                      </div>
+                  </div>
+              </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <article className="text-center" aria-label="Garantía de servicio">
-              <div className="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Shield
-                  className="w-10 h-10 text-blue-600"
-                  aria-label="Escudo"
-                />
-              </div>
-              <h3 className="text-xl font-bold text-color-secondary mb-4">
-                Garantía de Servicio
-              </h3>
-              <p className="text-gray-600">
-                3 meses de garantía en todas nuestras reparaciones de
-                proyectores Epson, BenQ, Sony y más.
-              </p>
-            </article>
-            <article className="text-center" aria-label="Atención rápida">
-              <div className="bg-orange-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Clock
-                  className="w-10 h-10 text-orange-600"
-                  aria-label="Reloj"
-                />
-              </div>
-              <h3 className="text-xl font-bold text-color-secondary mb-4">
-                Atención Rápida
-              </h3>
-              <p className="text-gray-600">
-                Respondemos en menos de 24 horas y servicio a domicilio en Lima.
-              </p>
-            </article>
-            <article
-              className="text-center"
-              aria-label="Técnicos especializados"
-            >
-              <div className="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Wrench
-                  className="w-10 h-10 text-green-600"
-                  aria-label="Herramienta"
-                />
-              </div>
-              <h3 className="text-xl font-bold text-color-secondary mb-4">
-                Técnicos Especializados
-              </h3>
-              <p className="text-gray-600">
-                Especialistas con años de experiencia en reparación y
-                mantenimiento de proyectores Epson, BenQ, Sony y más.
-              </p>
-            </article>
-          </div>
+
         </div>
       </section>
+
+      {/* Sección de Galería Interactiva */}
+      <section className="py-16 bg-white" aria-labelledby="gallery-heading">
+        <div className="max-w-6xl mx-auto px-4">
+          <h3 id="gallery-heading" className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 text-center">
+            Galería de Trabajos y Servicios
+          </h3>
+          <p className="text-gray-600 mb-12 max-w-3xl mx-auto text-center text-lg">
+            Algunas imágenes de nuestro taller, técnicos y proyectos realizados. Haz click en cualquier imagen para agrandar.
+          </p>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {gallery.map((img, i) => (
+              <button
+                key={img.src}
+                onClick={() => setSelectedIndex(i)}
+                className="group relative overflow-hidden rounded-lg focus:outline-none focus:ring-4 focus:ring-primary"
+                aria-label={`Abrir imagen: ${img.alt}`}
+              >
+                <div className="relative w-full h-40 md:h-32 lg:h-36">
+                  <Image src={img.src} alt={img.alt} fill className="object-cover transform group-hover:scale-105 transition-transform duration-300" />
+                </div>
+                <span className="absolute bottom-2 left-2 text-xs bg-black/50 text-white px-2 py-1 rounded">{img.caption}</span>
+              </button>
+            ))}
+          </div>
+
+          <AnimatePresence>
+            {selectedIndex !== null && (
+              <motion.div
+                key="lightbox"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-50 flex items-center justify-center p-4"
+                aria-modal="true"
+                role="dialog"
+              >
+                <motion.div
+                  className="absolute inset-0 bg-black/70"
+                  onClick={() => setSelectedIndex(null)}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                />
+
+                <motion.div className="relative max-w-5xl w-full mx-auto rounded-lg overflow-hidden" initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 40, opacity: 0 }}>
+                  <div className="bg-gray-900/90 p-4 flex items-center justify-between">
+                    <div className="text-sm text-white">{gallery[selectedIndex].caption}</div>
+                    <div className="flex items-center gap-2">
+                      <button aria-label="Cerrar" onClick={() => setSelectedIndex(null)} className="text-white hover:text-gray-200">Cerrar ✕</button>
+                    </div>
+                  </div>
+                  <div className="relative bg-black">
+                    <div className="w-full h-[60vh] relative">
+                      <Image src={gallery[selectedIndex].src} alt={gallery[selectedIndex].alt} fill className="object-contain" />
+                    </div>
+                  </div>
+                  <div className="p-4 bg-white flex justify-between">
+                    <button
+                      onClick={() => setSelectedIndex((selectedIndex - 1 + gallery.length) % gallery.length)}
+                      className="px-4 py-2 bg-gray-100 rounded hover:bg-gray-200"
+                      aria-label="Imagen anterior"
+                    >
+                      ← Anterior
+                    </button>
+                    <button
+                      onClick={() => setSelectedIndex((selectedIndex + 1) % gallery.length)}
+                      className="px-4 py-2 bg-gray-100 rounded hover:bg-gray-200"
+                      aria-label="Siguiente imagen"
+                    >
+                      Siguiente →
+                    </button>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </section>
+
       <section
         className="py-16 bg-gray-50"
         itemScope
@@ -374,7 +594,7 @@ export default function TechnicalServicePage() {
           <div className="text-center mb-12">
             <h2
               id="faq-heading"
-              className="text-3xl md:text-4xl font-bold text-color-secondary mb-4"
+              className="text-3xl md:text-4xl font-bold text-color-secondary mb-6"
             >
               Preguntas Frecuentes
             </h2>
