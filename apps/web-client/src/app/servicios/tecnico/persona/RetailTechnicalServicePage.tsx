@@ -11,6 +11,7 @@ import {
   Shield,
   Wrench,
 } from "lucide-react";
+import GridCards from "@/components/ui/GridCards";
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from "next/image";
 import Head from "next/head";
@@ -530,182 +531,9 @@ export default function RetailTechnicalServicePage() {
           </div>
 
           {/* Grid con 3 tarjetas que se voltean */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {/* Tarjeta 1 - Garantía */}
-            <motion.div
-              className="h-[450px] cursor-pointer group"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <motion.div
-                className="relative w-full h-full"
-                whileHover={{ rotateY: 180 }}
-                transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
-                style={{ transformStyle: 'preserve-3d' }}
-              >
-                {/* Frente - Imagen */}
-                <motion.div
-                  className="absolute w-full h-full bg-white rounded-3xl border-3 border-orange-500 shadow-2xl overflow-hidden group-hover:shadow-orange-300/80"
-                  style={{ backfaceVisibility: 'hidden' }}
-                >
-                  <Image
-                    src="/images/education-projectors.jpg"
-                    alt="Garantía de Servicio"
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <div className="text-sm text-white/80 mb-2">Protección garantizada en cada reparación realizada</div>
-                    <div className="text-lg font-bold">→ Ver más</div>
-                  </div>
-                </motion.div>
+            <GridCards />
 
-                {/* Atrás - Contenido */}
-                <motion.div
-                  className="absolute w-full h-full rounded-3xl border-2 border-orange-500 shadow-2xl p-8 flex flex-col items-center justify-center text-center"
-                  style={{ backfaceVisibility: 'hidden', rotateY: 180 }}
-                >
-                  <motion.div
-                    className="bg-white w-20 h-20 rounded-full flex items-center justify-center mb-6 shadow-lg"
-                    animate={{ scale: [1, 1.05, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <FaShieldAlt className="w-10 h-10 text-blue-600" />
-                  </motion.div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                    Garantía
-                  </h3>
-                  <p className="text-gray-700 text-base leading-relaxed font-medium">
-                    3 meses de garantía en todas nuestras reparaciones. Tu inversión protegida.
-                  </p>
-                </motion.div>
-              </motion.div>
-            </motion.div>
 
-            {/* Tarjeta 2 - Atención Rápida */}
-            <motion.div
-              className="h-[450px] cursor-pointer group"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-            >
-              <motion.div
-                className="relative w-full h-full"
-                whileHover={{ rotateY: 180 }}
-                transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
-                style={{ transformStyle: 'preserve-3d' }}
-              >
-                {/* Frente - Imagen */}
-                <motion.div
-                  className="absolute w-full h-full bg-white rounded-3xl border-3 border-orange-500 shadow-2xl overflow-hidden group-hover:shadow-orange-300/80"
-                  style={{ backfaceVisibility: 'hidden' }}
-                >
-                  <Image
-                    src="/images/epson-banner.jpg"
-                    alt="Atención Rápida"
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                      <div className="text-sm text-white/80 mb-2">Nos aseguramos que recibas atención lo antes posible</div>
-                    <div className="text-lg font-bold">→ Ver más</div>
-                  </div>
-                </motion.div>
-
-                {/* Atrás - Contenido */}
-                <motion.div
-                  className="absolute w-full h-full rounded-3xl border-2 border-orange-500 shadow-2xl p-8 flex flex-col items-center justify-center text-center"
-                  style={{ backfaceVisibility: 'hidden', rotateY: 180 }}
-                >
-                  <motion.div
-                    className="bg-white w-20 h-20 rounded-full flex items-center justify-center mb-6 shadow-lg"
-                    animate={{ scale: [1, 1.05, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <FaRegClock className="w-10 h-10 text-orange-600" />
-                  </motion.div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                    Atención Rápida
-                  </h3>
-                  <p className="text-gray-700 text-base leading-relaxed font-medium">
-                    Respondemos en 24 horas con servicio a domicilio en Lima.
-                  </p>
-                </motion.div>
-              </motion.div>
-            </motion.div>
-
-            {/* Tarjeta 3 - Técnicos Especializados */}
-            <motion.div
-              className="h-[450px] cursor-pointer group"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <motion.div
-                className="relative w-full h-full"
-                whileHover={{ rotateY: 180 }}
-                transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
-                style={{ transformStyle: 'preserve-3d' }}
-              >
-                {/* Frente - Imagen */}
-                <motion.div
-                  className="absolute w-full h-full bg-white rounded-3xl border-3 border-orange-500 shadow-2xl overflow-hidden group-hover:shadow-orange-300/80"
-                  style={{ backfaceVisibility: 'hidden' }}
-                >
-                  <Image
-                    src="/images/seo-banner.jpg"
-                    alt="Técnicos Especializados"
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                      <div className="text-sm text-white/80 mb-2">Nuestros técnicos se encargaran de brindarte un buen resultado</div>
-                    <div className="text-lg font-bold">→ Ver más</div>
-                  </div>
-                </motion.div>
-
-                {/* Atrás - Contenido */}
-                <motion.div
-                  className="absolute w-full h-full rounded-3xl border-2 border-orange-500 shadow-2xl p-8 flex flex-col items-center justify-center text-center"
-                  style={{ backfaceVisibility: 'hidden', rotateY: 180 }}
-                >
-                  <motion.div
-                    className="bg-white w-20 h-20 rounded-full flex items-center justify-center mb-6 shadow-lg"
-                    animate={{ scale: [1, 1.05, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <CheckCircle className="w-10 h-10 text-green-600" />
-                  </motion.div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                    Técnicos Expertos
-                  </h3>
-                  <p className="text-gray-700 text-base leading-relaxed font-medium">
-                    Especialistas certificados con años de experiencia garantizada.
-                  </p>
-                </motion.div>
-              </motion.div>
-            </motion.div>
-          </div>
-
-          {/* Texto informativo debajo */}
-          <motion.div
-            className="mt-16 text-center"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            <p className="text-gray-600 text-lg max-w-3xl mx-auto">
-              Nuestro compromiso es brindarte el mejor servicio técnico con garantía, rapidez y profesionalismo.
-            </p>
-          </motion.div>
 
         </div>
       </section>
@@ -731,7 +559,7 @@ export default function RetailTechnicalServicePage() {
                 <div className="relative w-full h-40 md:h-32 lg:h-36">
                   <Image src={img.src} alt={img.alt} fill className="object-cover transform group-hover:scale-105 transition-transform duration-300" />
                 </div>
-                <span className="absolute bottom-2 left-1 text-xs bg-black/50 text-white px-2 py-1 rounded w-64">{img.caption}</span>
+                <span className="absolute bottom-2 left-1 text-xs bg-black/50 text-white px-2 py-1 rounded w-32 mx-auto">{img.caption}</span>
               </button>
             ))}
           </div>
@@ -802,7 +630,7 @@ export default function RetailTechnicalServicePage() {
             className="object-cover opacity-50"
             priority
           />
-          <div className="absolute inset-0 bg-blue-900/50"></div>
+
         </div>
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
