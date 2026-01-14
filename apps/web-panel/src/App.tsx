@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import BaseLayout from "@/app/dashboard";
 import ProductsPage from "@/app/dashboard/productos";
+import BannersPage from "@/app/dashboard/banners";
 import { ThemeProvider } from "@/components/theme-provider";
 
 export default function App() {
@@ -12,6 +13,7 @@ export default function App() {
             <Route index element={<Navigate to="/dashboard" replace />} />
             <Route path="dashboard" element={<DashboardContent />} />
             <Route path="productos" element={<ProductsPage />} />
+            <Route path="banners" element={<BannersPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
