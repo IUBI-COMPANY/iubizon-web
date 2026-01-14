@@ -11,22 +11,35 @@ import { Menu } from "lucide-react";
 import { ContentWrapper } from "@/components/ui/layout/ContentWrapper";
 import { Drawer } from "@/components/ui/layout/DrawerLayout";
 
-export interface HeaderNavigation {
+interface Option {
   name: string;
   href: string;
+}
+
+export interface HeaderNavigation {
+  name: string;
+  href?: string;
+  options?: Option[];
 }
 
 const navigation: HeaderNavigation[] = [
   { name: "Inicio", href: "/" },
   { name: "¿Quienes somos?", href: "/quienes-somos" },
   { name: "Productos", href: "/productos" },
-  { name: "Servicio Técnico", href: "/servicios/tecnico" },
+  {
+    name: "Servicio Técnico",
+    options: [
+      { name: "Persona", href: "/servicios/tecnico/persona" },
+      { name: "Institución/Empresas", href: "/servicios/tecnico/organizacion" }
+    ]
+  },
   { name: "Contacto", href: "/contacto" },
 ];
 
 export const HeaderLayout = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   const onOpenDrawer = () => setIsOpen(!isOpen);
 
@@ -47,9 +60,9 @@ export const HeaderLayout = () => {
   return (
     <header
       className={twMerge(
-        "top-header top-2 left-0 w-full p-4 z-20",
+        "top-header top-2 left-0 w-full p-4 z-50",
         isHomePage
-          ? "absolute top-0 z-20 w-full h-auto object-cover"
+          ? "absolute top-0 z-50 w-full h-auto object-cover"
           : "static bg-gradient-to-r from-secondary/90 via-secondary/100 to-secondary/90",
       )}
     >
@@ -69,17 +82,55 @@ export const HeaderLayout = () => {
           <div className="hidden lg:flex items-center space-x-8">
             <nav className="flex items-center space-x-8">
               {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={
-                    item.href === "/servicios/tecnico"
-                      ? "text-primary font-bold bg-primary/10 px-3 py-1 rounded transition-colors duration-200"
-                      : "text-white/87 hover:text-white transition-colors duration-200 font-medium"
-                  }
-                >
-                  {item.name}
-                </Link>
+                item.options ? (
+                  <div
+                    key={item.name}
+                    className="relative group"
+                    onMouseEnter={() => setOpenDropdown(item.name)}
+                    onMouseLeave={() => setOpenDropdown(null)}
+                  >
+                    <button
+                      className="text-primary font-bold bg-primary/10 px-3 py-1 rounded transition-colors duration-200 flex items-center gap-2"
+                    >
+                      {item.name}
+                      <svg
+                        className={`w-4 h-4 transition-transform duration-200 ${
+                          openDropdown === item.name ? 'rotate-180' : ''
+                        }`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    <div
+                      className={`absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-200 z-[100] ${
+                        openDropdown === item.name
+                          ? 'opacity-100 visible translate-y-0'
+                          : 'opacity-0 invisible -translate-y-2'
+                      }`}
+                    >
+                      {item.options.map((option) => (
+                        <Link
+                          key={option.name}
+                          href={option.href}
+                          className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors duration-200"
+                        >
+                          {option.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <Link
+                    key={item.name}
+                    href={item.href!}
+                    className="text-white/87 hover:text-white transition-colors duration-200 font-medium"
+                  >
+                    {item.name}
+                  </Link>
+                )
               ))}
             </nav>
             {/*<div className="flex items-center space-x-4">*/}
