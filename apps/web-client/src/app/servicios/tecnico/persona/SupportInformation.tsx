@@ -17,7 +17,7 @@ import { Checkbox } from "@/components/ui/Checkbox";
 import { sendTechnicalServiceEmail } from "./actions";
 import { RepairStep3 } from "@/components/ui/TechnicalServiceForm";
 import { ArrowLeft, SendIcon } from "lucide-react";
-import { BusinessAddress } from "@/app/servicios/tecnico/BusinessAddress";
+import { BusinessAddress } from "@/app/servicios/tecnico/persona/BusinessAddress";
 
 interface Props {
   globalStep: number;

@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ClientInformation } from "@/app/servicios/tecnico/ClientInformation";
-import { DeviceInformation } from "@/app/servicios/tecnico/DeviceInformation";
-import { SupportInformation } from "@/app/servicios/tecnico/SupportInformation";
+import { ClientInformation } from "@/app/servicios/tecnico/persona/ClientInformation";
+import { DeviceInformation } from "@/app/servicios/tecnico/persona/DeviceInformation";
+import { SupportInformation } from "@/app/servicios/tecnico/persona/SupportInformation";
 import { StepsRepairsContactForm } from "@/components/ui/StepsRepairsContactForm";
 import { CircleCheck, Loader2, Projector, User, Wrench } from "lucide-react";
 import Image from "next/image";
