@@ -2,6 +2,7 @@
 
 import { Metadata } from "next";
 import { RetailTechnicalServiceForm } from "@/components/ui/RetailTechnicalServiceForm";
+import FAQAccordion from "@/components/ui/layout/FAQAccordion";
 import {
   CheckCircle,
   Clock,
@@ -81,7 +82,7 @@ export const metadata: Metadata = {
 };
 
 export default function RetailTechnicalServicePage() {
-export default function TechnicalServicePage() {
+
   const gallery = [
     {
       src: "/images/proyectores-reparaciones.webp",
@@ -225,74 +226,233 @@ export default function TechnicalServicePage() {
               garantizados.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <article
-              className="text-center"
-              itemScope
-              itemType="https://schema.org/HowToStep"
-              aria-label="Solicita tu servicio técnico de proyectores"
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16 max-w-7xl mx-auto items-center">
+            {/* Columna izquierda - Imagen */}
+            <motion.div
+              className="md:col-span-1"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
             >
-              <div className="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Phone
-                  className="w-10 h-10 text-blue-600"
-                  aria-label="Teléfono"
-                />
+              <div className="relative h-auto rounded-3xl overflow-hidden shadow-xl">
+                <div className="relative w-full" style={{ aspectRatio: '3/4', minHeight: '600px' }}>
+                  <Image
+                    src="/images/foto-proyectores.jpeg"
+                    alt="Servicio técnico de proyectores profesional"
+                    fill
+                    className="object-cover rounded-3xl"
+                  />
+                </div>
               </div>
-              <h3
-                className="text-xl font-bold text-gray-900 mb-4"
-                itemProp="name"
+            </motion.div>
+
+            {/* Columna derecha - Grid 2x2 de cuadros */}
+            <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Paso 1 - Arriba Izquierda */}
+              <motion.article
+                className="group"
+                itemScope
+                itemType="https://schema.org/HowToStep"
+                aria-label="Paso 1: Contacto"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
               >
-                1. Solicita Tu Servicio Técnico
-              </h3>
-              <p className="text-gray-600" itemProp="text">
-                Completa el formulario y agenda tu visita técnica en Lima.
-              </p>
-            </article>
-            <article
-              className="text-center"
-              itemScope
-              itemType="https://schema.org/HowToStep"
-              aria-label="Diagnóstico técnico especializado"
-            >
-              <div className="bg-orange-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Wrench
-                  className="w-10 h-10 text-orange-600"
-                  aria-label="Herramienta"
-                />
-              </div>
-              <h3
-                className="text-xl font-bold text-gray-900 mb-4"
-                itemProp="name"
+                <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full overflow-hidden border-b-4 border-orange-500 min-h-[340px]">
+                  <div className="p-8 flex flex-col items-start text-left relative h-full">
+                    {/* Decoración de fondo */}
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-orange-50 rounded-full -mr-16 -mt-16 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+
+                    {/* Icono */}
+                    <motion.div
+                      className="relative z-10 bg-gradient-to-br from-orange-500 to-orange-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 shadow-md"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <Phone className="w-8 h-8 text-white" />
+                    </motion.div>
+
+                    <h3
+                      className="text-2xl font-bold text-gray-900 mb-3 relative z-10 group-hover:text-orange-600 transition-colors"
+                      itemProp="name"
+                    >
+                      Contacto
+                    </h3>
+                    <p className="text-gray-700 text-base leading-relaxed relative z-10 flex-grow" itemProp="text">
+                      Completa el formulario o llámanos. Respuesta garantizada en menos de 24 horas.
+                    </p>
+
+                    {/* Indicador */}
+                    <motion.div
+                      className="mt-4 pt-4 border-t border-orange-100 w-full relative z-10"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: 0.2 }}
+                      viewport={{ once: true }}
+                    >
+                      <span className="text-xs font-semibold text-orange-600 inline-flex items-center gap-2">
+                        ✓ Rápido y confiable
+                      </span>
+                    </motion.div>
+                  </div>
+                </div>
+              </motion.article>
+
+              {/* Paso 2 - Arriba Derecha */}
+              <motion.article
+                className="group"
+                itemScope
+                itemType="https://schema.org/HowToStep"
+                aria-label="Paso 2: Diagnóstico"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                viewport={{ once: true }}
               >
-                2. Diagnóstico Técnico
-              </h3>
-              <p className="text-gray-600" itemProp="text">
-                Evaluamos tu proyector y te informamos la solución recomendada.
-              </p>
-            </article>
-            <article
-              className="text-center"
-              itemScope
-              itemType="https://schema.org/HowToStep"
-              aria-label="Servicio a domicilio en Lima"
-            >
-              <div className="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <MapPin
-                  className="w-10 h-10 text-green-600"
-                  aria-label="Ubicación"
-                />
-              </div>
-              <h3
-                className="text-xl font-bold text-gray-900 mb-4"
-                itemProp="name"
+                <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full overflow-hidden border-b-4 border-orange-500 min-h-[340px]">
+                  <div className="p-8 flex flex-col items-start text-left relative h-full">
+                    {/* Decoración de fondo */}
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-orange-50 rounded-full -mr-16 -mt-16 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+
+                    {/* Icono */}
+                    <motion.div
+                      className="relative z-10 bg-gradient-to-br from-orange-500 to-orange-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 shadow-md"
+                      whileHover={{ scale: 1.1, rotate: -5 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <Search className="w-8 h-8 text-white" />
+                    </motion.div>
+
+                    <h3
+                      className="text-2xl font-bold text-gray-900 mb-3 relative z-10 group-hover:text-orange-600 transition-colors"
+                      itemProp="name"
+                    >
+                      Diagnóstico
+                    </h3>
+                    <p className="text-gray-700 text-base leading-relaxed relative z-10 flex-grow" itemProp="text">
+                      Revisión técnica completa de tu proyector por especialistas certificados.
+                    </p>
+
+                    {/* Indicador */}
+                    <motion.div
+                      className="mt-4 pt-4 border-t border-orange-100 w-full relative z-10"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: 0.2 }}
+                      viewport={{ once: true }}
+                    >
+                      <span className="text-xs font-semibold text-orange-600 inline-flex items-center gap-2">
+                        ✓ Análisis profesional
+                      </span>
+                    </motion.div>
+                  </div>
+                </div>
+              </motion.article>
+
+              {/* Paso 3 - Abajo Izquierda */}
+              <motion.article
+                className="group"
+                itemScope
+                itemType="https://schema.org/HowToStep"
+                aria-label="Paso 3: Reparación"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
               >
-                3. Servicio a Domicilio en Lima
-              </h3>
-              <p className="text-gray-600" itemProp="text">
-                El servicio a domicilio es solo para diagnóstico. La reparación
-                se realiza en nuestro taller especializado.
-              </p>
-            </article>
+                <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full overflow-hidden border-b-4 border-orange-500 min-h-[340px]">
+                  <div className="p-8 flex flex-col items-start text-left relative h-full">
+                    {/* Decoración de fondo */}
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-orange-50 rounded-full -mr-16 -mt-16 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+
+                    {/* Icono */}
+                    <motion.div
+                      className="relative z-10 bg-gradient-to-br from-orange-500 to-orange-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 shadow-md"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <Wrench className="w-8 h-8 text-white" />
+                    </motion.div>
+
+                    <h3
+                      className="text-2xl font-bold text-gray-900 mb-3 relative z-10 group-hover:text-orange-600 transition-colors"
+                      itemProp="name"
+                    >
+                      Reparación
+                    </h3>
+                    <p className="text-gray-700 text-base leading-relaxed relative z-10 flex-grow" itemProp="text">
+                      Reparación con repuestos originales certificados y 3 meses de garantía incluida.
+                    </p>
+
+                    {/* Indicador */}
+                    <motion.div
+                      className="mt-4 pt-4 border-t border-orange-100 w-full relative z-10"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: 0.2 }}
+                      viewport={{ once: true }}
+                    >
+                      <span className="text-xs font-semibold text-orange-600 inline-flex items-center gap-2">
+                        ✓ Garantizado
+                      </span>
+                    </motion.div>
+                  </div>
+                </div>
+              </motion.article>
+
+              {/* Paso 4 - Abajo Derecha */}
+              <motion.article
+                className="group"
+                itemScope
+                itemType="https://schema.org/HowToStep"
+                aria-label="Paso 4: Entrega"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
+              >
+                <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 h-full overflow-hidden border-b-4 border-orange-500 min-h-[340px]">
+                  <div className="p-8 flex flex-col items-start text-left relative h-full">
+                    {/* Decoración de fondo */}
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-orange-50 rounded-full -mr-16 -mt-16 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+
+                    {/* Icono */}
+                    <motion.div
+                      className="relative z-10 bg-gradient-to-br from-orange-500 to-orange-600 w-16 h-16 rounded-xl flex items-center justify-center mb-6 shadow-md"
+                      whileHover={{ scale: 1.1, rotate: -5 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <CheckCircle className="w-8 h-8 text-white" />
+                    </motion.div>
+
+                    <h3
+                      className="text-2xl font-bold text-gray-900 mb-3 relative z-10 group-hover:text-orange-600 transition-colors"
+                      itemProp="name"
+                    >
+                      Entrega
+                    </h3>
+                    <p className="text-gray-700 text-base leading-relaxed relative z-10 flex-grow" itemProp="text">
+                      Recibe tu proyector funcionando perfectamente a domicilio en Lima con garantía completa.
+                    </p>
+
+                    {/* Indicador */}
+                    <motion.div
+                      className="mt-4 pt-4 border-t border-orange-100 w-full relative z-10"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: 0.2 }}
+                      viewport={{ once: true }}
+                    >
+                      <span className="text-xs font-semibold text-orange-600 inline-flex items-center gap-2">
+                        ✓ A domicilio
+                      </span>
+                    </motion.div>
+                  </div>
+                </div>
+              </motion.article>
+            </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <article
@@ -342,163 +502,210 @@ export default function TechnicalServicePage() {
         </div>
       </section>
       <section
-        className="py-16 bg-gray-50"
+        className="py-20 bg-gradient-to-b from-white via-gray-50 to-white"
         aria-labelledby="benefits-heading"
         aria-label="Beneficios del servicio de reparación de proyectores"
       >
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-20">
+            <motion.h2
               id="benefits-heading"
-              className="text-3xl md:text-4xl font-bold text-color-secondary mb-4"
+              className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
             >
               ¿Por Qué Elegir Nuestro Servicio Técnico?
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Garantía, rapidez y experiencia en mantenimiento y reparación de
-              proyectores Epson, BenQ, Sony y más en Lima. Técnicos expertos y
-              repuestos originales.
-            </p>
-              <div className="py-12" aria-labelledby="why-us-title">
-                  <div className="max-w-6xl mx-auto px-4">
-
-
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                          <article className="text-center" aria-label="Garantía de servicio">
-                              <motion.div
-                                  className="relative bg-white rounded-lg p-6 shadow-md cursor-pointer focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-blue-100"
-                                  role="button"
-                                  tabIndex={0}
-                                  initial={{ y: 0 }}
-                                  whileHover={{ y: -6, scale: 1.02 }}
-                                  whileTap={{ scale: 0.995 }}
-                                  transition={{ type: 'spring', stiffness: 280, damping: 20 }}
-                              >
-                                  <motion.div
-                                      className="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
-                                      initial={{ scale: 1 }}
-                                      whileHover={{ scale: 1.08 }}
-                                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                                      aria-hidden="true"
-                                  >
-                                      <motion.span
-                                          className="text-blue-600 w-10 h-10"
-                                          initial={{ rotate: 0 }}
-                                          whileHover={{ rotate: 18 }}
-                                          transition={{ type: 'spring', stiffness: 260, damping: 18 }}
-                                      >
-                                          <FaShieldAlt className="w-10 h-10" aria-label="Escudo" />
-                                      </motion.span>
-                                  </motion.div>
-
-                                  <h3 className="text-xl font-bold text-color-secondary mb-4">
-                                          Garantía de Servicio
-                                  </h3>
-                                  <p className="text-gray-600">
-                                      3 meses de garantía en todas nuestras reparaciones de proyectores Epson, BenQ, Sony y más.
-                                  </p>
-
-                                  <motion.button
-                                      className="mt-4 text-sm text-indigo-600 font-medium hover:underline focus:outline-none"
-                                      whileTap={{ scale: 0.98 }}
-                                      aria-label="Ver más sobre Garantía de Servicio"
-                                  >
-
-                                  </motion.button>
-                              </motion.div>
-                          </article>
-
-                          <article className="text-center" aria-label="Atención rápida">
-                              <motion.div
-                                  className="relative bg-white rounded-lg p-6 shadow-md cursor-pointer focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-orange-100"
-                                  role="button"
-                                  tabIndex={0}
-                                  initial={{ y: 0 }}
-                                  whileHover={{ y: -6, scale: 1.02 }}
-                                  whileTap={{ scale: 0.995 }}
-                                  transition={{ type: 'spring', stiffness: 280, damping: 20 }}
-                              >
-                                  <motion.div
-                                      className="bg-orange-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
-                                      initial={{ scale: 1 }}
-                                      whileHover={{ scale: 1.08 }}
-                                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                                      aria-hidden="true"
-                                  >
-                                      <motion.span
-                                          className="text-orange-600 w-10 h-10"
-                                          initial={{ rotate: 0 }}
-                                          whileHover={{ rotate: 18 }}
-                                          transition={{ type: 'spring', stiffness: 260, damping: 18 }}
-                                      >
-                                          <FaRegClock className="w-10 h-10" aria-label="Reloj" />
-                                      </motion.span>
-                                  </motion.div>
-
-                                  <h3 className="text-xl font-bold text-color-secondary mb-4">
-                                      Atención Rápida
-                                  </h3>
-                                  <p className="text-gray-600">
-                                      Respondemos en menos de 24 horas y servicio a domicilio en Lima.
-                                  </p>
-
-                                  <motion.button
-                                      className="mt-4 text-sm text-indigo-600 font-medium hover:underline focus:outline-none"
-                                      whileTap={{ scale: 0.98 }}
-                                      aria-label="Ver más sobre Atención Rápida"
-                                  >
-
-                                  </motion.button>
-                              </motion.div>
-                          </article>
-
-                          <article className="text-center" aria-label="Técnicos especializados">
-                              <motion.div
-                                  className="relative bg-white rounded-lg p-6 shadow-md cursor-pointer focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-green-100"
-                                  role="button"
-                                  tabIndex={0}
-                                  initial={{ y: 0 }}
-                                  whileHover={{ y: -6, scale: 1.02 }}
-                                  whileTap={{ scale: 0.995 }}
-                                  transition={{ type: 'spring', stiffness: 280, damping: 20 }}
-                              >
-                                  <motion.div
-                                      className="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
-                                      initial={{ scale: 1 }}
-                                      whileHover={{ scale: 1.08 }}
-                                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                                      aria-hidden="true"
-                                  >
-                                      <motion.span
-                                          className="text-green-600 w-10 h-10"
-                                          initial={{ rotate: 0 }}
-                                          whileHover={{ rotate: 18 }}
-                                          transition={{ type: 'spring', stiffness: 260, damping: 18 }}
-                                      >
-                                          <FaWrench className="w-10 h-10" aria-label="Herramienta" />
-                                      </motion.span>
-                                  </motion.div>
-
-                                  <h3 className="text-xl font-bold text-color-secondary mb-4">
-                                      Técnicos Especializados
-                                  </h3>
-                                  <p className="text-gray-600">
-                                      Especialistas con años de experiencia en reparación y mantenimiento de proyectores Epson, BenQ, Sony y más.
-                                  </p>
-
-                                  <motion.button
-                                      className="mt-4 text-sm text-indigo-600 font-medium hover:underline focus:outline-none"
-                                      whileTap={{ scale: 0.98 }}
-                                      aria-label="Ver más sobre Técnicos Especializados"
-                                  >
-
-                                  </motion.button>
-                              </motion.div>
-                          </article>
-                      </div>
-                  </div>
-              </div>
+            </motion.h2>
+            <motion.p
+              className="text-xl text-gray-600 max-w-2xl mx-auto font-medium"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+            >
+              Descubre los beneficios de trabajar con expertos certificados en reparación de proyectores
+            </motion.p>
           </div>
+
+          {/* Grid con 3 tarjetas que se voltean */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {/* Tarjeta 1 - Garantía */}
+            <motion.div
+              className="h-[450px] cursor-pointer group"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <motion.div
+                className="relative w-full h-full"
+                whileHover={{ rotateY: 180 }}
+                transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
+                style={{ transformStyle: 'preserve-3d' }}
+              >
+                {/* Frente - Imagen */}
+                <motion.div
+                  className="absolute w-full h-full bg-white rounded-3xl border-3 border-orange-500 shadow-2xl overflow-hidden group-hover:shadow-orange-300/80"
+                  style={{ backfaceVisibility: 'hidden' }}
+                >
+                  <Image
+                    src="/images/education-projectors.jpg"
+                    alt="Garantía de Servicio"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                    <div className="text-sm text-white/80 mb-2">Protección garantizada en cada reparación realizada</div>
+                    <div className="text-lg font-bold">→ Ver más</div>
+                  </div>
+                </motion.div>
+
+                {/* Atrás - Contenido */}
+                <motion.div
+                  className="absolute w-full h-full rounded-3xl border-2 border-orange-500 shadow-2xl p-8 flex flex-col items-center justify-center text-center"
+                  style={{ backfaceVisibility: 'hidden', rotateY: 180 }}
+                >
+                  <motion.div
+                    className="bg-white w-20 h-20 rounded-full flex items-center justify-center mb-6 shadow-lg"
+                    animate={{ scale: [1, 1.05, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    <FaShieldAlt className="w-10 h-10 text-blue-600" />
+                  </motion.div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                    Garantía
+                  </h3>
+                  <p className="text-gray-700 text-base leading-relaxed font-medium">
+                    3 meses de garantía en todas nuestras reparaciones. Tu inversión protegida.
+                  </p>
+                </motion.div>
+              </motion.div>
+            </motion.div>
+
+            {/* Tarjeta 2 - Atención Rápida */}
+            <motion.div
+              className="h-[450px] cursor-pointer group"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+            >
+              <motion.div
+                className="relative w-full h-full"
+                whileHover={{ rotateY: 180 }}
+                transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
+                style={{ transformStyle: 'preserve-3d' }}
+              >
+                {/* Frente - Imagen */}
+                <motion.div
+                  className="absolute w-full h-full bg-white rounded-3xl border-3 border-orange-500 shadow-2xl overflow-hidden group-hover:shadow-orange-300/80"
+                  style={{ backfaceVisibility: 'hidden' }}
+                >
+                  <Image
+                    src="/images/epson-banner.jpg"
+                    alt="Atención Rápida"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                      <div className="text-sm text-white/80 mb-2">Nos aseguramos que recibas atención lo antes posible</div>
+                    <div className="text-lg font-bold">→ Ver más</div>
+                  </div>
+                </motion.div>
+
+                {/* Atrás - Contenido */}
+                <motion.div
+                  className="absolute w-full h-full rounded-3xl border-2 border-orange-500 shadow-2xl p-8 flex flex-col items-center justify-center text-center"
+                  style={{ backfaceVisibility: 'hidden', rotateY: 180 }}
+                >
+                  <motion.div
+                    className="bg-white w-20 h-20 rounded-full flex items-center justify-center mb-6 shadow-lg"
+                    animate={{ scale: [1, 1.05, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    <FaRegClock className="w-10 h-10 text-orange-600" />
+                  </motion.div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                    Atención Rápida
+                  </h3>
+                  <p className="text-gray-700 text-base leading-relaxed font-medium">
+                    Respondemos en 24 horas con servicio a domicilio en Lima.
+                  </p>
+                </motion.div>
+              </motion.div>
+            </motion.div>
+
+            {/* Tarjeta 3 - Técnicos Especializados */}
+            <motion.div
+              className="h-[450px] cursor-pointer group"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <motion.div
+                className="relative w-full h-full"
+                whileHover={{ rotateY: 180 }}
+                transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
+                style={{ transformStyle: 'preserve-3d' }}
+              >
+                {/* Frente - Imagen */}
+                <motion.div
+                  className="absolute w-full h-full bg-white rounded-3xl border-3 border-orange-500 shadow-2xl overflow-hidden group-hover:shadow-orange-300/80"
+                  style={{ backfaceVisibility: 'hidden' }}
+                >
+                  <Image
+                    src="/images/seo-banner.jpg"
+                    alt="Técnicos Especializados"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                      <div className="text-sm text-white/80 mb-2">Nuestros técnicos se encargaran de brindarte un buen resultado</div>
+                    <div className="text-lg font-bold">→ Ver más</div>
+                  </div>
+                </motion.div>
+
+                {/* Atrás - Contenido */}
+                <motion.div
+                  className="absolute w-full h-full rounded-3xl border-2 border-orange-500 shadow-2xl p-8 flex flex-col items-center justify-center text-center"
+                  style={{ backfaceVisibility: 'hidden', rotateY: 180 }}
+                >
+                  <motion.div
+                    className="bg-white w-20 h-20 rounded-full flex items-center justify-center mb-6 shadow-lg"
+                    animate={{ scale: [1, 1.05, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    <CheckCircle className="w-10 h-10 text-green-600" />
+                  </motion.div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                    Técnicos Expertos
+                  </h3>
+                  <p className="text-gray-700 text-base leading-relaxed font-medium">
+                    Especialistas certificados con años de experiencia garantizada.
+                  </p>
+                </motion.div>
+              </motion.div>
+            </motion.div>
+          </div>
+
+          {/* Texto informativo debajo */}
+          <motion.div
+            className="mt-16 text-center"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+              Nuestro compromiso es brindarte el mejor servicio técnico con garantía, rapidez y profesionalismo.
+            </p>
+          </motion.div>
 
         </div>
       </section>
@@ -524,7 +731,7 @@ export default function TechnicalServicePage() {
                 <div className="relative w-full h-40 md:h-32 lg:h-36">
                   <Image src={img.src} alt={img.alt} fill className="object-cover transform group-hover:scale-105 transition-transform duration-300" />
                 </div>
-                <span className="absolute bottom-2 left-2 text-xs bg-black/50 text-white px-2 py-1 rounded">{img.caption}</span>
+                <span className="absolute bottom-2 left-1 text-xs bg-black/50 text-white px-2 py-1 rounded w-64">{img.caption}</span>
               </button>
             ))}
           </div>
@@ -582,140 +789,7 @@ export default function TechnicalServicePage() {
           </AnimatePresence>
         </div>
       </section>
-
-      <section
-        className="py-16 bg-gray-50"
-        itemScope
-        itemType="https://schema.org/FAQPage"
-        aria-labelledby="faq-heading"
-        aria-label="Preguntas frecuentes sobre reparación de proyectores"
-      >
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2
-              id="faq-heading"
-              className="text-3xl md:text-4xl font-bold text-color-secondary mb-6"
-            >
-              Preguntas Frecuentes
-            </h2>
-            <p className="text-xl text-gray-600">
-              Resolvemos las dudas más comunes sobre nuestro servicio técnico de
-              proyectores Epson, BenQ, Sony y más en Lima.
-            </p>
-          </div>
-          <div className="space-y-8">
-            <article
-              itemScope
-              itemType="https://schema.org/Question"
-              className="bg-white p-6 rounded-xl shadow-sm"
-              aria-label="¿Qué marcas de proyectores reparan?"
-            >
-              <h3
-                itemProp="name"
-                className="text-lg font-bold text-color-secondary mb-3"
-              >
-                ¿Qué marcas de proyectores reparan?
-              </h3>
-              <div
-                itemScope
-                itemType="https://schema.org/Answer"
-                itemProp="acceptedAnswer"
-              >
-                <p itemProp="text" className="text-gray-700">
-                  Trabajamos principalmente con proyectores Epson como nuestra
-                  especialidad principal. También reparamos otras marcas
-                  reconocidas como Aldo, BenQ, Sony y ViewSonic. Nuestros
-                  técnicos están especializados en proyectores para educación,
-                  empresas y uso doméstico.
-                </p>
-              </div>
-            </article>
-
-            <article
-              itemScope
-              itemType="https://schema.org/Question"
-              className="bg-white p-6 rounded-xl shadow-sm"
-              aria-label="¿Cuánto tiempo toma la reparación?"
-            >
-              <h3
-                itemProp="name"
-                className="text-lg font-bold text-color-secondary mb-3"
-              >
-                ¿Cuánto tiempo toma la reparación?
-              </h3>
-              <div
-                itemScope
-                itemType="https://schema.org/Answer"
-                itemProp="acceptedAnswer"
-              >
-                <p itemProp="text" className="text-gray-700">
-                  Primero realizamos un diagnóstico técnico completo para
-                  identificar el problema exacto. Posterior al diagnóstico, las
-                  reparaciones toman mínimo 2 días hábiles. Para casos más
-                  complejos que requieren repuestos especiales, el tiempo puede
-                  extenderse. Siempre informamos el tiempo estimado después del
-                  diagnóstico.
-                </p>
-              </div>
-            </article>
-            <article
-              itemScope
-              itemType="https://schema.org/Question"
-              className="bg-white p-6 rounded-xl shadow-sm"
-              aria-label="¿Tienen servicio a domicilio en Lima?"
-            >
-              <h3
-                itemProp="name"
-                className="text-lg font-bold text-color-secondary mb-3"
-              >
-                ¿Tienen servicio a domicilio en Lima?
-              </h3>
-              <div
-                itemScope
-                itemType="https://schema.org/Answer"
-                itemProp="acceptedAnswer"
-              >
-                <p itemProp="text" className="text-gray-700">
-                  Sí, brindamos servicio técnico a domicilio en toda Lima y
-                  distritos aledaños. El servicio a domicilio es solo para
-                  diagnóstico; la reparación se realiza en nuestro taller
-                  especializado.
-                </p>
-              </div>
-            </article>
-            <article
-              itemScope
-              itemType="https://schema.org/Question"
-              className="bg-white p-6 rounded-xl shadow-sm"
-              aria-label="¿Atienden proyectores de provincia?"
-            >
-              <h3
-                itemProp="name"
-                className="text-lg font-bold text-color-secondary mb-3"
-              >
-                ¿Atienden proyectores de provincia?
-              </h3>
-              <div
-                itemScope
-                itemType="https://schema.org/Answer"
-                itemProp="acceptedAnswer"
-              >
-                <p itemProp="text" className="text-gray-700">
-                  Sí, ofrecemos atención especializada para clientes de
-                  provincia a través de nuestro servicio de envío. El cliente
-                  envía su proyector a nuestro local ubicado en{" "}
-                  <strong>Pje. los Jazmines 181, Chorrillos, Lima</strong>,{" "}
-                  realizamos el servicio técnico completo con diagnóstico,
-                  reparación y pruebas de calidad, y una vez culminado el
-                  servicio, lo reenviamos a su dirección. Este es un servicio
-                  especial que garantiza la misma calidad técnica para todo el
-                  Perú.
-                </p>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
+        <FAQAccordion/>
       <section
         className="py-16 relative bg-gradient-to-br from-secondary/10 via-secondary to-secondary/0 overflow-hidden"
         aria-label="Solicita reparación de proyector"
