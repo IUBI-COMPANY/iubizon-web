@@ -1,7 +1,7 @@
 import React from "react";
 import { CircleAlert } from "lucide-react";
 import { twMerge } from "tailwind-merge";
-
+//Alert component to show different types of alerts
 interface Props {
   type: "success" | "error" | "info" | "warning";
   message: string;

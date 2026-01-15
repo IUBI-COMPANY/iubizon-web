@@ -1,18 +1,19 @@
 "use client";
 
+//Fix imports
 import { Metadata } from "next";
 import { RetailTechnicalServiceForm } from "@/components/ui/RetailTechnicalServiceForm";
+import FAQAccordion from "@/components/ui/layout/FAQAccordion";
 import {
   CheckCircle,
-  Clock,
-  MapPin,
-  Phone,
-  Shield,
-  Wrench,
 } from "lucide-react";
+import GridCards from "@/components/ui/GridCards";
+import { motion, AnimatePresence } from 'framer-motion';
 import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
+import { useState, useEffect } from "react";
+import CardSteps from "@/components/ui/CardSteps";
 
 export const metadata: Metadata = {
   title:
@@ -79,6 +80,52 @@ export const metadata: Metadata = {
 };
 
 export default function RetailTechnicalServicePage() {
+
+  const gallery = [
+    {
+      src: "/images/proyectores-reparaciones.webp",
+      alt: "Reparación de proyectores en taller",
+      caption: "Reparación y pruebas en nuestro taller especializado",
+    },
+    {
+      src: "/images/foto-proyectores.jpeg",
+      alt: "Técnico revisando proyector",
+      caption: "Diagnóstico técnico a domicilio o en taller",
+    },
+    {
+      src: "/images/education-projectors.jpg",
+      alt: "Proyectores para educación",
+      caption: "Soluciones para aulas y centros educativos",
+    },
+    {
+      src: "/images/seo-banner.jpg",
+      alt: "Servicio técnico profesional",
+      caption: "Atención rápida y garantía en todas nuestras reparaciones",
+    },
+  ];
+
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') setSelectedIndex(null);
+      if (e.key === 'ArrowRight' && selectedIndex !== null) {
+        setSelectedIndex((selectedIndex + 1) % gallery.length);
+      }
+      if (e.key === 'ArrowLeft' && selectedIndex !== null) {
+        setSelectedIndex((selectedIndex - 1 + gallery.length) % gallery.length);
+      }
+    }
+
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [selectedIndex, gallery.length]);
+
+  useEffect(() => {
+    if (selectedIndex !== null) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = '';
+  }, [selectedIndex]);
+
   return (
     <main>
       <Head>
@@ -123,7 +170,7 @@ export default function RetailTechnicalServicePage() {
       >
         <div className="absolute inset-0">
           <Image
-            src="/images/proyectores-reparaciones.webp"
+            src="/images/foto-proyectores.jpeg"
             alt="Servicio técnico de proyectores Epson, BenQ, Sony en Lima"
             fill
             className="object-cover opacity-50"
@@ -177,74 +224,27 @@ export default function RetailTechnicalServicePage() {
               garantizados.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <article
-              className="text-center"
-              itemScope
-              itemType="https://schema.org/HowToStep"
-              aria-label="Solicita tu servicio técnico de proyectores"
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16 max-w-7xl mx-auto items-center">
+            {/* Columna izquierda - Imagen */}
+            <motion.div
+              className="md:col-span-1"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
             >
-              <div className="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Phone
-                  className="w-10 h-10 text-blue-600"
-                  aria-label="Teléfono"
-                />
+              <div className="relative h-auto rounded-3xl overflow-hidden shadow-xl">
+                <div className="relative w-full" style={{ aspectRatio: '3/4', minHeight: '600px' }}>
+                  <Image
+                    src="/images/foto-proyectores.jpeg"
+                    alt="Servicio técnico de proyectores profesional"
+                    fill
+                    className="object-cover rounded-3xl"
+                  />
+                </div>
               </div>
-              <h3
-                className="text-xl font-bold text-gray-900 mb-4"
-                itemProp="name"
-              >
-                1. Solicita Tu Servicio Técnico
-              </h3>
-              <p className="text-gray-600" itemProp="text">
-                Completa el formulario y agenda tu visita técnica en Lima.
-              </p>
-            </article>
-            <article
-              className="text-center"
-              itemScope
-              itemType="https://schema.org/HowToStep"
-              aria-label="Diagnóstico técnico especializado"
-            >
-              <div className="bg-orange-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Wrench
-                  className="w-10 h-10 text-orange-600"
-                  aria-label="Herramienta"
-                />
-              </div>
-              <h3
-                className="text-xl font-bold text-gray-900 mb-4"
-                itemProp="name"
-              >
-                2. Diagnóstico Técnico
-              </h3>
-              <p className="text-gray-600" itemProp="text">
-                Evaluamos tu proyector y te informamos la solución recomendada.
-              </p>
-            </article>
-            <article
-              className="text-center"
-              itemScope
-              itemType="https://schema.org/HowToStep"
-              aria-label="Servicio a domicilio en Lima"
-            >
-              <div className="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <MapPin
-                  className="w-10 h-10 text-green-600"
-                  aria-label="Ubicación"
-                />
-              </div>
-              <h3
-                className="text-xl font-bold text-gray-900 mb-4"
-                itemProp="name"
-              >
-                3. Servicio a Domicilio en Lima
-              </h3>
-              <p className="text-gray-600" itemProp="text">
-                El servicio a domicilio es solo para diagnóstico. La reparación
-                se realiza en nuestro taller especializado.
-              </p>
-            </article>
+            </motion.div>
+            <CardSteps/>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <article
@@ -294,208 +294,121 @@ export default function RetailTechnicalServicePage() {
         </div>
       </section>
       <section
-        className="py-16 bg-gray-50"
+        className="py-20 bg-gradient-to-b from-white via-gray-50 to-white"
         aria-labelledby="benefits-heading"
         aria-label="Beneficios del servicio de reparación de proyectores"
       >
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-20">
+            <motion.h2
               id="benefits-heading"
-              className="text-3xl md:text-4xl font-bold text-color-secondary mb-4"
+              className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
             >
               ¿Por Qué Elegir Nuestro Servicio Técnico?
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Garantía, rapidez y experiencia en mantenimiento y reparación de
-              proyectores Epson, BenQ, Sony y más en Lima. Técnicos expertos y
-              repuestos originales.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <article className="text-center" aria-label="Garantía de servicio">
-              <div className="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Shield
-                  className="w-10 h-10 text-blue-600"
-                  aria-label="Escudo"
-                />
-              </div>
-              <h3 className="text-xl font-bold text-color-secondary mb-4">
-                Garantía de Servicio
-              </h3>
-              <p className="text-gray-600">
-                3 meses de garantía en todas nuestras reparaciones de
-                proyectores Epson, BenQ, Sony y más.
-              </p>
-            </article>
-            <article className="text-center" aria-label="Atención rápida">
-              <div className="bg-orange-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Clock
-                  className="w-10 h-10 text-orange-600"
-                  aria-label="Reloj"
-                />
-              </div>
-              <h3 className="text-xl font-bold text-color-secondary mb-4">
-                Atención Rápida
-              </h3>
-              <p className="text-gray-600">
-                Respondemos en menos de 24 horas y servicio a domicilio en Lima.
-              </p>
-            </article>
-            <article
-              className="text-center"
-              aria-label="Técnicos especializados"
+            </motion.h2>
+            <motion.p
+              className="text-xl text-gray-600 max-w-2xl mx-auto font-medium"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
             >
-              <div className="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Wrench
-                  className="w-10 h-10 text-green-600"
-                  aria-label="Herramienta"
-                />
-              </div>
-              <h3 className="text-xl font-bold text-color-secondary mb-4">
-                Técnicos Especializados
-              </h3>
-              <p className="text-gray-600">
-                Especialistas con años de experiencia en reparación y
-                mantenimiento de proyectores Epson, BenQ, Sony y más.
-              </p>
-            </article>
+              Descubre los beneficios de trabajar con expertos certificados en reparación de proyectores
+            </motion.p>
           </div>
-        </div>
-      </section>
-      <section
-        className="py-16 bg-gray-50"
-        itemScope
-        itemType="https://schema.org/FAQPage"
-        aria-labelledby="faq-heading"
-        aria-label="Preguntas frecuentes sobre reparación de proyectores"
-      >
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2
-              id="faq-heading"
-              className="text-3xl md:text-4xl font-bold text-color-secondary mb-4"
-            >
-              Preguntas Frecuentes
-            </h2>
-            <p className="text-xl text-gray-600">
-              Resolvemos las dudas más comunes sobre nuestro servicio técnico de
-              proyectores Epson, BenQ, Sony y más en Lima.
-            </p>
-          </div>
-          <div className="space-y-8">
-            <article
-              itemScope
-              itemType="https://schema.org/Question"
-              className="bg-white p-6 rounded-xl shadow-sm"
-              aria-label="¿Qué marcas de proyectores reparan?"
-            >
-              <h3
-                itemProp="name"
-                className="text-lg font-bold text-color-secondary mb-3"
-              >
-                ¿Qué marcas de proyectores reparan?
-              </h3>
-              <div
-                itemScope
-                itemType="https://schema.org/Answer"
-                itemProp="acceptedAnswer"
-              >
-                <p itemProp="text" className="text-gray-700">
-                  Trabajamos principalmente con proyectores Epson como nuestra
-                  especialidad principal. También reparamos otras marcas
-                  reconocidas como Aldo, BenQ, Sony y ViewSonic. Nuestros
-                  técnicos están especializados en proyectores para educación,
-                  empresas y uso doméstico.
-                </p>
-              </div>
-            </article>
 
-            <article
-              itemScope
-              itemType="https://schema.org/Question"
-              className="bg-white p-6 rounded-xl shadow-sm"
-              aria-label="¿Cuánto tiempo toma la reparación?"
-            >
-              <h3
-                itemProp="name"
-                className="text-lg font-bold text-color-secondary mb-3"
-              >
-                ¿Cuánto tiempo toma la reparación?
-              </h3>
-              <div
-                itemScope
-                itemType="https://schema.org/Answer"
-                itemProp="acceptedAnswer"
-              >
-                <p itemProp="text" className="text-gray-700">
-                  Primero realizamos un diagnóstico técnico completo para
-                  identificar el problema exacto. Posterior al diagnóstico, las
-                  reparaciones toman mínimo 2 días hábiles. Para casos más
-                  complejos que requieren repuestos especiales, el tiempo puede
-                  extenderse. Siempre informamos el tiempo estimado después del
-                  diagnóstico.
-                </p>
-              </div>
-            </article>
-            <article
-              itemScope
-              itemType="https://schema.org/Question"
-              className="bg-white p-6 rounded-xl shadow-sm"
-              aria-label="¿Tienen servicio a domicilio en Lima?"
-            >
-              <h3
-                itemProp="name"
-                className="text-lg font-bold text-color-secondary mb-3"
-              >
-                ¿Tienen servicio a domicilio en Lima?
-              </h3>
-              <div
-                itemScope
-                itemType="https://schema.org/Answer"
-                itemProp="acceptedAnswer"
-              >
-                <p itemProp="text" className="text-gray-700">
-                  Sí, brindamos servicio técnico a domicilio en toda Lima y
-                  distritos aledaños. El servicio a domicilio es solo para
-                  diagnóstico; la reparación se realiza en nuestro taller
-                  especializado.
-                </p>
-              </div>
-            </article>
-            <article
-              itemScope
-              itemType="https://schema.org/Question"
-              className="bg-white p-6 rounded-xl shadow-sm"
-              aria-label="¿Atienden proyectores de provincia?"
-            >
-              <h3
-                itemProp="name"
-                className="text-lg font-bold text-color-secondary mb-3"
-              >
-                ¿Atienden proyectores de provincia?
-              </h3>
-              <div
-                itemScope
-                itemType="https://schema.org/Answer"
-                itemProp="acceptedAnswer"
-              >
-                <p itemProp="text" className="text-gray-700">
-                  Sí, ofrecemos atención especializada para clientes de
-                  provincia a través de nuestro servicio de envío. El cliente
-                  envía su proyector a nuestro local ubicado en{" "}
-                  <strong>Pje. los Jazmines 181, Chorrillos, Lima</strong>,{" "}
-                  realizamos el servicio técnico completo con diagnóstico,
-                  reparación y pruebas de calidad, y una vez culminado el
-                  servicio, lo reenviamos a su dirección. Este es un servicio
-                  especial que garantiza la misma calidad técnica para todo el
-                  Perú.
-                </p>
-              </div>
-            </article>
-          </div>
+          {/* Grid con 3 tarjetas que se voltean */}
+            <GridCards />
+
+
+
         </div>
       </section>
+
+      {/* Sección de Galería Interactiva */}
+      <section className="py-16 bg-white" aria-labelledby="gallery-heading">
+        <div className="max-w-6xl mx-auto px-4">
+          <h3 id="gallery-heading" className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 text-center">
+            Galería de Trabajos y Servicios
+          </h3>
+          <p className="text-gray-600 mb-12 max-w-3xl mx-auto text-center text-lg">
+            Algunas imágenes de nuestro taller, técnicos y proyectos realizados. Haz click en cualquier imagen para agrandar.
+          </p>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {gallery.map((img, i) => (
+              <button
+                key={img.src}
+                onClick={() => setSelectedIndex(i)}
+                className="group relative overflow-hidden rounded-lg focus:outline-none focus:ring-4 focus:ring-primary"
+                aria-label={`Abrir imagen: ${img.alt}`}
+              >
+                <div className="relative w-full h-40 md:h-32 lg:h-36">
+                  <Image src={img.src} alt={img.alt} fill className="object-cover transform group-hover:scale-105 transition-transform duration-300" />
+                </div>
+                <span className="absolute bottom-2 left-1 text-xs bg-black/50 text-white px-2 py-1 rounded w-32 mx-auto">{img.caption}</span>
+              </button>
+            ))}
+          </div>
+
+          <AnimatePresence>
+            {selectedIndex !== null && (
+              <motion.div
+                key="lightbox"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-50 flex items-center justify-center p-4"
+                aria-modal="true"
+                role="dialog"
+              >
+                <motion.div
+                  className="absolute inset-0 bg-black/70"
+                  onClick={() => setSelectedIndex(null)}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                />
+
+                <motion.div className="relative max-w-5xl w-full mx-auto rounded-lg overflow-hidden" initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 40, opacity: 0 }}>
+                  <div className="bg-gray-900/90 p-4 flex items-center justify-between">
+                    <div className="text-sm text-white">{gallery[selectedIndex].caption}</div>
+                    <div className="flex items-center gap-2">
+                      <button aria-label="Cerrar" onClick={() => setSelectedIndex(null)} className="text-white hover:text-gray-200">Cerrar ✕</button>
+                    </div>
+                  </div>
+                  <div className="relative bg-black">
+                    <div className="w-full h-[60vh] relative">
+                      <Image src={gallery[selectedIndex].src} alt={gallery[selectedIndex].alt} fill className="object-contain" />
+                    </div>
+                  </div>
+                  <div className="p-4 bg-white flex justify-between">
+                    <button
+                      onClick={() => setSelectedIndex((selectedIndex - 1 + gallery.length) % gallery.length)}
+                      className="px-4 py-2 bg-gray-100 rounded hover:bg-gray-200"
+                      aria-label="Imagen anterior"
+                    >
+                      ← Anterior
+                    </button>
+                    <button
+                      onClick={() => setSelectedIndex((selectedIndex + 1) % gallery.length)}
+                      className="px-4 py-2 bg-gray-100 rounded hover:bg-gray-200"
+                      aria-label="Siguiente imagen"
+                    >
+                      Siguiente →
+                    </button>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </section>
+        <FAQAccordion/>
       <section
         className="py-16 relative bg-gradient-to-br from-secondary/10 via-secondary to-secondary/0 overflow-hidden"
         aria-label="Solicita reparación de proyector"
@@ -508,7 +421,7 @@ export default function RetailTechnicalServicePage() {
             className="object-cover opacity-50"
             priority
           />
-          <div className="absolute inset-0 bg-blue-900/50"></div>
+
         </div>
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
