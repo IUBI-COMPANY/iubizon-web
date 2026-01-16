@@ -7,7 +7,7 @@ import { CheckCircle, Zap, Settings, TrendingUp } from "lucide-react";
 
 const galleryItems = [
     {
-        src: "/images/foto-proyectores.jpeg",
+        src: "/images/diagnosticoimg.webp",
         alt: "Proyector con filtro y ventiladores llenos de polvo antes del mantenimiento",
         caption: "Diagnostico de posibles problemas: Sobrecalentamiento y pérdida de brillo por polvo acumulado",
         icon: Zap,
@@ -16,7 +16,7 @@ const galleryItems = [
         borderColor: "border-orange-100",
     },
     {
-        src: "/images/accesorios.png",
+        src: "/images/reparacionimg.jpg",
         alt: "Proyector limpio, filtros nuevos y óptica calibrada",
         caption: "Reparación y Validacion: Rendimiento óptimo y vida útil prolongada",
         icon: CheckCircle,
@@ -25,7 +25,7 @@ const galleryItems = [
         borderColor: "border-orange-100",
     },
     {
-        src: "/images/organizacion-reparacion.jpg",
+        src: "/images/instalacionimg.jpg",
         alt: "Proyector Epson montado en aula universitaria con proyección clara",
         caption: "Instalado y calibrado en entorno educativo",
         icon: Settings,
@@ -34,7 +34,7 @@ const galleryItems = [
         borderColor: "border-orange-100",
     },
     {
-        src: "/images/organizacion-reparacion.webp",
+        src: "/images/resultadoimg.jpg",
         alt: "Proyector corporativo en sala de conferencias",
         caption: "Presentaciones profesionales sin interrupciones",
         icon: TrendingUp,
@@ -162,7 +162,7 @@ export function OrganizationGallery() {
                                     <div className="mb-4">
                                         <h3 className={`
                       text-base sm:text-lg font-bold mb-2 
-                    `}>
+                                        `}>
                                             {item.caption.split(":")[0] + ":"}
                                         </h3>
                                         <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
