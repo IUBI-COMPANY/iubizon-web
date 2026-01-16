@@ -1,18 +1,14 @@
 "use client";
 
 import { Metadata } from "next";
-import {
-  CheckCircle,
-  Clock,
-  MapPin,
-  Phone,
-  Shield,
-  Wrench,
-} from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
 import { OrganizationsTechnicalServiceForm } from "@/components/ui/OrganizationsTechnicalServiceForm";
+import FAQAccordion from "@/components/ui/layout/FAQAccordion";
+import AnimateCards from "@/components/ui/AnimateCards";
+import { OrganizationGallery } from "@/components/ui/OrganizationGallery";
 
 export const metadata: Metadata = {
   title:
@@ -171,349 +167,105 @@ export default function OrganizationsTechnicalServicePage() {
           <OrganizationsTechnicalServiceForm />
         </div>
       </section>
-      <section
-        className="mt-10 pt-0 pb-16 bg-white"
-        itemScope
-        itemType="https://schema.org/HowTo"
-        aria-label="Cómo funciona el servicio de reparación de proyectores"
-      >
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2
-              className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"
-              itemProp="name"
-            >
-              ¿Cómo Funciona Nuestro Servicio de Reparación de Proyectores?
-            </h2>
-            <p
-              className="text-xl text-gray-600 max-w-3xl mx-auto"
-              itemProp="description"
-            >
-              Recibimos tu proyector Epson, BenQ, Sony u otra marca en Lima,
-              realizamos diagnóstico profesional y usamos repuestos originales
-              para que funcione como nuevo. Atención rápida y resultados
-              garantizados.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <article
-              className="text-center"
-              itemScope
-              itemType="https://schema.org/HowToStep"
-              aria-label="Solicita tu servicio técnico de proyectores"
-            >
-              <div className="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Phone
-                  className="w-10 h-10 text-blue-600"
-                  aria-label="Teléfono"
-                />
-              </div>
-              <h3
-                className="text-xl font-bold text-gray-900 mb-4"
-                itemProp="name"
-              >
-                1. Solicita Tu Servicio Técnico
-              </h3>
-              <p className="text-gray-600" itemProp="text">
-                Completa el formulario y agenda tu visita técnica en Lima.
-              </p>
-            </article>
-            <article
-              className="text-center"
-              itemScope
-              itemType="https://schema.org/HowToStep"
-              aria-label="Diagnóstico técnico especializado"
-            >
-              <div className="bg-orange-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Wrench
-                  className="w-10 h-10 text-orange-600"
-                  aria-label="Herramienta"
-                />
-              </div>
-              <h3
-                className="text-xl font-bold text-gray-900 mb-4"
-                itemProp="name"
-              >
-                2. Diagnóstico Técnico
-              </h3>
-              <p className="text-gray-600" itemProp="text">
-                Evaluamos tu proyector y te informamos la solución recomendada.
-              </p>
-            </article>
-            <article
-              className="text-center"
-              itemScope
-              itemType="https://schema.org/HowToStep"
-              aria-label="Servicio a domicilio en Lima"
-            >
-              <div className="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <MapPin
-                  className="w-10 h-10 text-green-600"
-                  aria-label="Ubicación"
-                />
-              </div>
-              <h3
-                className="text-xl font-bold text-gray-900 mb-4"
-                itemProp="name"
-              >
-                3. Servicio a Domicilio en Lima
-              </h3>
-              <p className="text-gray-600" itemProp="text">
-                El servicio a domicilio es solo para diagnóstico. La reparación
-                se realiza en nuestro taller especializado.
-              </p>
-            </article>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <article
-              className="bg-blue-50 p-6 rounded-xl"
-              itemScope
-              itemType="https://schema.org/Service"
-              aria-label="Mantenimiento preventivo de proyectores"
-            >
-              <h4
-                className="text-lg font-bold text-blue-900 mb-4 flex items-center"
-                itemProp="name"
-              >
-                <CheckCircle className="w-6 h-6 mr-2" aria-label="Check" />
-                Mantenimiento Preventivo de Proyectores
-              </h4>
-              <p className="text-blue-800" itemProp="description">
-                Revisiones periódicas para prolongar la vida útil de tu
-                proyector Epson, BenQ, Sony y más. Limpieza de filtros,
-                calibración de imagen, verificación de componentes y
-                optimización del rendimiento.
-              </p>
-              <meta itemProp="serviceType" content="Mantenimiento" />
-              <meta itemProp="areaServed" content="Lima, Perú" />
-            </article>
-            <article
-              className="bg-orange-50 p-6 rounded-xl"
-              itemScope
-              itemType="https://schema.org/Service"
-              aria-label="Reparación especializada de proyectores"
-            >
-              <h4
-                className="text-lg font-bold text-orange-900 mb-4 flex items-center"
-                itemProp="name"
-              >
-                <CheckCircle className="w-6 h-6 mr-2" aria-label="Check" />
-                Reparación Especializada de Proyectores
-              </h4>
-              <p className="text-orange-800" itemProp="description">
-                Solucionamos problemas de imagen, sonido, conectividad,
-                reemplazo de lámparas, reparación de ventiladores y cualquier
-                falla técnica con repuestos originales y garantía de 3 meses.
-              </p>
-              <meta itemProp="serviceType" content="Reparación" />
-              <meta itemProp="areaServed" content="Lima, Perú" />
-            </article>
-          </div>
-        </div>
-      </section>
-      <section
-        className="py-16 bg-gray-50"
-        aria-labelledby="benefits-heading"
-        aria-label="Beneficios del servicio de reparación de proyectores"
-      >
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2
-              id="benefits-heading"
-              className="text-3xl md:text-4xl font-bold text-color-secondary mb-4"
-            >
-              ¿Por Qué Elegir Nuestro Servicio Técnico?
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Garantía, rapidez y experiencia en mantenimiento y reparación de
-              proyectores Epson, BenQ, Sony y más en Lima. Técnicos expertos y
-              repuestos originales.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <article className="text-center" aria-label="Garantía de servicio">
-              <div className="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Shield
-                  className="w-10 h-10 text-blue-600"
-                  aria-label="Escudo"
-                />
-              </div>
-              <h3 className="text-xl font-bold text-color-secondary mb-4">
-                Garantía de Servicio
-              </h3>
-              <p className="text-gray-600">
-                3 meses de garantía en todas nuestras reparaciones de
-                proyectores Epson, BenQ, Sony y más.
-              </p>
-            </article>
-            <article className="text-center" aria-label="Atención rápida">
-              <div className="bg-orange-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Clock
-                  className="w-10 h-10 text-orange-600"
-                  aria-label="Reloj"
-                />
-              </div>
-              <h3 className="text-xl font-bold text-color-secondary mb-4">
-                Atención Rápida
-              </h3>
-              <p className="text-gray-600">
-                Respondemos en menos de 24 horas y servicio a domicilio en Lima.
-              </p>
-            </article>
-            <article
-              className="text-center"
-              aria-label="Técnicos especializados"
-            >
-              <div className="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Wrench
-                  className="w-10 h-10 text-green-600"
-                  aria-label="Herramienta"
-                />
-              </div>
-              <h3 className="text-xl font-bold text-color-secondary mb-4">
-                Técnicos Especializados
-              </h3>
-              <p className="text-gray-600">
-                Especialistas con años de experiencia en reparación y
-                mantenimiento de proyectores Epson, BenQ, Sony y más.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-      <section
-        className="py-16 bg-gray-50"
-        itemScope
-        itemType="https://schema.org/FAQPage"
-        aria-labelledby="faq-heading"
-        aria-label="Preguntas frecuentes sobre reparación de proyectores"
-      >
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2
-              id="faq-heading"
-              className="text-3xl md:text-4xl font-bold text-color-secondary mb-4"
-            >
-              Preguntas Frecuentes
-            </h2>
-            <p className="text-xl text-gray-600">
-              Resolvemos las dudas más comunes sobre nuestro servicio técnico de
-              proyectores Epson, BenQ, Sony y más en Lima.
-            </p>
-          </div>
-          <div className="space-y-8">
-            <article
-              itemScope
-              itemType="https://schema.org/Question"
-              className="bg-white p-6 rounded-xl shadow-sm"
-              aria-label="¿Qué marcas de proyectores reparan?"
-            >
-              <h3
-                itemProp="name"
-                className="text-lg font-bold text-color-secondary mb-3"
-              >
-                ¿Qué marcas de proyectores reparan?
-              </h3>
-              <div
-                itemScope
-                itemType="https://schema.org/Answer"
-                itemProp="acceptedAnswer"
-              >
-                <p itemProp="text" className="text-gray-700">
-                  Trabajamos principalmente con proyectores Epson como nuestra
-                  especialidad principal. También reparamos otras marcas
-                  reconocidas como Aldo, BenQ, Sony y ViewSonic. Nuestros
-                  técnicos están especializados en proyectores para educación,
-                  empresas y uso doméstico.
-                </p>
-              </div>
-            </article>
+      <AnimateCards />
+      <OrganizationGallery />
 
-            <article
-              itemScope
-              itemType="https://schema.org/Question"
-              className="bg-white p-6 rounded-xl shadow-sm"
-              aria-label="¿Cuánto tiempo toma la reparación?"
-            >
-              <h3
-                itemProp="name"
-                className="text-lg font-bold text-color-secondary mb-3"
-              >
-                ¿Cuánto tiempo toma la reparación?
-              </h3>
-              <div
-                itemScope
-                itemType="https://schema.org/Answer"
-                itemProp="acceptedAnswer"
-              >
-                <p itemProp="text" className="text-gray-700">
-                  Primero realizamos un diagnóstico técnico completo para
-                  identificar el problema exacto. Posterior al diagnóstico, las
-                  reparaciones toman mínimo 2 días hábiles. Para casos más
-                  complejos que requieren repuestos especiales, el tiempo puede
-                  extenderse. Siempre informamos el tiempo estimado después del
-                  diagnóstico.
-                </p>
-              </div>
-            </article>
-            <article
-              itemScope
-              itemType="https://schema.org/Question"
-              className="bg-white p-6 rounded-xl shadow-sm"
-              aria-label="¿Tienen servicio a domicilio en Lima?"
-            >
-              <h3
-                itemProp="name"
-                className="text-lg font-bold text-color-secondary mb-3"
-              >
-                ¿Tienen servicio a domicilio en Lima?
-              </h3>
-              <div
-                itemScope
-                itemType="https://schema.org/Answer"
-                itemProp="acceptedAnswer"
-              >
-                <p itemProp="text" className="text-gray-700">
-                  Sí, brindamos servicio técnico a domicilio en toda Lima y
-                  distritos aledaños. El servicio a domicilio es solo para
-                  diagnóstico; la reparación se realiza en nuestro taller
-                  especializado.
-                </p>
-              </div>
-            </article>
-            <article
-              itemScope
-              itemType="https://schema.org/Question"
-              className="bg-white p-6 rounded-xl shadow-sm"
-              aria-label="¿Atienden proyectores de provincia?"
-            >
-              <h3
-                itemProp="name"
-                className="text-lg font-bold text-color-secondary mb-3"
-              >
-                ¿Atienden proyectores de provincia?
-              </h3>
-              <div
-                itemScope
-                itemType="https://schema.org/Answer"
-                itemProp="acceptedAnswer"
-              >
-                <p itemProp="text" className="text-gray-700">
-                  Sí, ofrecemos atención especializada para clientes de
-                  provincia a través de nuestro servicio de envío. El cliente
-                  envía su proyector a nuestro local ubicado en{" "}
-                  <strong>Pje. los Jazmines 181, Chorrillos, Lima</strong>,{" "}
-                  realizamos el servicio técnico completo con diagnóstico,
-                  reparación y pruebas de calidad, y una vez culminado el
-                  servicio, lo reenviamos a su dirección. Este es un servicio
-                  especial que garantiza la misma calidad técnica para todo el
-                  Perú.
-                </p>
-              </div>
-            </article>
+      <section
+        className="py-12 sm:py-16 lg:py-20 bg-white"
+        aria-label="Marcas con las que trabajamos"
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Título y subtítulo */}
+          <div className="text-center mb-10 sm:mb-14">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight">
+              Marcas con las que trabajamos
+            </h2>
+            <p className="mt-3 text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+              Reparación, mantenimiento y repuestos originales para las
+              principales marcas profesionales de proyectores del mercado
+            </p>
+          </div>
+
+          {/* Grid de logos */}
+          <div
+            className="
+  grid grid-cols-1          /* mobile: 1 columna */
+  sm:grid-cols-3            /* tablet: 3 columnas */
+  lg:grid-cols-5            /* desktop: 5 columnas */
+  gap-12 sm:gap-8 lg:gap-10
+  items-center justify-items-center
+  max-w-5xl mx-auto
+"
+          >
+            {/* Epson */}
+            <div className="flex items-center justify-center w-full h-16 sm:h-20 lg:h-24 px-2">
+              <Image
+                src="/images/Epson.png"
+                alt="Logo Epson - Servicio Técnico Oficial"
+                width={140}
+                height={50}
+                className="max-h-full w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105"
+                priority
+              />
+            </div>
+
+            {/* BenQ */}
+            <div className="flex items-center justify-center w-96 h-16 gap-8 sm:h-20 lg:h-24 px-2">
+              <Image
+                src="/images/BENQ.png"
+                alt="Logo BenQ - Reparación Especializada"
+                width={120}
+                height={50}
+                className="max-h-full w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105"
+              />
+            </div>
+
+            {/* Optoma */}
+            <div className="flex items-center justify-center w-full h-16 sm:h-20 lg:h-24 px-2">
+              <Image
+                src="/images/OptomaLogo.png"
+                alt="Logo Optoma - Mantenimiento Profesional"
+                width={130}
+                height={50}
+                className="max-h-full w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105"
+              />
+            </div>
+
+            {/* Panasonic */}
+            <div className="flex items-center justify-center w-full h-16 sm:h-20 lg:h-24 px-2">
+              <Image
+                src="/images/PANASONIC.png"
+                alt="Logo Panasonic - Servicio Técnico Especializado"
+                width={140}
+                height={50}
+                className="max-h-full w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105"
+              />
+            </div>
+
+            {/* Sony */}
+            <div className="flex items-center justify-center w-48 h-16 sm:h-20 lg:h-24 px-2">
+              <Image
+                src="/images/SONY.svg"
+                alt="Logo Sony - Reparaciones y Mantenimiento"
+                width={110}
+                height={50}
+                className="max-h-full w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105"
+              />
+            </div>
+          </div>
+
+          {/* Línea decorativa opcional + texto de confianza */}
+          <div className="mt-12 sm:mt-16 text-center">
+            <div className="inline-block w-24 h-1 bg-gradient-to-r from-orange-600 to-orange-400 rounded-full mb-4" />
+            <p className="text-sm text-gray-500">
+              Repuestos originales • Diagnóstico avanzado • Garantía en todos
+              los servicios
+            </p>
           </div>
         </div>
       </section>
+
+      <FAQAccordion />
       <section
         className="py-16 relative bg-gradient-to-br from-secondary/10 via-secondary to-secondary/0 overflow-hidden"
         aria-label="Solicita reparación de proyector"

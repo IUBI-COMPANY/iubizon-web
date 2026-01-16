@@ -25,7 +25,6 @@ export default function ProductDetailPage({ product }: Props) {
 
   const showChristmasCampaign = Boolean(product?.campaign);
 
-
   useEffect(() => {
     document.body.style.overflow = showModal ? "hidden" : "auto";
     return () => {

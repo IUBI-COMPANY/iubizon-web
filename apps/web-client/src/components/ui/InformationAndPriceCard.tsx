@@ -47,9 +47,7 @@ export const InformationAndPriceCard = ({
             {/* 2. BADGE DE OFERTA ESPECIAL (sin tema navideño) */}
             {showChristmasCampaign && product?.oldPrice && (
               <div className="mb-3 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary text-white text-xs font-bold">
-                <span>
-                  -{discountPercentage}% OFF
-                </span>
+                <span>-{discountPercentage}% OFF</span>
               </div>
             )}
 
