@@ -27,8 +27,11 @@ export const DeviceInformation = ({
   addLocalStorageData,
   setCurrentStepToLocalStorage,
 }: Props) => {
-  const schema: ObjectSchema<RepairStep1> = yup.object({
-    service_type: yup.string().required(),
+  const schema = yup.object({
+    service_type: yup
+      .string()
+      .oneOf(["maintenance", "repair", "installation", "other"] as const)
+      .required(),
     quantity: yup.number().required().min(1, "La cantidad debe ser al menos 1"),
     product_name: yup.string().required(),
     description_device_fault: yup.string().required(),
@@ -37,7 +40,7 @@ export const DeviceInformation = ({
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
-  });
+  }) as ObjectSchema<RepairStep1>;
 
   const {
     handleSubmit,

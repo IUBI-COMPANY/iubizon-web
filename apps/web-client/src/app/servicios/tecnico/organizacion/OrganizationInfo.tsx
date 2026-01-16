@@ -78,7 +78,7 @@ export const OrganizationInfo = ({
   } = useForm<OrganizationRepairStep2>({
     resolver: yupResolver(schema),
     defaultValues: {
-      document_type: repairsFormData?.document_type || "",
+      document_type: repairsFormData?.document_type || undefined,
       document_number: repairsFormData?.document_number || "",
       full_name_or_social_reason:
         repairsFormData?.full_name_or_social_reason || "",
@@ -125,6 +125,12 @@ export const OrganizationInfo = ({
   };
 
   const onSubmit = (formData: OrganizationRepairStep2) => {
+    // Si no es RUC, concatenar first_name y last_name en full_name_or_social_reason
+    if (formData.document_type !== "RUC") {
+      formData.full_name_or_social_reason =
+        `${formData.first_name} ${formData.last_name}`.trim();
+    }
+
     setRepairsFormData({ ...repairsFormData, ...formData });
     addLocalStorageData(formData);
     setCurrentStepToLocalStorage(globalStep + 1);
@@ -156,6 +162,9 @@ export const OrganizationInfo = ({
                       options={[
                         { label: "RUC", value: "RUC" },
                         { label: "DNI", value: "DNI" },
+                        { label: "CE (Carnet de Extranjería)", value: "CE" },
+                        { label: "Pasaporte", value: "PASSPORT" },
+                        { label: "Otro", value: "OTHER" },
                       ]}
                     />
                   )}
@@ -174,30 +183,37 @@ export const OrganizationInfo = ({
                       helperText={errorMessage(name)}
                       required={required(name)}
                       onChange={onChange}
-                      placeholder={isRuc ? "10XXXXXXXX" : "71XXXXX"}
+                      placeholder={
+                        isRuc
+                          ? "10XXXXXXXX"
+                          : isDni
+                            ? "71XXXXX"
+                            : "Ingresa el número"
+                      }
                     />
                   )}
                 />
               </div>
-              <div className="sm:col-span-4">
-                <Controller
-                  name="full_name_or_social_reason"
-                  control={control}
-                  render={({ field: { onChange, value, name } }) => (
-                    <Input
-                      label={isRuc ? "Razón Social" : "Nombre Completo"}
-                      name={name}
-                      value={value}
-                      error={error(name)}
-                      helperText={errorMessage(name)}
-                      required={required(name)}
-                      onChange={onChange}
-                      placeholder={isRuc ? "EJEMPLO S.A.C." : "Nombre completo"}
-                    />
-                  )}
-                />
-              </div>
-              {isDni && (
+              {isRuc ? (
+                <div className="sm:col-span-4">
+                  <Controller
+                    name="full_name_or_social_reason"
+                    control={control}
+                    render={({ field: { onChange, value, name } }) => (
+                      <Input
+                        label="Razón Social"
+                        name={name}
+                        value={value}
+                        error={error(name)}
+                        helperText={errorMessage(name)}
+                        required={required(name)}
+                        onChange={onChange}
+                        placeholder="EJEMPLO S.A.C."
+                      />
+                    )}
+                  />
+                </div>
+              ) : (
                 <>
                   <div className="sm:col-span-2">
                     <Controller

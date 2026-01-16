@@ -170,6 +170,14 @@ export const OrganizationSupportInformation = ({
                           value: "send_to_store",
                           message: "Solo para provincias",
                         },
+                        {
+                          label: "Solicitar cotización",
+                          value: "quotation",
+                        },
+                        {
+                          label: "Otro",
+                          value: "other",
+                        },
                       ]}
                     />
                   )}

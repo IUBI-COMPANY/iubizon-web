@@ -36,18 +36,20 @@ export const OrganizationDeviceInformation = ({
     quantity: yup.number().required().min(1, "La cantidad debe ser al menos 1"),
     product_name: yup.string().required(),
     description_device_fault: yup.string().when("service_type", {
-      is: "repair",
+      is: (val: string) => val === "repair" || val === "maintenance",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
-    description_other_fault: yup
-      .string()
-      .when(["service_type", "description_device_fault"], {
-        is: (service_type: string, description_device_fault: string) =>
-          service_type === "repair" && description_device_fault === "other",
-        then: (schema) => schema.required(),
-        otherwise: (schema) => schema.notRequired(),
-      }),
+    description_other_fault: yup.string().when("service_type", {
+      is: (val: string) => val === "other",
+      then: (schema) => schema.required("Este campo es requerido"),
+      otherwise: (schema) =>
+        schema.when("description_device_fault", {
+          is: "other",
+          then: (schema) => schema.required("Este campo es requerido"),
+          otherwise: (schema) => schema.notRequired(),
+        }),
+    }),
   }) as ObjectSchema<OrganizationRepairStep1>;
 
   const {
@@ -71,6 +73,30 @@ export const OrganizationDeviceInformation = ({
   const serviceType = watch("service_type");
   const isOtherFault = watch("description_device_fault") === "other";
   const isRepair = serviceType === "repair";
+  const isMaintenance = serviceType === "maintenance";
+  const isInstallation = serviceType === "installation";
+  const isOther = serviceType === "other";
+  const isRepairOrMaintenance = isRepair || isMaintenance;
+
+  const getProductLabel = () => {
+    if (isInstallation) {
+      return "¿Qué equipo desea instalar?";
+    }
+    if (isOther) {
+      return "Marca y modelo del producto";
+    }
+    return "Marca y Modelo del Proyector";
+  };
+
+  const getProductPlaceholder = () => {
+    if (isInstallation) {
+      return "Ej. Proyector Epson, Pantalla eléctrica, etc.";
+    }
+    if (isOther) {
+      return "Ej. Epson Powerlite-980w, etc.";
+    }
+    return "Epson Powerlite-980w, Casio - XJ-F100W, BenQ, etc.";
+  };
 
   const onSubmit = (formData: OrganizationRepairStep1) => {
     setRepairsFormData({ ...repairsFormData, ...formData });
@@ -81,7 +107,7 @@ export const OrganizationDeviceInformation = ({
   return (
     <div className="w-full">
       <div className="text-2xl text-center text-secondary font-semibold">
-        Datos del equipo a reparar
+        Información del servicio
       </div>
       <div className="mt-5">
         <Form onSubmit={handleSubmit(onSubmit)}>
@@ -97,6 +123,8 @@ export const OrganizationDeviceInformation = ({
                       options={[
                         { label: "Mantenimiento", value: "maintenance" },
                         { label: "Reparación", value: "repair" },
+                        { label: "Instalación", value: "installation" },
+                        { label: "Otros", value: "other" },
                       ]}
                       name={name}
                       value={value}
@@ -137,45 +165,90 @@ export const OrganizationDeviceInformation = ({
                       control={control}
                       render={({ field: { onChange, value, name } }) => (
                         <Input
-                          label="Marca y Modelo del Proyector"
+                          label={getProductLabel()}
                           name={name}
                           value={value}
                           error={error(name)}
                           helperText={errorMessage(name)}
                           required={required(name)}
                           onChange={onChange}
-                          placeholder="Epson Powerlite-980w, Casio - XJ-F100W, BenQ, etc."
+                          placeholder={getProductPlaceholder()}
                         />
                       )}
                     />
                   </div>
                 </div>
               </div>
-              {isRepair && (
+              {isRepairOrMaintenance && (
                 <div className="sm:col-span-2">
                   <Controller
                     name="description_device_fault"
                     control={control}
                     render={({ field: { onChange, value, name } }) => (
                       <Select
-                        label="Seleccione la falla del equipo"
+                        label={
+                          isRepair
+                            ? "Seleccione la falla del equipo"
+                            : "Seleccione el tipo de mantenimiento"
+                        }
                         name={name}
                         value={value}
                         error={error(name)}
                         helperText={errorMessage(name)}
                         required={required(name)}
                         onChange={onChange}
-                        placeholder="Ej. No enciende, no proyecta imagen, manchas, etc."
-                        options={[
-                          { label: "No enciende", value: "off" },
-                          { label: "No proyecta imagen", value: "no-image" },
-                          { label: "Manchas en la imagen", value: "spots" },
-                          { label: "Imagen distorsionada", value: "distorted" },
-                          { label: "Ruido excesivo", value: "noise" },
-                          { label: "Sobrecalentamiento", value: "overheat" },
-                          { label: "Problemas con el lente", value: "lens" },
-                          { label: "Otros", value: "other" },
-                        ]}
+                        placeholder={
+                          isRepair
+                            ? "Ej. No enciende, no proyecta imagen, manchas, etc."
+                            : "Ej. Preventivo, correctivo, etc."
+                        }
+                        options={
+                          isRepair
+                            ? [
+                                { label: "No enciende", value: "off" },
+                                {
+                                  label: "No proyecta imagen",
+                                  value: "no-image",
+                                },
+                                {
+                                  label: "Manchas en la imagen",
+                                  value: "spots",
+                                },
+                                {
+                                  label: "Imagen distorsionada",
+                                  value: "distorted",
+                                },
+                                { label: "Ruido excesivo", value: "noise" },
+                                {
+                                  label: "Sobrecalentamiento",
+                                  value: "overheat",
+                                },
+                                {
+                                  label: "Problemas con el lente",
+                                  value: "lens",
+                                },
+                                { label: "Otros", value: "other" },
+                              ]
+                            : [
+                                {
+                                  label: "Mantenimiento preventivo",
+                                  value: "preventive",
+                                },
+                                {
+                                  label: "Mantenimiento correctivo",
+                                  value: "corrective",
+                                },
+                                {
+                                  label: "Limpieza de filtros",
+                                  value: "filter-cleaning",
+                                },
+                                {
+                                  label: "Calibración de imagen",
+                                  value: "calibration",
+                                },
+                                { label: "Otros", value: "other" },
+                              ]
+                        }
                       />
                     )}
                   />
@@ -186,7 +259,11 @@ export const OrganizationDeviceInformation = ({
                         control={control}
                         render={({ field: { onChange, value, name } }) => (
                           <TextArea
-                            label="Describa la falla"
+                            label={
+                              isRepair
+                                ? "Describa la falla"
+                                : "Describa el tipo de mantenimiento"
+                            }
                             name={name}
                             value={value}
                             error={error(name)}
@@ -194,12 +271,37 @@ export const OrganizationDeviceInformation = ({
                             required={required(name)}
                             rows={3}
                             onChange={onChange}
-                            placeholder="Describa la falla del equipo"
+                            placeholder={
+                              isRepair
+                                ? "Describa la falla del equipo"
+                                : "Describa el tipo de mantenimiento necesario"
+                            }
                           />
                         )}
                       />
                     </div>
                   )}
+                </div>
+              )}
+              {isOther && (
+                <div className="sm:col-span-2">
+                  <Controller
+                    name="description_other_fault"
+                    control={control}
+                    render={({ field: { onChange, value, name } }) => (
+                      <TextArea
+                        label="¿Qué tipo de servicio desea?"
+                        name={name}
+                        value={value}
+                        error={error(name)}
+                        helperText={errorMessage(name)}
+                        required={required(name)}
+                        rows={3}
+                        onChange={onChange}
+                        placeholder="Describa el servicio que necesita"
+                      />
+                    )}
+                  />
                 </div>
               )}
             </div>
