@@ -30,7 +30,7 @@ export function Drawer({
       </button>
       <nav className="flex-1 px-6 py-8 overflow-y-auto">
         <div className="space-y-1">
-          {navigation.map((item, index) => (
+          {navigation.map((item, index) =>
             item.options ? (
               <div key={item.name}>
                 <button
@@ -46,13 +46,13 @@ export function Drawer({
                   <span>{item.name}</span>
                   <ChevronDown
                     className={`h-4 w-4 transition-transform duration-200 ${
-                      openDropdown === item.name ? 'rotate-180' : ''
+                      openDropdown === item.name ? "rotate-180" : ""
                     }`}
                   />
                 </button>
                 <div
                   className={`overflow-hidden transition-all duration-200 ${
-                    openDropdown === item.name ? 'max-h-48' : 'max-h-0'
+                    openDropdown === item.name ? "max-h-48" : "max-h-0"
                   }`}
                 >
                   {item.options.map((option) => (
@@ -83,8 +83,8 @@ export function Drawer({
                 <span>{item.name}</span>
                 <ChevronRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
               </Link>
-            )
-          ))}
+            ),
+          )}
         </div>
       </nav>
     </div>

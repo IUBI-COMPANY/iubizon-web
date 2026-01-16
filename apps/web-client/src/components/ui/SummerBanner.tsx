@@ -12,7 +12,7 @@ export const SummerBanner = ({ product }: SummerBannerProps) => {
   const discountPercentage =
     product?.oldPrice && product.oldPrice > product.price
       ? Math.round(
-          ((product.oldPrice - product.price) / product.oldPrice) * 100
+          ((product.oldPrice - product.price) / product.oldPrice) * 100,
         )
       : 0;
   return (
@@ -55,14 +55,17 @@ export const SummerBanner = ({ product }: SummerBannerProps) => {
           {/* Iconos decorativos izquierda */}
           <div className="flex items-center gap-2 text-3xl md:text-4xl">
             <span className="animate-bounce drop-shadow-lg">🌞</span>
-            <span className="hidden md:inline animate-pulse drop-shadow-lg">🏖️</span>
+            <span className="hidden md:inline animate-pulse drop-shadow-lg">
+              🏖️
+            </span>
           </div>
 
           {/* Texto principal */}
           <div className="flex flex-col md:flex-row items-center gap-3 md:gap-5 text-center md:text-left">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)] tracking-wide leading-tight">
               <span className="inline-flex items-center gap-2">
-                ✨ <span>Ofertas de</span> <span className="text-yellow-100">Verano</span> ✨
+                ✨ <span>Ofertas de</span>{" "}
+                <span className="text-yellow-100">Verano</span> ✨
               </span>
             </h2>
 
@@ -75,9 +78,13 @@ export const SummerBanner = ({ product }: SummerBannerProps) => {
                 </span>
 
                 <div className="flex items-center gap-2">
-                  <span className="text-white/90 hidden md:inline text-xl">•</span>
+                  <span className="text-white/90 hidden md:inline text-xl">
+                    •
+                  </span>
                   <span className="bg-gradient-to-r from-red-500 via-red-600 to-red-500 text-white px-5 py-2 md:px-6 md:py-2.5 rounded-full text-base md:text-xl font-black shadow-[0_4px_12px_rgba(220,38,38,0.5)] border-3 border-white/40 animate-pulse">
-                    {discountPercentage > 0 ? `-${discountPercentage}%` : '20% DSCTO.'}
+                    {discountPercentage > 0
+                      ? `-${discountPercentage}%`
+                      : "20% DSCTO."}
                   </span>
                 </div>
               </div>
@@ -86,7 +93,9 @@ export const SummerBanner = ({ product }: SummerBannerProps) => {
 
           {/* Iconos decorativos derecha */}
           <div className="flex items-center gap-2 text-3xl md:text-4xl">
-            <span className="hidden md:inline animate-pulse delay-100 drop-shadow-lg">🌴</span>
+            <span className="hidden md:inline animate-pulse delay-100 drop-shadow-lg">
+              🌴
+            </span>
             <span className="animate-bounce delay-150 drop-shadow-lg">🌊</span>
           </div>
         </div>
@@ -101,4 +110,3 @@ export const SummerBanner = ({ product }: SummerBannerProps) => {
     </div>
   );
 };
-

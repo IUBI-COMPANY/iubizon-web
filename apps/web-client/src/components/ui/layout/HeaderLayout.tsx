@@ -30,8 +30,8 @@ const navigation: HeaderNavigation[] = [
     name: "Servicio Técnico",
     options: [
       { name: "Persona", href: "/servicios/tecnico/persona" },
-      { name: "Institución/Empresas", href: "/servicios/tecnico/organizacion" }
-    ]
+      { name: "Institución/Empresas", href: "/servicios/tecnico/organizacion" },
+    ],
   },
   { name: "Contacto", href: "/contacto" },
 ];
@@ -81,7 +81,7 @@ export const HeaderLayout = () => {
           </div>
           <div className="hidden lg:flex items-center space-x-8">
             <nav className="flex items-center space-x-8">
-              {navigation.map((item) => (
+              {navigation.map((item) =>
                 item.options ? (
                   <div
                     key={item.name}
@@ -89,26 +89,29 @@ export const HeaderLayout = () => {
                     onMouseEnter={() => setOpenDropdown(item.name)}
                     onMouseLeave={() => setOpenDropdown(null)}
                   >
-                    <button
-                      className="text-primary font-bold bg-primary/10 px-3 py-1 rounded transition-colors duration-200 flex items-center gap-2"
-                    >
+                    <button className="text-primary font-bold bg-primary/10 px-3 py-1 rounded transition-colors duration-200 flex items-center gap-2">
                       {item.name}
                       <svg
                         className={`w-4 h-4 transition-transform duration-200 ${
-                          openDropdown === item.name ? 'rotate-180' : ''
+                          openDropdown === item.name ? "rotate-180" : ""
                         }`}
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
                       >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
                       </svg>
                     </button>
                     <div
                       className={`absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-200 z-[100] ${
                         openDropdown === item.name
-                          ? 'opacity-100 visible translate-y-0'
-                          : 'opacity-0 invisible -translate-y-2'
+                          ? "opacity-100 visible translate-y-0"
+                          : "opacity-0 invisible -translate-y-2"
                       }`}
                     >
                       {item.options.map((option) => (
@@ -130,8 +133,8 @@ export const HeaderLayout = () => {
                   >
                     {item.name}
                   </Link>
-                )
-              ))}
+                ),
+              )}
             </nav>
             {/*<div className="flex items-center space-x-4">*/}
             {/*  <button className="bg-primary">Sign In</button>*/}

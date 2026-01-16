@@ -1,16 +1,14 @@
 "use client";
 
 import { Metadata } from "next";
-import {
-  CheckCircle
-} from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
 import { OrganizationsTechnicalServiceForm } from "@/components/ui/OrganizationsTechnicalServiceForm";
 import FAQAccordion from "@/components/ui/layout/FAQAccordion";
 import AnimateCards from "@/components/ui/AnimateCards";
-import {OrganizationGallery} from "@/components/ui/OrganizationGallery";
+import { OrganizationGallery } from "@/components/ui/OrganizationGallery";
 
 export const metadata: Metadata = {
   title:
@@ -169,103 +167,106 @@ export default function OrganizationsTechnicalServicePage() {
           <OrganizationsTechnicalServiceForm />
         </div>
       </section>
-        <AnimateCards/>
-        <OrganizationGallery/>
+      <AnimateCards />
+      <OrganizationGallery />
 
-        <section
-            className="py-12 sm:py-16 lg:py-20 bg-white"
-            aria-label="Marcas con las que trabajamos"
-        >
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Título y subtítulo */}
-                <div className="text-center mb-10 sm:mb-14">
-                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight">
-                        Marcas con las que trabajamos
-                    </h2>
-                    <p className="mt-3 text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-                        Reparación, mantenimiento y repuestos originales para las principales marcas
-                        profesionales de proyectores del mercado
-                    </p>
-                </div>
+      <section
+        className="py-12 sm:py-16 lg:py-20 bg-white"
+        aria-label="Marcas con las que trabajamos"
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Título y subtítulo */}
+          <div className="text-center mb-10 sm:mb-14">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight">
+              Marcas con las que trabajamos
+            </h2>
+            <p className="mt-3 text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+              Reparación, mantenimiento y repuestos originales para las
+              principales marcas profesionales de proyectores del mercado
+            </p>
+          </div>
 
-                {/* Grid de logos */}
-                <div className="
+          {/* Grid de logos */}
+          <div
+            className="
   grid grid-cols-1          /* mobile: 1 columna */
   sm:grid-cols-3            /* tablet: 3 columnas */
   lg:grid-cols-5            /* desktop: 5 columnas */
   gap-12 sm:gap-8 lg:gap-10
   items-center justify-items-center
   max-w-5xl mx-auto
-">
-                    {/* Epson */}
-                    <div className="flex items-center justify-center w-full h-16 sm:h-20 lg:h-24 px-2">
-                        <Image
-                            src="/images/Epson.png"
-                            alt="Logo Epson - Servicio Técnico Oficial"
-                            width={140}
-                            height={50}
-                            className="max-h-full w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105"
-                            priority
-                        />
-                    </div>
-
-                    {/* BenQ */}
-                    <div className="flex items-center justify-center w-96 h-16 gap-8 sm:h-20 lg:h-24 px-2">
-                        <Image
-                            src="/images/BENQ.png"
-                            alt="Logo BenQ - Reparación Especializada"
-                            width={120}
-                            height={50}
-                            className="max-h-full w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105"
-                        />
-                    </div>
-
-                    {/* Optoma */}
-                    <div className="flex items-center justify-center w-full h-16 sm:h-20 lg:h-24 px-2">
-                        <Image
-                            src="/images/OptomaLogo.png"
-                            alt="Logo Optoma - Mantenimiento Profesional"
-                            width={130}
-                            height={50}
-                            className="max-h-full w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105"
-                        />
-                    </div>
-
-                    {/* Panasonic */}
-                    <div className="flex items-center justify-center w-full h-16 sm:h-20 lg:h-24 px-2">
-                        <Image
-                            src="/images/PANASONIC.png"
-                            alt="Logo Panasonic - Servicio Técnico Especializado"
-                            width={140}
-                            height={50}
-                            className="max-h-full w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105"
-                        />
-                    </div>
-
-                    {/* Sony */}
-                    <div className="flex items-center justify-center w-48 h-16 sm:h-20 lg:h-24 px-2">
-                        <Image
-                            src="/images/SONY.svg"
-                            alt="Logo Sony - Reparaciones y Mantenimiento"
-                            width={110}
-                            height={50}
-                            className="max-h-full w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105"
-                        />
-                    </div>
-                </div>
-
-                {/* Línea decorativa opcional + texto de confianza */}
-                <div className="mt-12 sm:mt-16 text-center">
-                    <div className="inline-block w-24 h-1 bg-gradient-to-r from-orange-600 to-orange-400 rounded-full mb-4" />
-                    <p className="text-sm text-gray-500">
-                        Repuestos originales • Diagnóstico avanzado • Garantía en todos los servicios
-                    </p>
-                </div>
+"
+          >
+            {/* Epson */}
+            <div className="flex items-center justify-center w-full h-16 sm:h-20 lg:h-24 px-2">
+              <Image
+                src="/images/Epson.png"
+                alt="Logo Epson - Servicio Técnico Oficial"
+                width={140}
+                height={50}
+                className="max-h-full w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105"
+                priority
+              />
             </div>
-        </section>
 
-      <FAQAccordion/>
-        <section
+            {/* BenQ */}
+            <div className="flex items-center justify-center w-96 h-16 gap-8 sm:h-20 lg:h-24 px-2">
+              <Image
+                src="/images/BENQ.png"
+                alt="Logo BenQ - Reparación Especializada"
+                width={120}
+                height={50}
+                className="max-h-full w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105"
+              />
+            </div>
+
+            {/* Optoma */}
+            <div className="flex items-center justify-center w-full h-16 sm:h-20 lg:h-24 px-2">
+              <Image
+                src="/images/OptomaLogo.png"
+                alt="Logo Optoma - Mantenimiento Profesional"
+                width={130}
+                height={50}
+                className="max-h-full w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105"
+              />
+            </div>
+
+            {/* Panasonic */}
+            <div className="flex items-center justify-center w-full h-16 sm:h-20 lg:h-24 px-2">
+              <Image
+                src="/images/PANASONIC.png"
+                alt="Logo Panasonic - Servicio Técnico Especializado"
+                width={140}
+                height={50}
+                className="max-h-full w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105"
+              />
+            </div>
+
+            {/* Sony */}
+            <div className="flex items-center justify-center w-48 h-16 sm:h-20 lg:h-24 px-2">
+              <Image
+                src="/images/SONY.svg"
+                alt="Logo Sony - Reparaciones y Mantenimiento"
+                width={110}
+                height={50}
+                className="max-h-full w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 hover:scale-105"
+              />
+            </div>
+          </div>
+
+          {/* Línea decorativa opcional + texto de confianza */}
+          <div className="mt-12 sm:mt-16 text-center">
+            <div className="inline-block w-24 h-1 bg-gradient-to-r from-orange-600 to-orange-400 rounded-full mb-4" />
+            <p className="text-sm text-gray-500">
+              Repuestos originales • Diagnóstico avanzado • Garantía en todos
+              los servicios
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <FAQAccordion />
+      <section
         className="py-16 relative bg-gradient-to-br from-secondary/10 via-secondary to-secondary/0 overflow-hidden"
         aria-label="Solicita reparación de proyector"
       >

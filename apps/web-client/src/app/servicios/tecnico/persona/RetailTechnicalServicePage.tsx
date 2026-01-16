@@ -4,11 +4,9 @@
 import { Metadata } from "next";
 import { RetailTechnicalServiceForm } from "@/components/ui/RetailTechnicalServiceForm";
 import FAQAccordion from "@/components/ui/layout/FAQAccordion";
-import {
-  CheckCircle,
-} from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import GridCards from "@/components/ui/GridCards";
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
@@ -80,7 +78,6 @@ export const metadata: Metadata = {
 };
 
 export default function RetailTechnicalServicePage() {
-
   const gallery = [
     {
       src: "/images/proyectores-reparaciones.webp",
@@ -108,22 +105,22 @@ export default function RetailTechnicalServicePage() {
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      if (e.key === 'Escape') setSelectedIndex(null);
-      if (e.key === 'ArrowRight' && selectedIndex !== null) {
+      if (e.key === "Escape") setSelectedIndex(null);
+      if (e.key === "ArrowRight" && selectedIndex !== null) {
         setSelectedIndex((selectedIndex + 1) % gallery.length);
       }
-      if (e.key === 'ArrowLeft' && selectedIndex !== null) {
+      if (e.key === "ArrowLeft" && selectedIndex !== null) {
         setSelectedIndex((selectedIndex - 1 + gallery.length) % gallery.length);
       }
     }
 
-    document.addEventListener('keydown', onKey);
-    return () => document.removeEventListener('keydown', onKey);
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
   }, [selectedIndex, gallery.length]);
 
   useEffect(() => {
-    if (selectedIndex !== null) document.body.style.overflow = 'hidden';
-    else document.body.style.overflow = '';
+    if (selectedIndex !== null) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
   }, [selectedIndex]);
 
   return (
@@ -234,7 +231,10 @@ export default function RetailTechnicalServicePage() {
               viewport={{ once: true }}
             >
               <div className="relative h-auto rounded-3xl overflow-hidden shadow-xl">
-                <div className="relative w-full" style={{ aspectRatio: '3/4', minHeight: '600px' }}>
+                <div
+                  className="relative w-full"
+                  style={{ aspectRatio: "3/4", minHeight: "600px" }}
+                >
                   <Image
                     src="/images/foto-proyectores.jpeg"
                     alt="Servicio técnico de proyectores profesional"
@@ -244,7 +244,7 @@ export default function RetailTechnicalServicePage() {
                 </div>
               </div>
             </motion.div>
-            <CardSteps/>
+            <CardSteps />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <article
@@ -317,26 +317,28 @@ export default function RetailTechnicalServicePage() {
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
             >
-              Descubre los beneficios de trabajar con expertos certificados en reparación de proyectores
+              Descubre los beneficios de trabajar con expertos certificados en
+              reparación de proyectores
             </motion.p>
           </div>
 
           {/* Grid con 3 tarjetas que se voltean */}
-            <GridCards />
-
-
-
+          <GridCards />
         </div>
       </section>
 
       {/* Sección de Galería Interactiva */}
       <section className="py-16 bg-white" aria-labelledby="gallery-heading">
         <div className="max-w-6xl mx-auto px-4">
-          <h3 id="gallery-heading" className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 text-center">
+          <h3
+            id="gallery-heading"
+            className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 text-center"
+          >
             Galería de Trabajos y Servicios
           </h3>
           <p className="text-gray-600 mb-12 max-w-3xl mx-auto text-center text-lg">
-            Algunas imágenes de nuestro taller, técnicos y proyectos realizados. Haz click en cualquier imagen para agrandar.
+            Algunas imágenes de nuestro taller, técnicos y proyectos realizados.
+            Haz click en cualquier imagen para agrandar.
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -348,9 +350,16 @@ export default function RetailTechnicalServicePage() {
                 aria-label={`Abrir imagen: ${img.alt}`}
               >
                 <div className="relative w-full h-40 md:h-32 lg:h-36">
-                  <Image src={img.src} alt={img.alt} fill className="object-cover transform group-hover:scale-105 transition-transform duration-300" />
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    className="object-cover transform group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
-                <span className="absolute bottom-2 left-1 text-xs bg-black/50 text-white px-2 py-1 rounded w-32 mx-auto">{img.caption}</span>
+                <span className="absolute bottom-2 left-1 text-xs bg-black/50 text-white px-2 py-1 rounded w-32 mx-auto">
+                  {img.caption}
+                </span>
               </button>
             ))}
           </div>
@@ -374,28 +383,52 @@ export default function RetailTechnicalServicePage() {
                   exit={{ opacity: 0 }}
                 />
 
-                <motion.div className="relative max-w-5xl w-full mx-auto rounded-lg overflow-hidden" initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 40, opacity: 0 }}>
+                <motion.div
+                  className="relative max-w-5xl w-full mx-auto rounded-lg overflow-hidden"
+                  initial={{ y: 40, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: 40, opacity: 0 }}
+                >
                   <div className="bg-gray-900/90 p-4 flex items-center justify-between">
-                    <div className="text-sm text-white">{gallery[selectedIndex].caption}</div>
+                    <div className="text-sm text-white">
+                      {gallery[selectedIndex].caption}
+                    </div>
                     <div className="flex items-center gap-2">
-                      <button aria-label="Cerrar" onClick={() => setSelectedIndex(null)} className="text-white hover:text-gray-200">Cerrar ✕</button>
+                      <button
+                        aria-label="Cerrar"
+                        onClick={() => setSelectedIndex(null)}
+                        className="text-white hover:text-gray-200"
+                      >
+                        Cerrar ✕
+                      </button>
                     </div>
                   </div>
                   <div className="relative bg-black">
                     <div className="w-full h-[60vh] relative">
-                      <Image src={gallery[selectedIndex].src} alt={gallery[selectedIndex].alt} fill className="object-contain" />
+                      <Image
+                        src={gallery[selectedIndex].src}
+                        alt={gallery[selectedIndex].alt}
+                        fill
+                        className="object-contain"
+                      />
                     </div>
                   </div>
                   <div className="p-4 bg-white flex justify-between">
                     <button
-                      onClick={() => setSelectedIndex((selectedIndex - 1 + gallery.length) % gallery.length)}
+                      onClick={() =>
+                        setSelectedIndex(
+                          (selectedIndex - 1 + gallery.length) % gallery.length,
+                        )
+                      }
                       className="px-4 py-2 bg-gray-100 rounded hover:bg-gray-200"
                       aria-label="Imagen anterior"
                     >
                       ← Anterior
                     </button>
                     <button
-                      onClick={() => setSelectedIndex((selectedIndex + 1) % gallery.length)}
+                      onClick={() =>
+                        setSelectedIndex((selectedIndex + 1) % gallery.length)
+                      }
                       className="px-4 py-2 bg-gray-100 rounded hover:bg-gray-200"
                       aria-label="Siguiente imagen"
                     >
@@ -408,7 +441,7 @@ export default function RetailTechnicalServicePage() {
           </AnimatePresence>
         </div>
       </section>
-        <FAQAccordion/>
+      <FAQAccordion />
       <section
         className="py-16 relative bg-gradient-to-br from-secondary/10 via-secondary to-secondary/0 overflow-hidden"
         aria-label="Solicita reparación de proyector"
@@ -421,7 +454,6 @@ export default function RetailTechnicalServicePage() {
             className="object-cover opacity-50"
             priority
           />
-
         </div>
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
