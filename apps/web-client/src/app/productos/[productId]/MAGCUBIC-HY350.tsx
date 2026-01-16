@@ -120,7 +120,8 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
           {/* Estilos de animación */}
           <style jsx>{`
             @keyframes floatSlow {
-              0%, 100% {
+              0%,
+              100% {
                 transform: translateY(0) translateX(0);
               }
               50% {
@@ -758,10 +759,10 @@ export const MAGCUBICHY350 = ({ product }: SpecialProductProps) => {
             </div>
             <div className="bg-gradient-to-br from-amber-900/30 to-yellow-900/30 border border-amber-400/30 rounded-xl p-4 text-center">
               <div className="text-3xl mb-2">☀️</div>
-              <h4 className="text-amber-400 font-bold mb-1">Oferta de Verano</h4>
-              <p className="text-xs text-gray-400">
-                Solo por tiempo limitado
-              </p>
+              <h4 className="text-amber-400 font-bold mb-1">
+                Oferta de Verano
+              </h4>
+              <p className="text-xs text-gray-400">Solo por tiempo limitado</p>
             </div>
             <div className="bg-gradient-to-br from-yellow-900/30 to-orange-900/30 border border-yellow-400/30 rounded-xl p-4 text-center">
               <div className="text-3xl mb-2">🚚</div>
