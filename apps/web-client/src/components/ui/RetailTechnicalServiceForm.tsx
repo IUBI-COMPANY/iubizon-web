@@ -26,7 +26,7 @@ export type RepairStep2 = Pick<
 
 export type RepairStep3 = Pick<
   TechnicalService,
-  | "modality_service"
+  | "attendance_type"
   | "visit_date"
   | "visit_time"
   | "department"

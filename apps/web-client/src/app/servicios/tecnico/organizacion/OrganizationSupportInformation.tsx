@@ -15,9 +15,9 @@ import { Select } from "@/components/ui/Select";
 import { peruUbigeo } from "@/data-list/ubigeos";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { sendTechnicalServiceEmail } from "./actions";
-import { RepairStep3 } from "@/components/ui/RetailTechnicalServiceForm";
 import { ArrowLeft, SendIcon } from "lucide-react";
 import { BusinessAddress } from "@/components/ui/BusinessAddress";
+import { OrganizationRepairStep3 } from "@/components/ui/OrganizationsTechnicalServiceForm";
 
 interface Props {
   globalStep: number;
@@ -38,50 +38,50 @@ export const OrganizationSupportInformation = ({
   loading,
   setLoading,
 }: Props) => {
-  const schema: ObjectSchema<RepairStep3> = yup.object({
-    modality_service: yup.string().required(),
-    visit_date: yup.string().when("modality_service", {
-      is: "house",
+  const schema = yup.object({
+    attendance_type: yup.string().required(),
+    visit_date: yup.string().when("attendance_type", {
+      is: "home_visit",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
-    visit_time: yup.string().when("modality_service", {
-      is: "house",
+    visit_time: yup.string().when("attendance_type", {
+      is: "home_visit",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
-    district: yup.string().when("modality_service", {
-      is: "house || shipping",
+    district: yup.string().when("attendance_type", {
+      is: "home_visit || send_to_store",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
-    address: yup.string().when("modality_service", {
-      is: "house || shipping",
+    address: yup.string().when("attendance_type", {
+      is: "home_visit || send_to_store",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
-    department: yup.string().when("modality_service", {
-      is: "shipping",
+    department: yup.string().when("attendance_type", {
+      is: "send_to_store",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
-    province: yup.string().when("modality_service", {
-      is: "shipping",
+    province: yup.string().when("attendance_type", {
+      is: "send_to_store",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
     terms_and_conditions: yup.boolean().required(),
-  });
+  }) as ObjectSchema<OrganizationRepairStep3>;
 
   const {
     handleSubmit,
     control,
     formState: { errors },
     watch,
-  } = useForm<RepairStep3>({
+  } = useForm<OrganizationRepairStep3>({
     resolver: yupResolver(schema),
     defaultValues: {
-      modality_service: repairsFormData?.modality_service || "local",
+      attendance_type: repairsFormData?.attendance_type || "go_to_store",
       visit_date: repairsFormData?.visit_date || "",
       visit_time: repairsFormData?.visit_time || "",
       department: repairsFormData?.department || "",
@@ -93,9 +93,9 @@ export const OrganizationSupportInformation = ({
 
   const { required, error, errorMessage } = useFormUtils({ errors, schema });
 
-  const isLocalVisit = watch("modality_service") === "local";
-  const isHouseVisit = watch("modality_service") === "house";
-  const isShipping = watch("modality_service") === "shipping";
+  const isLocalVisit = watch("attendance_type") === "go_to_store";
+  const isHouseVisit = watch("attendance_type") === "home_visit";
+  const isShipping = watch("attendance_type") === "send_to_store";
 
   const departmentSelected = watch("department");
   const _departmentSelected = peruUbigeo.find(
@@ -108,7 +108,7 @@ export const OrganizationSupportInformation = ({
 
   const districtsByLimaProvince = peruUbigeo[13].provinces[0].districts;
 
-  const onSubmit = async (formData: RepairStep3) => {
+  const onSubmit = async (formData: OrganizationRepairStep3) => {
     setLoading(true);
     setRepairsFormData({ ...repairsFormData, ...formData });
     addLocalStorageData(formData);
@@ -144,7 +144,7 @@ export const OrganizationSupportInformation = ({
             <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
               <div className="sm:col-span-2">
                 <Controller
-                  name="modality_service"
+                  name="attendance_type"
                   control={control}
                   render={({ field: { onChange, value, name } }) => (
                     <RadioGroup
@@ -158,17 +158,25 @@ export const OrganizationSupportInformation = ({
                       options={[
                         {
                           label: "Quiero ir al local",
-                          value: "local",
+                          value: "go_to_store",
                         },
                         {
                           label: "Quiero una visita técnica a mi domicilio",
-                          value: "house",
+                          value: "home_visit",
                           message: "Solo para Lima",
                         },
                         {
                           label: "Quiero enviar mi producto al local",
-                          value: "shipping",
+                          value: "send_to_store",
                           message: "Solo para provincias",
+                        },
+                        {
+                          label: "Solicitar cotización",
+                          value: "quotation",
+                        },
+                        {
+                          label: "Otro",
+                          value: "other",
                         },
                       ]}
                     />

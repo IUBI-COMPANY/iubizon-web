@@ -21,12 +21,19 @@ export type OrganizationRepairStep1 = Pick<
 
 export type OrganizationRepairStep2 = Pick<
   TechnicalService,
-  "first_name" | "last_name" | "email" | "phone_prefix" | "phone_number"
+  | "document_type"
+  | "document_number"
+  | "full_name_or_social_reason"
+  | "first_name"
+  | "last_name"
+  | "email"
+  | "phone_prefix"
+  | "phone_number"
 >;
 
 export type OrganizationRepairStep3 = Pick<
   TechnicalService,
-  | "modality_service"
+  | "attendance_type"
   | "visit_date"
   | "visit_time"
   | "department"
