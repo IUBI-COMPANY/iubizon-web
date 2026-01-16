@@ -33,32 +33,28 @@ export const OrganizationInfo = ({
 }: Props) => {
   const previousDocType = useRef<string | undefined>("");
 
-  const schema: ObjectSchema<OrganizationRepairStep2> = yup.object({
-    doc_type: yup.string().required(),
-    doc_number: yup
+  const schema = yup.object({
+    document_type: yup.string().required(),
+    document_number: yup
       .string()
       .required()
       .test("is-valid-doc", "Número de documento inválido", function (value) {
-        const { doc_type } = this.parent;
-        if (doc_type === "dni") {
+        const { document_type } = this.parent;
+        if (document_type === "DNI") {
           return /^\d{8}$/.test(value);
-        } else if (doc_type === "ruc") {
+        } else if (document_type === "RUC") {
           return /^(10|20)\d{9}$/.test(value);
         }
         return true;
       }),
-    social_reason: yup.string().when("doc_type", {
-      is: "ruc",
+    full_name_or_social_reason: yup.string().required(),
+    first_name: yup.string().when("document_type", {
+      is: "DNI",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
-    first_name: yup.string().when("doc_type", {
-      is: "dni",
-      then: (schema) => schema.required(),
-      otherwise: (schema) => schema.notRequired(),
-    }),
-    last_name: yup.string().when("doc_type", {
-      is: "dni",
+    last_name: yup.string().when("document_type", {
+      is: "DNI",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
@@ -71,7 +67,7 @@ export const OrganizationInfo = ({
         const { phone_prefix } = this.parent;
         return regexPhoneByCountries(phone_prefix).test(value);
       }),
-  });
+  }) as ObjectSchema<OrganizationRepairStep2>;
 
   const {
     handleSubmit,
@@ -82,9 +78,10 @@ export const OrganizationInfo = ({
   } = useForm<OrganizationRepairStep2>({
     resolver: yupResolver(schema),
     defaultValues: {
-      doc_type: repairsFormData?.doc_type || "",
-      doc_number: repairsFormData?.doc_number || "",
-      social_reason: repairsFormData?.social_reason || "",
+      document_type: repairsFormData?.document_type || "",
+      document_number: repairsFormData?.document_number || "",
+      full_name_or_social_reason:
+        repairsFormData?.full_name_or_social_reason || "",
       first_name: repairsFormData?.first_name || "",
       last_name: repairsFormData?.last_name || "",
       email: repairsFormData?.email || "",
@@ -93,24 +90,25 @@ export const OrganizationInfo = ({
     },
   });
 
-  const docType = watch("doc_type");
-  const isRuc = docType === "ruc";
-  const isDni = docType === "dni";
+  const docType = watch("document_type");
+  const isRuc = docType === "RUC";
+  const isDni = docType === "DNI";
 
   // Limpiar campos cuando cambia el tipo de documento
   useEffect(() => {
     // Solo limpiar si hay un cambio real (no en el primer render)
     if (previousDocType.current && previousDocType.current !== docType) {
-      if (docType === "ruc") {
+      if (docType === "RUC") {
         // Si cambia a RUC, limpiar campos de DNI
         setValue("first_name", "");
         setValue("last_name", "");
-      } else if (docType === "dni") {
-        // Si cambia a DNI, limpiar campos de RUC
-        setValue("social_reason", "");
+      } else if (docType === "DNI") {
+        // Si cambia a DNI, limpiar full_name_or_social_reason para que ingrese nombres
+        setValue("full_name_or_social_reason", "");
       }
-      // Siempre limpiar el número de documento al cambiar de tipo
-      setValue("doc_number", "");
+      // Siempre limpiar el número de documento y el nombre/razón social al cambiar de tipo
+      setValue("document_number", "");
+      setValue("full_name_or_social_reason", "");
     }
     // Actualizar el ref con el valor actual
     previousDocType.current = docType;
@@ -143,7 +141,7 @@ export const OrganizationInfo = ({
             <div className="grid grid-cols-1 gap-x-2 gap-y-6 sm:grid-cols-4">
               <div className="sm:col-span-2">
                 <Controller
-                  name="doc_type"
+                  name="document_type"
                   control={control}
                   render={({ field: { onChange, value, name } }) => (
                     <Select
@@ -156,8 +154,8 @@ export const OrganizationInfo = ({
                       onChange={onChange}
                       placeholder="Seleccionar"
                       options={[
-                        { label: "RUC", value: "ruc" },
-                        { label: "DNI", value: "dni" },
+                        { label: "RUC", value: "RUC" },
+                        { label: "DNI", value: "DNI" },
                       ]}
                     />
                   )}
@@ -165,7 +163,7 @@ export const OrganizationInfo = ({
               </div>
               <div className="sm:col-span-2">
                 <Controller
-                  name="doc_number"
+                  name="document_number"
                   control={control}
                   render={({ field: { onChange, value, name } }) => (
                     <Input
@@ -181,26 +179,24 @@ export const OrganizationInfo = ({
                   )}
                 />
               </div>
-              {isRuc && (
-                <div className="sm:col-span-4">
-                  <Controller
-                    name="social_reason"
-                    control={control}
-                    render={({ field: { onChange, value, name } }) => (
-                      <Input
-                        label="Razón Social"
-                        name={name}
-                        value={value}
-                        error={error(name)}
-                        helperText={errorMessage(name)}
-                        required={required(name)}
-                        onChange={onChange}
-                        placeholder="EJEMPLO S.A.C."
-                      />
-                    )}
-                  />
-                </div>
-              )}
+              <div className="sm:col-span-4">
+                <Controller
+                  name="full_name_or_social_reason"
+                  control={control}
+                  render={({ field: { onChange, value, name } }) => (
+                    <Input
+                      label={isRuc ? "Razón Social" : "Nombre Completo"}
+                      name={name}
+                      value={value}
+                      error={error(name)}
+                      helperText={errorMessage(name)}
+                      required={required(name)}
+                      onChange={onChange}
+                      placeholder={isRuc ? "EJEMPLO S.A.C." : "Nombre completo"}
+                    />
+                  )}
+                />
+              </div>
               {isDni && (
                 <>
                   <div className="sm:col-span-2">
