@@ -15,9 +15,9 @@ import { Select } from "@/components/ui/Select";
 import { peruUbigeo } from "@/data-list/ubigeos";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { sendTechnicalServiceEmail } from "./actions";
-import { RepairStep3 } from "@/components/ui/RetailTechnicalServiceForm";
 import { ArrowLeft, SendIcon } from "lucide-react";
 import { BusinessAddress } from "@/components/ui/BusinessAddress";
+import { OrganizationRepairStep3 } from "@/components/ui/OrganizationsTechnicalServiceForm";
 
 interface Props {
   globalStep: number;
@@ -38,7 +38,7 @@ export const OrganizationSupportInformation = ({
   loading,
   setLoading,
 }: Props) => {
-  const schema: ObjectSchema<RepairStep3> = yup.object({
+  const schema: ObjectSchema<OrganizationRepairStep3> = yup.object({
     modality_service: yup.string().required(),
     visit_date: yup.string().when("modality_service", {
       is: "house",
@@ -78,7 +78,7 @@ export const OrganizationSupportInformation = ({
     control,
     formState: { errors },
     watch,
-  } = useForm<RepairStep3>({
+  } = useForm<OrganizationRepairStep3>({
     resolver: yupResolver(schema),
     defaultValues: {
       modality_service: repairsFormData?.modality_service || "local",
@@ -108,7 +108,7 @@ export const OrganizationSupportInformation = ({
 
   const districtsByLimaProvince = peruUbigeo[13].provinces[0].districts;
 
-  const onSubmit = async (formData: RepairStep3) => {
+  const onSubmit = async (formData: OrganizationRepairStep3) => {
     setLoading(true);
     setRepairsFormData({ ...repairsFormData, ...formData });
     addLocalStorageData(formData);

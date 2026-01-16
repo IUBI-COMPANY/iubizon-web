@@ -21,7 +21,14 @@ export type OrganizationRepairStep1 = Pick<
 
 export type OrganizationRepairStep2 = Pick<
   TechnicalService,
-  "first_name" | "last_name" | "email" | "phone_prefix" | "phone_number"
+  | "doc_type"
+  | "doc_number"
+  | "social_reason"
+  | "first_name"
+  | "last_name"
+  | "email"
+  | "phone_prefix"
+  | "phone_number"
 >;
 
 export type OrganizationRepairStep3 = Pick<
