@@ -14,6 +14,8 @@ import * as yup from "yup";
 import type { ObjectSchema } from "yup";
 import { SendIcon } from "lucide-react";
 import countriesISO from "@/data-list/countriesISO.json";
+import { sendReclamation } from "./actions";
+import { Alert } from "@/components/ui/Alert";
 
 const schema: ObjectSchema<ClaimFormData> = yup.object({
   full_name: yup
@@ -60,8 +62,9 @@ const schema: ObjectSchema<ClaimFormData> = yup.object({
 }) as ObjectSchema<ClaimFormData>;
 
 export default function ClaimClientPage() {
-  const [claimNumber, setClaimNumber] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const {
     handleSubmit,
@@ -96,13 +99,21 @@ export default function ClaimClientPage() {
   const { required, error, errorMessage } = useFormUtils({ errors, schema });
   const claimMotive = watch("claim_motive");
 
-  const onSubmit = (data: ClaimFormData) => {
-    // Generar número de reclamo único
-    const number = `REC-${Date.now()}-${Math.random().toString(36).slice(2, 11).toUpperCase()}`;
-    setClaimNumber(number);
-    setSubmitted(true);
-
-    console.log("Formulario enviado:", data);
+  const onSubmit = async (data: ClaimFormData) => {
+    setErrorMsg(null);
+    setLoading(true);
+    try {
+      const result = await sendReclamation(data);
+      setLoading(false);
+      if (result.success) {
+          setSubmitted(true);
+      } else {
+        setErrorMsg(result.error || "Ocurrió un error al enviar el reclamo.");
+      }
+    } catch (e) {
+      setLoading(false);
+      setErrorMsg("Ocurrió un error inesperado. Intenta nuevamente." +e);
+    }
   };
 
   if (submitted) {
@@ -115,11 +126,7 @@ export default function ClaimClientPage() {
           <p className="text-lg text-foreground mb-6">
             Tu reclamo ha sido recibido y será procesado en breve.
           </p>
-          <div className="bg-gray-100 p-4 rounded-lg mb-6">
-            <p className="text-sm text-gray-600 mb-2">
-              Número de reclamo (guarda este código como tu comprobante):
-            </p>
-            <p className="text-2xl font-bold text-secondary">{claimNumber}</p>
+
           </div>
           <p className="text-sm text-gray-600 mb-6">
             Te contactaremos a través del email y teléfono proporcionados dentro
@@ -129,7 +136,6 @@ export default function ClaimClientPage() {
             onClick={() => {
               setSubmitted(false);
               reset();
-              setClaimNumber("");
             }}
             variant="primary"
             size="md"
@@ -137,7 +143,6 @@ export default function ClaimClientPage() {
             Enviar Otro Reclamo
           </Button>
         </div>
-      </div>
     );
   }
 
@@ -537,8 +542,14 @@ export default function ClaimClientPage() {
                 />
               </div>
 
+              {errorMsg && (
+                <div className="md:col-span-4">
+                  <Alert type="error" message={errorMsg} />
+                </div>
+              )}
+
               <div className="md:col-span-4">
-                <Button type="submit" block>
+                <Button type="submit" block loading={loading}>
                   <div className="flex gap-2 items-center leading-1">
                     <SendIcon className="w-[1.2em]" /> Registrar Reclamo
                   </div>
