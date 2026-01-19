@@ -31,7 +31,7 @@ export async function sendTechnicalServiceEmail(
 
   try {
     const response = await fetch(
-      `https://api-iubisales.web.app/iubizon/services/technical/person`,
+      `https://api-iubisales.web.app/iubizon/services/technical`,
       {
         method: "POST",
         headers: {
