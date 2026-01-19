@@ -53,7 +53,7 @@ interface TechnicalService extends DefaultFirestoreProps {
   quantity?: number;
 }
 
-interface ReclamationFormData extends DefaultFirestoreProps {
+interface ClaimFormData extends DefaultFirestoreProps {
   id: string;
   client_id: string;
   full_name: string;
