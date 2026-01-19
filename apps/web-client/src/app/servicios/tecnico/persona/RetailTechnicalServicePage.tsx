@@ -12,6 +12,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import CardSteps from "@/components/ui/CardSteps";
+import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title:
@@ -343,11 +344,13 @@ export default function RetailTechnicalServicePage() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {gallery.map((img, i) => (
-              <button
+              <Button
                 key={img.src}
                 onClick={() => setSelectedIndex(i)}
-                className="group relative overflow-hidden rounded-lg focus:outline-none focus:ring-4 focus:ring-primary"
+                className="group relative overflow-hidden rounded-lg focus:outline-none focus:ring-4 focus:ring-primary p-0"
                 aria-label={`Abrir imagen: ${img.alt}`}
+                variant="tertiary"
+                size="xs"
               >
                 <div className="relative w-full h-40 md:h-32 lg:h-36">
                   <Image
@@ -360,7 +363,7 @@ export default function RetailTechnicalServicePage() {
                 <span className="absolute bottom-2 left-1 text-xs bg-black/50 text-white px-2 py-1 rounded w-32 mx-auto">
                   {img.caption}
                 </span>
-              </button>
+              </Button>
             ))}
           </div>
 
@@ -394,13 +397,15 @@ export default function RetailTechnicalServicePage() {
                       {gallery[selectedIndex].caption}
                     </div>
                     <div className="flex items-center gap-2">
-                      <button
+                      <Button
                         aria-label="Cerrar"
                         onClick={() => setSelectedIndex(null)}
+                        variant="tertiary"
+                        size="sm"
                         className="text-white hover:text-gray-200"
                       >
                         Cerrar ✕
-                      </button>
+                      </Button>
                     </div>
                   </div>
                   <div className="relative bg-black">
@@ -414,7 +419,7 @@ export default function RetailTechnicalServicePage() {
                     </div>
                   </div>
                   <div className="p-4 bg-white flex justify-between">
-                    <button
+                    <Button
                       onClick={() =>
                         setSelectedIndex(
                           (selectedIndex - 1 + gallery.length) % gallery.length,
@@ -422,18 +427,22 @@ export default function RetailTechnicalServicePage() {
                       }
                       className="px-4 py-2 bg-gray-100 rounded hover:bg-gray-200"
                       aria-label="Imagen anterior"
+                      variant="tertiary"
+                      size="sm"
                     >
                       ← Anterior
-                    </button>
-                    <button
+                    </Button>
+                    <Button
                       onClick={() =>
                         setSelectedIndex((selectedIndex + 1) % gallery.length)
                       }
                       className="px-4 py-2 bg-gray-100 rounded hover:bg-gray-200"
                       aria-label="Siguiente imagen"
+                      variant="tertiary"
+                      size="sm"
                     >
                       Siguiente →
-                    </button>
+                    </Button>
                   </div>
                 </motion.div>
               </motion.div>
@@ -489,17 +498,19 @@ export default function RetailTechnicalServicePage() {
               </div>
             </div>
             <div className="space-y-3">
-              <button
+              <Button
                 onClick={() =>
                   document.getElementById("contact-form")?.scrollIntoView({
                     behavior: "smooth",
                   })
                 }
-                className="bg-primary hover:bg-primary/90 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl cursor-pointer"
+                variant="primary"
+                size="lg"
+                className="text-lg"
                 aria-label="Solicitar reparación de proyector"
               >
                 Solicitar Reparación Ahora
-              </button>
+              </Button>
               <p className="text-sm text-white/80">
                 ⚡ Proceso rápido • 📧 Confirmación por email
               </p>
