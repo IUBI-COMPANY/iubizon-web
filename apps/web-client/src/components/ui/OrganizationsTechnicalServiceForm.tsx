@@ -10,6 +10,11 @@ import { OrganizationDeviceInformation } from "@/app/servicios/tecnico/organizac
 import { OrganizationInfo } from "@/app/servicios/tecnico/organizacion/OrganizationInfo";
 import { OrganizationSupportInformation } from "@/app/servicios/tecnico/organizacion/OrganizationSupportInformation";
 
+const STORAGE_KEYS = {
+  currentStep: "organization_currentStep",
+  formData: "organization_formData",
+};
+
 export type OrganizationRepairStep1 = Pick<
   TechnicalService,
   | "service_type"
@@ -55,26 +60,32 @@ export const OrganizationsTechnicalServiceForm = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const stepsData = Number(localStorage.getItem("currentStep") || 0);
+    const stepsData = Number(
+      localStorage.getItem(STORAGE_KEYS.currentStep) || 0,
+    );
     if (stepsData !== null) {
       setCurrentStepToLocalStorage(stepsData);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("formData") || "{}");
+    const data = JSON.parse(
+      localStorage.getItem(STORAGE_KEYS.formData) || "{}",
+    );
     setRepairsFormData(data);
     setLoading(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globalStep]);
 
   const addLocalStorageData = (data: object) => {
     const currentLocalData = getLocalStorageData();
     const newData = { ...currentLocalData, ...data };
-    localStorage.setItem("formData", JSON.stringify(newData));
+    localStorage.setItem(STORAGE_KEYS.formData, JSON.stringify(newData));
   };
 
   const setCurrentStepToLocalStorage = (step: number) => {
-    localStorage.setItem("currentStep", JSON.stringify(step));
+    localStorage.setItem(STORAGE_KEYS.currentStep, JSON.stringify(step));
     setGlobalStep(step);
 
     if (formRef.current) {
@@ -88,7 +99,7 @@ export const OrganizationsTechnicalServiceForm = () => {
   };
 
   const getLocalStorageData = () => {
-    return JSON.parse(localStorage.getItem("formData") || "{}");
+    return JSON.parse(localStorage.getItem(STORAGE_KEYS.formData) || "{}");
   };
 
   const stepItems = [
@@ -119,8 +130,8 @@ export const OrganizationsTechnicalServiceForm = () => {
         setCountdown((prev) => {
           if (prev <= 1) {
             clearInterval(timer);
-            localStorage.removeItem("currentStep");
-            localStorage.removeItem("formData");
+            localStorage.removeItem(STORAGE_KEYS.currentStep);
+            localStorage.removeItem(STORAGE_KEYS.formData);
             setTimeout(() => {
               window.location.href = "/servicios/tecnico/organizacion";
             }, 100);
@@ -132,6 +143,7 @@ export const OrganizationsTechnicalServiceForm = () => {
 
       return () => clearInterval(timer);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globalStep, router]);
 
   return loading ? (
@@ -143,7 +155,7 @@ export const OrganizationsTechnicalServiceForm = () => {
       <StepsRepairsContactForm
         items={stepItems}
         globalStep={globalStep}
-        setGlobalStep={setGlobalStep}
+        setGlobalStep={setCurrentStepToLocalStorage}
       />
       <div className="w-full max-w-2xl mx-auto shadow-lg  py-10 px-6 rounded-2xl bg-white border-2 border-solid border-primary">
         {globalStep === 0 && (

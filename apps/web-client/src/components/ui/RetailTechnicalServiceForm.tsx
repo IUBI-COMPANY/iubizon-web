@@ -1,14 +1,19 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ClientInformation } from "@/app/servicios/tecnico/persona/ClientInformation";
-import { DeviceInformation } from "@/app/servicios/tecnico/persona/DeviceInformation";
-import { SupportInformation } from "@/app/servicios/tecnico/persona/SupportInformation";
 import { StepsRepairsContactForm } from "@/components/ui/StepsRepairsContactForm";
 import { CircleCheck, Loader2, Projector, User, Wrench } from "lucide-react";
 import Image from "next/image";
 import Confetti from "react-confetti";
 import { useRouter } from "next/navigation";
+import { ClientInformation } from "@/app/servicios/tecnico/persona/ClientInformation";
+import { DeviceInformation } from "@/app/servicios/tecnico/persona/DeviceInformation";
+import { SupportInformation } from "@/app/servicios/tecnico/persona/SupportInformation";
+
+const STORAGE_KEYS = {
+  currentStep: "retail_currentStep",
+  formData: "retail_formData",
+};
 
 export type RepairStep1 = Pick<
   TechnicalService,
@@ -48,14 +53,18 @@ export const RetailTechnicalServiceForm = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const stepsData = Number(localStorage.getItem("currentStep") || 0);
+    const stepsData = Number(
+      localStorage.getItem(STORAGE_KEYS.currentStep) || 0,
+    );
     if (stepsData !== null) {
       setCurrentStepToLocalStorage(stepsData);
     }
   }, []);
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("formData") || "{}");
+    const data = JSON.parse(
+      localStorage.getItem(STORAGE_KEYS.formData) || "{}",
+    );
     setRepairsFormData(data);
     setLoading(false);
   }, [globalStep]);
@@ -63,11 +72,11 @@ export const RetailTechnicalServiceForm = () => {
   const addLocalStorageData = (data: object) => {
     const currentLocalData = getLocalStorageData();
     const newData = { ...currentLocalData, ...data };
-    localStorage.setItem("formData", JSON.stringify(newData));
+    localStorage.setItem(STORAGE_KEYS.formData, JSON.stringify(newData));
   };
 
   const setCurrentStepToLocalStorage = (step: number) => {
-    localStorage.setItem("currentStep", JSON.stringify(step));
+    localStorage.setItem(STORAGE_KEYS.currentStep, JSON.stringify(step));
     setGlobalStep(step);
 
     if (formRef.current) {
@@ -81,7 +90,7 @@ export const RetailTechnicalServiceForm = () => {
   };
 
   const getLocalStorageData = () => {
-    return JSON.parse(localStorage.getItem("formData") || "{}");
+    return JSON.parse(localStorage.getItem(STORAGE_KEYS.formData) || "{}");
   };
 
   const stepItems = [
@@ -112,8 +121,8 @@ export const RetailTechnicalServiceForm = () => {
         setCountdown((prev) => {
           if (prev <= 1) {
             clearInterval(timer);
-            localStorage.removeItem("currentStep");
-            localStorage.removeItem("formData");
+            localStorage.removeItem(STORAGE_KEYS.currentStep);
+            localStorage.removeItem(STORAGE_KEYS.formData);
             setTimeout(() => {
               window.location.href = "/servicios/tecnico/persona";
             }, 100);
@@ -136,7 +145,7 @@ export const RetailTechnicalServiceForm = () => {
       <StepsRepairsContactForm
         items={stepItems}
         globalStep={globalStep}
-        setGlobalStep={setGlobalStep}
+        setGlobalStep={setCurrentStepToLocalStorage}
       />
       <div className="w-full max-w-2xl mx-auto shadow-lg  py-10 px-6 rounded-2xl bg-white border-2 border-solid border-primary">
         {globalStep === 0 && (
