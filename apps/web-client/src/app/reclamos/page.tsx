@@ -15,28 +15,8 @@ import type { ObjectSchema } from "yup";
 import { SendIcon } from "lucide-react";
 import countriesISO from "@/data-list/countriesISO.json";
 
-interface ReclamationFormData {
-  fullName: string;
-  documentType: string;
-  documentId: string;
-  address: string;
-  phone: Phone;
-  email: string;
-  incidentDate: string;
-  incidentTime: string;
-  purchaseDate: string;
-  invoiceNumber: string;
-  claimMotive: string;
-  productServiceDescription: string;
-  problemDescription: string;
-  claimedAmount: string;
-  requestedSolution: string;
-}
+// Interfaces now come from global.d.ts (ReclamationFormData)
 
-interface Phone {
-  prefix: string;
-  number: number;
-}
 
 const schema: ObjectSchema<ReclamationFormData> = yup.object({
   fullName: yup
