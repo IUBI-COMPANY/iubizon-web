@@ -52,3 +52,21 @@ interface TechnicalService extends DefaultFirestoreProps {
   full_name_or_social_reason: string;
   quantity?: number;
 }
+
+interface ReclamationFormData {
+  fullName: string;
+  documentType: string;
+  documentId: string;
+  address: string;
+  phone: Phone;
+  email: string;
+  incidentDate: string;
+  incidentTime: string;
+  purchaseDate: string;
+  invoiceNumber: string;
+  claimMotive: string;
+  productServiceDescription: string;
+  problemDescription: string;
+  claimedAmount: string;
+  requestedSolution: string;
+}
