@@ -9,6 +9,7 @@ import { OrganizationsTechnicalServiceForm } from "@/components/ui/Organizations
 import FAQAccordion from "@/components/ui/layout/FAQAccordion";
 import AnimateCards from "@/components/ui/AnimateCards";
 import { OrganizationGallery } from "@/components/ui/OrganizationGallery";
+import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title:
@@ -314,17 +315,19 @@ export default function OrganizationsTechnicalServicePage() {
               </div>
             </div>
             <div className="space-y-3">
-              <button
+              <Button
                 onClick={() =>
                   document.getElementById("contact-form")?.scrollIntoView({
                     behavior: "smooth",
                   })
                 }
-                className="bg-primary hover:bg-primary/90 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl cursor-pointer"
+                variant="primary"
+                size="lg"
+                className="text-lg"
                 aria-label="Solicitar reparación de proyector"
               >
                 Solicitar Reparación Ahora
-              </button>
+              </Button>
               <p className="text-sm text-white/80">
                 ⚡ Proceso rápido • 📧 Confirmación por email
               </p>

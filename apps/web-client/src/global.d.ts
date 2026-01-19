@@ -53,20 +53,27 @@ interface TechnicalService extends DefaultFirestoreProps {
   quantity?: number;
 }
 
-interface ReclamationFormData {
-  fullName: string;
-  documentType: string;
-  documentId: string;
+interface ReclamationFormData extends DefaultFirestoreProps {
+  id: string;
+  client_id: string;
+  full_name: string;
+  document_type: string;
+  document_id: string;
   address: string;
   phone: Phone;
   email: string;
-  incidentDate: string;
-  incidentTime: string;
-  purchaseDate: string;
-  invoiceNumber: string;
-  claimMotive: string;
-  productServiceDescription: string;
-  problemDescription: string;
-  claimedAmount: string;
-  requestedSolution: string;
+  incident_date: string;
+  incident_time: string;
+  purchase_date: string;
+  invoice_number: string;
+  claim_motive: string;
+  product_service_description: string;
+  problem_description: string;
+  claimed_amount: string;
+  requested_solution: string;
+  status: string;
+  archived: boolean;
+  email_sent_to_user?: boolean;
+  email_sent_to_advisor?: boolean;
+  created_by?: string;
 }
