@@ -1,57 +1,126 @@
 "use client";
 
 import React, { useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Controller, useForm } from "react-hook-form";
+import { useFormUtils } from "@/hooks/useFormUtils";
+import { Input } from "@/components/ui/Input";
+import { Select } from "@/components/ui/Select";
+import { TextArea } from "@/components/ui/TextArea";
+import { Form } from "@/components/ui/Form";
+import { Button } from "@/components/ui/Button";
+import { DatePicker } from "@/components/ui/DatePicker";
+import * as yup from "yup";
+import type { ObjectSchema } from "yup";
+import { SendIcon } from "lucide-react";
+import countriesISO from "@/data-list/countriesISO.json";
 
 interface ReclamationFormData {
-  // Datos del reclamante
   fullName: string;
-  documentId: string;
   documentType: string;
+  documentId: string;
   address: string;
-  phone: string;
+  phone: Phone;
   email: string;
-
-  // Detalles de la reclamación
   incidentDate: string;
   incidentTime: string;
-  claimMotive: string; // 'producto' o 'servicio'
+  purchaseDate: string;
+  invoiceNumber: string;
+  claimMotive: string;
   productServiceDescription: string;
   problemDescription: string;
   claimedAmount: string;
   requestedSolution: string;
-
-  // Pruebas
-  attachedFiles: FileList;
 }
 
+interface Phone {
+  prefix: string;
+  number: number;
+}
+
+const schema: ObjectSchema<ReclamationFormData> = yup.object({
+  fullName: yup
+    .string()
+    .required("El nombre completo es requerido")
+    .min(3, "El nombre debe tener al menos 3 caracteres"),
+  documentType: yup.string().required("Selecciona un tipo de documento"),
+  documentId: yup.string().required("El número de documento es requerido"),
+  address: yup
+    .string()
+    .required("La dirección es requerida")
+    .min(5, "La dirección debe tener al menos 5 caracteres"),
+  phone: yup.object({
+    prefix: yup.string().required("Selecciona un prefijo"),
+    number: yup.number().required("El teléfono es requerido"),
+  }),
+  email: yup
+    .string()
+    .email("Ingresa un correo válido")
+    .required("El correo electrónico es requerido"),
+  incidentDate: yup.string().required("La fecha del incidente es requerida"),
+  incidentTime: yup.string().optional(),
+  purchaseDate: yup.string().required("La fecha de compra/contratación es requerida"),
+  invoiceNumber: yup.string().required("El número de factura/ticket es requerido"),
+  claimMotive: yup.string().required("Selecciona un motivo"),
+  productServiceDescription: yup.string().when("claimMotive", {
+    is: "producto",
+    then: (schema) =>
+      schema
+        .required("El producto es requerido")
+        .min(3, "Proporciona más detalles"),
+    otherwise: (schema) => schema.optional(),
+  }),
+  problemDescription: yup
+    .string()
+    .required("Describe el problema")
+    .min(10, "La descripción debe tener al menos 10 caracteres"),
+  claimedAmount: yup.string().optional(),
+  requestedSolution: yup.string().required("Selecciona una solución"),
+}) as ObjectSchema<ReclamationFormData>;
+
 export default function ReclamationPage() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-    watch,
-  } = useForm<ReclamationFormData>({
-    defaultValues: {
-      documentType: "DNI",
-      claimMotive: "producto",
-    },
-    mode: "onBlur",
-  });
-
-  const claimMotive = watch("claimMotive");
-
   const [reclamationNumber, setReclamationNumber] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  const onSubmit: SubmitHandler<ReclamationFormData> = (data) => {
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+    watch,
+    reset,
+  } = useForm<ReclamationFormData>({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      fullName: "",
+      documentType: "DNI",
+      documentId: "",
+      address: "",
+      email: "",
+      incidentDate: "",
+      incidentTime: "",
+      purchaseDate: "",
+      invoiceNumber: "",
+      claimMotive: "producto",
+      productServiceDescription: "",
+      problemDescription: "",
+      claimedAmount: "",
+      requestedSolution: "",
+      phone: {
+        prefix: "+51",
+        number: 0,
+      },
+    },
+  });
+
+  const { required, error, errorMessage } = useFormUtils({ errors, schema });
+  const claimMotive = watch("claimMotive");
+
+  const onSubmit = (data: ReclamationFormData) => {
     // Generar número de reclamo único
     const number = `REC-${Date.now()}-${Math.random().toString(36).slice(2, 11).toUpperCase()}`;
     setReclamationNumber(number);
     setSubmitted(true);
 
-    // Aquí irá la lógica para enviar los datos al servidor
     console.log("Formulario enviado:", data);
   };
 
@@ -69,9 +138,8 @@ export default function ReclamationPage() {
             <p className="text-sm text-gray-600 mb-2">
               Número de reclamo (guarda este código como tu comprobante):
             </p>
-            <p className="text-2xl font-bold text-secondary">
-              {reclamationNumber}
-            </p>
+            <p className="text-2xl font-bold text-secondary">{reclamationNumber}</p>
+            <p className="text-2xl font-bold text-secondary">{reclamationNumber}</p>
           </div>
           <p className="text-sm text-gray-600 mb-6">
             Te contactaremos a través del email y teléfono proporcionados dentro
@@ -81,6 +149,7 @@ export default function ReclamationPage() {
             onClick={() => {
               setSubmitted(false);
               reset();
+              setReclamationNumber("");
             }}
             className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors"
           >
@@ -130,6 +199,10 @@ export default function ReclamationPage() {
               <p className="text-secondary">972 300 301</p>
             </div>
             <div>
+              <p className="text-gray-600 font-semibold">Correo:</p>
+              <p className="text-secondary">contacto@iubizon.com</p>
+            </div>
+            <div>
               <p className="text-gray-600 font-semibold">Horario:</p>
               <p className="text-secondary">Lun-Vie 9:00 AM - 6:00 PM</p>
             </div>
@@ -137,399 +210,369 @@ export default function ReclamationPage() {
         </div>
 
         <div className="bg-white rounded-2xl shadow-2xl border border-primary/20 p-8">
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-            {/* SECCIÓN 1: DATOS DEL RECLAMANTE */}
-            <div className="border-b pb-6">
-              <h2 className="text-2xl font-bold text-secondary mb-6">
-                1. Datos del Reclamante
-              </h2>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label
-                    className="block text-secondary font-medium mb-2"
-                    htmlFor="fullName"
-                  >
-                    Nombre Completo *
-                  </label>
-                  <input
-                    type="text"
-                    id="fullName"
-                    {...register("fullName", {
-                      required: "El nombre completo es requerido",
-                      minLength: {
-                        value: 3,
-                        message: "El nombre debe tener al menos 3 caracteres",
-                      },
-                    })}
-                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary ${errors.fullName ? "border-red-500" : "border-gray-300"}`}
-                    placeholder="Tu nombre completo"
-                  />
-                  {errors.fullName && (
-                    <span className="text-red-500 text-sm mt-1 block">
-                      {errors.fullName.message}
-                    </span>
-                  )}
-                </div>
-
-                <div>
-                  <label
-                    className="block text-secondary font-medium mb-2"
-                    htmlFor="documentType"
-                  >
-                    Tipo de Documento *
-                  </label>
-                  <select
-                    id="documentType"
-                    {...register("documentType", {
-                      required: "Selecciona un tipo de documento",
-                    })}
-                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary ${errors.documentType ? "border-red-500" : "border-gray-300"}`}
-                  >
-                    <option value="DNI">DNI</option>
-                    <option value="NIE">NIE</option>
-                    <option value="Pasaporte">Pasaporte</option>
-                    <option value="CE">Cédula de Extranjería</option>
-                  </select>
-                  {errors.documentType && (
-                    <span className="text-red-500 text-sm mt-1 block">
-                      {errors.documentType.message}
-                    </span>
-                  )}
-                </div>
-
-                <div>
-                  <label
-                    className="block text-secondary font-medium mb-2"
-                    htmlFor="documentId"
-                  >
-                    Número de Documento *
-                  </label>
-                  <input
-                    type="text"
-                    id="documentId"
-                    {...register("documentId", {
-                      required: "El número de documento es requerido",
-                    })}
-                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary ${errors.documentId ? "border-red-500" : "border-gray-300"}`}
-                    placeholder="Ej: 12345678"
-                  />
-                  {errors.documentId && (
-                    <span className="text-red-500 text-sm mt-1 block">
-                      {errors.documentId.message}
-                    </span>
-                  )}
-                </div>
-
-                <div>
-                  <label
-                    className="block text-secondary font-medium mb-2"
-                    htmlFor="phone"
-                  >
-                    Teléfono *
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    {...register("phone", {
-                      required: "El teléfono es requerido",
-                      pattern: {
-                        value: /^[+]?[0-9]{9,15}$/,
-                        message: "Ingresa un teléfono válido",
-                      },
-                    })}
-                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary ${errors.phone ? "border-red-500" : "border-gray-300"}`}
-                    placeholder="Ej: +51987654321"
-                  />
-                  {errors.phone && (
-                    <span className="text-red-500 text-sm mt-1 block">
-                      {errors.phone.message}
-                    </span>
-                  )}
-                </div>
-
-                <div className="md:col-span-2">
-                  <label
-                    className="block text-secondary font-medium mb-2"
-                    htmlFor="email"
-                  >
-                    Correo Electrónico *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    {...register("email", {
-                      required: "El correo electrónico es requerido",
-                      pattern: {
-                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        message: "Ingresa un correo válido",
-                      },
-                    })}
-                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary ${errors.email ? "border-red-500" : "border-gray-300"}`}
-                    placeholder="tuemail@ejemplo.com"
-                  />
-                  {errors.email && (
-                    <span className="text-red-500 text-sm mt-1 block">
-                      {errors.email.message}
-                    </span>
-                  )}
-                </div>
-
-                <div className="md:col-span-2">
-                  <label
-                    className="block text-secondary font-medium mb-2"
-                    htmlFor="address"
-                  >
-                    Dirección Domiciliaria *
-                  </label>
-                  <input
-                    type="text"
-                    id="address"
-                    {...register("address", {
-                      required: "La dirección es requerida",
-                      minLength: {
-                        value: 5,
-                        message:
-                          "La dirección debe tener al menos 5 caracteres",
-                      },
-                    })}
-                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary ${errors.address ? "border-red-500" : "border-gray-300"}`}
-                    placeholder="Tu domicilio actual y habitual"
-                  />
-                  {errors.address && (
-                    <span className="text-red-500 text-sm mt-1 block">
-                      {errors.address.message}
-                    </span>
-                  )}
-                </div>
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            <div className="grid grid-cols-1 gap-3 md:gap-4 md:grid-cols-4">
+              {/* SECCIÓN 1: DATOS DEL RECLAMANTE */}
+              <div className="md:col-span-4">
+                <h2 className="text-2xl font-bold text-secondary mb-6 pb-4 border-b">
+                  1. Datos del Reclamante
+                </h2>
               </div>
-            </div>
 
-            {/* SECCIÓN 2: DETALLES DE LA RECLAMACIÓN */}
-            <div className="border-b pb-6">
-              <h2 className="text-2xl font-bold text-secondary mb-6">
-                2. Detalles de la Reclamación
-              </h2>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label
-                    className="block text-secondary font-medium mb-2"
-                    htmlFor="incidentDate"
-                  >
-                    Fecha del Incidente *
-                  </label>
-                  <input
-                    type="date"
-                    id="incidentDate"
-                    {...register("incidentDate", {
-                      required: "La fecha del incidente es requerida",
-                    })}
-                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary ${errors.incidentDate ? "border-red-500" : "border-gray-300"}`}
-                  />
-                  {errors.incidentDate && (
-                    <span className="text-red-500 text-sm mt-1 block">
-                      {errors.incidentDate.message}
-                    </span>
-                  )}
-                </div>
-
-                <div>
-                  <label
-                    className="block text-secondary font-medium mb-2"
-                    htmlFor="incidentTime"
-                  >
-                    Hora del Incidente
-                  </label>
-                  <input
-                    type="time"
-                    id="incidentTime"
-                    {...register("incidentTime")}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                  />
-                </div>
-
-                <div className="md:col-span-2">
-                  <label
-                    className="block text-secondary font-medium mb-2"
-                    htmlFor="claimMotive"
-                  >
-                    Motivo del Reclamo *
-                  </label>
-                  <select
-                    id="claimMotive"
-                    {...register("claimMotive", {
-                      required: "Selecciona un motivo",
-                    })}
-                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary ${errors.claimMotive ? "border-red-500" : "border-gray-300"}`}
-                  >
-                    <option value="producto">Producto</option>
-                    <option value="servicio">Servicio</option>
-                  </select>
-                  {errors.claimMotive && (
-                    <span className="text-red-500 text-sm mt-1 block">
-                      {errors.claimMotive.message}
-                    </span>
-                  )}
-                </div>
-
-                {claimMotive === "producto" && (
-                  <div className="md:col-span-2">
-                    <label
-                      className="block text-secondary font-medium mb-2"
-                      htmlFor="productServiceDescription"
-                    >
-                      Especifica el Producto *
-                    </label>
-                    <input
-                      type="text"
-                      id="productServiceDescription"
-                      {...register("productServiceDescription", {
-                        required: claimMotive === "producto" ? "El producto es requerido" : false,
-                        minLength: {
-                          value: 3,
-                          message: "Proporciona más detalles",
-                        },
-                      })}
-                      className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary ${errors.productServiceDescription ? "border-red-500" : "border-gray-300"}`}
-                      placeholder="Ej: Proyector Epson PowerLite 980W, Número de serie, etc."
+              <div className="md:col-span-2">
+                <Controller
+                  name="fullName"
+                  control={control}
+                  render={({ field: { onChange, value, name } }) => (
+                    <Input
+                      label="Nombre Completo"
+                      placeholder="Tu nombre completo"
+                      name={name}
+                      value={value}
+                      error={error(name)}
+                      helperText={errorMessage(name)}
+                      required={required(name)}
+                      onChange={onChange}
+                      autoComplete="name"
                     />
-                    {errors.productServiceDescription && (
-                      <span className="text-red-500 text-sm mt-1 block">
-                        {errors.productServiceDescription.message}
-                      </span>
-                    )}
-                  </div>
-                )}
-
-                <div className="md:col-span-2">
-                  <label
-                    className="block text-secondary font-medium mb-2"
-                    htmlFor="problemDescription"
-                  >
-                    Descripción del Problema *
-                  </label>
-                  <textarea
-                    id="problemDescription"
-                    {...register("problemDescription", {
-                      required: "Describe el problema",
-                      minLength: {
-                        value: 10,
-                        message:
-                          "La descripción debe tener al menos 10 caracteres",
-                      },
-                    })}
-                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary h-32 ${errors.problemDescription ? "border-red-500" : "border-gray-300"}`}
-                    placeholder="Describe los hechos de manera clara, concisa y cronológica"
-                  />
-                  {errors.problemDescription && (
-                    <span className="text-red-500 text-sm mt-1 block">
-                      {errors.problemDescription.message}
-                    </span>
                   )}
-                </div>
-
-                <div>
-                  <label
-                    className="block text-secondary font-medium mb-2"
-                    htmlFor="claimedAmount"
-                  >
-                    Monto Reclamado (S/)
-                  </label>
-                  <input
-                    type="number"
-                    id="claimedAmount"
-                    {...register("claimedAmount", {
-                      pattern: {
-                        value: /^[0-9]+(\.[0-9]{1,2})?$|^$/,
-                        message: "Ingresa un monto válido",
-                      },
-                    })}
-                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary ${errors.claimedAmount ? "border-red-500" : "border-gray-300"}`}
-                    placeholder="Si aplica, monto en soles"
-                    step="0.01"
-                  />
-                  {errors.claimedAmount && (
-                    <span className="text-red-500 text-sm mt-1 block">
-                      {errors.claimedAmount.message}
-                    </span>
-                  )}
-                </div>
-
-                <div>
-                  <label
-                    className="block text-secondary font-medium mb-2"
-                    htmlFor="requestedSolution"
-                  >
-                    Solución Esperada *
-                  </label>
-                  <select
-                    id="requestedSolution"
-                    {...register("requestedSolution", {
-                      required: "Selecciona una solución",
-                    })}
-                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary ${errors.requestedSolution ? "border-red-500" : "border-gray-300"}`}
-                  >
-                    <option value="">Selecciona una opción</option>
-                    <option value="reembolso">Reembolso</option>
-                    <option value="cambio">Cambio de producto</option>
-                    <option value="reparacion">Reparación</option>
-                    <option value="descuento">Descuento</option>
-                    <option value="otro">Otra solución</option>
-                  </select>
-                  {errors.requestedSolution && (
-                    <span className="text-red-500 text-sm mt-1 block">
-                      {errors.requestedSolution.message}
-                    </span>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            {/* SECCIÓN 3: PRUEBAS Y DOCUMENTACIÓN */}
-            <div className="pb-6">
-              <h2 className="text-2xl font-bold text-secondary mb-6">
-                3. Pruebas y Documentación
-              </h2>
-
-              <div>
-                <label
-                  className="block text-secondary font-medium mb-2"
-                  htmlFor="attachedFiles"
-                >
-                  Archivos Adjuntos
-                </label>
-                <input
-                  type="file"
-                  id="attachedFiles"
-                  {...register("attachedFiles")}
-                  multiple
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                  accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,.xlsx,.xls"
                 />
               </div>
-              <p className="text-sm text-gray-600 mt-3">
-                <strong>Nota:</strong> Adjunta copias de facturas, fotos,
-                videos, correos o cualquier documento que respalde tu reclamo.
-                <br />
-                <em>Formatos aceptados: PDF, JPG, PNG, DOC, DOCX, XLS, XLSX</em>
-              </p>
-            </div>
 
-            {/* BOTÓN DE ENVÍO */}
-            <div className="pt-6 border-t">
-              <button
-                type="submit"
-                className="w-full bg-primary text-white py-3 rounded-lg hover:bg-primary/90 transition-colors duration-200 font-bold text-lg"
-              >
-                Registrar Reclamo
-              </button>
-              <p className="text-xs text-gray-500 mt-4 text-center">
-                * Campos obligatorios. Tu número de reclamo será generado tras
-                enviar este formulario.
-              </p>
+              <div className="md:col-span-2">
+                <Controller
+                  name="documentType"
+                  control={control}
+                  render={({ field: { onChange, value, name } }) => (
+                    <Select
+                      label="Tipo de Documento"
+                      placeholder="Selecciona un tipo"
+                      name={name}
+                      value={value}
+                      error={error(name)}
+                      helperText={errorMessage(name)}
+                      required={required(name)}
+                      onChange={onChange}
+                      options={[
+                        { label: "DNI", value: "DNI" },
+                        { label: "NIE", value: "NIE" },
+                        { label: "Pasaporte", value: "Pasaporte" },
+                        { label: "Cédula de Extranjería", value: "CE" },
+                      ]}
+                    />
+                  )}
+                />
+              </div>
+
+              <div className="md:col-span-2">
+                <Controller
+                  name="documentId"
+                  control={control}
+                  render={({ field: { onChange, value, name } }) => (
+                    <Input
+                      label="Número de Documento"
+                      placeholder="Ej: 12345678"
+                      name={name}
+                      value={value}
+                      error={error(name)}
+                      helperText={errorMessage(name)}
+                      required={required(name)}
+                      onChange={onChange}
+                    />
+                  )}
+                />
+              </div>
+
+              <div className="md:col-span-1">
+                <Controller
+                  name="phone.prefix"
+                  control={control}
+                  render={({ field: { onChange, value, name } }) => (
+                    <Select
+                      label="Prefijo"
+                      placeholder="País"
+                      name={name}
+                      value={value}
+                      error={error(name)}
+                      helperText={errorMessage(name)}
+                      required={required(name)}
+                      onChange={onChange}
+                      options={countriesISO.map((iso) => ({
+                        label: `${iso.name} (${iso.phonePrefix})`,
+                        value: iso.phonePrefix,
+                      }))}
+                    />
+                  )}
+                />
+              </div>
+
+              <div className="md:col-span-1">
+                <Controller
+                  name="phone.number"
+                  control={control}
+                  render={({ field: { onChange, value, name } }) => (
+                    <Input
+                      label="Teléfono"
+                      placeholder="Número"
+                      type="number"
+                      name={name}
+                      value={value}
+                      error={error(name)}
+                      helperText={errorMessage(name)}
+                      required={required(name)}
+                      onChange={onChange}
+                    />
+                  )}
+                />
+              </div>
+
+              <div className="md:col-span-4">
+                <Controller
+                  name="email"
+                  control={control}
+                  render={({ field: { onChange, value, name } }) => (
+                    <Input
+                      label="Correo Electrónico"
+                      placeholder="tuemail@ejemplo.com"
+                      type="email"
+                      name={name}
+                      value={value}
+                      error={error(name)}
+                      helperText={errorMessage(name)}
+                      required={required(name)}
+                      onChange={onChange}
+                      autoComplete="email"
+                    />
+                  )}
+                />
+              </div>
+
+              <div className="md:col-span-4">
+                <Controller
+                  name="address"
+                  control={control}
+                  render={({ field: { onChange, value, name } }) => (
+                    <Input
+                      label="Dirección Domiciliaria"
+                      placeholder="Tu domicilio actual y habitual"
+                      name={name}
+                      value={value}
+                      error={error(name)}
+                      helperText={errorMessage(name)}
+                      required={required(name)}
+                      onChange={onChange}
+                      autoComplete="street-address"
+                    />
+                  )}
+                />
+              </div>
+
+              {/* SECCIÓN 2: DETALLES DE LA RECLAMACIÓN */}
+              <div className="md:col-span-4">
+                <h2 className="text-2xl font-bold text-secondary mb-6 mt-6 pb-4 border-b border-t pt-4">
+                  2. Detalles de la Reclamación
+                </h2>
+              </div>
+
+              <div className="md:col-span-2">
+                <Controller
+                  name="incidentDate"
+                  control={control}
+                  render={({ field: { onChange, value, name } }) => (
+                    <DatePicker
+                      label="Fecha del Incidente"
+                      name={name}
+                      value={value}
+                      error={error(name)}
+                      helperText={errorMessage(name)}
+                      required={required(name)}
+                      onChange={onChange}
+                    />
+                  )}
+                />
+              </div>
+
+              <div className="md:col-span-2">
+                <Controller
+                  name="incidentTime"
+                  control={control}
+                  render={({ field: { onChange, value, name } }) => (
+                    <Input
+                      label="Hora del Incidente"
+                      placeholder="HH:MM"
+                      name={name}
+                      value={value}
+                      error={error(name)}
+                      helperText={errorMessage(name)}
+                      onChange={onChange}
+                    />
+                  )}
+                />
+              </div>
+
+              <div className="md:col-span-2">
+                <Controller
+                  name="purchaseDate"
+                  control={control}
+                  render={({ field: { onChange, value, name } }) => (
+                    <DatePicker
+                      label="Fecha de Compra/Contratación"
+                      name={name}
+                      value={value}
+                      error={error(name)}
+                      helperText={errorMessage(name)}
+                      required={required(name)}
+                      onChange={onChange}
+                    />
+                  )}
+                />
+              </div>
+
+              <div className="md:col-span-2">
+                <Controller
+                  name="invoiceNumber"
+                  control={control}
+                  render={({ field: { onChange, value, name } }) => (
+                    <Input
+                      label="Número de Factura/Ticket/Orden"
+                      placeholder="Ej: FAC-001, TKT-2024-001"
+                      name={name}
+                      value={value}
+                      error={error(name)}
+                      helperText={errorMessage(name)}
+                      required={required(name)}
+                      onChange={onChange}
+                    />
+                  )}
+                />
+              </div>
+
+              <div className="md:col-span-2">
+                <Controller
+                  name="claimMotive"
+                  control={control}
+                  render={({ field: { onChange, value, name } }) => (
+                    <Select
+                      label="Motivo del Reclamo"
+                      placeholder="Selecciona un motivo"
+                      name={name}
+                      value={value}
+                      error={error(name)}
+                      helperText={errorMessage(name)}
+                      required={required(name)}
+                      onChange={onChange}
+                      options={[
+                        { label: "Producto", value: "producto" },
+                        { label: "Servicio", value: "servicio" },
+                      ]}
+                    />
+                  )}
+                />
+              </div>
+
+              <div className="md:col-span-2">
+                <Controller
+                  name="requestedSolution"
+                  control={control}
+                  render={({ field: { onChange, value, name } }) => (
+                    <Select
+                      label="Solución Esperada"
+                      placeholder="Selecciona una opción"
+                      name={name}
+                      value={value}
+                      error={error(name)}
+                      helperText={errorMessage(name)}
+                      required={required(name)}
+                      onChange={onChange}
+                      options={[
+                        { label: "Reembolso", value: "reembolso" },
+                        { label: "Cambio de producto", value: "cambio" },
+                        { label: "Reparación", value: "reparacion" },
+                        { label: "Descuento", value: "descuento" },
+                        { label: "Otra solución", value: "otro" },
+                      ]}
+                    />
+                  )}
+                />
+              </div>
+
+              {claimMotive === "producto" && (
+                <div className="md:col-span-4">
+                  <Controller
+                    name="productServiceDescription"
+                    control={control}
+                    render={({ field: { onChange, value, name } }) => (
+                      <Input
+                        label="Especifica el Producto"
+                        placeholder="Ej: Proyector Epson PowerLite 980W, Número de serie, etc."
+                        name={name}
+                        value={value}
+                        error={error(name)}
+                        helperText={errorMessage(name)}
+                        required={required(name)}
+                        onChange={onChange}
+                      />
+                    )}
+                  />
+                </div>
+              )}
+
+              <div className="md:col-span-4">
+                <Controller
+                  name="problemDescription"
+                  control={control}
+                  render={({ field: { onChange, value, name } }) => (
+                    <TextArea
+                      label="Descripción del Problema"
+                      placeholder="Describe los hechos de manera clara, concisa y cronológica"
+                      rows={5}
+                      name={name}
+                      value={value}
+                      error={error(name)}
+                      helperText={errorMessage(name)}
+                      required={required(name)}
+                      onChange={onChange}
+                    />
+                  )}
+                />
+              </div>
+
+              <div className="md:col-span-4">
+                <Controller
+                  name="claimedAmount"
+                  control={control}
+                  render={({ field: { onChange, value, name } }) => (
+                    <Input
+                      label="Monto Reclamado (S/)"
+                      placeholder="Si aplica, monto en soles"
+                      type="number"
+                      name={name}
+                      value={value}
+                      error={error(name)}
+                      helperText={errorMessage(name)}
+                      onChange={onChange}
+                    />
+                  )}
+                />
+              </div>
+
+              {/* BOTÓN DE ENVÍO */}
+              <div className="md:col-span-4">
+                <Button type="submit" block>
+                  <div className="flex gap-2 items-center leading-1">
+                    <SendIcon className="w-[1.2em]" /> Registrar Reclamo
+                  </div>
+                </Button>
+              </div>
+
+              <div className="md:col-span-4">
+                <p className="text-xs text-gray-500 text-center">
+                  * Campos obligatorios. Tu número de reclamo será generado tras
+                  enviar este formulario.
+                </p>
+              </div>
             </div>
-          </form>
+          </Form>
         </div>
       </div>
     </div>
