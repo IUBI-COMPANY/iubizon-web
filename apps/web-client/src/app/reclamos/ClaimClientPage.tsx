@@ -15,7 +15,7 @@ import type { ObjectSchema } from "yup";
 import { SendIcon } from "lucide-react";
 import countriesISO from "@/data-list/countriesISO.json";
 
-const schema: ObjectSchema<ReclamationFormData> = yup.object({
+const schema: ObjectSchema<ClaimFormData> = yup.object({
   full_name: yup
     .string()
     .required("El nombre completo es requerido")
@@ -57,10 +57,10 @@ const schema: ObjectSchema<ReclamationFormData> = yup.object({
     .min(10, "La descripción debe tener al menos 10 caracteres"),
   claimed_amount: yup.string().optional(),
   requested_solution: yup.string().required("Selecciona una solución"),
-}) as ObjectSchema<ReclamationFormData>;
+}) as ObjectSchema<ClaimFormData>;
 
-export default function ReclamoClientPage() {
-  const [reclamationNumber, setReclamationNumber] = useState("");
+export default function ClaimClientPage() {
+  const [claimNumber, setClaimNumber] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
   const {
@@ -69,7 +69,7 @@ export default function ReclamoClientPage() {
     formState: { errors },
     watch,
     reset,
-  } = useForm<ReclamationFormData>({
+  } = useForm<ClaimFormData>({
     resolver: yupResolver(schema),
     defaultValues: {
       full_name: "",
@@ -96,10 +96,10 @@ export default function ReclamoClientPage() {
   const { required, error, errorMessage } = useFormUtils({ errors, schema });
   const claimMotive = watch("claim_motive");
 
-  const onSubmit = (data: ReclamationFormData) => {
+  const onSubmit = (data: ClaimFormData) => {
     // Generar número de reclamo único
     const number = `REC-${Date.now()}-${Math.random().toString(36).slice(2, 11).toUpperCase()}`;
-    setReclamationNumber(number);
+    setClaimNumber(number);
     setSubmitted(true);
 
     console.log("Formulario enviado:", data);
@@ -119,9 +119,7 @@ export default function ReclamoClientPage() {
             <p className="text-sm text-gray-600 mb-2">
               Número de reclamo (guarda este código como tu comprobante):
             </p>
-            <p className="text-2xl font-bold text-secondary">
-              {reclamationNumber}
-            </p>
+            <p className="text-2xl font-bold text-secondary">{claimNumber}</p>
           </div>
           <p className="text-sm text-gray-600 mb-6">
             Te contactaremos a través del email y teléfono proporcionados dentro
@@ -131,7 +129,7 @@ export default function ReclamoClientPage() {
             onClick={() => {
               setSubmitted(false);
               reset();
-              setReclamationNumber("");
+              setClaimNumber("");
             }}
             variant="primary"
             size="md"

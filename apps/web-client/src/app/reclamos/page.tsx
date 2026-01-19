@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import ReclamoClientPage from "./ReclamoClientPage";
+import ClaimClientPage from "./ClaimClientPage";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -19,5 +19,5 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
-  return <ReclamoClientPage />;
+  return <ClaimClientPage />;
 }
