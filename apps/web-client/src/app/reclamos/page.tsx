@@ -373,39 +373,34 @@ export default function ReclamationPage() {
                   )}
                 </div>
 
-                <div className="md:col-span-2">
-                  <label
-                    className="block text-secondary font-medium mb-2"
-                    htmlFor="productServiceDescription"
-                  >
-                    {claimMotive === "producto"
-                      ? "Especifica el Producto"
-                      : "Especifica el Servicio"}{" "}
-                    *
-                  </label>
-                  <input
-                    type="text"
-                    id="productServiceDescription"
-                    {...register("productServiceDescription", {
-                      required: `${claimMotive === "producto" ? "El producto" : "El servicio"} es requerido`,
-                      minLength: {
-                        value: 3,
-                        message: "Proporciona más detalles",
-                      },
-                    })}
-                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary ${errors.productServiceDescription ? "border-red-500" : "border-gray-300"}`}
-                    placeholder={
-                      claimMotive === "producto"
-                        ? "Ej: Proyector Epson PowerLite 980W, Número de serie, etc."
-                        : "Ej: Reparación de proyector, Instalación, Mantenimiento, etc."
-                    }
-                  />
-                  {errors.productServiceDescription && (
-                    <span className="text-red-500 text-sm mt-1 block">
-                      {errors.productServiceDescription.message}
-                    </span>
-                  )}
-                </div>
+                {claimMotive === "producto" && (
+                  <div className="md:col-span-2">
+                    <label
+                      className="block text-secondary font-medium mb-2"
+                      htmlFor="productServiceDescription"
+                    >
+                      Especifica el Producto *
+                    </label>
+                    <input
+                      type="text"
+                      id="productServiceDescription"
+                      {...register("productServiceDescription", {
+                        required: claimMotive === "producto" ? "El producto es requerido" : false,
+                        minLength: {
+                          value: 3,
+                          message: "Proporciona más detalles",
+                        },
+                      })}
+                      className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary ${errors.productServiceDescription ? "border-red-500" : "border-gray-300"}`}
+                      placeholder="Ej: Proyector Epson PowerLite 980W, Número de serie, etc."
+                    />
+                    {errors.productServiceDescription && (
+                      <span className="text-red-500 text-sm mt-1 block">
+                        {errors.productServiceDescription.message}
+                      </span>
+                    )}
+                  </div>
+                )}
 
                 <div className="md:col-span-2">
                   <label
