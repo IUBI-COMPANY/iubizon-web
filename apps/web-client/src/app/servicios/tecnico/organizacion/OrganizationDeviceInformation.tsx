@@ -42,11 +42,11 @@ export const OrganizationDeviceInformation = ({
     }),
     description_other_fault: yup.string().when("service_type", {
       is: (val: string) => val === "other",
-      then: (schema) => schema.required("Este campo es requerido"),
+      then: (schema) => schema.notRequired(),
       otherwise: (schema) =>
         schema.when("description_device_fault", {
           is: "other",
-          then: (schema) => schema.required("Este campo es requerido"),
+          then: (schema) => schema.notRequired(),
           otherwise: (schema) => schema.notRequired(),
         }),
     }),
@@ -268,7 +268,6 @@ export const OrganizationDeviceInformation = ({
                             value={value}
                             error={error(name)}
                             helperText={errorMessage(name)}
-                            required={required(name)}
                             rows={3}
                             onChange={onChange}
                             placeholder={

@@ -37,7 +37,7 @@ export const DeviceInformation = ({
     description_device_fault: yup.string().required(),
     description_other_fault: yup.string().when("description_device_fault", {
       is: "other",
-      then: (schema) => schema.required(),
+      then: (schema) => schema.notRequired(),
       otherwise: (schema) => schema.notRequired(),
     }),
   }) as ObjectSchema<RepairStep1>;
@@ -135,7 +135,6 @@ export const DeviceInformation = ({
                           value={value}
                           error={error(name)}
                           helperText={errorMessage(name)}
-                          required={required(name)}
                           rows={3}
                           onChange={onChange}
                           placeholder="Describa la falla del equipo"

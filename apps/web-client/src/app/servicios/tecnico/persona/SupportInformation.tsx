@@ -19,6 +19,7 @@ import { RepairStep3 } from "@/components/ui/RetailTechnicalServiceForm";
 import { ArrowLeft, SendIcon } from "lucide-react";
 import { BusinessAddress } from "@/components/ui/BusinessAddress";
 
+//Define Properties
 interface Props {
   globalStep: number;
   repairsFormData: Partial<TechnicalService>;
@@ -160,6 +161,10 @@ export const SupportInformation = ({
                           label: "Quiero ir al local",
                           value: "go_to_store",
                         },
+                          {
+                              label: "Quiero una cotización",
+                              value: "quotation",
+                          },
                         {
                           label: "Quiero una visita técnica a mi domicilio",
                           value: "home_visit",
@@ -321,7 +326,7 @@ export const SupportInformation = ({
                     </div>
                   </div>
                 )}
-                <div className="sm: col-span-2">
+                <div className="sm: col-span-2 py-6">
                   <Controller
                     name="terms_and_conditions"
                     control={control}
