@@ -1,0 +1,31 @@
+# This is a basic workflow to help you get started with Actions
+name: CI - Hosting
+
+on:
+  push:
+    branches: [ main, production ]
+  pull_request:
+    branches: [ main, production ]
+    paths:
+      - "packages/hosting/**"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/hosting
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "22"
+          cache: "yarn"
+          cache-dependency-path: "packages/hosting/yarn.lock"
+      - name: Install
+        run: yarn install
+      - name: Check Prettier
+        run: yarn prettier:check
+      - name: Check Eslint
+        run: yarn eslint:check
