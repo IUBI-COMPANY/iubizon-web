@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { CircleCheck } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { twMerge } from "tailwind-merge";
@@ -21,20 +21,14 @@ export const StepsRepairsContactForm = ({
   globalStep,
   setGlobalStep,
 }: Props) => {
-  const [step, setStep] = useState(0);
-
-  useEffect(() => {
-    const savedStep = Number(localStorage.getItem("currentStep"));
-    setStep(savedStep);
-  }, [globalStep]);
-
   return (
     <div className="flex justify-center rounded-full">
       <ol className="w-full flex justify-center gap-1 rounded-l-full rounded-r-full object-cover">
         {items.map((item, key) => {
-          const isComplete = step > item.step;
-          const isActive = step === item.step;
-          const isFinishedForm = step === 3;
+          const isComplete = globalStep > item.step;
+          const isActive = globalStep === item.step;
+          const isFinishedForm = globalStep === 3;
+          const isFutureStep = item.step > globalStep;
 
           return (
             <li key={key} className="w-full flex items-center">
@@ -45,7 +39,7 @@ export const StepsRepairsContactForm = ({
                   item.classButton,
                 )}
                 onClick={() => setGlobalStep(item.step)}
-                disabled={(!(isComplete || isActive) || isFinishedForm) && true}
+                disabled={isFutureStep || isFinishedForm}
               >
                 <span className="flex items-end gap-2">
                   {isComplete ? <CircleCheck /> : item.icon}
