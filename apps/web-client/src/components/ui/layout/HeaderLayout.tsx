@@ -97,11 +97,7 @@ export const HeaderLayout = () => {
                   >
                     <Link
                       href={item.href || "#"}
-                      className={
-                        item.name === "Productos"
-                          ? "text-white px-3 py-1 rounded transition-colors duration-200 flex items-center gap-2"
-                          : "text-primary bg-primary/10 px-3 py-1 rounded transition-colors duration-200 flex items-center gap-2 font-bold"
-                      }
+                      className="text-white px-3 py-1 rounded transition-colors duration-200 flex items-center gap-2"
                       onClick={() => setOpenDropdown(null)}
                     >
                       {item.name}

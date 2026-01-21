@@ -260,7 +260,7 @@ export default function AboutUsPage() {
             {/* Team Gallery */}
             <div className="my-16">
               <h2 className="text-2xl md:text-3xl font-bold text-color-secondary mb-6 text-center">
-                Galería de Nuestro Equipo
+                Nuestra Experiencia
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                 {teamImages.map((img, idx) => (
