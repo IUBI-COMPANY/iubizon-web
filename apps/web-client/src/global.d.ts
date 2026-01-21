@@ -14,12 +14,21 @@ interface Contact {
   hostname: string;
 }
 
+type ServiceType =
+  | "maintenance"
+  | "off-image"
+  | "spots"
+  | "distorted"
+  | "noise"
+  | "overheat"
+  | "lens"
+  | "other";
+
 interface TechnicalService extends DefaultFirestoreProps {
   // Generic Fields
   id: string;
   product_name: string;
-  description_device_fault: string;
-  description_other_fault?: string;
+  description_more_details?: string;
   first_name?: string;
   last_name?: string;
   visit_date?: string;
@@ -46,7 +55,7 @@ interface TechnicalService extends DefaultFirestoreProps {
     | "send_to_store"
     | "quotation"
     | "other";
-  service_type: "maintenance" | "repair" | "installation" | "other";
+  service_type: ServiceType;
   document_type: "DNI" | "RUC" | "CE" | "PASSPORT" | "OTHER";
   document_number: string;
   full_name_or_social_reason: string;
