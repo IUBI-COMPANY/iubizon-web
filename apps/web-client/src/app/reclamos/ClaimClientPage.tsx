@@ -109,7 +109,8 @@ export default function ClaimClientPage() {
       }
     } catch (e) {
       setLoading(false);
-      setErrorMsg("Ocurrió un error inesperado. Intenta nuevamente. " + e);
+      const details = e instanceof Error ? e.message : String(e);
+      setErrorMsg("Ocurrió un error inesperado. Intenta nuevamente. " + details);
     }
   };
 
