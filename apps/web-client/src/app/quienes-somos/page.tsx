@@ -295,7 +295,8 @@ export default function AboutUsPage() {
                   Garantía y Confianza
                 </h3>
                 <p className="text-gray-600 text-sm">
-                  Productos originales, garantía real y soporte técnico confiable.
+                  Productos originales, garantía real y soporte técnico
+                  confiable.
                 </p>
               </div>
 
@@ -307,7 +308,8 @@ export default function AboutUsPage() {
                   Tecnología de Punta
                 </h3>
                 <p className="text-gray-600 text-sm">
-                  Soluciones audiovisuales modernas y eficientes para tu organización.
+                  Soluciones audiovisuales modernas y eficientes para tu
+                  organización.
                 </p>
               </div>
 
@@ -331,7 +333,8 @@ export default function AboutUsPage() {
                   Compromiso y Cercanía
                 </h3>
                 <p className="text-gray-600 text-sm">
-                  Nos adaptamos a tus necesidades y acompañamos tu proyecto de inicio a fin.
+                  Nos adaptamos a tus necesidades y acompañamos tu proyecto de
+                  inicio a fin.
                 </p>
               </div>
             </div>
