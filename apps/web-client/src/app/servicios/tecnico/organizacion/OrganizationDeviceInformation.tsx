@@ -40,16 +40,7 @@ export const OrganizationDeviceInformation = ({
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
-    description_other_fault: yup.string().when("service_type", {
-      is: (val: string) => val === "other",
-      then: (schema) => schema.notRequired(),
-      otherwise: (schema) =>
-        schema.when("description_device_fault", {
-          is: "other",
-          then: (schema) => schema.notRequired(),
-          otherwise: (schema) => schema.notRequired(),
-        }),
-    }),
+    description_other_fault: yup.string().notRequired(),
   }) as ObjectSchema<OrganizationRepairStep1>;
 
   const {
