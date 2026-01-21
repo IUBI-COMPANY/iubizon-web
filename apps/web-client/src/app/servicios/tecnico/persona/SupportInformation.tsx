@@ -161,10 +161,10 @@ export const SupportInformation = ({
                           label: "Quiero ir al local",
                           value: "go_to_store",
                         },
-                          {
-                              label: "Quiero una cotización",
-                              value: "quotation",
-                          },
+                        {
+                          label: "Quiero una cotización",
+                          value: "quotation",
+                        },
                         {
                           label: "Quiero una visita técnica a mi domicilio",
                           value: "home_visit",
