@@ -30,33 +30,37 @@ export const DeviceInformation = ({
   const schema = yup.object({
     service_type: yup
       .string()
-      .oneOf(["maintenance", "repair", "installation", "other"] as const)
+      .oneOf([
+        "maintenance",
+        "off-image",
+        "spots",
+        "distorted",
+        "noise",
+        "overheat",
+        "lens",
+        "other",
+      ] as const)
       .required(),
     quantity: yup.number().required().min(1, "La cantidad debe ser al menos 1"),
     product_name: yup.string().required(),
-    description_device_fault: yup.string().required(),
-    description_other_fault: yup.string().notRequired(),
+    description_more_details: yup.string().notRequired(),
   }) as ObjectSchema<RepairStep1>;
 
   const {
     handleSubmit,
     control,
     formState: { errors },
-    watch,
   } = useForm<RepairStep1>({
     resolver: yupResolver(schema),
     defaultValues: {
       service_type: repairsFormData?.service_type || "maintenance",
       quantity: repairsFormData?.quantity || 1,
       product_name: repairsFormData?.product_name || "",
-      description_device_fault: repairsFormData?.description_device_fault || "",
-      description_other_fault: repairsFormData?.description_other_fault || "",
+      description_more_details: repairsFormData?.description_more_details || "",
     },
   });
 
   const { required, error, errorMessage } = useFormUtils({ errors, schema });
-
-  const isOtherFault = watch("description_device_fault") === "other";
 
   const onSubmit = (formData: RepairStep1) => {
     setRepairsFormData({ ...repairsFormData, ...formData });
@@ -93,7 +97,7 @@ export const DeviceInformation = ({
               </div>
               <div className="sm:col-span-2">
                 <Controller
-                  name="description_device_fault"
+                  name="service_type"
                   control={control}
                   render={({ field: { onChange, value, name } }) => (
                     <Select
@@ -107,8 +111,7 @@ export const DeviceInformation = ({
                       placeholder="Ej. No enciende, no proyecta imagen, manchas, etc."
                       options={[
                         { label: "Mantenimiento", value: "maintenance" },
-                        { label: "No enciende", value: "off" },
-                        { label: "No proyecta imagen", value: "no-image" },
+                        { label: "No proyecta imagen", value: "off-image" },
                         { label: "Manchas en la imagen", value: "spots" },
                         { label: "Imagen distorsionada", value: "distorted" },
                         { label: "Ruido excesivo", value: "noise" },
@@ -119,26 +122,24 @@ export const DeviceInformation = ({
                     />
                   )}
                 />
-                {isOtherFault && (
-                  <div className="mt-3">
-                    <Controller
-                      name="description_other_fault"
-                      control={control}
-                      render={({ field: { onChange, value, name } }) => (
-                        <TextArea
-                          label="Describa la falla"
-                          name={name}
-                          value={value}
-                          error={error(name)}
-                          helperText={errorMessage(name)}
-                          rows={3}
-                          onChange={onChange}
-                          placeholder="Describa la falla del equipo"
-                        />
-                      )}
+              </div>
+              <div className="sm:col-span-2">
+                <Controller
+                  name="description_more_details"
+                  control={control}
+                  render={({ field: { onChange, value, name } }) => (
+                    <TextArea
+                      label="Describa más detalles (Opcional)"
+                      name={name}
+                      value={value}
+                      error={error(name)}
+                      helperText={errorMessage(name)}
+                      rows={3}
+                      onChange={onChange}
+                      placeholder="Describa más detalles sobre el servicio"
                     />
-                  </div>
-                )}
+                  )}
+                />
               </div>
             </div>
             <div className="mt-2 grid grid-cols-1 gap-3">
