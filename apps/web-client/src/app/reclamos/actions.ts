@@ -35,8 +35,6 @@ export async function sendReclamation(
       body: JSON.stringify(mapFormClaim(formClaim)),
     });
 
-    console.log({ response });
-
     if (!response.ok) {
       const errorText = await response.text();
       console.error(`HTTP error! status: ${response.status}`, errorText);
