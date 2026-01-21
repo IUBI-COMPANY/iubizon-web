@@ -47,16 +47,20 @@ export const OrganizationInfo = ({
         }
         return true;
       }),
-    full_name_or_social_reason: yup.string().required(),
-    first_name: yup.string().when("document_type", {
-      is: "DNI",
+    full_name_or_social_reason: yup.string().when("document_type", {
+      is: "RUC",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
+    first_name: yup.string().when("document_type", {
+      is: "RUC",
+      then: (schema) => schema.notRequired(),
+      otherwise: (schema) => schema.required(),
+    }),
     last_name: yup.string().when("document_type", {
-      is: "DNI",
-      then: (schema) => schema.required(),
-      otherwise: (schema) => schema.notRequired(),
+      is: "RUC",
+      then: (schema) => schema.notRequired(),
+      otherwise: (schema) => schema.required(),
     }),
     email: yup.string().email().required(),
     phone_prefix: yup.string().required(),
@@ -98,17 +102,22 @@ export const OrganizationInfo = ({
   useEffect(() => {
     // Solo limpiar si hay un cambio real (no en el primer render)
     if (previousDocType.current && previousDocType.current !== docType) {
+      // Siempre limpiar el número de documento al cambiar de tipo
+      setValue("document_number", "");
+
       if (docType === "RUC") {
         // Si cambia a RUC, limpiar campos de DNI
         setValue("first_name", "");
         setValue("last_name", "");
       } else if (docType === "DNI") {
-        // Si cambia a DNI, limpiar full_name_or_social_reason para que ingrese nombres
+        // Si cambia a DNI, limpiar razón social
+        setValue("full_name_or_social_reason", "");
+      } else {
+        // Para otros tipos de documento (CE, PASSPORT, OTHER), limpiar todos
+        setValue("first_name", "");
+        setValue("last_name", "");
         setValue("full_name_or_social_reason", "");
       }
-      // Siempre limpiar el número de documento y el nombre/razón social al cambiar de tipo
-      setValue("document_number", "");
-      setValue("full_name_or_social_reason", "");
     }
     // Actualizar el ref con el valor actual
     previousDocType.current = docType;

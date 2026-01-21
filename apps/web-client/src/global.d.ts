@@ -60,7 +60,8 @@ interface ClaimFormData extends DefaultFirestoreProps {
   document_type: string;
   document_id: string;
   address: string;
-  phone: Phone;
+  phone_prefix: string;
+  phone_number: string;
   email: string;
   incident_date: string;
   incident_time: string;

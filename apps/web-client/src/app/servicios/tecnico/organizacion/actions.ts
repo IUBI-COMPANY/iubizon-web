@@ -44,15 +44,17 @@ export async function sendTechnicalServiceEmail(
       },
     );
 
+    // Primero obtenemos el texto de la respuesta
+    const responseText = await response.text();
+
     if (!response.ok) {
-      const errorText = await response.text();
       console.error(
-        `HTTP error! status: ${response.status}, message: ${errorText}`,
+        `HTTP error! status: ${response.status}, message: ${responseText}`,
       );
-      throw new Error(`Error ${response.status}: ${errorText}`);
+      throw new Error(`Error ${response.status}: ${responseText}`);
     }
 
-    console.log("Technical Service email sent successfully");
+    console.log("Technical Service email sent successfully:", responseText);
   } catch (error) {
     console.error("Error sending Technical Service email: ", error);
     throw error;

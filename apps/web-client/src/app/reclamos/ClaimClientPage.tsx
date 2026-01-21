@@ -29,10 +29,8 @@ const schema: ObjectSchema<ClaimFormData> = yup.object({
     .string()
     .required("La dirección es requerida")
     .min(5, "La dirección debe tener al menos 5 caracteres"),
-  phone: yup.object({
-    prefix: yup.string().required("Selecciona un prefijo"),
-    number: yup.number().required("El teléfono es requerido"),
-  }),
+  phone_prefix: yup.string().required("Selecciona un prefijo"),
+  phone_number: yup.string().required("El teléfono es requerido"),
   email: yup
     .string()
     .email("Ingresa un correo válido")
@@ -90,10 +88,8 @@ export default function ClaimClientPage() {
       problem_description: "",
       claimed_amount: "",
       requested_solution: "",
-      phone: {
-        prefix: "+51",
-        number: 0,
-      },
+      phone_prefix: "+51",
+      phone_number: "",
     },
   });
 
@@ -107,13 +103,13 @@ export default function ClaimClientPage() {
       const result = await sendReclamation(data);
       setLoading(false);
       if (result.success) {
-          setSubmitted(true);
+        setSubmitted(true);
       } else {
         setErrorMsg(result.error || "Ocurrió un error al enviar el reclamo.");
       }
     } catch (e) {
       setLoading(false);
-      setErrorMsg("Ocurrió un error inesperado. Intenta nuevamente." +e);
+      setErrorMsg("Ocurrió un error inesperado. Intenta nuevamente." + e);
     }
   };
 
@@ -127,23 +123,22 @@ export default function ClaimClientPage() {
           <p className="text-lg text-foreground mb-6">
             Tu reclamo ha sido recibido y será procesado en breve.
           </p>
-
-          </div>
-          <p className="text-sm text-gray-600 mb-6">
-            Te contactaremos a través del email y teléfono proporcionados dentro
-            de 5 días hábiles.
-          </p>
-          <Button
-            onClick={() => {
-              setSubmitted(false);
-              reset();
-            }}
-            variant="primary"
-            size="md"
-          >
-            Enviar Otro Reclamo
-          </Button>
         </div>
+        <p className="text-sm text-gray-600 mb-6">
+          Te contactaremos a través del email y teléfono proporcionados dentro
+          de 5 días hábiles.
+        </p>
+        <Button
+          onClick={() => {
+            setSubmitted(false);
+            reset();
+          }}
+          variant="primary"
+          size="md"
+        >
+          Enviar Otro Reclamo
+        </Button>
+      </div>
     );
   }
 
@@ -272,7 +267,7 @@ export default function ClaimClientPage() {
 
               <div className="md:col-span-1">
                 <Controller
-                  name="phone.prefix"
+                  name="phone_prefix"
                   control={control}
                   render={({ field: { onChange, value, name } }) => (
                     <Select
@@ -295,13 +290,13 @@ export default function ClaimClientPage() {
 
               <div className="md:col-span-1">
                 <Controller
-                  name="phone.number"
+                  name="phone_number"
                   control={control}
                   render={({ field: { onChange, value, name } }) => (
                     <Input
                       label="Teléfono"
                       placeholder="Número"
-                      type="number"
+                      type="text"
                       name={name}
                       value={value}
                       error={error(name)}
