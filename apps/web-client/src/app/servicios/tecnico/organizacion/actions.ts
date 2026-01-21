@@ -16,9 +16,8 @@ export async function sendTechnicalServiceEmail(
     phone_number: formTechnicalService?.phone_number,
     quantity: formTechnicalService?.quantity,
     product_name: formTechnicalService?.product_name,
-    description_device_fault: formTechnicalService?.description_device_fault,
-    description_other_fault: formTechnicalService?.description_other_fault,
     service_type: formTechnicalService?.service_type,
+    description_more_details: formTechnicalService?.description_more_details,
     attendance_type: formTechnicalService?.attendance_type,
     visit_date: formTechnicalService?.visit_date,
     visit_time: formTechnicalService?.visit_time,
@@ -44,15 +43,17 @@ export async function sendTechnicalServiceEmail(
       },
     );
 
+    // Primero obtenemos el texto de la respuesta
+    const responseText = await response.text();
+
     if (!response.ok) {
-      const errorText = await response.text();
       console.error(
-        `HTTP error! status: ${response.status}, message: ${errorText}`,
+        `HTTP error! status: ${response.status}, message: ${responseText}`,
       );
-      throw new Error(`Error ${response.status}: ${errorText}`);
+      throw new Error(`Error ${response.status}: ${responseText}`);
     }
 
-    console.log("Technical Service email sent successfully");
+    console.log("Technical Service email sent successfully:", responseText);
   } catch (error) {
     console.error("Error sending Technical Service email: ", error);
     throw error;

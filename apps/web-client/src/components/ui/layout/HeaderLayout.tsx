@@ -25,7 +25,13 @@ export interface HeaderNavigation {
 const navigation: HeaderNavigation[] = [
   { name: "Inicio", href: "/" },
   { name: "¿Quienes somos?", href: "/quienes-somos" },
-  { name: "Productos", href: "/productos" },
+  {
+    name: "Productos",
+    href: "/productos",
+    options: [
+      { name: "Institución/Empresas", href: "/productos/organizaciones" },
+    ],
+  },
   {
     name: "Servicio Técnico",
     options: [
@@ -89,7 +95,11 @@ export const HeaderLayout = () => {
                     onMouseEnter={() => setOpenDropdown(item.name)}
                     onMouseLeave={() => setOpenDropdown(null)}
                   >
-                    <button className="text-primary font-bold bg-primary/10 px-3 py-1 rounded transition-colors duration-200 flex items-center gap-2">
+                    <Link
+                      href={item.href || "#"}
+                      className="text-white px-3 py-1 rounded transition-colors duration-200 flex items-center gap-2"
+                      onClick={() => setOpenDropdown(null)}
+                    >
                       {item.name}
                       <svg
                         className={`w-4 h-4 transition-transform duration-200 ${
@@ -106,7 +116,7 @@ export const HeaderLayout = () => {
                           d="M19 9l-7 7-7-7"
                         />
                       </svg>
-                    </button>
+                    </Link>
                     <div
                       className={`absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-200 z-[100] ${
                         openDropdown === item.name
@@ -119,6 +129,7 @@ export const HeaderLayout = () => {
                           key={option.name}
                           href={option.href}
                           className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors duration-200"
+                          onClick={() => setOpenDropdown(null)}
                         >
                           {option.name}
                         </Link>

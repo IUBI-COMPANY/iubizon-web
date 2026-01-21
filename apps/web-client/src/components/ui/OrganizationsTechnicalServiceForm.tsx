@@ -17,11 +17,7 @@ const STORAGE_KEYS = {
 
 export type OrganizationRepairStep1 = Pick<
   TechnicalService,
-  | "service_type"
-  | "quantity"
-  | "product_name"
-  | "description_device_fault"
-  | "description_other_fault"
+  "service_type" | "quantity" | "product_name" | "description_more_details"
 >;
 
 export type OrganizationRepairStep2 = Pick<
