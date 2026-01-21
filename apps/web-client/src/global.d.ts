@@ -24,66 +24,67 @@ type ServiceType =
   | "lens"
   | "other";
 
-interface TechnicalService extends DefaultFirestoreProps {
+interface LeadForIubizon extends DefaultFirestoreProps {
   // Generic Fields
   id: string;
-  product_name: string;
-  description_more_details?: string;
+  client_id?: string;
+  hostname?: string;
+  email: string;
+  status: string;
+  archived: boolean;
+  terms_and_conditions: boolean;
+  email_sent_to_user?: boolean;
+  email_sent_to_advisor?: boolean;
+  created_by?: string;
+
+  // Contact Information
   first_name?: string;
   last_name?: string;
-  visit_date?: string;
-  visit_time?: string;
+  full_name?: string;
+  full_name_or_social_reason?: string;
+  phone_prefix?: string;
+  phone_number?: string;
+
+  // Address Information
+  address?: string;
   department?: string;
   province?: string;
   district?: string;
-  address?: string;
-  phone_prefix?: string;
-  phone_number?: string;
-  email: string;
-  status: string;
-  terms_and_conditions: boolean;
-  archived: boolean;
-  email_sent_to_user?: boolean;
-  email_sent_to_advisor?: boolean;
-  createdBy?: string;
 
-  // Conditional fields for individual or Organization
-  client_type: "individual" | "organization";
-  attendance_type:
+  // Document Information
+  document_type?: "DNI" | "RUC" | "CE" | "PASSPORT" | "OTHER";
+  document_number?: string;
+  document_id?: string;
+
+  // Client/Service Type
+  client_type?: "individual" | "organization";
+
+  // Product/Service Information
+  product_name?: string;
+  product_service_description?: string;
+  description_more_details?: string;
+  quantity?: number;
+
+  // Service Details (Technical Service)
+  service_type?: ServiceType;
+  attendance_type?:
     | "go_to_store"
     | "home_visit"
     | "send_to_store"
     | "quotation"
     | "other";
-  service_type: ServiceType;
-  document_type: "DNI" | "RUC" | "CE" | "PASSPORT" | "OTHER";
-  document_number: string;
-  full_name_or_social_reason: string;
-  quantity?: number;
-}
 
-interface ClaimFormData extends DefaultFirestoreProps {
-  id: string;
-  client_id: string;
-  full_name: string;
-  document_type: string;
-  document_id: string;
-  address: string;
-  phone_prefix: string;
-  phone_number: string;
-  email: string;
-  incident_date: string;
-  incident_time: string;
-  purchase_date: string;
-  invoice_number: string;
-  claim_motive: string;
-  product_service_description: string;
-  problem_description: string;
-  claimed_amount: string;
-  requested_solution: string;
-  status: string;
-  archived: boolean;
-  email_sent_to_user?: boolean;
-  email_sent_to_advisor?: boolean;
-  created_by?: string;
+  // Visit/Meeting Information
+  visit_date?: string;
+  visit_time?: string;
+
+  // Claim Specific Fields
+  incident_date?: string;
+  incident_time?: string;
+  purchase_date?: string;
+  invoice_number?: string;
+  claim_motive?: string;
+  problem_description?: string;
+  claimed_amount?: string;
+  requested_solution?: string;
 }

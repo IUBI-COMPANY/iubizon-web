@@ -2,7 +2,7 @@
 
 const API_URL = "https://api-iubisales.web.app/claims";
 
-const mapFormClaim = (formClaim: ClaimFormData) => ({
+const mapFormClaim = (formClaim: LeadForIubizon) => ({
   client_id: "gYn8QUB8g35wEAZcZz7D",
   full_name: formClaim.full_name,
   document_type: formClaim.document_type,
@@ -24,7 +24,7 @@ const mapFormClaim = (formClaim: ClaimFormData) => ({
 });
 
 export async function sendReclamation(
-  formClaim: ClaimFormData,
+  formClaim: LeadForIubizon,
 ): Promise<{ success: boolean; error?: string }> {
   try {
     const response = await fetch(API_URL, {

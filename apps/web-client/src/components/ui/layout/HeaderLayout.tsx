@@ -10,6 +10,7 @@ import yup from "@/config/yup.json";
 import { Menu } from "lucide-react";
 import { ContentWrapper } from "@/components/ui/layout/ContentWrapper";
 import { Drawer } from "@/components/ui/layout/DrawerLayout";
+import { includes } from "lodash";
 
 interface Option {
   name: string;
@@ -97,7 +98,11 @@ export const HeaderLayout = () => {
                   >
                     <Link
                       href={item.href || "#"}
-                      className="text-white px-3 py-1 rounded transition-colors duration-200 flex items-center gap-2"
+                      className={
+                        includes(item.name.toUpperCase(), "SERVICIO")
+                          ? "flex justify-center items-center gap-2 text-primary font-bold bg-primary/10 px-3 py-1 rounded transition-colors duration-200"
+                          : "flex justify-center items-center gap-2 text-white/87 hover:text-white transition-colors duration-200 font-medium"
+                      }
                       onClick={() => setOpenDropdown(null)}
                     >
                       {item.name}
