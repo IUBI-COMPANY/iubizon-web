@@ -171,7 +171,7 @@ export const OrganizationSupportInformation = ({
                           message: "Solo para provincias",
                         },
                         {
-                          label: "Solicitar cotización",
+                          label: "Quiero una cotización",
                           value: "quotation",
                         },
                         {

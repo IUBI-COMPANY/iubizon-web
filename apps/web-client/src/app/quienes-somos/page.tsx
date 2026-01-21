@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { CheckCircle, Users, Award, Heart } from "lucide-react";
+import { Shield, MonitorSmartphone, Headphones, Handshake } from "lucide-react";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -125,6 +125,40 @@ function generateStructuredData() {
 export default function AboutUsPage() {
   const structuredData = generateStructuredData();
 
+  // Galería de equipo (6 imágenes)
+  const teamImages = [
+    {
+      src: "/images/proyectores-reparaciones.webp",
+      alt: "Soporte técnico y mantenimiento Iubizon",
+      caption: "Soporte técnico y mantenimiento para empresas.",
+    },
+    {
+      src: "/images/reparacionimg.jpg",
+      alt: "Venta de proyectores Iubizon",
+      caption: "Venta de proyectores y soluciones audiovisuales.",
+    },
+    {
+      src: "/images/education-projectors.jpg",
+      alt: "Proyectores para educación Iubizon",
+      caption: "Soluciones para el sector educativo.",
+    },
+    {
+      src: "/images/epson-banner.jpg",
+      alt: "Banner Epson Iubizon",
+      caption: "Alianza con Epson para soluciones empresariales.",
+    },
+    {
+      src: "/images/seo-banner.jpg",
+      alt: "SEO y presencia digital Iubizon",
+      caption: "Crecimiento digital y nuevos clientes.",
+    },
+    {
+      src: "/images/organizacion-reparacion.jpg",
+      alt: "Organización y reparación Iubizon",
+      caption: "Expansión de servicios técnicos especializados.",
+    },
+  ];
+
   return (
     <>
       <script
@@ -222,6 +256,30 @@ export default function AboutUsPage() {
                 />
               </div>
             </div>
+
+            {/* Team Gallery */}
+            <div className="my-16">
+              <h2 className="text-2xl md:text-3xl font-bold text-color-secondary mb-6 text-center">
+                Nuestra Experiencia
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                {teamImages.map((img, idx) => (
+                  <div key={idx} className="flex flex-col items-center">
+                    <Image
+                      src={img.src}
+                      alt={img.alt}
+                      width={350}
+                      height={220}
+                      className="rounded-xl shadow-md object-cover w-full h-56 mb-2"
+                    />
+                    <span className="text-gray-600 text-sm text-center">
+                      {img.caption}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-color-secondary mb-4">
                 ¿Por Qué Elegirnos?
@@ -230,50 +288,53 @@ export default function AboutUsPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="text-center">
-                <div className="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Award className="w-8 h-8 text-yellow-600" />
+                <div className="bg-[#1a237e]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Shield className="w-8 h-8 text-[#1a237e]" />
                 </div>
                 <h3 className="text-lg font-bold text-color-secondary mb-2">
-                  Distribuidor Epson
+                  Garantía y Confianza
                 </h3>
                 <p className="text-gray-600 text-sm">
-                  Productos originales y soporte técnico especializado
+                  Productos originales, garantía real y soporte técnico
+                  confiable.
                 </p>
               </div>
 
               <div className="text-center">
-                <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-8 h-8 text-blue-600" />
+                <div className="bg-[#009688]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <MonitorSmartphone className="w-8 h-8 text-[#009688]" />
                 </div>
                 <h3 className="text-lg font-bold text-color-secondary mb-2">
-                  5 Años de Experiencia
+                  Tecnología de Punta
                 </h3>
                 <p className="text-gray-600 text-sm">
-                  Equipo especializado en proyectores y tecnología audiovisual
+                  Soluciones audiovisuales modernas y eficientes para tu
+                  organización.
                 </p>
               </div>
 
               <div className="text-center">
-                <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle className="w-8 h-8 text-green-600" />
+                <div className="bg-[#ff9800]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Headphones className="w-8 h-8 text-[#ff9800]" />
                 </div>
                 <h3 className="text-lg font-bold text-color-secondary mb-2">
-                  Garantía Extendida
+                  Soporte Especializado
                 </h3>
                 <p className="text-gray-600 text-sm">
-                  Hasta 3 meses en reparación y mantenimiento
+                  Atención personalizada y asesoría técnica por expertos.
                 </p>
               </div>
 
               <div className="text-center">
-                <div className="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Heart className="w-8 h-8 text-red-600" />
+                <div className="bg-[#374151]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Handshake className="w-8 h-8 text-[#374151]" />
                 </div>
                 <h3 className="text-lg font-bold text-color-secondary mb-2">
-                  Servicio Personalizado
+                  Compromiso y Cercanía
                 </h3>
                 <p className="text-gray-600 text-sm">
-                  Atención adaptada a cada necesidad y presupuesto
+                  Nos adaptamos a tus necesidades y acompañamos tu proyecto de
+                  inicio a fin.
                 </p>
               </div>
             </div>

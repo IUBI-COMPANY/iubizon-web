@@ -55,7 +55,7 @@ export const FooterLayout = () => {
             Productos
           </Link>
           <Link
-            href="/servicios/tecnico"
+            href="/servicios/tecnico/persona"
             className="text-primary font-bold hover:text-[1.1em] transition-all duration-100"
           >
             Servicio Técnico
