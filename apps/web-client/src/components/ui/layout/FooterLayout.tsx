@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { BookOpen } from "lucide-react";
 
 export const FooterLayout = () => {
   return (
@@ -95,21 +96,7 @@ export const FooterLayout = () => {
             href="/reclamos"
             className="mt-2 flex items-center gap-2 text-primary font-bold shadow hover:text-white transition-colors w-fit"
           >
-            <svg
-              width="22"
-              height="22"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-primary group-hover:text-white transition-colors"
-            >
-              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-              <path d="M4 4.5A2.5 2.5 0 0 1 6.5 7H20v13H6.5A2.5 2.5 0 0 1 4 17.5z" />
-              <path d="M6.5 7V17.5" />
-            </svg>
+            <BookOpen size={22} className="text-primary group-hover:text-white transition-colors" />
             Libro de Reclamaciones
           </Link>
         </div>
