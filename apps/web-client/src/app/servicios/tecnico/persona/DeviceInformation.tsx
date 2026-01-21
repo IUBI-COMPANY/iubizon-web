@@ -35,11 +35,7 @@ export const DeviceInformation = ({
     quantity: yup.number().required().min(1, "La cantidad debe ser al menos 1"),
     product_name: yup.string().required(),
     description_device_fault: yup.string().required(),
-    description_other_fault: yup.string().when("description_device_fault", {
-      is: "other",
-      then: (schema) => schema.notRequired(),
-      otherwise: (schema) => schema.notRequired(),
-    }),
+    description_other_fault: yup.string().notRequired(),
   }) as ObjectSchema<RepairStep1>;
 
   const {
