@@ -123,21 +123,21 @@ export default function ClaimClientPage() {
           <p className="text-lg text-foreground mb-6">
             Tu reclamo ha sido recibido y será procesado en breve.
           </p>
+          <p className="text-sm text-gray-600 mb-6">
+            Te contactaremos a través del email y teléfono proporcionados dentro
+            de 5 días hábiles.
+          </p>
+          <Button
+            onClick={() => {
+              setSubmitted(false);
+              reset();
+            }}
+            variant="primary"
+            size="md"
+          >
+            Enviar Otro Reclamo
+          </Button>
         </div>
-        <p className="text-sm text-gray-600 mb-6">
-          Te contactaremos a través del email y teléfono proporcionados dentro
-          de 5 días hábiles.
-        </p>
-        <Button
-          onClick={() => {
-            setSubmitted(false);
-            reset();
-          }}
-          variant="primary"
-          size="md"
-        >
-          Enviar Otro Reclamo
-        </Button>
       </div>
     );
   }
