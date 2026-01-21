@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { BookOpen } from "lucide-react";
 
 export const FooterLayout = () => {
   return (
@@ -87,21 +86,6 @@ export const FooterLayout = () => {
               WhatsApp: <span className="font-semibold ml-1">972 300 301</span>
             </a>
           </div>
-          {/* Título Te Ayudamos */}
-          <span className="font-semibold text-white mb-2 mt-6 block">
-            Te Ayudamos
-          </span>
-          {/* Enlace destacado de Libro de Reclamaciones */}
-          <Link
-            href="/reclamos"
-            className="mt-2 flex items-center gap-2 text-primary font-bold shadow hover:text-white transition-colors w-fit"
-          >
-            <BookOpen
-              size={22}
-              className="text-primary group-hover:text-white transition-colors"
-            />
-            Libro de Reclamaciones
-          </Link>
         </div>
         <div className="flex flex-col gap-4 items-center md:items-end">
           <span className="font-bold text-white mb-2">Síguenos</span>
@@ -255,10 +239,28 @@ export const FooterLayout = () => {
                 />
               </div>
             </div>
+            {/* claimsbook debajo de medios de pago, centrado en mobile y a la derecha en desktop */}
+            <div className="w-full flex flex-col items-center md:items-end mt-8">
+              <Link
+                href="/reclamos"
+                className="flex flex-col items-center gap-2 md:flex-row md:justify-end md:items-center md:gap-3 lg:pl-24 w-full"
+              >
+                <Image
+                  src="/images/claimsbook.png"
+                  alt="Libro de Reclamaciones"
+                  width={70}
+                  height={15}
+                  className="drop-shadow-lg"
+                />
+                <span className="text-white font-bold text-base">
+                  Libro de Reclamaciones
+                </span>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-      <div className="mt-8 text-center text-xs text-blue-200">
+      <div className="mt-4 text-center text-xs text-blue-200">
         <Link
           href="/politica-de-devoluciones-y-cambios"
           className="hover:text-primary"
