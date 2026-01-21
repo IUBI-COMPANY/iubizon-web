@@ -114,7 +114,7 @@ export const OrganizationSupportInformation = ({
     addLocalStorageData(formData);
 
     const data: TechnicalService = JSON.parse(
-      localStorage.getItem("formData") || "{}",
+      localStorage.getItem("organization_formData") || "{}",
     );
 
     try {
