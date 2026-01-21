@@ -96,7 +96,10 @@ export const FooterLayout = () => {
             href="/reclamos"
             className="mt-2 flex items-center gap-2 text-primary font-bold shadow hover:text-white transition-colors w-fit"
           >
-            <BookOpen size={22} className="text-primary group-hover:text-white transition-colors" />
+            <BookOpen
+              size={22}
+              className="text-primary group-hover:text-white transition-colors"
+            />
             Libro de Reclamaciones
           </Link>
         </div>
