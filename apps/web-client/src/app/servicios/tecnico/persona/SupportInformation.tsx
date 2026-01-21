@@ -22,8 +22,8 @@ import { BusinessAddress } from "@/components/ui/BusinessAddress";
 //Define Properties
 interface Props {
   globalStep: number;
-  repairsFormData: Partial<TechnicalService>;
-  setRepairsFormData: (data: Partial<TechnicalService>) => void;
+  repairsFormData: Partial<LeadForIubizon>;
+  setRepairsFormData: (data: Partial<LeadForIubizon>) => void;
   addLocalStorageData: (data: object) => void;
   setCurrentStepToLocalStorage: (step: number) => void;
   loading: boolean;
@@ -114,7 +114,7 @@ export const SupportInformation = ({
     setRepairsFormData({ ...repairsFormData, ...formData });
     addLocalStorageData(formData);
 
-    const data: TechnicalService = JSON.parse(
+    const data: LeadForIubizon = JSON.parse(
       localStorage.getItem("retail_formData") || "{}",
     );
 

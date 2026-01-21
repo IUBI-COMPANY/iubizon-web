@@ -16,17 +16,17 @@ const STORAGE_KEYS = {
 };
 
 export type RepairStep1 = Pick<
-  TechnicalService,
+  LeadForIubizon,
   "service_type" | "quantity" | "product_name" | "description_more_details"
 >;
 
 export type RepairStep2 = Pick<
-  TechnicalService,
+  LeadForIubizon,
   "first_name" | "last_name" | "email" | "phone_prefix" | "phone_number"
 >;
 
 export type RepairStep3 = Pick<
-  TechnicalService,
+  LeadForIubizon,
   | "attendance_type"
   | "visit_date"
   | "visit_time"
@@ -40,7 +40,7 @@ export type RepairStep3 = Pick<
 export const RetailTechnicalServiceForm = () => {
   const [globalStep, setGlobalStep] = useState(0);
   const [repairsFormData, setRepairsFormData] = useState<
-    Partial<TechnicalService>
+    Partial<LeadForIubizon>
   >({});
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);

@@ -21,8 +21,8 @@ import { OrganizationRepairStep3 } from "@/components/ui/OrganizationsTechnicalS
 
 interface Props {
   globalStep: number;
-  repairsFormData: Partial<TechnicalService>;
-  setRepairsFormData: (data: Partial<TechnicalService>) => void;
+  repairsFormData: Partial<LeadForIubizon>;
+  setRepairsFormData: (data: Partial<LeadForIubizon>) => void;
   addLocalStorageData: (data: object) => void;
   setCurrentStepToLocalStorage: (step: number) => void;
   loading: boolean;
@@ -113,7 +113,7 @@ export const OrganizationSupportInformation = ({
     setRepairsFormData({ ...repairsFormData, ...formData });
     addLocalStorageData(formData);
 
-    const data: TechnicalService = JSON.parse(
+    const data: LeadForIubizon = JSON.parse(
       localStorage.getItem("organization_formData") || "{}",
     );
 

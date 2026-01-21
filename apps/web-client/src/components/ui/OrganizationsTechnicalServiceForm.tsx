@@ -16,12 +16,12 @@ const STORAGE_KEYS = {
 };
 
 export type OrganizationRepairStep1 = Pick<
-  TechnicalService,
+  LeadForIubizon,
   "service_type" | "quantity" | "product_name" | "description_more_details"
 >;
 
 export type OrganizationRepairStep2 = Pick<
-  TechnicalService,
+  LeadForIubizon,
   | "document_type"
   | "document_number"
   | "full_name_or_social_reason"
@@ -33,7 +33,7 @@ export type OrganizationRepairStep2 = Pick<
 >;
 
 export type OrganizationRepairStep3 = Pick<
-  TechnicalService,
+  LeadForIubizon,
   | "attendance_type"
   | "visit_date"
   | "visit_time"
@@ -47,7 +47,7 @@ export type OrganizationRepairStep3 = Pick<
 export const OrganizationsTechnicalServiceForm = () => {
   const [globalStep, setGlobalStep] = useState(0);
   const [repairsFormData, setRepairsFormData] = useState<
-    Partial<TechnicalService>
+    Partial<LeadForIubizon>
   >({});
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);

@@ -1,9 +1,9 @@
 "use server";
 
 export async function sendTechnicalServiceEmail(
-  formTechnicalService: TechnicalService,
+  formTechnicalService: LeadForIubizon,
 ): Promise<void> {
-  const mapTechnicalServiceData = (formTechnicalService: TechnicalService) => ({
+  const mapTechnicalServiceData = (formTechnicalService: LeadForIubizon) => ({
     client_type: "organization" as const,
     document_type: formTechnicalService?.document_type,
     document_number: formTechnicalService?.document_number,

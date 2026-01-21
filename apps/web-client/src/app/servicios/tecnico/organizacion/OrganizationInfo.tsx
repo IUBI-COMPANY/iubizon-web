@@ -16,8 +16,8 @@ import { OrganizationRepairStep2 } from "@/components/ui/OrganizationsTechnicalS
 
 interface Props {
   globalStep: number;
-  repairsFormData: Partial<TechnicalService>;
-  setRepairsFormData: (data: Partial<TechnicalService>) => void;
+  repairsFormData: Partial<LeadForIubizon>;
+  setRepairsFormData: (data: Partial<LeadForIubizon>) => void;
   addLocalStorageData: (data: object) => void;
   setCurrentStepToLocalStorage: (step: number) => void;
   current?: number;

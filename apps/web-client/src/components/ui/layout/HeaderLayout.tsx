@@ -97,7 +97,11 @@ export const HeaderLayout = () => {
                   >
                     <Link
                       href={item.href || "#"}
-                      className="text-white px-3 py-1 rounded transition-colors duration-200 flex items-center gap-2"
+                      className={
+                        item.name.toUpperCase().includes("SERVICIO")
+                          ? "flex justify-center items-center gap-2 text-primary font-bold bg-primary/10 px-3 py-1 rounded transition-colors duration-200"
+                          : "flex justify-center items-center gap-2 text-white/87 hover:text-white transition-colors duration-200 font-medium"
+                      }
                       onClick={() => setOpenDropdown(null)}
                     >
                       {item.name}
