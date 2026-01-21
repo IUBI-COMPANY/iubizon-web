@@ -11,6 +11,7 @@ import { TextArea } from "@/components/ui/TextArea";
 import { Form } from "@/components/ui/Form";
 import { Button } from "@/components/ui/Button";
 import { DatePicker } from "@/components/ui/DatePicker";
+import { TimePicker } from "@/components/ui/TimePicker";
 import * as yup from "yup";
 import type { ObjectSchema } from "yup";
 import { SendIcon } from "lucide-react";
@@ -382,7 +383,7 @@ export default function ClaimClientPage() {
                   name="incident_time"
                   control={control}
                   render={({ field: { onChange, value, name } }) => (
-                    <Input
+                    <TimePicker
                       label="Hora del Incidente"
                       placeholder="HH:MM"
                       name={name}
