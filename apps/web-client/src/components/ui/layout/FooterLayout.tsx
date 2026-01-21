@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { BookOpen } from "lucide-react";
 
 export const FooterLayout = () => {
   return (
@@ -86,6 +87,21 @@ export const FooterLayout = () => {
               WhatsApp: <span className="font-semibold ml-1">972 300 301</span>
             </a>
           </div>
+          {/* Título Te Ayudamos */}
+          <span className="font-semibold text-white mb-2 mt-6 block">
+            Te Ayudamos
+          </span>
+          {/* Enlace destacado de Libro de Reclamaciones */}
+          <Link
+            href="/reclamos"
+            className="mt-2 flex items-center gap-2 text-primary font-bold shadow hover:text-white transition-colors w-fit"
+          >
+            <BookOpen
+              size={22}
+              className="text-primary group-hover:text-white transition-colors"
+            />
+            Libro de Reclamaciones
+          </Link>
         </div>
         <div className="flex flex-col gap-4 items-center md:items-end">
           <span className="font-bold text-white mb-2">Síguenos</span>
