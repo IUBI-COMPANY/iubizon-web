@@ -7,7 +7,7 @@ on:
   pull_request:
     branches: [ main, production ]
     paths:
-      - "packages/hosting/**"
+      - "apps/web-client/**"
   workflow_dispatch:
 
 jobs:
@@ -15,17 +15,21 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: packages/hosting
+        working-directory: apps/web-client
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: "22"
           cache: "yarn"
-          cache-dependency-path: "packages/hosting/yarn.lock"
-      - name: Install
+          cache-dependency-path: "apps/web-client/yarn.lock"
+      - name: Install Dependencies
         run: yarn install
       - name: Check Prettier
         run: yarn prettier:check
-      - name: Check Eslint
+      - name: Check ESLint
         run: yarn eslint:check
+      - name: Check Types
+        run: yarn type:check
+      - name: Build
+        run: yarn build
