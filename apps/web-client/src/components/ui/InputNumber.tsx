@@ -33,8 +33,16 @@ export const InputNumber = ({
   step = 1,
 }: Props) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const numValue = parseFloat(e.target.value);
-    onChange?.(isNaN(numValue) ? 0 : numValue);
+    const inputValue = e.target.value;
+
+    // Allow empty input (user is clearing the field)
+    if (inputValue === "" || inputValue === "-") {
+      onChange?.(min ?? 0);
+      return;
+    }
+
+    const numValue = parseFloat(inputValue);
+    onChange?.(isNaN(numValue) ? (min ?? 0) : numValue);
   };
 
   return (
