@@ -88,7 +88,7 @@ export const OrganizationProductInfo = ({
   ) => {
     // Ensure quantity is at least 1
     const processedValue =
-      field === "quantity" ? Math.max(1, Number(value) || 1) : value;
+      field === "quantity" ? Math.max(1, (value as number) || 1) : value;
 
     setProducts(
       products.map((p) =>
