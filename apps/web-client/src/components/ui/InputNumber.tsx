@@ -50,6 +50,9 @@ export const InputNumber = ({
     // Allow user to clear the field
     if (inputValue === "") {
       setInternalValue("");
+      if (onChange) {
+        onChange(min ?? 0);
+      }
       return;
     }
 
