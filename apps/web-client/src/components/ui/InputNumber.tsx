@@ -52,13 +52,15 @@ export const InputNumber = ({
       setInternalValue("");
       if (onChange) {
         onChange(min ?? 0);
-      }
+      setInternalValue("");
+      onChange?.(NaN);
       return;
     }
 
-    // Allow user to type minus sign (for negative numbers), but only if negative values are allowed
-    if (inputValue === "-" && (min === undefined || min < 0)) {
+    // Allow user to type minus sign (for negative numbers)
+    if (inputValue === "-") {
       setInternalValue("-");
+      onChange?.(NaN);
       return;
     }
 
