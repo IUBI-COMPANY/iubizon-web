@@ -56,8 +56,8 @@ export const InputNumber = ({
       return;
     }
 
-    // Allow user to type minus sign (for negative numbers)
-    if (inputValue === "-") {
+    // Allow user to type minus sign (for negative numbers), but only if negative values are allowed
+    if (inputValue === "-" && (min === undefined || min < 0)) {
       setInternalValue("-");
       return;
     }
