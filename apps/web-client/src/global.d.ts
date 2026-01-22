@@ -36,6 +36,7 @@ interface LeadForIubizon extends DefaultFirestoreProps {
   email_sent_to_user?: boolean;
   email_sent_to_advisor?: boolean;
   created_by?: string;
+  lead_type?: "sale" | "technical_service";
 
   // Contact Information
   first_name?: string;
@@ -61,6 +62,11 @@ interface LeadForIubizon extends DefaultFirestoreProps {
 
   // Product/Service Information
   product_name?: string;
+  product_list?: {
+    id: string;
+    quantity: number;
+    brand_and_model: string;
+  }[];
   product_service_description?: string;
   description_more_details?: string;
   quantity?: number;
