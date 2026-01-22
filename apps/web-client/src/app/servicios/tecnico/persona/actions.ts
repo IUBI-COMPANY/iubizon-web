@@ -4,7 +4,8 @@ export async function sendTechnicalServiceEmail(
   formTechnicalService: LeadForIubizon,
 ): Promise<void> {
   const mapTechnicalServiceData = (formTechnicalService: LeadForIubizon) => ({
-    client_type: "retail" as const,
+    client_type: "retail",
+    lead_type: "technical_service",
     full_name:
       `${formTechnicalService?.first_name || ""} ${formTechnicalService?.last_name || ""}`.trim(),
     first_name: formTechnicalService?.first_name,
