@@ -14,7 +14,6 @@ interface Props {
   placeholder?: string;
   min?: number;
   max?: number;
-  step?: number;
 }
 
 export const InputNumber = ({
@@ -30,7 +29,6 @@ export const InputNumber = ({
   placeholder,
   min,
   max,
-  step = 1,
 }: Props) => {
   // Internal state to allow free typing before validation
   const [internalValue, setInternalValue] = useState<string>("");
@@ -47,51 +45,32 @@ export const InputNumber = ({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
 
-    // Allow user to clear the field
+    // Allow user to clear the field temporarily
     if (inputValue === "") {
       setInternalValue("");
-      if (onChange) {
-        onChange(min ?? 0);
-      setInternalValue("");
-      onChange?.(NaN);
       return;
     }
 
-    // Allow user to type minus sign (for negative numbers)
-    if (inputValue === "-") {
-      setInternalValue("-");
-      onChange?.(NaN);
-      return;
-    }
-
-    // Determine if we should use integer or decimal parsing based on step
-    const isIntegerStep = step % 1 === 0;
-    const numValue = isIntegerStep
-      ? parseInt(inputValue, 10)
-      : parseFloat(inputValue);
+    // Parse as integer only
+    const numValue = parseInt(inputValue, 10);
 
     // Only update if it's a valid number
     if (!isNaN(numValue)) {
-      // For integer steps, store the parsed integer value to avoid display mismatch
-      const displayValue = isIntegerStep ? String(numValue) : inputValue;
-      setInternalValue(displayValue);
+      setInternalValue(String(numValue));
       onChange?.(numValue);
     }
   };
 
   const handleBlur = () => {
-    // On blur, enforce min/max constraints and clean up the value
-    if (internalValue === "" || internalValue === "-") {
+    // On blur, enforce min/max constraints and clean up empty values
+    if (internalValue === "") {
       const fallbackValue = min ?? 0;
       setInternalValue(String(fallbackValue));
       onChange?.(fallbackValue);
       return;
     }
 
-    const isIntegerStep = step % 1 === 0;
-    let numValue = isIntegerStep
-      ? parseInt(internalValue, 10)
-      : parseFloat(internalValue);
+    let numValue = parseInt(internalValue, 10);
 
     // Enforce min constraint
     if (min !== undefined && numValue < min) {
@@ -129,7 +108,7 @@ export const InputNumber = ({
         placeholder={placeholder}
         min={min}
         max={max}
-        step={step}
+        step={1}
         className={twMerge(
           "block w-full rounded-md bg-white px-3.5 py-2 text-base placeholder:text-gray-400 transition-colors duration-200",
           "outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2",
