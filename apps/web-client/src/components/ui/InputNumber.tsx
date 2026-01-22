@@ -61,12 +61,15 @@ export const InputNumber = ({
 
     // Determine if we should use integer or decimal parsing based on step
     const isIntegerStep = step === undefined || step % 1 === 0;
-    const parseFunction = isIntegerStep ? parseInt : parseFloat;
-    const numValue = parseFunction(inputValue, 10);
+    const numValue = isIntegerStep
+      ? parseInt(inputValue, 10)
+      : parseFloat(inputValue);
 
     // Only update if it's a valid number
     if (!isNaN(numValue)) {
-      setInternalValue(inputValue);
+      // For integer steps, store the parsed integer value to avoid display mismatch
+      const displayValue = isIntegerStep ? String(numValue) : inputValue;
+      setInternalValue(displayValue);
       onChange?.(numValue);
     }
   };
@@ -81,8 +84,9 @@ export const InputNumber = ({
     }
 
     const isIntegerStep = step === undefined || step % 1 === 0;
-    const parseFunction = isIntegerStep ? parseInt : parseFloat;
-    let numValue = parseFunction(internalValue, 10);
+    let numValue = isIntegerStep
+      ? parseInt(internalValue, 10)
+      : parseFloat(internalValue);
 
     // Enforce min constraint
     if (min !== undefined && numValue < min) {
