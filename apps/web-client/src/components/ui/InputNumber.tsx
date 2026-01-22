@@ -65,7 +65,7 @@ export const InputNumber = ({
     }
 
     // Determine if we should use integer or decimal parsing based on step
-    const isIntegerStep = step === undefined || step % 1 === 0;
+    const isIntegerStep = step % 1 === 0;
     const numValue = isIntegerStep
       ? parseInt(inputValue, 10)
       : parseFloat(inputValue);
