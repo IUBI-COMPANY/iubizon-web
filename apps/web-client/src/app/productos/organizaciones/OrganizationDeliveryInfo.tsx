@@ -18,6 +18,7 @@ import { sendProductRequestEmail } from "./actions";
 import { ArrowLeft, SendIcon } from "lucide-react";
 import { BusinessAddress } from "@/components/ui/BusinessAddress";
 import { OrganizationProductStep3 } from "@/components/ui/OrganizationsProductRequestForm";
+import { useNotification } from "@/components/ui/Notification";
 
 interface Props {
   globalStep: number;
@@ -38,6 +39,8 @@ export const OrganizationDeliveryInfo = ({
   loading,
   setLoading,
 }: Props) => {
+  const { showNotification, NotificationComponent } = useNotification();
+
   const schema = yup.object({
     attendance_type: yup.string().required(),
     visit_date: yup.string().when("attendance_type", {
@@ -51,12 +54,14 @@ export const OrganizationDeliveryInfo = ({
       otherwise: (schema) => schema.notRequired(),
     }),
     district: yup.string().when("attendance_type", {
-      is: "home_visit || send_to_store",
+      is: (value: string) =>
+        value === "home_visit" || value === "send_to_store",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
     address: yup.string().when("attendance_type", {
-      is: "home_visit || send_to_store",
+      is: (value: string) =>
+        value === "home_visit" || value === "send_to_store",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
@@ -113,9 +118,20 @@ export const OrganizationDeliveryInfo = ({
     setProductFormData({ ...productFormData, ...formData });
     addLocalStorageData(formData);
 
-    const data: LeadForIubizon = JSON.parse(
-      localStorage.getItem("org_products_formData") || "{}",
-    );
+    let data: LeadForIubizon;
+    try {
+      const storedData = localStorage.getItem("org_products_formData");
+      data = storedData ? JSON.parse(storedData) : ({} as LeadForIubizon);
+    } catch (error) {
+      console.error(
+        "Error parsing stored organization products form data: ",
+        error,
+      );
+      data = {
+        ...(productFormData as LeadForIubizon),
+        ...(formData as LeadForIubizon),
+      };
+    }
 
     try {
       await sendProductRequestEmail(data);
@@ -127,8 +143,10 @@ export const OrganizationDeliveryInfo = ({
       console.error("Error sending product request email: ", error);
       setLoading(false);
 
-      alert(
+      showNotification(
+        "error",
         "Hubo un error al enviar la solicitud. Por favor, inténtelo nuevamente o contacte con soporte.",
+        "Error al enviar",
       );
     }
   };
@@ -277,7 +295,7 @@ export const OrganizationDeliveryInfo = ({
                 )}
                 {(isDelivery || isShipping) && (
                   <div className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6 my-6">
-                    <div className="sm: col-span-2">
+                    <div className="sm:col-span-2">
                       <Controller
                         name="district"
                         control={control}
@@ -305,7 +323,7 @@ export const OrganizationDeliveryInfo = ({
                         )}
                       />
                     </div>
-                    <div className="sm: col-span-4">
+                    <div className="sm:col-span-4">
                       <Controller
                         name="address"
                         control={control}
@@ -325,7 +343,7 @@ export const OrganizationDeliveryInfo = ({
                     </div>
                   </div>
                 )}
-                <div className="sm: col-span-2 mt-4">
+                <div className="sm:col-span-2 mt-4">
                   <Controller
                     name="terms_and_conditions"
                     control={control}
@@ -381,6 +399,7 @@ export const OrganizationDeliveryInfo = ({
           </div>
         </Form>
       </div>
+      {NotificationComponent}
     </div>
   );
 };

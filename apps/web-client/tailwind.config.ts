@@ -13,10 +13,20 @@ const config: Config = {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-20px)" },
         },
+        "fade-in": {
+          "0%": { opacity: "0", transform: "translateY(-10px) scale(0.95)" },
+          "100%": { opacity: "1", transform: "translateY(0) scale(1)" },
+        },
+        "fade-out": {
+          "0%": { opacity: "1", transform: "translateY(0) scale(1)" },
+          "100%": { opacity: "0", transform: "translateY(-10px) scale(0.95)" },
+        },
       },
       animation: {
         scalePulse: "scalePulse 1.5s ease-in-out infinite",
         float: "float 3s ease-in-out infinite",
+        "fade-in": "fade-in 0.3s ease-out forwards",
+        "fade-out": "fade-out 0.3s ease-in forwards",
       },
       animationDelay: {
         "100": "0.1s",
