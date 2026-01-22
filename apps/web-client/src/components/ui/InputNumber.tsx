@@ -88,7 +88,7 @@ export const InputNumber = ({
       return;
     }
 
-    const isIntegerStep = step === undefined || step % 1 === 0;
+    const isIntegerStep = step % 1 === 0;
     let numValue = isIntegerStep
       ? parseInt(internalValue, 10)
       : parseFloat(internalValue);
