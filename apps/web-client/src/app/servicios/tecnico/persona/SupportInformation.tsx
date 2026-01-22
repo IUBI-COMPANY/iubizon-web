@@ -55,12 +55,14 @@ export const SupportInformation = ({
       otherwise: (schema) => schema.notRequired(),
     }),
     district: yup.string().when("attendance_type", {
-      is: "home_visit || send_to_store",
+      is: (value: string) =>
+        value === "home_visit" || value === "send_to_store",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),
     address: yup.string().when("attendance_type", {
-      is: "home_visit || send_to_store",
+      is: (value: string) =>
+        value === "home_visit" || value === "send_to_store",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
     }),

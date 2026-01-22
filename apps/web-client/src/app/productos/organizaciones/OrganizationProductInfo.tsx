@@ -1,5 +1,6 @@
 import { Form } from "@/components/ui/Form";
 import { Input } from "@/components/ui/Input";
+import { InputNumber } from "@/components/ui/InputNumber";
 import * as yup from "yup";
 import { ObjectSchema } from "yup";
 import { Controller, useForm } from "react-hook-form";
@@ -85,8 +86,14 @@ export const OrganizationProductInfo = ({
     field: "quantity" | "brand_and_model",
     value: string | number,
   ) => {
+    // Ensure quantity is at least 1
+    const processedValue =
+      field === "quantity" ? Math.max(1, Number(value) || 1) : value;
+
     setProducts(
-      products.map((p) => (p.id === id ? { ...p, [field]: value } : p)),
+      products.map((p) =>
+        p.id === id ? { ...p, [field]: processedValue } : p,
+      ),
     );
   };
 
@@ -175,19 +182,15 @@ export const OrganizationProductInfo = ({
                     {/* Inputs */}
                     <div className="flex-1 grid grid-cols-12 gap-3">
                       <div className="col-span-3">
-                        <Input
+                        <InputNumber
                           name={`quantity-${product.id}`}
                           label=""
-                          type="number"
                           value={product.quantity}
                           onChange={(value) =>
-                            updateProduct(
-                              product.id,
-                              "quantity",
-                              parseInt(value) || 1,
-                            )
+                            updateProduct(product.id, "quantity", value)
                           }
                           placeholder="Cant."
+                          min={1}
                         />
                       </div>
                       <div className="col-span-9">
