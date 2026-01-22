@@ -1,4 +1,5 @@
 import { Input } from "@/components/ui/Input";
+import { InputNumber } from "@/components/ui/InputNumber";
 import { Form } from "@/components/ui/Form";
 import * as yup from "yup";
 import { ObjectSchema } from "yup";
@@ -84,15 +85,15 @@ export const OrganizationDeviceInformation = ({
                       name="quantity"
                       control={control}
                       render={({ field: { onChange, value, name } }) => (
-                        <Input
+                        <InputNumber
                           label="Cantidad"
                           name={name}
-                          type="number"
                           value={value}
                           error={error(name)}
                           helperText={errorMessage(name)}
                           required={required(name)}
                           onChange={onChange}
+                          min={1}
                         />
                       )}
                     />
