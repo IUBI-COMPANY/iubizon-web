@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { twMerge } from "tailwind-merge";
 
 interface Props {
@@ -32,17 +32,70 @@ export const InputNumber = ({
   max,
   step = 1,
 }: Props) => {
+  // Internal state to allow free typing before validation
+  const [internalValue, setInternalValue] = useState<string>("");
+
+  // Sync internal value with external value prop
+  useEffect(() => {
+    if (value !== undefined && value !== null) {
+      setInternalValue(String(value));
+    } else {
+      setInternalValue("");
+    }
+  }, [value]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
 
-    // Allow empty input (user is clearing the field)
-    if (inputValue === "" || inputValue === "-") {
-      onChange?.(min ?? 0);
+    // Allow user to clear the field
+    if (inputValue === "") {
+      setInternalValue("");
       return;
     }
 
-    const numValue = parseFloat(inputValue);
-    onChange?.(isNaN(numValue) ? (min ?? 0) : numValue);
+    // Allow user to type minus sign (for negative numbers)
+    if (inputValue === "-") {
+      setInternalValue("-");
+      return;
+    }
+
+    // Determine if we should use integer or decimal parsing based on step
+    const isIntegerStep = step === undefined || step % 1 === 0;
+    const parseFunction = isIntegerStep ? parseInt : parseFloat;
+    const numValue = parseFunction(inputValue, 10);
+
+    // Only update if it's a valid number
+    if (!isNaN(numValue)) {
+      setInternalValue(inputValue);
+      onChange?.(numValue);
+    }
+  };
+
+  const handleBlur = () => {
+    // On blur, enforce min/max constraints and clean up the value
+    if (internalValue === "" || internalValue === "-") {
+      const fallbackValue = min ?? 0;
+      setInternalValue(String(fallbackValue));
+      onChange?.(fallbackValue);
+      return;
+    }
+
+    const isIntegerStep = step === undefined || step % 1 === 0;
+    const parseFunction = isIntegerStep ? parseInt : parseFloat;
+    let numValue = parseFunction(internalValue, 10);
+
+    // Enforce min constraint
+    if (min !== undefined && numValue < min) {
+      numValue = min;
+    }
+
+    // Enforce max constraint
+    if (max !== undefined && numValue > max) {
+      numValue = max;
+    }
+
+    setInternalValue(String(numValue));
+    onChange?.(numValue);
   };
 
   return (
@@ -61,8 +114,9 @@ export const InputNumber = ({
         id={name}
         name={name}
         type="number"
-        value={value ?? ""}
+        value={internalValue}
         onChange={handleChange}
+        onBlur={handleBlur}
         placeholder={placeholder}
         min={min}
         max={max}
