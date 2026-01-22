@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/Button";
 import { OrganizationProductStep1 } from "@/components/ui/OrganizationsProductRequestForm";
 import { ArrowRight, Plus, X, GripVertical } from "lucide-react";
 import { TextArea } from "@/components/ui/TextArea";
+import { useNotification } from "@/components/ui/Notification";
 
 interface ProductItem {
   id: string;
@@ -32,6 +33,8 @@ export const OrganizationProductInfo = ({
   addLocalStorageData,
   setCurrentStepToLocalStorage,
 }: Props) => {
+  const { showNotification, NotificationComponent } = useNotification();
+
   // Initialize products from product_list or create default
   const initializeProducts = (): ProductItem[] => {
     if (
@@ -116,7 +119,11 @@ export const OrganizationProductInfo = ({
       (p) => !p.brand_and_model.trim() || p.quantity < 1,
     );
     if (hasEmptyProduct) {
-      alert("Por favor completa todos los productos antes de continuar");
+      showNotification(
+        "warning",
+        "Por favor completa todos los productos antes de continuar",
+        "Productos incompletos",
+      );
       return;
     }
 
@@ -263,6 +270,7 @@ export const OrganizationProductInfo = ({
           </div>
         </Form>
       </div>
+      {NotificationComponent}
     </div>
   );
 };

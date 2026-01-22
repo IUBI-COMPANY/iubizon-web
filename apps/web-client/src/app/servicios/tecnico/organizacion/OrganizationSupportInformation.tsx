@@ -18,6 +18,7 @@ import { sendTechnicalServiceEmail } from "./actions";
 import { ArrowLeft, SendIcon } from "lucide-react";
 import { BusinessAddress } from "@/components/ui/BusinessAddress";
 import { OrganizationRepairStep3 } from "@/components/ui/OrganizationsTechnicalServiceForm";
+import { useNotification } from "@/components/ui/Notification";
 
 interface Props {
   globalStep: number;
@@ -38,6 +39,8 @@ export const OrganizationSupportInformation = ({
   loading,
   setLoading,
 }: Props) => {
+  const { showNotification, NotificationComponent } = useNotification();
+
   const schema = yup.object({
     attendance_type: yup.string().required(),
     visit_date: yup.string().when("attendance_type", {
@@ -127,8 +130,10 @@ export const OrganizationSupportInformation = ({
       console.error("Error sending repair email: ", error);
       setLoading(false);
 
-      alert(
+      showNotification(
+        "error",
         "Hubo un error al enviar la solicitud. Por favor, inténtelo nuevamente o contacte con soporte.",
+        "Error al enviar",
       );
     }
   };
@@ -383,6 +388,7 @@ export const OrganizationSupportInformation = ({
           </div>
         </Form>
       </div>
+      {NotificationComponent}
     </div>
   );
 };
