@@ -4,6 +4,7 @@ export async function sendTechnicalServiceEmail(
   formTechnicalService: LeadForIubizon,
 ): Promise<void> {
   const mapTechnicalServiceData = (formTechnicalService: LeadForIubizon) => ({
+    client_id: "gYn8QUB8g35wEAZcZz7D",
     client_type: "organization",
     lead_type: "technical_service",
     document_type: formTechnicalService?.document_type,
@@ -34,7 +35,7 @@ export async function sendTechnicalServiceEmail(
 
   try {
     const response = await fetch(
-      `https://api-iubisales.web.app/iubizon/services/technical`,
+      `https://api-iubisales.web.app/iubizon/leads`,
       {
         method: "POST",
         headers: {

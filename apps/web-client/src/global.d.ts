@@ -80,6 +80,9 @@ interface LeadForIubizon extends DefaultFirestoreProps {
     | "quotation"
     | "other";
 
+  // Request Type
+  request_type?: "sale" | "technical_service";
+
   // Visit/Meeting Information
   visit_date?: string;
   visit_time?: string;

@@ -4,6 +4,7 @@ export async function sendProductRequestEmail(
   formProductRequest: LeadForIubizon,
 ): Promise<void> {
   const mapProductRequestData = (formProductRequest: LeadForIubizon) => ({
+    client_id: "gYn8QUB8g35wEAZcZz7D",
     client_type: "organization",
     lead_type: "sale",
     document_type: formProductRequest?.document_type,
@@ -31,7 +32,7 @@ export async function sendProductRequestEmail(
 
   try {
     const response = await fetch(
-      `https://api-iubisales.web.app/iubizon/products/request`,
+      `https://api-iubisales.web.app/iubizon/leads`,
       {
         method: "POST",
         headers: {
