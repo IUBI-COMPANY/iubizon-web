@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import {
   Presentation,
   BriefcaseBusiness,
@@ -57,7 +56,7 @@ const benefits: BenefitCard[] = [
   {
     title: "Garantía extendida para clientes corporativos",
     description:
-      "Hasta 3 meses de garantía en reparaciones para organizaciones e instituciones con uso recurrente.",
+      "Hasta 6 meses de garantía en reparaciones para organizaciones e instituciones con uso recurrente.",
     icon: ShieldCheck,
     color: "from-emerald-600 to-emerald-800",
   },
@@ -85,29 +84,12 @@ export default function AnimateCards() {
       {/* Grid de tarjetas */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
         {benefits.map((card, index) => (
-          <motion.div
+          <div
             key={card.title}
-            className="relative overflow-hidden rounded-xl bg-white shadow-md border border-gray-200/60 group"
-            custom={index}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-            variants={{
-              hidden: { opacity: 0, y: 30 },
-              visible: (i) => ({
-                opacity: 1,
-                y: 0,
-                transition: {
-                  duration: 0.7,
-                  delay: i * 0.12,
-                  ease: [0.2, 0.1, 0.2, 1],
-                },
-              }),
-            }}
-            whileHover={{
-              y: -8,
-              boxShadow: "0 10px 30px -10px rgba(0, 0, 0, 0.07)",
-              transition: { duration: 0.35, ease: "easeOut" },
+            className="relative overflow-hidden rounded-xl bg-white shadow-md border border-gray-200/60 group opacity-0 animate-fade-in-up hover:-translate-y-2 hover:shadow-xl transition-all duration-300"
+            style={{
+              animationDelay: `${index * 0.12}s`,
+              animationFillMode: "forwards",
             }}
           >
             {/* Barra superior naranja corporativa */}
@@ -130,7 +112,7 @@ export default function AnimateCards() {
                 {card.description}
               </p>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </div>

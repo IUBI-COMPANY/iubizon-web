@@ -10,6 +10,7 @@ import FAQAccordion from "@/components/ui/layout/FAQAccordion";
 import AnimateCards from "@/components/ui/AnimateCards";
 import { OrganizationGallery } from "@/components/ui/OrganizationGallery";
 import { Button } from "@/components/ui/Button";
+import WorksGallery from "@/components/ui/WorksGallery";
 
 export const metadata: Metadata = {
   title:
@@ -168,6 +169,7 @@ export default function OrganizationsTechnicalServicePage() {
           <OrganizationsTechnicalServiceForm />
         </div>
       </section>
+      <WorksGallery type="organization" />
       <AnimateCards />
       <OrganizationGallery />
 
@@ -304,7 +306,7 @@ export default function OrganizationsTechnicalServicePage() {
                   className="w-5 h-5 text-primary"
                   aria-label="Check"
                 />
-                <span className="text-sm font-medium">3 meses garantía</span>
+                <span className="text-sm font-medium">6 meses garantía</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle

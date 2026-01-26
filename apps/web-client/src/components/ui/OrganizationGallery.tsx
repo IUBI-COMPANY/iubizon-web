@@ -1,7 +1,6 @@
 // @/components/ui/OrganizationGallery.tsx
 "use client";
 
-import { motion } from "framer-motion";
 import Image from "next/image";
 import { CheckCircle, Zap, Settings, TrendingUp } from "lucide-react";
 
@@ -46,27 +45,14 @@ const galleryItems = [
   },
 ];
 
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1,
-    },
-  },
-};
-
 export function OrganizationGallery() {
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
       {/* Encabezado */}
       <div className="text-center mb-8 sm:mb-12 lg:mb-16 max-w-3xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+        <div
+          className="opacity-0 animate-fade-in-up"
+          style={{ animationFillMode: "forwards" }}
         >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight mb-3 sm:mb-4">
             De Problema a<span className="text-orange-600"> Solución</span>{" "}
@@ -76,25 +62,22 @@ export function OrganizationGallery() {
             Cada proyector pasa por nuestro proceso completo de mantenimiento,
             asegurando óptimo rendimiento y máxima durabilidad.
           </p>
-        </motion.div>
+        </div>
       </div>
 
       {/* Galería */}
-      <motion.div
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-80px" }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 sm:gap-6 lg:gap-8"
-      >
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 sm:gap-6 lg:gap-8">
         {galleryItems.map((item, i) => {
           const Icon = item.icon;
 
           return (
-            <motion.div
+            <div
               key={i}
-              whileHover="hover"
-              className="group relative h-full flex flex-col"
+              className="group relative h-full flex flex-col opacity-0 animate-fade-in-up hover:-translate-y-2 transition-all duration-500"
+              style={{
+                animationDelay: `${(i + 1) * 0.15}s`,
+                animationFillMode: "forwards",
+              }}
             >
               {/* Tarjeta principal */}
               <div
@@ -135,16 +118,16 @@ export function OrganizationGallery() {
                   {/* Overlay sutil */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent z-10"></div>
 
-                  <motion.div className="relative w-full h-full">
+                  <div className="relative w-full h-full">
                     <Image
                       src={item.src}
                       alt={item.alt}
                       fill
-                      className="object-cover"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                       priority={i < 2}
                     />
-                  </motion.div>
+                  </div>
                 </div>
 
                 {/* Contenido de la tarjeta */}
@@ -208,18 +191,15 @@ export function OrganizationGallery() {
                 -z-10
               "
               ></div>
-            </motion.div>
+            </div>
           );
         })}
-      </motion.div>
+      </div>
 
       {/* Indicador visual del proceso en naranja*/}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.6 }}
-        className="hidden md:flex mt-8 lg:mt-12 justify-center" // ← hidden en < md, flex en md+
+      <div
+        className="hidden md:flex mt-8 lg:mt-12 justify-center opacity-0 animate-fade-in-up"
+        style={{ animationDelay: "0.6s", animationFillMode: "forwards" }}
       >
         <div
           className="
@@ -254,7 +234,7 @@ export function OrganizationGallery() {
             <span>Resultado</span>
           </div>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

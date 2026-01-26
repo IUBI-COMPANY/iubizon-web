@@ -108,6 +108,338 @@ export default function ProductsOrganizationPage() {
         </div>
       </section>
 
+      {/* Brands Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="bg-gray-50 rounded-2xl shadow-lg p-8 md:p-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-secondary">
+              Marcas Líderes que Ofrecemos
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-8 items-center justify-items-center">
+              <div className="w-32 h-20 relative grayscale hover:grayscale-0 transition-all duration-300">
+                <Image
+                  src="/images/Epson.png"
+                  alt="Epson proyectores"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="w-32 h-20 relative grayscale hover:grayscale-0 transition-all duration-300">
+                <Image
+                  src="/images/BenQ.png"
+                  alt="BenQ proyectores"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="w-32 h-20 relative grayscale hover:grayscale-0 transition-all duration-300">
+                <Image
+                  src="/images/OptomaLogo.png"
+                  alt="Optoma proyectores"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="w-32 h-20 relative grayscale hover:grayscale-0 transition-all duration-300">
+                <Image
+                  src="/images/SONY.svg"
+                  alt="Sony proyectores"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="w-32 h-20 relative grayscale hover:grayscale-0 transition-all duration-300">
+                <Image
+                  src="/images/PANASONIC.png"
+                  alt="Panasonic proyectores"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Use Cases Section with Images */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-secondary">
+            Soluciones para Cada Sector
+          </h2>
+          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+            Equipamos organizaciones de todos los sectores con la mejor
+            tecnología audiovisual
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Educación */}
+            <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+              <div className="relative h-64">
+                <Image
+                  src="/images/servicios/sjlDocentes.webp"
+                  alt="Proyectores para educación"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                <h3 className="text-2xl font-bold mb-2">Sector Educativo</h3>
+                <p className="text-sm text-gray-200">
+                  Colegios, universidades e institutos. Equipamiento para aulas,
+                  auditorios y laboratorios.
+                </p>
+              </div>
+            </div>
+
+            {/* Empresas */}
+            <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+              <div className="relative h-64">
+                <Image
+                  src="/images/foto-proyectores.jpeg"
+                  alt="Proyectores para empresas"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                <h3 className="text-2xl font-bold mb-2">Sector Empresarial</h3>
+                <p className="text-sm text-gray-200">
+                  Salas de reuniones, capacitaciones y presentaciones
+                  corporativas profesionales.
+                </p>
+              </div>
+            </div>
+
+            {/* Gobierno */}
+            <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+              <div className="relative h-64">
+                <Image
+                  src="/images/servicios/sjlRack.webp"
+                  alt="Proyectores para instituciones públicas"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                <h3 className="text-2xl font-bold mb-2">
+                  Instituciones Públicas
+                </h3>
+                <p className="text-sm text-gray-200">
+                  Gobiernos locales, ministerios y entidades estatales con
+                  equipamiento certificado.
+                </p>
+              </div>
+            </div>
+
+            {/* Eventos */}
+            <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+              <div className="relative h-64">
+                <Image
+                  src="/images/education-projectors.jpg"
+                  alt="Proyectores para eventos"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                <h3 className="text-2xl font-bold mb-2">Eventos y Talleres</h3>
+                <p className="text-sm text-gray-200">
+                  Centros de capacitación, espacios culturales y organizadores
+                  de eventos.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Products Gallery */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-secondary">
+            Catálogo de Productos
+          </h2>
+          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+            Amplia variedad de proyectores, pantallas y accesorios
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Proyectores */}
+            <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+              <div className="relative h-48">
+                <Image
+                  src="/images/foto-proyectores.jpeg"
+                  alt="Proyectores profesionales"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2 text-secondary">
+                  Proyectores
+                </h3>
+                <ul className="space-y-2 text-gray-600 text-sm mb-4">
+                  <li>✓ Corta distancia y ultra corta</li>
+                  <li>✓ Alta luminosidad (3000-8000 lúmenes)</li>
+                  <li>✓ Full HD y 4K</li>
+                  <li>✓ Interactivos y láser</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Pantallas */}
+            <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+              <div className="relative h-48">
+                <Image
+                  src="/images/servicios/ecran.webp"
+                  alt="Ecrans de proyección"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2 text-secondary">
+                  Ecrans corporativos
+                </h3>
+                <ul className="space-y-2 text-gray-600 text-sm mb-4">
+                  <li>✓ Manuales y eléctricas</li>
+                  <li>✓ Trípode y montaje en pared</li>
+                  <li>✓ Diversos tamaños (60&quot; - 300&quot;)</li>
+                  <li>✓ Alta ganancia y calidad</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Accesorios */}
+            <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+              <div className="relative h-48">
+                <Image
+                  src="/images/accesorios.png"
+                  alt="Accesorios para proyectores"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2 text-secondary">
+                  Accesorios
+                </h3>
+                <ul className="space-y-2 text-gray-600 text-sm mb-4">
+                  <li>✓ Soportes de techo y pared</li>
+                  <li>✓ Cables HDMI y VGA</li>
+                  <li>✓ Lámparas de repuesto</li>
+                  <li>✓ Controles remotos</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-secondary">
+            Nuestros Clientes Confían en Nosotros
+          </h2>
+          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+            Casos de éxito en instituciones y empresas de todo el Perú
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white rounded-xl p-6 shadow-md">
+              <div className="relative h-40 mb-4 rounded-lg overflow-hidden">
+                <Image
+                  src="/images/servicios/sjlEstudiantes.webp"
+                  alt="Proyecto educativo San Juan de Lurigancho"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <p className="text-gray-600 italic mb-4">
+                &quot;Equipamos 20 aulas con proyectores Epson. Excelente
+                calidad y soporte post-venta. Los estudiantes ahora tienen
+                clases más interactivas.&quot;
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold">
+                  IE
+                </div>
+                <div>
+                  <p className="font-semibold text-secondary">
+                    I.E. Tupac Amaru II
+                  </p>
+                  <p className="text-sm text-gray-500">
+                    San Juan de Lurigancho
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-xl p-6 shadow-md">
+              <div className="relative h-40 mb-4 rounded-lg overflow-hidden">
+                <Image
+                  src="/images/servicios/baltamar.webp"
+                  alt="Proyecto corporativo Baltamar"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <p className="text-gray-600 italic mb-4">
+                &quot;Instalación profesional de proyectores en nuestras salas
+                de capacitación. El equipo técnico fue muy eficiente y
+                profesional.&quot;
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold">
+                  BM
+                </div>
+                <div>
+                  <p className="font-semibold text-secondary">
+                    Edificio Baltamar
+                  </p>
+                  <p className="text-sm text-gray-500">
+                    Centro de conferencias Miraflores
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-xl p-6 shadow-md">
+              <div className="relative h-40 mb-4 rounded-lg overflow-hidden">
+                <Image
+                  src="/images/servicios/lurin.webp"
+                  alt="Proyecto instalación Lurín"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <p className="text-gray-600 italic mb-4">
+                &quot;Solución completa para nuestro auditorio. Desde la
+                cotización hasta la instalación, todo fue impecable. Muy
+                recomendados.&quot;
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold">
+                  ML
+                </div>
+                <div>
+                  <p className="font-semibold text-secondary">
+                    I.E. Jose Antonio Dapelio
+                  </p>
+                  <p className="text-sm text-gray-500">Lurín</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Benefits Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
@@ -137,6 +469,95 @@ export default function ProductsOrganizationPage() {
               <h3 className="font-semibold text-lg mb-2">Entrega y Soporte</h3>
               <p className="text-gray-600">
                 Opciones de entrega flexibles y soporte técnico post-venta
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Process Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-secondary">
+            ¿Cómo Funciona el Proceso?
+          </h2>
+          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+            Simple, rápido y personalizado para tu organización
+          </p>
+
+          <div className="grid md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="relative w-32 h-32 mx-auto mb-6">
+                <div className="absolute inset-0 bg-primary/10 rounded-full"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-5xl font-bold text-primary">1</span>
+                </div>
+              </div>
+              <h3 className="font-bold text-lg mb-2 text-secondary">
+                Solicita Cotización
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Completa el formulario con los productos que necesitas y los
+                detalles de tu organización
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="relative w-32 h-32 mx-auto mb-6">
+                <div className="absolute inset-0 bg-primary/10 rounded-full"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-5xl font-bold text-primary">2</span>
+                </div>
+              </div>
+              <h3 className="font-bold text-lg mb-2 text-secondary">
+                Recibe Propuesta
+              </h3>
+              <p className="text-gray-600 text-sm">
+                En menos de 24 horas recibirás una cotización personalizada con
+                las mejores opciones
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="relative w-32 h-32 mx-auto mb-6">
+                <div className="absolute inset-0 bg-primary/10 rounded-full"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-5xl font-bold text-primary">3</span>
+                </div>
+              </div>
+              <h3 className="font-bold text-lg mb-2 text-secondary">
+                Confirma tu Pedido
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Revisa la propuesta, ajusta detalles si es necesario y confirma
+                tu orden de compra
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="relative w-32 h-32 mx-auto mb-6">
+                <div className="absolute inset-0 bg-primary/10 rounded-full"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-5xl font-bold text-primary">4</span>
+                </div>
+              </div>
+              <h3 className="font-bold text-lg mb-2 text-secondary">
+                Recibe e Instala
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Entrega coordinada y opcional instalación profesional con
+                capacitación incluida
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-12 text-center">
+            <div className="inline-block bg-primary/5 rounded-2xl p-8">
+              <p className="text-lg font-semibold text-secondary mb-2">
+                ⚡ Tiempo promedio de entrega: 7-15 días hábiles
+              </p>
+              <p className="text-gray-600">
+                Dependiendo de la disponibilidad de stock y ubicación
               </p>
             </div>
           </div>

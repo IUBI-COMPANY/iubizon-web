@@ -19,5 +19,8 @@
     "deploy:indexes": "firebase deploy --only firestore:indexes",
     "deploy:extensions": "firebase deploy --only extensions",
     "export:extensions": "firebase ext:export"
+  },
+  "dependencies": {
+    "playwright": "^1.58.0"
   }
 }

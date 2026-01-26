@@ -367,7 +367,7 @@ Agregar breadcrumbs visuales en:
 ## 📈 PROYECCIÓN DE RESULTADOS
 
 ### **Con implementaciones actuales:**
-- Tráfico orgánico: +40% en 3 meses
+- Tráfico orgánico: +40% en 6 meses
 - Ranking keywords: Top 10 en 60% de keywords
 - CTR en SERPs: +25%
 - Conversiones: +15%
