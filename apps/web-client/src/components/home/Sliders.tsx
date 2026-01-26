@@ -134,7 +134,7 @@ export const SlidersComponent = () => {
                     Ver proyectores disponibles
                   </Link>
                   <Link
-                    href="/servicios/tecnico"
+                    href="/servicios/tecnico/persona"
                     className="w-full sm:w-auto rounded-full border-2 border-white/70 bg-white/10 backdrop-blur-sm px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 text-[11px] sm:text-xs md:text-sm font-semibold text-white hover:bg-white/20 transition-all text-center"
                   >
                     Servicio técnico

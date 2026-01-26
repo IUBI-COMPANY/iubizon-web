@@ -519,7 +519,7 @@ export default function Home() {
 
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
-                href="/servicios/tecnico"
+                href="/servicios/tecnico/persona"
                 className="inline-flex items-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white shadow-md hover:shadow-lg hover:bg-primary/90 transition-all"
               >
                 Solicitar servicio técnico

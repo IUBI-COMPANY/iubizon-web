@@ -131,5 +131,28 @@
     "caption": "Servicio de diagnóstico y reparación de proyector en domicilio",
     "category": "Servicio a Domicilio",
     "type": "individual"
+  },
+  {
+    "src": "/images/servicios/xiaomi.png",
+    "alt": "Reparación de proyector Xiaomi",
+    "caption": "Entrega de proyector Xiaomi con tarjeta de fidelidad",
+    "category": "Beneficios",
+    "type": "individual"
+  },
+  {
+    "src": "/videos/fix-hy350.webm",
+    "alt": "Reparación de proyector HY350",
+    "caption": "Reparación de proyector portátil HY350",
+    "category": "Reparación",
+    "type": "individual",
+    "isVideo": true
+  },
+  {
+    "src": "/videos/ecran-ebook.webm",
+    "alt": "Instalación de ecran y proyector para organización",
+    "caption": "Proceso de instalación de pantalla y proyector profesional",
+    "category": "Instalación",
+    "type": "organization",
+    "isVideo": true
   }
 ]

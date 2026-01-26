@@ -10,11 +10,6 @@ interface WorksGalleryProps {
   description?: string;
 }
 
-/**
- * Componente genérico para mostrar galería de trabajos realizados
- * Filtra automáticamente las imágenes según el tipo (individual u organization)
- * Incluye carrusel infinito con auto-play
- */
 export default function WorksGallery({
   type,
   title,
@@ -64,7 +59,7 @@ export default function WorksGallery({
           </p>
         </div>
 
-        {/* Carrusel de imágenes */}
+        {/* Carrusel de imágenes y videos */}
         <Carousel
           itemsPerView={{ mobile: 1, tablet: 3, desktop: 5 }}
           autoPlay={true}
@@ -77,15 +72,26 @@ export default function WorksGallery({
               key={img.src}
               className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300"
             >
-              {/* Imagen */}
+              {/* Imagen o Video */}
               <div className="relative w-full aspect-[9/16]">
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 20vw"
-                  className="object-cover"
-                />
+                {img.isVideo ? (
+                  <video
+                    src={img.src}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                ) : (
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 20vw"
+                    className="object-cover"
+                  />
+                )}
                 {/* Overlay gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
