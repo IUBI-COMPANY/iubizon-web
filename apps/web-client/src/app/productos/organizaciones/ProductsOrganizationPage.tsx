@@ -6,6 +6,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { OrganizationsProductRequestForm } from "@/components/ui/OrganizationsProductRequestForm";
 import { useState } from "react";
+import Brands from "@/components/ui/Brands";
 
 function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -111,53 +112,7 @@ export default function ProductsOrganizationPage() {
       {/* Brands Section */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="bg-gray-50 rounded-2xl shadow-lg p-8 md:p-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-secondary">
-              Marcas Líderes que Ofrecemos
-            </h2>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-8 items-center justify-items-center">
-              <div className="w-32 h-20 relative grayscale hover:grayscale-0 transition-all duration-300">
-                <Image
-                  src="/images/Epson.png"
-                  alt="Epson proyectores"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <div className="w-32 h-20 relative grayscale hover:grayscale-0 transition-all duration-300">
-                <Image
-                  src="/images/BenQ.png"
-                  alt="BenQ proyectores"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <div className="w-32 h-20 relative grayscale hover:grayscale-0 transition-all duration-300">
-                <Image
-                  src="/images/OptomaLogo.png"
-                  alt="Optoma proyectores"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <div className="w-32 h-20 relative grayscale hover:grayscale-0 transition-all duration-300">
-                <Image
-                  src="/images/SONY.svg"
-                  alt="Sony proyectores"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <div className="w-32 h-20 relative grayscale hover:grayscale-0 transition-all duration-300">
-                <Image
-                  src="/images/PANASONIC.png"
-                  alt="Panasonic proyectores"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-            </div>
-          </div>
+          <Brands title="Marcas Líderes que Ofrecemos" />
         </div>
       </section>
 

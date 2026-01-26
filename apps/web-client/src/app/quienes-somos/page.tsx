@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { Shield, MonitorSmartphone, Headphones, Handshake } from "lucide-react";
+import Brands from "@/components/ui/Brands";
+import CTASection from "@/components/ui/CTASection";
+import Timeline from "@/components/ui/Timeline";
+import StatsGrid from "@/components/ui/StatsGrid";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -125,37 +128,87 @@ function generateStructuredData() {
 export default function AboutUsPage() {
   const structuredData = generateStructuredData();
 
-  // Galería de equipo (6 imágenes)
-  const teamImages = [
+  // Estadísticas de la empresa
+  const stats = [
     {
-      src: "/images/proyectores-reparaciones.webp",
-      alt: "Soporte técnico y mantenimiento Iubizon",
-      caption: "Soporte técnico y mantenimiento para empresas.",
+      number: "5+",
+      label: "Años de Experiencia",
+      icon: "📅",
+      description: "En el mercado peruano",
     },
     {
-      src: "/images/reparacionimg.jpg",
-      alt: "Venta de proyectores Iubizon",
-      caption: "Venta de proyectores y soluciones audiovisuales.",
+      number: "20+",
+      label: "Proyectos Realizados",
+      icon: "🎯",
+      description: "Para empresas e instituciones",
     },
     {
-      src: "/images/education-projectors.jpg",
-      alt: "Proyectores para educación Iubizon",
-      caption: "Soluciones para el sector educativo.",
+      number: "12",
+      label: "Meses de Garantía",
+      icon: "🛡️",
+      description: "En equipos nuevos",
     },
     {
-      src: "/images/epson-banner.jpg",
-      alt: "Banner Epson Iubizon",
-      caption: "Alianza con Epson para soluciones empresariales.",
+      number: "100%",
+      label: "Productos Originales",
+      icon: "✓",
+      description: "Distribuidores autorizados",
+    },
+  ];
+
+  // Servicios principales
+  const services = [
+    {
+      title: "Venta de Proyectores",
+      description: "Nuevos y reacondicionados con garantía extendida",
+      icon: "🏬",
+      color: "from-blue-500 to-blue-700",
     },
     {
-      src: "/images/seo-banner.jpg",
-      alt: "SEO y presencia digital Iubizon",
-      caption: "Crecimiento digital y nuevos clientes.",
+      title: "Servicio Técnico",
+      description: "Reparación y mantenimiento especializado",
+      icon: "🔧",
+      color: "from-orange-500 to-orange-700",
     },
     {
-      src: "/images/organizacion-reparacion.jpg",
-      alt: "Organización y reparación Iubizon",
-      caption: "Expansión de servicios técnicos especializados.",
+      title: "Instalación",
+      description: "Montaje profesional para empresas e instituciones",
+      icon: "⚙️",
+      color: "from-green-500 to-green-700",
+    },
+    {
+      title: "Asesoría",
+      description: "Consultoría en soluciones audiovisuales",
+      icon: "💡",
+      color: "from-purple-500 to-purple-700",
+    },
+  ];
+
+  // Timeline de la empresa
+  const timelineItems = [
+    {
+      year: "2020",
+      title: "Fundación de Iubizon",
+      description:
+        "Inicio de operaciones como especialistas en proyectores en Lima, Perú",
+    },
+    {
+      year: "2021",
+      title: "Distribuidores Epson",
+      description:
+        "Nos convertimos en distribuidores autorizados de proyectores Epson",
+    },
+    {
+      year: "2023",
+      title: "Expansión de Servicios",
+      description:
+        "Ampliamos nuestro catálogo y servicio técnico especializado a nivel nacional",
+    },
+    {
+      year: "2026",
+      title: "Líderes en el Mercado",
+      description:
+        "Más de 1000 proyectos completados y presencia consolidada en todo Perú",
     },
   ];
 
@@ -184,7 +237,7 @@ export default function AboutUsPage() {
           <div className="relative z-10 max-w-6xl mx-auto px-4 py-24">
             <div className="text-center">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                Quiénes Somos
+                ¿Quiénes Somos?
               </h1>
               <p className="text-xl md:text-2xl text-gray-100 max-w-3xl mx-auto mb-8">
                 Somos Iubizon, especialistas en proyectores y tecnología
@@ -257,28 +310,43 @@ export default function AboutUsPage() {
               </div>
             </div>
 
-            {/* Team Gallery */}
+            {/* Estadísticas de la Empresa */}
+            <StatsGrid stats={stats} className="my-16" />
+
+            {/* Nuestros Servicios */}
             <div className="my-16">
-              <h2 className="text-2xl md:text-3xl font-bold text-color-secondary mb-6 text-center">
-                Nuestra Experiencia
+              <h2 className="text-2xl md:text-3xl font-bold text-color-secondary mb-8 text-center">
+                Lo Que Hacemos
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                {teamImages.map((img, idx) => (
-                  <div key={idx} className="flex flex-col items-center">
-                    <Image
-                      src={img.src}
-                      alt={img.alt}
-                      width={350}
-                      height={220}
-                      className="rounded-xl shadow-md object-cover w-full h-56 mb-2"
-                    />
-                    <span className="text-gray-600 text-sm text-center">
-                      {img.caption}
-                    </span>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {services.map((service, idx) => (
+                  <div
+                    key={idx}
+                    className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300"
+                  >
+                    <div
+                      className={`bg-gradient-to-br ${service.color} p-6 h-full flex flex-col items-center text-center text-white`}
+                    >
+                      <div className="text-6xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                        {service.icon}
+                      </div>
+                      <h3 className="text-xl font-bold mb-2">
+                        {service.title}
+                      </h3>
+                      <p className="text-sm text-white/90">
+                        {service.description}
+                      </p>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
+
+            {/* Marcas Asociadas */}
+            <Brands className="my-16" />
+
+            {/* Timeline/Hitos */}
+            <Timeline items={timelineItems} className="my-16" />
 
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-color-secondary mb-4">
@@ -341,44 +409,24 @@ export default function AboutUsPage() {
           </div>
         </section>
 
-        {/* Call to Action */}
-        <section className="relative py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 overflow-hidden">
-          <div className="absolute inset-0">
-            <Image
-              src="/images/education-projectors.jpg"
-              alt="Proyectores y tecnología educativa - Iubizon"
-              fill
-              sizes="100vw"
-              className="object-cover opacity-90"
-            />
-            <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 via-gray-800/85 to-gray-900/80" />
-          </div>
+        {/* Marcas Section */}
+        <div className="max-w-6xl mx-auto px-4 my-16">
+          <Brands />
+        </div>
 
-          <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              ¿Listo para Transformar tu Espacio?
-            </h2>
-            <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
-              Descubre cómo nuestros especialistas pueden ayudarte a encontrar
-              la solución perfecta en proyectores y tecnología audiovisual para
-              tu negocio o institución.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/contacto"
-                className="bg-color-primary hover:bg-color-primary/90 text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-300 inline-block shadow-lg"
-              >
-                Contáctanos Hoy
-              </Link>
-              <Link
-                href="/servicios/tecnico"
-                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg font-semibold transition-all duration-300 inline-block"
-              >
-                Nuestros Servicios
-              </Link>
-            </div>
-          </div>
-        </section>
+        {/* Call to Action */}
+        <CTASection
+          title="¿Listo para Transformar tu Espacio?"
+          description="Descubre cómo nuestros especialistas pueden ayudarte a encontrar la solución perfecta en proyectores y tecnología audiovisual para tu negocio o institución."
+          primaryButton={{
+            text: "Contáctanos Hoy",
+            href: "/contacto",
+          }}
+          secondaryButton={{
+            text: "Nuestros Servicios",
+            href: "/servicios/tecnico/persona",
+          }}
+        />
       </main>
     </>
   );
