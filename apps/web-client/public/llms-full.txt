@@ -20,7 +20,7 @@ Actuamos como consultores especializados, entendiendo las necesidades reales de 
 
 1. **Distribuidores Oficiales:** Productos originales Epson con soporte técnico especializado
 2. **5+ Años de Experiencia:** Equipo altamente capacitado en proyectores y tecnología multimedia
-3. **Garantía Extendida:** Hasta 12 meses en equipos nuevos, 6 meses en reacondicionados, 3 meses en reparaciones
+3. **Garantía Extendida:** Hasta 12 meses en equipos nuevos, 6 meses en reacondicionados, 6 meses en reparaciones
 4. **Servicio Personalizado:** Atención adaptada a cada necesidad y presupuesto
 5. **Stock Permanente:** Amplio inventario de proyectores y repuestos originales
 6. **Soporte Técnico:** Equipo de técnicos certificados disponibles
@@ -409,7 +409,7 @@ Servicio programado para mantener el proyector en óptimas condiciones y prolong
 - Uso moderado (semanal): Cada 6 meses
 - Uso esporádico: Anual
 
-**Garantía del Servicio:** 3 meses
+**Garantía del Servicio:** 6 meses
 
 **Precio:** Consultar según modelo
 
@@ -455,7 +455,7 @@ Diagnóstico y reparación de fallas específicas en proyectores.
 - Originales Epson disponibles en stock
 - Importación de repuestos especiales (10-15 días)
 
-**Garantía de Reparación:** 3 meses
+**Garantía de Reparación:** 6 meses
 
 ---
 
@@ -536,8 +536,8 @@ Evaluación técnica completa para identificar fallas y estimar costos.
 
 ### 3.3 Garantías de Servicio
 
-**REPARACIONES:** 3 meses
-**MANTENIMIENTO:** 3 meses
+**REPARACIONES:** 6 meses
+**MANTENIMIENTO:** 6 meses
 **CONDICIONES:**
 - Cubre fallas relacionadas con el servicio realizado
 - No cubre nuevos daños o mal uso posterior
@@ -679,7 +679,7 @@ Evaluación técnica completa para identificar fallas y estimar costos.
 ### Garantía Extendida
 - 12 meses en nuevos
 - 6 meses en reacondicionados
-- 3 meses en reparaciones
+- 6 meses en reparaciones
 
 ### Beneficios Adicionales
 - Asesoría técnica gratuita

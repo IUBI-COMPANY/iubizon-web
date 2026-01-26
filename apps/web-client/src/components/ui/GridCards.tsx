@@ -1,105 +1,92 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { ShieldCheck, Clock, CircleCheck } from "lucide-react";
+import { LucideIcon } from "lucide-react";
 
-const benefits = [
-  {
-    title: "Garantía",
-    description:
-      "3 meses de garantía en todas nuestras reparaciones. Tu inversión protegida.",
-    frontImage: "/images/education-projectors.jpg",
-    alt: "Garantía de Servicio",
-    icon: ShieldCheck,
-    iconColor: "text-blue-600",
-    delay: 0,
-  },
-  {
-    title: "Atención Rápida",
-    description: "Respondemos en 24 horas con servicio a domicilio en Lima.",
-    frontImage: "/images/epson-banner.jpg",
-    alt: "Atención Rápida",
-    icon: Clock,
-    iconColor: "text-orange-600",
-    delay: 0.1,
-  },
-  {
-    title: "Técnicos Expertos",
-    description:
-      "Especialistas certificados con años de experiencia garantizada.",
-    frontImage: "/images/seo-banner.jpg",
-    alt: "Técnicos Especializados",
-    icon: CircleCheck,
-    iconColor: "text-green-600",
-    delay: 0.2,
-  },
-];
+export interface GridCardItem {
+  title: string;
+  description: string;
+  frontImage: string;
+  alt: string;
+  icon: LucideIcon;
+  iconColor?: string;
+  subtitle?: string;
+  delay?: number;
+}
 
-export default function GridCards() {
+interface GridCardsProps {
+  items: GridCardItem[];
+  columns?: 1 | 2 | 3 | 4;
+  maxWidth?: "4xl" | "5xl" | "6xl" | "7xl";
+}
+
+export default function GridCards({
+  items,
+  columns = 3,
+  maxWidth = "6xl",
+}: GridCardsProps) {
+  const gridColsClass = {
+    1: "md:grid-cols-1",
+    2: "md:grid-cols-2",
+    3: "md:grid-cols-3",
+    4: "md:grid-cols-4",
+  };
+
+  const maxWidthClass = {
+    "4xl": "max-w-4xl",
+    "5xl": "max-w-5xl",
+    "6xl": "max-w-6xl",
+    "7xl": "max-w-7xl",
+  };
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-      {benefits.map((benefit, index) => (
-        <motion.div
-          key={benefit.title}
-          className="h-[450px] cursor-pointer group"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: benefit.delay }}
-          viewport={{ once: true }}
+    <div
+      className={`grid grid-cols-1 ${gridColsClass[columns]} gap-8 ${maxWidthClass[maxWidth]} mx-auto`}
+    >
+      {items.map((item, index) => (
+        <div
+          key={item.title}
+          className="flex flex-col opacity-0 animate-fade-in-up"
+          style={{
+            animationDelay: `${item.delay || index * 0.1}s`,
+            animationFillMode: "forwards",
+          }}
         >
-          <motion.div
-            className="relative w-full h-full"
-            whileHover={{ rotateY: 180 }}
-            transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
-            style={{ transformStyle: "preserve-3d" }}
-          >
-            {/* Frente */}
-            <motion.div
-              className="absolute inset-0 bg-white rounded-3xl border-3 border-orange-500 shadow-2xl overflow-hidden group-hover:shadow-orange-300/80"
-              style={{ backfaceVisibility: "hidden" }}
-            >
-              <Image
-                src={benefit.frontImage}
-                alt={benefit.alt}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <div className="text-sm text-white/80 mb-2">
-                  {index === 0
-                    ? "Protección garantizada en cada reparación realizada"
-                    : index === 1
-                      ? "Nos aseguramos que recibas atención lo antes posible"
-                      : "Nuestros técnicos se encargarán de brindarte un buen resultado"}
+          {/* Card con imagen */}
+          <div className="relative w-full h-64 bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden group">
+            <Image
+              src={item.frontImage}
+              alt={item.alt}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+            {item.subtitle && (
+              <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
+                <div className="text-sm text-white/90 mb-1">
+                  {item.subtitle}
                 </div>
-                <div className="text-lg font-bold">→ Ver más</div>
               </div>
-            </motion.div>
+            )}
+          </div>
 
-            {/* Reverso */}
-            <motion.div
-              className="absolute inset-0 rounded-3xl border-2 border-orange-500 shadow-2xl p-8 flex flex-col items-center justify-center text-center bg-white"
-              style={{ backfaceVisibility: "hidden", rotateY: 180 }}
-            >
-              <motion.div
-                className="bg-white w-20 h-20 rounded-full flex items-center justify-center mb-6 shadow-lg"
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <benefit.icon className={`w-10 h-10 ${benefit.iconColor}`} />
-              </motion.div>
-
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                {benefit.title}
-              </h3>
-              <p className="text-gray-700 text-base leading-relaxed font-medium">
-                {benefit.description}
-              </p>
-            </motion.div>
-          </motion.div>
-        </motion.div>
+          {/* Contenido debajo del card */}
+          <div className="mt-6 text-center px-4">
+            <div className="flex justify-center mb-4">
+              <div className="bg-gray-50 w-16 h-16 rounded-full flex items-center justify-center shadow-sm">
+                <item.icon
+                  className={`w-8 h-8 ${item.iconColor || "text-blue-600"}`}
+                />
+              </div>
+            </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-3">
+              {item.title}
+            </h3>
+            <p className="text-gray-600 text-base leading-relaxed">
+              {item.description}
+            </p>
+          </div>
+        </div>
       ))}
     </div>
   );

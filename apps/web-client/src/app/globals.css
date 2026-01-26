@@ -97,72 +97,35 @@ body {
   font-family: "sfpro", Helvetica, Arial, sans-serif;
 }
 
-/* Animaciones para productos especiales */
-@keyframes pulse-glow {
-  0%,
-  100% {
-    box-shadow: 0 0 20px rgba(251, 146, 60, 0.3);
-  }
-  50% {
-    box-shadow:
-      0 0 40px rgba(251, 146, 60, 0.6),
-      0 0 60px rgba(251, 146, 60, 0.4);
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200% center;
-  }
-  100% {
-    background-position: 200% center;
-  }
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-4px);
-  }
-}
-
-@keyframes spin-slow {
+/* Animación personalizada para fade-in con movimiento desde abajo */
+@keyframes fade-in-up {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(30px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.animate-shimmer {
-  background-size: 200% 100%;
-  animation: shimmer 3s ease-in-out infinite;
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out;
 }
 
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-.animate-spin-slow {
-  animation: spin-slow 8s linear infinite;
-}
-
-.animate-pulse-slow {
-  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-/* Animation delays para elementos navideños */
+/* Animation delays */
 .delay-100 {
   animation-delay: 0.1s;
+}
+
+.delay-150 {
+  animation-delay: 0.15s;
 }
 
 .delay-200 {
   animation-delay: 0.2s;
 }
+
 
 .delay-300 {
   animation-delay: 0.3s;

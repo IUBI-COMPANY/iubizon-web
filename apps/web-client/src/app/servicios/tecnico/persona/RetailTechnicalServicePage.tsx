@@ -1,18 +1,51 @@
 "use client";
 
-//Fix imports
 import { Metadata } from "next";
 import { RetailTechnicalServiceForm } from "@/components/ui/RetailTechnicalServiceForm";
 import FAQAccordion from "@/components/ui/layout/FAQAccordion";
-import { CheckCircle } from "lucide-react";
-import GridCards from "@/components/ui/GridCards";
-import { motion, AnimatePresence } from "framer-motion";
+import { CheckCircle, ShieldCheck, Clock, CircleCheck } from "lucide-react";
+import GridCards, { GridCardItem } from "@/components/ui/GridCards";
 import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
-import { useState, useEffect } from "react";
 import CardSteps from "@/components/ui/CardSteps";
 import { Button } from "@/components/ui/Button";
+import WorksGallery from "@/components/ui/WorksGallery";
+
+const benefits: GridCardItem[] = [
+  {
+    title: "Garantía",
+    description:
+      "6 meses de garantía en todas nuestras reparaciones. Tu inversión protegida.",
+    frontImage: "/images/education-projectors.jpg",
+    alt: "Garantía de Servicio",
+    icon: ShieldCheck,
+    iconColor: "text-blue-600",
+    subtitle: "Protección garantizada en cada reparación realizada",
+    delay: 0,
+  },
+  {
+    title: "Atención Rápida",
+    description: "Respondemos en 24 horas con servicio a domicilio en Lima.",
+    frontImage: "/images/epson-banner.jpg",
+    alt: "Atención Rápida",
+    icon: Clock,
+    iconColor: "text-orange-600",
+    subtitle: "Nos aseguramos que recibas atención lo antes posible",
+    delay: 0.1,
+  },
+  {
+    title: "Técnicos Expertos",
+    description:
+      "Especialistas certificados con años de experiencia garantizada.",
+    frontImage: "/images/seo-banner.jpg",
+    alt: "Técnicos Especializados",
+    icon: CircleCheck,
+    iconColor: "text-green-600",
+    subtitle: "Nuestros técnicos se encargarán de brindarte un buen resultado",
+    delay: 0.2,
+  },
+];
 
 export const metadata: Metadata = {
   title:
@@ -79,51 +112,6 @@ export const metadata: Metadata = {
 };
 
 export default function RetailTechnicalServicePage() {
-  const gallery = [
-    {
-      src: "/images/proyectores-reparaciones.webp",
-      alt: "Reparación de proyectores en taller",
-      caption: "Reparación y pruebas en nuestro taller especializado",
-    },
-    {
-      src: "/images/foto-proyectores.jpeg",
-      alt: "Técnico revisando proyector",
-      caption: "Diagnóstico técnico a domicilio o en taller",
-    },
-    {
-      src: "/images/education-projectors.jpg",
-      alt: "Proyectores para educación",
-      caption: "Soluciones para aulas y centros educativos",
-    },
-    {
-      src: "/images/seo-banner.jpg",
-      alt: "Servicio técnico profesional",
-      caption: "Atención rápida y garantía en todas nuestras reparaciones",
-    },
-  ];
-
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-
-  useEffect(() => {
-    function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") setSelectedIndex(null);
-      if (e.key === "ArrowRight" && selectedIndex !== null) {
-        setSelectedIndex((selectedIndex + 1) % gallery.length);
-      }
-      if (e.key === "ArrowLeft" && selectedIndex !== null) {
-        setSelectedIndex((selectedIndex - 1 + gallery.length) % gallery.length);
-      }
-    }
-
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [selectedIndex, gallery.length]);
-
-  useEffect(() => {
-    if (selectedIndex !== null) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "";
-  }, [selectedIndex]);
-
   return (
     <main>
       <Head>
@@ -198,6 +186,7 @@ export default function RetailTechnicalServicePage() {
           <RetailTechnicalServiceForm />
         </div>
       </section>
+      <WorksGallery type="individual" />
       <section
         className="mt-10 pt-0 pb-16 bg-white"
         itemScope
@@ -224,12 +213,9 @@ export default function RetailTechnicalServicePage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16 max-w-7xl mx-auto items-center">
             {/* Columna izquierda - Imagen */}
-            <motion.div
-              className="md:col-span-1"
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
+            <div
+              className="md:col-span-1 opacity-0 animate-fade-in-up"
+              style={{ animationFillMode: "forwards" }}
             >
               <div className="relative h-auto rounded-3xl overflow-hidden shadow-xl">
                 <div
@@ -244,7 +230,7 @@ export default function RetailTechnicalServicePage() {
                   />
                 </div>
               </div>
-            </motion.div>
+            </div>
             <CardSteps />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -286,7 +272,7 @@ export default function RetailTechnicalServicePage() {
               <p className="text-orange-800" itemProp="description">
                 Solucionamos problemas de imagen, sonido, conectividad,
                 reemplazo de lámparas, reparación de ventiladores y cualquier
-                falla técnica con repuestos originales y garantía de 3 meses.
+                falla técnica con repuestos originales y garantía de 6 meses.
               </p>
               <meta itemProp="serviceType" content="Reparación" />
               <meta itemProp="areaServed" content="Lima, Perú" />
@@ -301,156 +287,29 @@ export default function RetailTechnicalServicePage() {
       >
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-20">
-            <motion.h2
+            <h2
               id="benefits-heading"
-              className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
-              initial={{ opacity: 0, y: -20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
+              className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 opacity-0 animate-fade-in-up"
+              style={{ animationFillMode: "forwards" }}
             >
               ¿Por Qué Elegir Nuestro Servicio Técnico?
-            </motion.h2>
-            <motion.p
-              className="text-xl text-gray-600 max-w-2xl mx-auto font-medium"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
+            </h2>
+            <p
+              className="text-xl text-gray-600 max-w-2xl mx-auto font-medium opacity-0 animate-fade-in-up"
+              style={{ animationDelay: "0.1s", animationFillMode: "forwards" }}
             >
               Descubre los beneficios de trabajar con expertos certificados en
               reparación de proyectores
-            </motion.p>
+            </p>
           </div>
 
-          {/* Grid con 3 tarjetas que se voltean */}
-          <GridCards />
+          {/* Grid con 3 tarjetas */}
+          <GridCards items={benefits} columns={3} maxWidth="6xl" />
         </div>
       </section>
 
-      {/* Sección de Galería Interactiva */}
-      <section className="py-16 bg-white" aria-labelledby="gallery-heading">
-        <div className="max-w-6xl mx-auto px-4">
-          <h3
-            id="gallery-heading"
-            className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 text-center"
-          >
-            Galería de Trabajos y Servicios
-          </h3>
-          <p className="text-gray-600 mb-12 max-w-3xl mx-auto text-center text-lg">
-            Algunas imágenes de nuestro taller, técnicos y proyectos realizados.
-            Haz click en cualquier imagen para agrandar.
-          </p>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {gallery.map((img, i) => (
-              <Button
-                key={img.src}
-                onClick={() => setSelectedIndex(i)}
-                className="group relative overflow-hidden rounded-lg focus:outline-none focus:ring-4 focus:ring-primary p-0"
-                aria-label={`Abrir imagen: ${img.alt}`}
-                variant="tertiary"
-                size="xs"
-              >
-                <div className="relative w-full h-40 md:h-32 lg:h-36">
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    fill
-                    className="object-cover transform group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <span className="absolute bottom-2 left-1 text-xs bg-black/50 text-white px-2 py-1 rounded w-32 mx-auto">
-                  {img.caption}
-                </span>
-              </Button>
-            ))}
-          </div>
-
-          <AnimatePresence>
-            {selectedIndex !== null && (
-              <motion.div
-                key="lightbox"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="fixed inset-0 z-50 flex items-center justify-center p-4"
-                aria-modal="true"
-                role="dialog"
-              >
-                <motion.div
-                  className="absolute inset-0 bg-black/70"
-                  onClick={() => setSelectedIndex(null)}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                />
-
-                <motion.div
-                  className="relative max-w-5xl w-full mx-auto rounded-lg overflow-hidden"
-                  initial={{ y: 40, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: 40, opacity: 0 }}
-                >
-                  <div className="bg-gray-900/90 p-4 flex items-center justify-between">
-                    <div className="text-sm text-white">
-                      {gallery[selectedIndex].caption}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Button
-                        aria-label="Cerrar"
-                        onClick={() => setSelectedIndex(null)}
-                        variant="tertiary"
-                        size="sm"
-                        className="text-white hover:text-gray-200"
-                      >
-                        Cerrar ✕
-                      </Button>
-                    </div>
-                  </div>
-                  <div className="relative bg-black">
-                    <div className="w-full h-[60vh] relative">
-                      <Image
-                        src={gallery[selectedIndex].src}
-                        alt={gallery[selectedIndex].alt}
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                  </div>
-                  <div className="p-4 bg-white flex justify-between">
-                    <Button
-                      onClick={() =>
-                        setSelectedIndex(
-                          (selectedIndex - 1 + gallery.length) % gallery.length,
-                        )
-                      }
-                      className="px-4 py-2 bg-gray-100 rounded hover:bg-gray-200"
-                      aria-label="Imagen anterior"
-                      variant="tertiary"
-                      size="sm"
-                    >
-                      ← Anterior
-                    </Button>
-                    <Button
-                      onClick={() =>
-                        setSelectedIndex((selectedIndex + 1) % gallery.length)
-                      }
-                      className="px-4 py-2 bg-gray-100 rounded hover:bg-gray-200"
-                      aria-label="Siguiente imagen"
-                      variant="tertiary"
-                      size="sm"
-                    >
-                      Siguiente →
-                    </Button>
-                  </div>
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </section>
       <FAQAccordion />
+
       <section
         className="py-16 relative bg-gradient-to-br from-secondary/10 via-secondary to-secondary/0 overflow-hidden"
         aria-label="Solicita reparación de proyector"
@@ -487,7 +346,7 @@ export default function RetailTechnicalServicePage() {
                   className="w-5 h-5 text-primary"
                   aria-label="Check"
                 />
-                <span className="text-sm font-medium">3 meses garantía</span>
+                <span className="text-sm font-medium">6 meses garantía</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle
