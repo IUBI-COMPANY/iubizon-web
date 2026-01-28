@@ -313,35 +313,6 @@ export default function AboutUsPage() {
             {/* Estadísticas de la Empresa */}
             <StatsGrid stats={stats} className="my-16" />
 
-            {/* Nuestros Servicios */}
-            <div className="my-16">
-              <h2 className="text-2xl md:text-3xl font-bold text-color-secondary mb-8 text-center">
-                Lo Que Hacemos
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {services.map((service, idx) => (
-                  <div
-                    key={idx}
-                    className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300"
-                  >
-                    <div
-                      className={`bg-gradient-to-br ${service.color} p-6 h-full flex flex-col items-center text-center text-white`}
-                    >
-                      <div className="text-6xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
-                        {service.icon}
-                      </div>
-                      <h3 className="text-xl font-bold mb-2">
-                        {service.title}
-                      </h3>
-                      <p className="text-sm text-white/90">
-                        {service.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
             {/* Marcas Asociadas */}
             <Brands className="my-16" />
 
@@ -408,11 +379,6 @@ export default function AboutUsPage() {
             </div>
           </div>
         </section>
-
-        {/* Marcas Section */}
-        <div className="max-w-6xl mx-auto px-4 my-16">
-          <Brands />
-        </div>
 
         {/* Call to Action */}
         <CTASection

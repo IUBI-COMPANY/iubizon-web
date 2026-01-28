@@ -17,7 +17,7 @@ const benefits: GridCardItem[] = [
     title: "Garantía",
     description:
       "6 meses de garantía en todas nuestras reparaciones. Tu inversión protegida.",
-    frontImage: "/images/education-projectors.jpg",
+    frontImage: "/images/servicios/platersfood.jpg",
     alt: "Garantía de Servicio",
     icon: ShieldCheck,
     iconColor: "text-blue-600",
@@ -27,7 +27,7 @@ const benefits: GridCardItem[] = [
   {
     title: "Atención Rápida",
     description: "Respondemos en 24 horas con servicio a domicilio en Lima.",
-    frontImage: "/images/epson-banner.jpg",
+    frontImage: "/images/servicios/asesoria.png",
     alt: "Atención Rápida",
     icon: Clock,
     iconColor: "text-orange-600",
@@ -38,7 +38,7 @@ const benefits: GridCardItem[] = [
     title: "Técnicos Expertos",
     description:
       "Especialistas certificados con años de experiencia garantizada.",
-    frontImage: "/images/seo-banner.jpg",
+    frontImage: "/images/servicios/tecnicos.png",
     alt: "Técnicos Especializados",
     icon: CircleCheck,
     iconColor: "text-green-600",
