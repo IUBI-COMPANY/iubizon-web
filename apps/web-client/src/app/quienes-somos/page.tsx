@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Shield, MonitorSmartphone, Headphones, Handshake } from "lucide-react";
+import { Handshake, Headphones, MonitorSmartphone, Shield } from "lucide-react";
 import Brands from "@/components/ui/Brands";
 import CTASection from "@/components/ui/CTASection";
 import Timeline from "@/components/ui/Timeline";
@@ -153,34 +153,6 @@ export default function AboutUsPage() {
       label: "Productos Originales",
       icon: "✓",
       description: "Distribuidores autorizados",
-    },
-  ];
-
-  // Servicios principales
-  const services = [
-    {
-      title: "Venta de Proyectores",
-      description: "Nuevos y reacondicionados con garantía extendida",
-      icon: "🏬",
-      color: "from-blue-500 to-blue-700",
-    },
-    {
-      title: "Servicio Técnico",
-      description: "Reparación y mantenimiento especializado",
-      icon: "🔧",
-      color: "from-orange-500 to-orange-700",
-    },
-    {
-      title: "Instalación",
-      description: "Montaje profesional para empresas e instituciones",
-      icon: "⚙️",
-      color: "from-green-500 to-green-700",
-    },
-    {
-      title: "Asesoría",
-      description: "Consultoría en soluciones audiovisuales",
-      icon: "💡",
-      color: "from-purple-500 to-purple-700",
     },
   ];
 
