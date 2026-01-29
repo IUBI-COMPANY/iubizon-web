@@ -19,6 +19,10 @@ import { RepairStep3 } from "@/components/ui/RetailTechnicalServiceForm";
 import { ArrowLeft, SendIcon } from "lucide-react";
 import { BusinessAddress } from "@/components/ui/BusinessAddress";
 import { useNotification } from "@/components/ui/Notification";
+import {
+  isValidVisitDate,
+  isValidVisitTime,
+} from "@/utils/validateDatetimeToSupportInformation";
 
 //Define Properties
 interface Props {
@@ -46,12 +50,42 @@ export const SupportInformation = ({
     attendance_type: yup.string().required(),
     visit_date: yup.string().when("attendance_type", {
       is: "home_visit",
-      then: (schema) => schema.required(),
+      then: (schema) =>
+        schema
+          .required("La fecha de visita es requerida")
+          .test(
+            "is-valid-date",
+            "La fecha no puede ser anterior al día actual",
+            (value) => {
+              if (!value) return false;
+              return isValidVisitDate(value);
+            },
+          ),
       otherwise: (schema) => schema.notRequired(),
     }),
     visit_time: yup.string().when("attendance_type", {
       is: "home_visit",
-      then: (schema) => schema.required(),
+      then: (schema) =>
+        schema
+          .required("La hora de visita es requerida")
+          .test(
+            "is-valid-time",
+            "El horario de atención es de 08:00 AM a 05:00 PM",
+            (value) => {
+              if (!value) return false;
+              const [hours] = value.split(":").map(Number);
+              return hours >= 8 && hours < 17;
+            },
+          )
+          .test(
+            "is-not-past-time",
+            "La hora seleccionada ya pasó. Elige una hora futura",
+            function (value) {
+              if (!value) return false;
+              const visitDate = this.parent.visit_date;
+              return isValidVisitTime(value, visitDate);
+            },
+          ),
       otherwise: (schema) => schema.notRequired(),
     }),
     district: yup.string().when("attendance_type", {
