@@ -6,21 +6,23 @@ import ProductsOrganizationPage from "@/app/productos/organizaciones/ProductsOrg
 export const metadata: Metadata = {
   title: "Productos para Organizaciones | Iubizon Perú",
   description:
-    "Soluciones audiovisuales y tecnológicas para empresas, instituciones y organizaciones. Proyectores, accesorios y más para tu organización en Perú.",
+    "Soluciones en proyectores y equipos multimedia para empresas, instituciones y organizaciones. Proyectores, accesorios y más para tu organización en Perú.",
   keywords: [
     "productos para organizaciones",
     "proyectores para empresas",
-    "soluciones audiovisuales",
+    "soluciones en proyectores",
     "accesorios para instituciones",
     "tecnología para organizaciones",
+    "equipos multimedia empresas",
+    "proyectores empresariales",
     "iubizon",
     "proyectores Lima",
-    "equipos audiovisuales Perú",
+    "equipos presentación Perú",
   ],
   openGraph: {
     title: "Productos para Organizaciones | Iubizon Perú",
     description:
-      "Soluciones audiovisuales y tecnológicas para empresas, instituciones y organizaciones. Proyectores, accesorios y más para tu organización en Perú.",
+      "Soluciones en proyectores y equipos multimedia para empresas, instituciones y organizaciones. Proyectores, accesorios y más para tu organización en Perú.",
     url: "https://iubizon.com/productos/organizaciones",
     type: "website",
   },
