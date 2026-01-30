@@ -74,12 +74,13 @@ const ProductItem = ({
       onDragStart={() => onDragStart(index)}
       onDragEnter={() => onDragEnter(index)}
       onDragEnd={onDragEnd}
-      className={`flex items-start gap-3 p-4 border border-gray-200 rounded-lg bg-white hover:border-primary/50 transition-colors ${
-        isDragging ? "opacity-50" : "opacity-100"
-      }`}
+      className={`flex items-start gap-3 p-4 border border-gray-200 rounded-lg bg-white hover:border-primary/50 transition-colors transition-transform duration-300 ease-in-out
+        ${isDragging ? "opacity-70 scale-105 shadow-xl z-10" : "opacity-100"}
+      `}
+      style={{ cursor: isDragging ? "grabbing" : "grab" }}
     >
       {/* Drag Handle */}
-      <div className="flex items-center justify-center pt-2 cursor-grab active:cursor-grabbing text-gray-400 hover:text-gray-600">
+      <div className="flex items-center justify-center pt-2 text-gray-400 hover:text-gray-600">
         <GripVertical className="w-5 h-5" />
       </div>
 
