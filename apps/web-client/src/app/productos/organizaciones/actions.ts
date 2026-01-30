@@ -3,31 +3,89 @@
 export async function sendProductRequestEmail(
   formProductRequest: LeadForIubizon,
 ): Promise<void> {
-  const mapProductRequestData = (formProductRequest: LeadForIubizon) => ({
-    client_id: "gYn8QUB8g35wEAZcZz7D",
-    client_type: "organization",
-    lead_type: "sale",
-    document_type: formProductRequest?.document_type,
-    document_number: formProductRequest?.document_number,
-    full_name_or_social_reason: formProductRequest?.full_name_or_social_reason,
-    first_name: formProductRequest?.first_name,
-    last_name: formProductRequest?.last_name,
-    email: formProductRequest.email,
-    phone_prefix: formProductRequest?.phone_prefix,
-    phone_number: formProductRequest?.phone_number,
-    product_list: formProductRequest?.product_list,
-    description_more_details: formProductRequest?.description_more_details,
-    attendance_type: formProductRequest?.attendance_type,
-    visit_date: formProductRequest?.visit_date,
-    visit_time: formProductRequest?.visit_time,
-    department: formProductRequest?.department,
-    province: formProductRequest?.province,
-    district: formProductRequest?.district,
-    address: formProductRequest?.address,
-    status: "new_lead",
-    terms_and_conditions: formProductRequest?.terms_and_conditions,
-    archived: false,
-    createdBy: "user",
+  const mapProductRequestData = (data: LeadForIubizon) => ({
+    // Core Fields
+    client_id: "gYn8QUB8g35wEAZcZz7D" /* Iubizon Client ID for Web Leads */,
+    lead_type: data.lead_type, // "sale"
+    client_type: data.client_type, // "individual" | "organization"
+    status: data.status, // "new"
+    archived: data.archived, // false
+
+    // Contact Information (Step 2)
+    contact: {
+      first_name: data.contact.first_name,
+      last_name: data.contact.last_name,
+      full_name: data.contact.full_name,
+      full_name_or_social_reason: data.contact.full_name_or_social_reason,
+      email: data.contact.email,
+      phone: {
+        prefix: data.contact.phone.prefix,
+        number: data.contact.phone.number,
+      },
+    },
+
+    // Document Information (Step 2)
+    document: data.document
+      ? {
+          type: data.document.type,
+          number: data.document.number,
+        }
+      : undefined,
+
+    // Organization Info (Step 2 - only if RUC)
+    organization_info: data.organization_info
+      ? {
+          company_name: data.organization_info.company_name,
+          tax_id: data.organization_info.tax_id,
+        }
+      : undefined,
+
+    // Products (Step 1)
+    products: data.products?.map((product) => ({
+      id: product.id,
+      quantity: product.quantity,
+      brand: product.brand,
+      model: product.model,
+      type: product.type, // "sale"
+    })),
+
+    // Additional product details (Step 1)
+    description_more_details: data.description_more_details,
+
+    // Service Details (Step 3)
+    service_details: data.service_details
+      ? {
+          attendance_type: data.service_details.attendance_type,
+        }
+      : undefined,
+
+    // Visit Schedule (Step 3 - only if home_visit)
+    visit_schedule: data.visit_schedule
+      ? {
+          preferred_date: data.visit_schedule.preferred_date,
+          preferred_time: data.visit_schedule.preferred_time,
+        }
+      : undefined,
+
+    // Address (Step 3 - only if home_visit or send_to_store)
+    address: data.address
+      ? {
+          street: data.address.street,
+          department: data.address.department,
+          province: data.address.province,
+          district: data.address.district,
+        }
+      : undefined,
+
+    // Communication
+    hostname: data.hostname,
+    terms_and_conditions: data.terms_and_conditions,
+
+    // Tracking
+    tracking: {
+      source: data.tracking.source,
+      landing_page: data.tracking.landing_page,
+    },
   });
 
   try {

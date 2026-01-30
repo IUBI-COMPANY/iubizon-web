@@ -1,6 +1,5 @@
 import React from "react";
 import * as yup from "yup";
-import { ObjectSchema } from "yup";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useFormUtils } from "@/hooks/useFormUtils";
@@ -24,10 +23,21 @@ import {
   isValidVisitTime,
 } from "@/utils/validateDatetimeToSupportInformation";
 
+interface FormData {
+  attendance_type: string;
+  visit_date?: string;
+  visit_time?: string;
+  department?: string;
+  province?: string;
+  district?: string;
+  address?: string;
+  terms_and_conditions: boolean;
+}
+
 interface Props {
   globalStep: number;
-  productFormData: Partial<LeadForIubizon>;
-  setProductFormData: (data: Partial<LeadForIubizon>) => void;
+  productFormData: Partial<OrganizationProductStep3>;
+  setProductFormData: (data: Partial<OrganizationProductStep3>) => void;
   addLocalStorageData: (data: object) => void;
   setCurrentStepToLocalStorage: (step: number) => void;
   loading: boolean;
@@ -110,23 +120,25 @@ export const OrganizationDeliveryInfo = ({
       otherwise: (schema) => schema.notRequired(),
     }),
     terms_and_conditions: yup.boolean().required(),
-  }) as ObjectSchema<OrganizationProductStep3>;
+  });
 
   const {
     handleSubmit,
     control,
     formState: { errors },
     watch,
-  } = useForm<OrganizationProductStep3>({
+  } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      attendance_type: productFormData?.attendance_type || "quotation",
-      visit_date: productFormData?.visit_date || "",
-      visit_time: productFormData?.visit_time || "",
-      department: productFormData?.department || "",
-      province: productFormData?.province || "",
-      district: productFormData?.district || "",
-      address: productFormData?.address || "",
+      attendance_type:
+        productFormData?.service_details?.attendance_type || "quotation",
+      visit_date: productFormData?.visit_schedule?.preferred_date || "",
+      visit_time: productFormData?.visit_schedule?.preferred_time || "",
+      department: productFormData?.address?.department || "",
+      province: productFormData?.address?.province || "",
+      district: productFormData?.address?.district || "",
+      address: productFormData?.address?.street || "",
+      terms_and_conditions: productFormData?.terms_and_conditions || false,
     },
   });
 
@@ -147,28 +159,115 @@ export const OrganizationDeliveryInfo = ({
 
   const districtsByLimaProvince = peruUbigeo[13].provinces[0].districts;
 
-  const onSubmit = async (formData: OrganizationProductStep3) => {
+  const onSubmit = async (formData: FormData) => {
     setLoading(true);
-    setProductFormData({ ...productFormData, ...formData });
-    addLocalStorageData(formData);
 
-    let data: LeadForIubizon;
+    // 1. Transformar datos del formulario al formato correcto
+    const completeFormData: OrganizationProductStep3 = {
+      service_details: {
+        attendance_type: formData.attendance_type as AttendanceType,
+      },
+      visit_schedule:
+        formData.attendance_type === "home_visit" &&
+        formData.visit_date &&
+        formData.visit_time
+          ? {
+              preferred_date: formData.visit_date,
+              preferred_time: formData.visit_time,
+            }
+          : undefined,
+      address:
+        (formData.attendance_type === "home_visit" ||
+          formData.attendance_type === "send_to_store") &&
+        formData.address
+          ? {
+              street: formData.address,
+              department: formData.department,
+              province: formData.province,
+              district: formData.district,
+            }
+          : undefined,
+      terms_and_conditions: formData.terms_and_conditions,
+    };
+
+    setProductFormData({ ...productFormData, ...completeFormData });
+    addLocalStorageData(completeFormData);
+
+    // 2. Obtener todos los datos del localStorage
+    let fullData: Record<string, unknown>;
     try {
       const storedData = localStorage.getItem("org_products_formData");
-      data = storedData ? JSON.parse(storedData) : ({} as LeadForIubizon);
+      fullData = storedData ? JSON.parse(storedData) : {};
+      // Merge con los datos actuales
+      fullData = { ...fullData, ...completeFormData };
     } catch (error) {
       console.error(
         "Error parsing stored organization products form data: ",
         error,
       );
-      data = {
-        ...(productFormData as LeadForIubizon),
-        ...(formData as LeadForIubizon),
+      fullData = {
+        ...productFormData,
+        ...completeFormData,
       };
     }
 
+    // 3. Validar que existan los datos esenciales
+    if (!fullData.contact || !fullData.products) {
+      console.error("Missing required data:", fullData);
+      showNotification(
+        "error",
+        "Faltan datos requeridos. Por favor, complete todos los pasos del formulario.",
+        "Error de datos",
+      );
+      setLoading(false);
+      return;
+    }
+
+    // 4. Construir LeadForIubizon con SOLO campos que existen en la interfaz
+    const leadData: Partial<LeadForIubizon> = {
+      // ========== Core Fields ==========
+      lead_type: "sale",
+      client_type:
+        (fullData.client_type as "individual" | "organization") ||
+        "organization",
+      status: "new",
+      archived: false,
+
+      // ========== Contact Information ==========
+      contact: fullData.contact as ContactInfo,
+      document: fullData.document as DocumentInfo | undefined,
+      address: completeFormData.address,
+
+      // ========== Organization Info ==========
+      organization_info:
+        fullData.organization_info as LeadForIubizon["organization_info"],
+
+      // ========== Product/Service Information ==========
+      products: fullData.products as ProductItem[],
+      service_details: completeFormData.service_details,
+      description_more_details: fullData.description_more_details as
+        | string
+        | undefined,
+
+      // ========== Visit/Appointment ==========
+      visit_schedule: completeFormData.visit_schedule,
+
+      // ========== Communication ==========
+      terms_and_conditions: completeFormData.terms_and_conditions,
+      hostname: window.location.hostname,
+
+      // ========== Tracking & Attribution ==========
+      tracking: {
+        source: "website",
+        landing_page: window.location.href,
+      },
+    };
+
+    // 5. Enviar al servidor
     try {
-      await sendProductRequestEmail(data);
+      console.log("Sending lead data: ", leadData);
+      await sendProductRequestEmail(leadData as LeadForIubizon);
+      console.log("Sending lead data: ", leadData);
       setLoading(false);
       setTimeout(() => {
         setCurrentStepToLocalStorage(globalStep + 1);

@@ -25,3 +25,11 @@ interface GaEventArgs {
   label?: string;
   value?: number;
 }
+
+interface DefaultFirestoreProps {
+  created_at: firebase.firestore.Timestamp;
+  updated_at: firebase.firestore.Timestamp;
+  updated_by: string;
+  is_deleted: boolean;
+  created_by?: string;
+}

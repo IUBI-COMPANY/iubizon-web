@@ -15,34 +15,35 @@ const STORAGE_KEYS = {
   formData: "org_products_formData",
 };
 
-export type OrganizationProductStep1 = Pick<
-  LeadForIubizon,
-  "product_list" | "description_more_details"
->;
+// Step 1: Product Information
+export type OrganizationProductStep1 = {
+  products: ProductItem[];
+  description_more_details?: string;
+};
 
-export type OrganizationProductStep2 = Pick<
-  LeadForIubizon,
-  | "document_type"
-  | "document_number"
-  | "full_name_or_social_reason"
-  | "first_name"
-  | "last_name"
-  | "email"
-  | "phone_prefix"
-  | "phone_number"
->;
+// Step 2: Contact Information
+export type OrganizationProductStep2 = {
+  contact: ContactInfo;
+  document?: DocumentInfo;
+  client_type: "individual" | "organization";
+  organization_info?: {
+    company_name?: string;
+    tax_id?: string;
+  };
+};
 
-export type OrganizationProductStep3 = Pick<
-  LeadForIubizon,
-  | "attendance_type"
-  | "visit_date"
-  | "visit_time"
-  | "department"
-  | "province"
-  | "district"
-  | "address"
-  | "terms_and_conditions"
->;
+// Step 3: Delivery/Visit Information
+export type OrganizationProductStep3 = {
+  service_details?: {
+    attendance_type: AttendanceType;
+  };
+  visit_schedule?: {
+    preferred_date?: string;
+    preferred_time?: string;
+  };
+  address?: AddressInfo;
+  terms_and_conditions: boolean;
+};
 
 export const OrganizationsProductRequestForm = () => {
   const [globalStep, setGlobalStep] = useState(0);

@@ -13,12 +13,6 @@ import { ArrowRight, Plus, X, GripVertical } from "lucide-react";
 import { TextArea } from "@/components/ui/TextArea";
 import { useNotification } from "@/components/ui/Notification";
 
-interface ProductItem {
-  id: string;
-  quantity: number;
-  brand_and_model: string;
-}
-
 interface Props {
   globalStep: number;
   productFormData: Partial<OrganizationProductStep1>;
@@ -36,15 +30,20 @@ export const OrganizationProductInfo = ({
 }: Props) => {
   const { showNotification, NotificationComponent } = useNotification();
 
-  // Initialize products from product_list or create default
+  // Initialize products from products array or create default
   const initializeProducts = (): ProductItem[] => {
-    if (
-      productFormData?.product_list &&
-      productFormData.product_list.length > 0
-    ) {
-      return productFormData.product_list;
+    if (productFormData?.products && productFormData.products.length > 0) {
+      return productFormData.products;
     }
-    return [{ id: crypto.randomUUID(), quantity: 1, brand_and_model: "" }];
+    return [
+      {
+        id: crypto.randomUUID(),
+        quantity: 1,
+        brand: "",
+        model: "",
+        type: "sale",
+      },
+    ];
   };
 
   const [products, setProducts] = useState<ProductItem[]>(initializeProducts());
@@ -73,7 +72,13 @@ export const OrganizationProductInfo = ({
   const addProduct = () => {
     setProducts([
       ...products,
-      { id: crypto.randomUUID(), quantity: 1, brand_and_model: "" },
+      {
+        id: crypto.randomUUID(),
+        quantity: 1,
+        brand: "",
+        model: "",
+        type: "sale",
+      },
     ]);
   };
 
@@ -83,7 +88,7 @@ export const OrganizationProductInfo = ({
 
   const updateProduct = (
     id: string,
-    field: "quantity" | "brand_and_model",
+    field: keyof ProductItem,
     value: string | number,
   ) => {
     // Ensure quantity is at least 1
@@ -121,21 +126,21 @@ export const OrganizationProductInfo = ({
   const onSubmit = (
     formData: Pick<OrganizationProductStep1, "description_more_details">,
   ) => {
-    // Validate products
+    // Validate products - check that brand and model are filled
     const hasEmptyProduct = products.some(
-      (p) => !p.brand_and_model.trim() || p.quantity < 1,
+      (p) => !p.brand.trim() || !p.model.trim() || p.quantity < 1,
     );
     if (hasEmptyProduct) {
       showNotification(
         "warning",
-        "Por favor completa todos los productos antes de continuar",
+        "Por favor completa la marca y modelo de todos los productos antes de continuar",
         "Productos incompletos",
       );
       return;
     }
 
-    const completeFormData = {
-      product_list: products,
+    const completeFormData: OrganizationProductStep1 = {
+      products: products,
       description_more_details: formData.description_more_details,
     };
 
@@ -181,7 +186,7 @@ export const OrganizationProductInfo = ({
 
                     {/* Inputs */}
                     <div className="flex-1 grid grid-cols-12 gap-3">
-                      <div className="col-span-3">
+                      <div className="col-span-2">
                         <InputNumber
                           name={`quantity-${product.id}`}
                           label=""
@@ -193,15 +198,26 @@ export const OrganizationProductInfo = ({
                           min={1}
                         />
                       </div>
-                      <div className="col-span-9">
+                      <div className="col-span-5">
                         <Input
-                          name={`brand_and_model-${product.id}`}
+                          name={`brand-${product.id}`}
                           label=""
-                          value={product.brand_and_model}
+                          value={product.brand}
                           onChange={(value) =>
-                            updateProduct(product.id, "brand_and_model", value)
+                            updateProduct(product.id, "brand", value)
                           }
-                          placeholder="Marca y Modelo (Ej: Epson PowerLite 980W)"
+                          placeholder="Marca (Ej: Epson)"
+                        />
+                      </div>
+                      <div className="col-span-5">
+                        <Input
+                          name={`model-${product.id}`}
+                          label=""
+                          value={product.model}
+                          onChange={(value) =>
+                            updateProduct(product.id, "model", value)
+                          }
+                          placeholder="Modelo (Ej: PowerLite 980W)"
                         />
                       </div>
                     </div>

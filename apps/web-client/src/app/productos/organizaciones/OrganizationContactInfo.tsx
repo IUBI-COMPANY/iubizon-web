@@ -5,7 +5,6 @@ import * as yup from "yup";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
 import { Form } from "@/components/ui/Form";
-import { ObjectSchema } from "yup";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useFormUtils } from "@/hooks/useFormUtils";
@@ -14,10 +13,21 @@ import { Button } from "@/components/ui/Button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { OrganizationProductStep2 } from "@/components/ui/OrganizationsProductRequestForm";
 
+interface FormData {
+  document_type: string;
+  document_number: string;
+  company_name?: string; // Opcional: solo requerido si document_type === "RUC"
+  first_name?: string; // Opcional: solo requerido si document_type !== "RUC"
+  last_name?: string; // Opcional: solo requerido si document_type !== "RUC"
+  email: string;
+  phone_prefix: string;
+  phone_number: string;
+}
+
 interface Props {
   globalStep: number;
-  productFormData: Partial<LeadForIubizon>;
-  setProductFormData: (data: Partial<LeadForIubizon>) => void;
+  productFormData: Partial<OrganizationProductStep2>;
+  setProductFormData: (data: Partial<OrganizationProductStep2>) => void;
   addLocalStorageData: (data: object) => void;
   setCurrentStepToLocalStorage: (step: number) => void;
 }
@@ -45,7 +55,7 @@ export const OrganizationContactInfo = ({
         }
         return true;
       }),
-    full_name_or_social_reason: yup.string().when("document_type", {
+    company_name: yup.string().when("document_type", {
       is: "RUC",
       then: (schema) => schema.required(),
       otherwise: (schema) => schema.notRequired(),
@@ -69,7 +79,7 @@ export const OrganizationContactInfo = ({
         const { phone_prefix } = this.parent;
         return regexPhoneByCountries(phone_prefix).test(value);
       }),
-  }) as ObjectSchema<OrganizationProductStep2>;
+  });
 
   const {
     handleSubmit,
@@ -77,18 +87,17 @@ export const OrganizationContactInfo = ({
     formState: { errors },
     watch,
     setValue,
-  } = useForm<OrganizationProductStep2>({
+  } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      document_type: productFormData?.document_type || undefined,
-      document_number: productFormData?.document_number || "",
-      full_name_or_social_reason:
-        productFormData?.full_name_or_social_reason || "",
-      first_name: productFormData?.first_name || "",
-      last_name: productFormData?.last_name || "",
-      email: productFormData?.email || "",
-      phone_prefix: "+51",
-      phone_number: productFormData?.phone_number || undefined,
+      document_type: productFormData?.document?.type || undefined,
+      document_number: productFormData?.document?.number || "",
+      company_name: productFormData?.organization_info?.company_name || "",
+      first_name: productFormData?.contact?.first_name || "",
+      last_name: productFormData?.contact?.last_name || "",
+      email: productFormData?.contact?.email || "",
+      phone_prefix: productFormData?.contact?.phone?.prefix || "+51",
+      phone_number: productFormData?.contact?.phone?.number || "",
     },
   });
 
@@ -105,11 +114,11 @@ export const OrganizationContactInfo = ({
         setValue("first_name", "");
         setValue("last_name", "");
       } else if (docType === "DNI") {
-        setValue("full_name_or_social_reason", "");
+        setValue("company_name", "");
       } else {
         setValue("first_name", "");
         setValue("last_name", "");
-        setValue("full_name_or_social_reason", "");
+        setValue("company_name", "");
       }
     }
     previousDocType.current = docType;
@@ -125,14 +134,40 @@ export const OrganizationContactInfo = ({
     return new RegExp(regex);
   };
 
-  const onSubmit = (formData: OrganizationProductStep2) => {
-    if (formData.document_type !== "RUC") {
-      formData.full_name_or_social_reason =
+  const onSubmit = (formData: FormData) => {
+    const completeFormData: OrganizationProductStep2 = {
+      contact: {
+        first_name: formData.first_name || "",
+        last_name: formData.last_name || "",
+        email: formData.email,
+        phone: {
+          prefix: formData.phone_prefix,
+          number: formData.phone_number,
+        },
+      },
+      document: {
+        type: formData.document_type as DocumentInfo["type"],
+        number: formData.document_number,
+      },
+      client_type:
+        formData.document_type === "RUC" ? "organization" : "individual",
+    };
+
+    // Si es RUC, agregar información de organización
+    if (formData.document_type === "RUC") {
+      completeFormData.organization_info = {
+        company_name: formData.company_name,
+        tax_id: formData.document_number,
+      };
+      completeFormData.contact.full_name_or_social_reason =
+        formData.company_name;
+    } else {
+      completeFormData.contact.full_name =
         `${formData.first_name} ${formData.last_name}`.trim();
     }
 
-    setProductFormData({ ...productFormData, ...formData });
-    addLocalStorageData(formData);
+    setProductFormData({ ...productFormData, ...completeFormData });
+    addLocalStorageData(completeFormData);
     setCurrentStepToLocalStorage(globalStep + 1);
   };
 
@@ -197,7 +232,7 @@ export const OrganizationContactInfo = ({
               {isRuc ? (
                 <div className="sm:col-span-4">
                   <Controller
-                    name="full_name_or_social_reason"
+                    name="company_name"
                     control={control}
                     render={({ field: { onChange, value, name } }) => (
                       <Input
