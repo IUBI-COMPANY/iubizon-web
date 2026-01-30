@@ -145,7 +145,8 @@ export const DeviceInformation = ({
             <div className="mt-2 grid grid-cols-1 gap-3">
               <Button block variant="primary" type="submit">
                 <div className="flex gap-2 items-center justify-center">
-                  <ArrowRight /> <span>Siguiente</span>
+                  Continuar
+                  <ArrowRight className="w-4 h-4" />
                 </div>
               </Button>
             </div>

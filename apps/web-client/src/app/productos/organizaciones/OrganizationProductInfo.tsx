@@ -263,7 +263,7 @@ export const OrganizationProductInfo = ({
 
             {/* Submit Button */}
             <div className="flex justify-end">
-              <Button type="submit" size="md" variant="primary">
+              <Button type="submit" size="md" variant="primary" block>
                 <div className="flex gap-2 items-center justify-center">
                   Continuar
                   <ArrowRight className="w-4 h-4" />
