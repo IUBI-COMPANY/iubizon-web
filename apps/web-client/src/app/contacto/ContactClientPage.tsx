@@ -6,8 +6,31 @@ import { sendContactEmail } from "@/app/contacto/actions";
 import { Clock, Mail, MapPin, Phone, CheckCircle } from "lucide-react";
 
 export default function ContactClientPage() {
+  const breadcrumbData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Inicio",
+        item: "https://www.iubizon.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Contacto",
+        item: "https://www.iubizon.com/contacto",
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
+      />
       <div className="h-screen min-h-screen flex flex-col lg:flex-row w-full bg-gradient-to-br from-blue-50 to-gray-100 relative">
         <div className="w-full lg:w-1/2 h-full relative group overflow-hidden">
           <Image

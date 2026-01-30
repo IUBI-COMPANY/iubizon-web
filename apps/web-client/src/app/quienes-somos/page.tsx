@@ -3,7 +3,6 @@ import Image from "next/image";
 import { Handshake, Headphones, MonitorSmartphone, Shield } from "lucide-react";
 import Brands from "@/components/ui/Brands";
 import CTASection from "@/components/ui/CTASection";
-import Timeline from "@/components/ui/Timeline";
 import StatsGrid from "@/components/ui/StatsGrid";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -82,7 +81,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 // Structured Data for Organization
 function generateStructuredData() {
-  return {
+  const organizationData = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "iubizon",
@@ -123,10 +122,31 @@ function generateStructuredData() {
       "Epson",
     ],
   };
+
+  const breadcrumbData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Inicio",
+        item: "https://www.iubizon.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Quiénes Somos",
+        item: "https://www.iubizon.com/quienes-somos",
+      },
+    ],
+  };
+
+  return { organizationData, breadcrumbData };
 }
 
 export default function AboutUsPage() {
-  const structuredData = generateStructuredData();
+  const { organizationData, breadcrumbData } = generateStructuredData();
 
   // Estadísticas de la empresa
   const stats = [
@@ -156,39 +176,15 @@ export default function AboutUsPage() {
     },
   ];
 
-  // Timeline de la empresa
-  const timelineItems = [
-    {
-      year: "2020",
-      title: "Fundación de Iubizon",
-      description:
-        "Inicio de operaciones como especialistas en proyectores en Lima, Perú",
-    },
-    {
-      year: "2021",
-      title: "Distribuidores Epson",
-      description:
-        "Nos convertimos en distribuidores autorizados de proyectores Epson",
-    },
-    {
-      year: "2023",
-      title: "Expansión de Servicios",
-      description:
-        "Ampliamos nuestro catálogo y servicio técnico especializado a nivel nacional",
-    },
-    {
-      year: "2026",
-      title: "Líderes en el Mercado",
-      description:
-        "Más de 1000 proyectos completados y presencia consolidada en todo Perú",
-    },
-  ];
-
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
       />
 
       <main className="min-h-screen bg-white">
@@ -288,8 +284,8 @@ export default function AboutUsPage() {
             {/* Marcas Asociadas */}
             <Brands className="my-16" />
 
-            {/* Timeline/Hitos */}
-            <Timeline items={timelineItems} className="my-16" />
+            {/*/!* Timeline/Hitos *!/*/}
+            {/*<Timeline items={timelineItems} className="my-16" />*/}
 
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-color-secondary mb-4">
@@ -362,7 +358,7 @@ export default function AboutUsPage() {
           }}
           secondaryButton={{
             text: "Nuestros Servicios",
-            href: "/servicios/tecnico/persona",
+            href: "/servicios/tecnico",
           }}
         />
       </main>

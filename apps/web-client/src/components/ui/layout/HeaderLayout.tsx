@@ -34,9 +34,10 @@ const navigation: HeaderNavigation[] = [
   },
   {
     name: "Servicio Técnico",
+    href: "/servicios/tecnico",
     options: [
       { name: "Persona", href: "/servicios/tecnico/persona" },
-      { name: "Institución/Empresas", href: "/servicios/tecnico/organizacion" },
+      { name: "Organización", href: "/servicios/tecnico/organizacion" },
     ],
   },
   { name: "Contacto", href: "/contacto" },

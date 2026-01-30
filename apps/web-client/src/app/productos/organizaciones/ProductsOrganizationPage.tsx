@@ -8,6 +8,31 @@ import { OrganizationsProductRequestForm } from "@/components/ui/OrganizationsPr
 import { useState } from "react";
 import Brands from "@/components/ui/Brands";
 
+const breadcrumbData = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Inicio",
+      item: "https://www.iubizon.com",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Productos",
+      item: "https://www.iubizon.com/productos",
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "Organizaciones",
+      item: "https://www.iubizon.com/productos/organizaciones",
+    },
+  ],
+};
+
 function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -35,8 +60,12 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 
 export default function ProductsOrganizationPage() {
   return (
-    <main>
+    <>
       <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -569,6 +598,6 @@ export default function ProductsOrganizationPage() {
           </Link>
         </div>
       </section>
-    </main>
+    </>
   );
 }
