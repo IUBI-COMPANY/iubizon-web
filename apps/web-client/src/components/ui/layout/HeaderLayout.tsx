@@ -28,9 +28,7 @@ const navigation: HeaderNavigation[] = [
   {
     name: "Productos",
     href: "/productos",
-    options: [
-      { name: "Institución/Empresas", href: "/productos/organizaciones" },
-    ],
+    options: [{ name: "Organización", href: "/productos/organizaciones" }],
   },
   {
     name: "Servicio Técnico",
@@ -152,10 +150,6 @@ export const HeaderLayout = () => {
                 ),
               )}
             </nav>
-            {/*<div className="flex items-center space-x-4">*/}
-            {/*  <button className="bg-primary">Sign In</button>*/}
-            {/*  <button className="bg-primary">Get Started</button>*/}
-            {/*</div>*/}
           </div>
           <button
             className="lg:hidden bg-primary rounded-md p-1"
