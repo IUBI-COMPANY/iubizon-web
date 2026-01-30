@@ -52,30 +52,38 @@ export async function sendProductRequestEmail(
     // Additional product details (Step 1)
     description_more_details: data.description_more_details,
 
-    // Service Details (Step 3)
-    service_details: data.service_details
+    // Delivery Information (Step 3 - NUEVA ESTRUCTURA)
+    delivery: data.delivery
       ? {
-          attendance_type: data.service_details.attendance_type,
+          type: data.delivery.type,
+          home_delivery: data.delivery.home_delivery
+            ? {
+                preferred_date: data.delivery.home_delivery.preferred_date,
+                preferred_time: data.delivery.home_delivery.preferred_time,
+                address: {
+                  district: data.delivery.home_delivery.address.district,
+                  street: data.delivery.home_delivery.address.street,
+                },
+              }
+            : undefined,
+          province_shipping: data.delivery.province_shipping
+            ? {
+                address: {
+                  department:
+                    data.delivery.province_shipping.address.department,
+                  province: data.delivery.province_shipping.address.province,
+                  district: data.delivery.province_shipping.address.district,
+                  street: data.delivery.province_shipping.address.street,
+                },
+                estimated_delivery_days:
+                  data.delivery.province_shipping.estimated_delivery_days,
+              }
+            : undefined,
         }
       : undefined,
 
-    // Visit Schedule (Step 3 - only if home_visit)
-    visit_schedule: data.visit_schedule
-      ? {
-          preferred_date: data.visit_schedule.preferred_date,
-          preferred_time: data.visit_schedule.preferred_time,
-        }
-      : undefined,
-
-    // Address (Step 3 - only if home_visit or send_to_store)
-    address: data.address
-      ? {
-          street: data.address.street,
-          department: data.address.department,
-          province: data.address.province,
-          district: data.address.district,
-        }
-      : undefined,
+    // Quote Only (Step 3)
+    quote_only: data.quote_only,
 
     // Communication
     hostname: data.hostname,

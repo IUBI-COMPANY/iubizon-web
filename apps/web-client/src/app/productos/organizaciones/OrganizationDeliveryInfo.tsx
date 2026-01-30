@@ -1,7 +1,8 @@
 import React from "react";
 import * as yup from "yup";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useForm, Resolver } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+// ...existing code...
 import { useFormUtils } from "@/hooks/useFormUtils";
 import { Form } from "@/components/ui/Form";
 import { RadioGroup } from "@/components/ui/RadioGroup";
@@ -24,7 +25,11 @@ import {
 } from "@/utils/validateDatetimeToSupportInformation";
 
 interface FormData {
-  attendance_type: string;
+  delivery_option:
+    | "store_pickup"
+    | "home_delivery"
+    | "province_shipping"
+    | "quote_only";
   visit_date?: string;
   visit_time?: string;
   department?: string;
@@ -56,9 +61,17 @@ export const OrganizationDeliveryInfo = ({
   const { showNotification, NotificationComponent } = useNotification();
 
   const schema = yup.object({
-    attendance_type: yup.string().required(),
-    visit_date: yup.string().when("attendance_type", {
-      is: "home_visit",
+    delivery_option: yup
+      .string()
+      .oneOf([
+        "store_pickup",
+        "home_delivery",
+        "province_shipping",
+        "quote_only",
+      ])
+      .required("Debes seleccionar una opción"),
+    visit_date: yup.string().when("delivery_option", {
+      is: "home_delivery",
       then: (schema) =>
         schema
           .required("La fecha de visita es requerida")
@@ -72,8 +85,8 @@ export const OrganizationDeliveryInfo = ({
           ),
       otherwise: (schema) => schema.notRequired(),
     }),
-    visit_time: yup.string().when("attendance_type", {
-      is: "home_visit",
+    visit_time: yup.string().when("delivery_option", {
+      is: "home_delivery",
       then: (schema) =>
         schema
           .required("La hora de visita es requerida")
@@ -97,56 +110,83 @@ export const OrganizationDeliveryInfo = ({
           ),
       otherwise: (schema) => schema.notRequired(),
     }),
-    district: yup.string().when("attendance_type", {
+    district: yup.string().when("delivery_option", {
       is: (value: string) =>
-        value === "home_visit" || value === "send_to_store",
-      then: (schema) => schema.required(),
+        value === "home_delivery" || value === "province_shipping",
+      then: (schema) => schema.required("El distrito es requerido"),
       otherwise: (schema) => schema.notRequired(),
     }),
-    address: yup.string().when("attendance_type", {
+    address: yup.string().when("delivery_option", {
       is: (value: string) =>
-        value === "home_visit" || value === "send_to_store",
-      then: (schema) => schema.required(),
+        value === "home_delivery" || value === "province_shipping",
+      then: (schema) => schema.required("La dirección es requerida"),
       otherwise: (schema) => schema.notRequired(),
     }),
-    department: yup.string().when("attendance_type", {
-      is: "send_to_store",
-      then: (schema) => schema.required(),
+    department: yup.string().when("delivery_option", {
+      is: "province_shipping",
+      then: (schema) => schema.required("El departamento es requerido"),
       otherwise: (schema) => schema.notRequired(),
     }),
-    province: yup.string().when("attendance_type", {
-      is: "send_to_store",
-      then: (schema) => schema.required(),
+    province: yup.string().when("delivery_option", {
+      is: "province_shipping",
+      then: (schema) => schema.required("La provincia es requerida"),
       otherwise: (schema) => schema.notRequired(),
     }),
-    terms_and_conditions: yup.boolean().required(),
+    terms_and_conditions: yup
+      .boolean()
+      .oneOf([true], "Debes aceptar los términos y condiciones")
+      .required(),
   });
+
+  // Determinar el valor inicial basado en productFormData
+  const getInitialDeliveryOption = (): FormData["delivery_option"] => {
+    if (productFormData?.quote_only) {
+      return "quote_only";
+    }
+    if (productFormData?.delivery?.type) {
+      return productFormData.delivery.type;
+    }
+    return "quote_only";
+  };
+
+  const getInitialValues = () => {
+    const delivery = productFormData?.delivery;
+
+    return {
+      delivery_option: getInitialDeliveryOption(),
+      visit_date: delivery?.home_delivery?.preferred_date || "",
+      visit_time: delivery?.home_delivery?.preferred_time || "",
+      department: delivery?.province_shipping?.address.department || "",
+      province: delivery?.province_shipping?.address.province || "",
+      district:
+        delivery?.home_delivery?.address.district ||
+        delivery?.province_shipping?.address.district ||
+        "",
+      address:
+        delivery?.home_delivery?.address.street ||
+        delivery?.province_shipping?.address.street ||
+        "",
+      terms_and_conditions: productFormData?.terms_and_conditions || false,
+    };
+  };
 
   const {
     handleSubmit,
     control,
     formState: { errors },
     watch,
-  } = useForm({
-    resolver: yupResolver(schema),
-    defaultValues: {
-      attendance_type:
-        productFormData?.service_details?.attendance_type || "quotation",
-      visit_date: productFormData?.visit_schedule?.preferred_date || "",
-      visit_time: productFormData?.visit_schedule?.preferred_time || "",
-      department: productFormData?.address?.department || "",
-      province: productFormData?.address?.province || "",
-      district: productFormData?.address?.district || "",
-      address: productFormData?.address?.street || "",
-      terms_and_conditions: productFormData?.terms_and_conditions || false,
-    },
+  } = useForm<FormData>({
+    resolver: yupResolver(schema) as Resolver<FormData>,
+    defaultValues: getInitialValues(),
   });
 
   const { required, error, errorMessage } = useFormUtils({ errors, schema });
 
-  const isPickup = watch("attendance_type") === "go_to_store";
-  const isDelivery = watch("attendance_type") === "home_visit";
-  const isShipping = watch("attendance_type") === "send_to_store";
+  const deliveryOption = watch("delivery_option");
+  const isPickup = deliveryOption === "store_pickup";
+  const isDelivery = deliveryOption === "home_delivery";
+  const isShipping = deliveryOption === "province_shipping";
+  const isQuoteOnly = deliveryOption === "quote_only";
 
   const departmentSelected = watch("department");
   const _departmentSelected = peruUbigeo.find(
@@ -162,33 +202,79 @@ export const OrganizationDeliveryInfo = ({
   const onSubmit = async (formData: FormData) => {
     setLoading(true);
 
-    // 1. Transformar datos del formulario al formato correcto
+    // 1. Transformar datos del formulario a la nueva estructura
     const completeFormData: OrganizationProductStep3 = {
-      service_details: {
-        attendance_type: formData.attendance_type as AttendanceType,
-      },
-      visit_schedule:
-        formData.attendance_type === "home_visit" &&
-        formData.visit_date &&
-        formData.visit_time
-          ? {
-              preferred_date: formData.visit_date,
-              preferred_time: formData.visit_time,
-            }
-          : undefined,
-      address:
-        (formData.attendance_type === "home_visit" ||
-          formData.attendance_type === "send_to_store") &&
-        formData.address
-          ? {
-              street: formData.address,
-              department: formData.department,
-              province: formData.province,
-              district: formData.district,
-            }
-          : undefined,
+      quote_only: formData.delivery_option === "quote_only",
       terms_and_conditions: formData.terms_and_conditions,
     };
+
+    // Si NO es solo cotización, construir el objeto delivery
+    if (formData.delivery_option !== "quote_only") {
+      switch (formData.delivery_option) {
+        case "store_pickup":
+          completeFormData.delivery = {
+            type: "store_pickup",
+          };
+          break;
+
+        case "home_delivery":
+          if (
+            !formData.visit_date ||
+            !formData.visit_time ||
+            !formData.district ||
+            !formData.address
+          ) {
+            showNotification(
+              "error",
+              "Por favor completa todos los campos requeridos para entrega a domicilio",
+              "Campos incompletos",
+            );
+            setLoading(false);
+            return;
+          }
+          completeFormData.delivery = {
+            type: "home_delivery",
+            home_delivery: {
+              preferred_date: formData.visit_date,
+              preferred_time: formData.visit_time,
+              address: {
+                district: formData.district,
+                street: formData.address,
+              },
+            },
+          };
+          break;
+
+        case "province_shipping":
+          if (
+            !formData.department ||
+            !formData.province ||
+            !formData.district ||
+            !formData.address
+          ) {
+            showNotification(
+              "error",
+              "Por favor completa todos los campos requeridos para envío a provincias",
+              "Campos incompletos",
+            );
+            setLoading(false);
+            return;
+          }
+          completeFormData.delivery = {
+            type: "province_shipping",
+            province_shipping: {
+              address: {
+                department: formData.department,
+                province: formData.province,
+                district: formData.district,
+                street: formData.address,
+              },
+              estimated_delivery_days: 5,
+            },
+          };
+          break;
+      }
+    }
 
     setProductFormData({ ...productFormData, ...completeFormData });
     addLocalStorageData(completeFormData);
@@ -198,7 +284,6 @@ export const OrganizationDeliveryInfo = ({
     try {
       const storedData = localStorage.getItem("org_products_formData");
       fullData = storedData ? JSON.parse(storedData) : {};
-      // Merge con los datos actuales
       fullData = { ...fullData, ...completeFormData };
     } catch (error) {
       console.error(
@@ -223,9 +308,10 @@ export const OrganizationDeliveryInfo = ({
       return;
     }
 
-    // 4. Construir LeadForIubizon con SOLO campos que existen en la interfaz
+    // 4. Construir LeadForIubizon completo
     const leadData: Partial<LeadForIubizon> = {
-      // ========== Core Fields ==========
+      // Core Fields
+      client_id: "gYn8QUB8g35wEAZcZz7D",
       lead_type: "sale",
       client_type:
         (fullData.client_type as "individual" | "organization") ||
@@ -233,30 +319,29 @@ export const OrganizationDeliveryInfo = ({
       status: "new",
       archived: false,
 
-      // ========== Contact Information ==========
+      // Contact Information
       contact: fullData.contact as ContactInfo,
       document: fullData.document as DocumentInfo | undefined,
-      address: completeFormData.address,
 
-      // ========== Organization Info ==========
+      // Organization Info
       organization_info:
         fullData.organization_info as LeadForIubizon["organization_info"],
 
-      // ========== Product/Service Information ==========
+      // Products
       products: fullData.products as ProductItem[],
-      service_details: completeFormData.service_details,
       description_more_details: fullData.description_more_details as
         | string
         | undefined,
 
-      // ========== Visit/Appointment ==========
-      visit_schedule: completeFormData.visit_schedule,
+      // Delivery (nueva estructura)
+      delivery: completeFormData.delivery,
+      quote_only: completeFormData.quote_only,
 
-      // ========== Communication ==========
+      // Communication
       terms_and_conditions: completeFormData.terms_and_conditions,
       hostname: window.location.hostname,
 
-      // ========== Tracking & Attribution ==========
+      // Tracking
       tracking: {
         source: "website",
         landing_page: window.location.href,
@@ -295,7 +380,7 @@ export const OrganizationDeliveryInfo = ({
             <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
               <div className="sm:col-span-2">
                 <Controller
-                  name="attendance_type"
+                  name="delivery_option"
                   control={control}
                   render={({ field: { onChange, value, name } }) => (
                     <RadioGroup
@@ -309,21 +394,21 @@ export const OrganizationDeliveryInfo = ({
                       options={[
                         {
                           label: "Recojo en tienda",
-                          value: "go_to_store",
+                          value: "store_pickup",
                         },
                         {
                           label: "Entrega a domicilio",
-                          value: "home_visit",
+                          value: "home_delivery",
                           message: "Para Lima Metropolitana",
                         },
                         {
                           label: "Envío a provincias",
-                          value: "send_to_store",
+                          value: "province_shipping",
                           message: "Envío por courier",
                         },
                         {
                           label: "Solo quiero una cotización",
-                          value: "quotation",
+                          value: "quote_only",
                         },
                       ]}
                     />
@@ -331,6 +416,12 @@ export const OrganizationDeliveryInfo = ({
                 />
 
                 {isPickup && <BusinessAddress />}
+                {isQuoteOnly && (
+                  <Alert
+                    type="success"
+                    message="✓ Te contactaremos en menos de 24 horas con tu cotización personalizada"
+                  />
+                )}
                 {isDelivery && (
                   <div className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2 my-6">
                     <div className="sm:col-span-1">
@@ -367,16 +458,57 @@ export const OrganizationDeliveryInfo = ({
                         )}
                       />
                     </div>
+                    <div className="sm:col-span-1">
+                      <Controller
+                        name="district"
+                        control={control}
+                        render={({ field: { onChange, value, name } }) => (
+                          <Select
+                            label="Distrito"
+                            placeholder="Ej. Miraflores"
+                            name={name}
+                            value={value}
+                            error={error(name)}
+                            helperText={errorMessage(name)}
+                            required={required(name)}
+                            onChange={onChange}
+                            options={districtsByLimaProvince.map((dist) => ({
+                              value: dist.name,
+                              label: dist.name,
+                            }))}
+                          />
+                        )}
+                      />
+                    </div>
+                    <div className="sm:col-span-1">
+                      <Controller
+                        name="address"
+                        control={control}
+                        render={({ field: { onChange, value, name } }) => (
+                          <Input
+                            label="Dirección completa"
+                            placeholder="Av. Larco 1234, Of. 501"
+                            name={name}
+                            value={value}
+                            error={error(name)}
+                            helperText={errorMessage(name)}
+                            required={required(name)}
+                            onChange={onChange}
+                          />
+                        )}
+                      />
+                    </div>
                   </div>
                 )}
                 {isShipping && (
                   <>
-                    <BusinessAddress />
-                    <div className="grid grid-cols-1 gap-x-4 sm:grid-cols-2 my-6">
+                    <div className="my-6">
                       <Alert
                         type="info"
                         message="Necesitamos tu dirección completa para coordinar el envío de los productos."
                       />
+                    </div>
+                    <div className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2 my-6">
                       <div className="sm:col-span-1">
                         <Controller
                           name="department"
@@ -423,58 +555,50 @@ export const OrganizationDeliveryInfo = ({
                           )}
                         />
                       </div>
+                      <div className="sm:col-span-1">
+                        <Controller
+                          name="district"
+                          control={control}
+                          render={({ field: { onChange, value, name } }) => (
+                            <Select
+                              label="Distrito"
+                              placeholder="Ej. Cayma"
+                              name={name}
+                              value={value}
+                              error={error(name)}
+                              helperText={errorMessage(name)}
+                              required={required(name)}
+                              onChange={onChange}
+                              options={
+                                _provinceSelected?.districts.map((dist) => ({
+                                  value: dist.name,
+                                  label: dist.name,
+                                })) || []
+                              }
+                            />
+                          )}
+                        />
+                      </div>
+                      <div className="sm:col-span-1">
+                        <Controller
+                          name="address"
+                          control={control}
+                          render={({ field: { onChange, value, name } }) => (
+                            <Input
+                              label="Dirección completa"
+                              placeholder="Av. Ejercito 456"
+                              name={name}
+                              value={value}
+                              error={error(name)}
+                              helperText={errorMessage(name)}
+                              required={required(name)}
+                              onChange={onChange}
+                            />
+                          )}
+                        />
+                      </div>
                     </div>
                   </>
-                )}
-                {(isDelivery || isShipping) && (
-                  <div className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6 my-6">
-                    <div className="sm:col-span-2">
-                      <Controller
-                        name="district"
-                        control={control}
-                        render={({ field: { onChange, value, name } }) => (
-                          <Select
-                            label="Distrito"
-                            placeholder="Ej. Miraflores"
-                            name={name}
-                            value={value}
-                            error={error(name)}
-                            helperText={errorMessage(name)}
-                            required={required(name)}
-                            onChange={onChange}
-                            options={
-                              _provinceSelected?.districts.map((dist) => ({
-                                value: dist.name,
-                                label: dist.name,
-                              })) ||
-                              districtsByLimaProvince.map((dist) => ({
-                                value: dist.name,
-                                label: dist.name,
-                              }))
-                            }
-                          />
-                        )}
-                      />
-                    </div>
-                    <div className="sm:col-span-4">
-                      <Controller
-                        name="address"
-                        control={control}
-                        render={({ field: { onChange, value, name } }) => (
-                          <Input
-                            label="Dirección completa"
-                            placeholder="Av. Larco 1234, Of. 501"
-                            name={name}
-                            value={value}
-                            error={error(name)}
-                            helperText={errorMessage(name)}
-                            required={required(name)}
-                            onChange={onChange}
-                          />
-                        )}
-                      />
-                    </div>
-                  </div>
                 )}
                 <div className="sm:col-span-2 mt-4">
                   <Controller

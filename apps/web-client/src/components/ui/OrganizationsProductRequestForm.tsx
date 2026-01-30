@@ -34,14 +34,8 @@ export type OrganizationProductStep2 = {
 
 // Step 3: Delivery/Visit Information
 export type OrganizationProductStep3 = {
-  service_details?: {
-    attendance_type: AttendanceType;
-  };
-  visit_schedule?: {
-    preferred_date?: string;
-    preferred_time?: string;
-  };
-  address?: AddressInfo;
+  delivery?: DeliveryInfo;
+  quote_only?: boolean;
   terms_and_conditions: boolean;
 };
 
