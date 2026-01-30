@@ -4,18 +4,18 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import {
+  ArrowRight,
+  Briefcase,
   Building2,
-  User,
   CheckCircle,
   Clock,
-  ShieldCheck,
-  Wrench,
-  Users,
-  Briefcase,
-  ArrowRight,
-  Phone,
   Mail,
   MapPin,
+  Phone,
+  ShieldCheck,
+  User,
+  Users,
+  Wrench,
 } from "lucide-react";
 
 export default function TechnicalServicePage() {
@@ -225,30 +225,6 @@ export default function TechnicalServicePage() {
           <div className="absolute inset-0 bg-[url('/images/proyectores-reparaciones.webp')] bg-cover bg-center" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-[#102239]/80 to-transparent" />
-
-        {/* Breadcrumb */}
-        <div className="container mx-auto px-4 relative z-10 mb-6">
-          <nav className="flex" aria-label="Breadcrumb">
-            <ol className="inline-flex items-center space-x-1 md:space-x-3">
-              <li className="inline-flex items-center">
-                <Link
-                  href="/"
-                  className="inline-flex items-center text-sm font-medium text-white/80 hover:text-white"
-                >
-                  Inicio
-                </Link>
-              </li>
-              <li>
-                <div className="flex items-center">
-                  <span className="mx-2 text-white/60">/</span>
-                  <span className="text-sm font-medium text-white">
-                    Servicio Técnico
-                  </span>
-                </div>
-              </li>
-            </ol>
-          </nav>
-        </div>
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
