@@ -125,7 +125,7 @@ export default function ProductsOrganizationPage() {
           <div className="relative z-10 h-auto px-[2em] pt-[3em] 2xl:pt-[5em] flex flex-col justify-center items-center text-center">
             <div className="max-w-4xl mx-auto mb-8">
               <h1 className="text-3xl md:text-[2.5em] font-bold text-white mb-4 leading-tight">
-                Solicita Productos para tu Organización
+                Solicita o Cotiza Productos para tu Organización
               </h1>
               <p className="text-lg md:text-xl text-blue-100 mb-6 max-w-3xl mx-auto">
                 Cotiza proyectores, accesorios y equipos audiovisuales para tu
@@ -181,7 +181,7 @@ export default function ProductsOrganizationPage() {
             <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
               <div className="relative h-64">
                 <Image
-                  src="/images/foto-proyectores.jpeg"
+                  src="/images/proyector-coorporativo.png"
                   alt="Proyectores para empresas"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -257,7 +257,7 @@ export default function ProductsOrganizationPage() {
             <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100">
               <div className="relative h-48">
                 <Image
-                  src="/images/foto-proyectores.jpeg"
+                  src="/images/proyector-tiro-corto.jpg"
                   alt="Proyectores profesionales"
                   fill
                   className="object-cover"
@@ -280,10 +280,10 @@ export default function ProductsOrganizationPage() {
             <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100">
               <div className="relative h-48">
                 <Image
-                  src="/images/servicios/ecran.webp"
+                  src="/images/servicios/ecran.png"
                   alt="Ecrans de proyección"
                   fill
-                  className="object-cover"
+                  className="object-cover position-top"
                 />
               </div>
               <div className="p-6">
