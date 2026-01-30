@@ -15,34 +15,27 @@ const STORAGE_KEYS = {
   formData: "organization_formData",
 };
 
-export type OrganizationRepairStep1 = Pick<
-  LeadForIubizon,
-  "service_type" | "quantity" | "product_name" | "description_more_details"
->;
+export type OrganizationRepairStep1 = {
+  products?: ProductItem[];
+  description_more_details?: string;
+};
 
-export type OrganizationRepairStep2 = Pick<
-  LeadForIubizon,
-  | "document_type"
-  | "document_number"
-  | "full_name_or_social_reason"
-  | "first_name"
-  | "last_name"
-  | "email"
-  | "phone_prefix"
-  | "phone_number"
->;
+export type OrganizationRepairStep2 = {
+  contact: ContactInfo;
+  document?: DocumentInfo;
+  client_type: "individual" | "organization";
+  organization_info?: {
+    company_name?: string;
+    tax_id?: string;
+  };
+};
 
-export type OrganizationRepairStep3 = Pick<
-  LeadForIubizon,
-  | "attendance_type"
-  | "visit_date"
-  | "visit_time"
-  | "department"
-  | "province"
-  | "district"
-  | "address"
-  | "terms_and_conditions"
->;
+export type OrganizationRepairStep3 = {
+  service_details?: ServiceDetails;
+  visit_schedule?: VisitSchedule;
+  address?: AddressInfo;
+  terms_and_conditions: boolean;
+};
 
 export const OrganizationsTechnicalServiceForm = () => {
   const [globalStep, setGlobalStep] = useState(0);

@@ -16,7 +16,7 @@ export async function sendProductRequestEmail(
       first_name: data.contact.first_name,
       last_name: data.contact.last_name,
       full_name: data.contact.full_name,
-      full_name_or_social_reason: data.contact.full_name_or_social_reason,
+      social_reason: data.contact.social_reason,
       email: data.contact.email,
       phone: {
         prefix: data.contact.phone.prefix,

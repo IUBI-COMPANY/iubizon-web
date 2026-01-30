@@ -78,7 +78,7 @@ interface ContactInfo {
   first_name: string;
   last_name: string;
   full_name?: string; // Computed field: first_name + last_name
-  full_name_or_social_reason?: string; // Para organizaciones (razón social)
+  social_reason?: string; // Para organizaciones (razón social)
   email: string;
   phone: {
     prefix: string; // Ej: "+51"

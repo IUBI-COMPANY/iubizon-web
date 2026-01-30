@@ -159,8 +159,7 @@ export const OrganizationContactInfo = ({
         company_name: formData.company_name,
         tax_id: formData.document_number,
       };
-      completeFormData.contact.full_name_or_social_reason =
-        formData.company_name;
+      completeFormData.contact.social_reason = formData.company_name;
     } else {
       completeFormData.contact.full_name =
         `${formData.first_name} ${formData.last_name}`.trim();

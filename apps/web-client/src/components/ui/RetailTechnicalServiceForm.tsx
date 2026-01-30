@@ -15,27 +15,23 @@ const STORAGE_KEYS = {
   formData: "retail_formData",
 };
 
-export type RepairStep1 = Pick<
-  LeadForIubizon,
-  "service_type" | "quantity" | "product_name" | "description_more_details"
->;
+export type RepairStep1 = {
+  products?: ProductItem[];
+  description_more_details?: string;
+};
 
-export type RepairStep2 = Pick<
-  LeadForIubizon,
-  "first_name" | "last_name" | "email" | "phone_prefix" | "phone_number"
->;
+export type RepairStep2 = {
+  contact: ContactInfo;
+  document?: DocumentInfo;
+  client_type: "individual";
+};
 
-export type RepairStep3 = Pick<
-  LeadForIubizon,
-  | "attendance_type"
-  | "visit_date"
-  | "visit_time"
-  | "department"
-  | "province"
-  | "district"
-  | "address"
-  | "terms_and_conditions"
->;
+export type RepairStep3 = {
+  service_details?: ServiceDetails;
+  visit_schedule?: VisitSchedule;
+  address?: AddressInfo;
+  terms_and_conditions: boolean;
+};
 
 export const RetailTechnicalServiceForm = () => {
   const [globalStep, setGlobalStep] = useState(0);

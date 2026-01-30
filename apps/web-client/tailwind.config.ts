@@ -21,12 +21,18 @@ const config: Config = {
           "0%": { opacity: "1", transform: "translateY(0) scale(1)" },
           "100%": { opacity: "0", transform: "translateY(-10px) scale(0.95)" },
         },
+        shake: {
+          "0%, 100%": { transform: "translateX(0)" },
+          "10%, 30%, 50%, 70%, 90%": { transform: "translateX(-5px)" },
+          "20%, 40%, 60%, 80%": { transform: "translateX(5px)" },
+        },
       },
       animation: {
         scalePulse: "scalePulse 1.5s ease-in-out infinite",
         float: "float 3s ease-in-out infinite",
         "fade-in": "fade-in 0.3s ease-out forwards",
         "fade-out": "fade-out 0.3s ease-in forwards",
+        shake: "shake 0.5s ease-in-out",
       },
       animationDelay: {
         "100": "0.1s",

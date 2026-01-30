@@ -3,31 +3,81 @@
 export async function sendTechnicalServiceEmail(
   formTechnicalService: LeadForIubizon,
 ): Promise<void> {
-  const mapTechnicalServiceData = (formTechnicalService: LeadForIubizon) => ({
+  const mapTechnicalServiceData = (data: LeadForIubizon) => ({
+    // Core Fields
     client_id: "gYn8QUB8g35wEAZcZz7D",
-    client_type: "individual",
-    lead_type: "technical_service",
-    full_name:
-      `${formTechnicalService?.first_name || ""} ${formTechnicalService?.last_name || ""}`.trim(),
-    first_name: formTechnicalService?.first_name,
-    last_name: formTechnicalService?.last_name,
-    email: formTechnicalService.email,
-    phone_prefix: formTechnicalService?.phone_prefix,
-    phone_number: formTechnicalService?.phone_number,
-    product_name: formTechnicalService?.product_name,
-    service_type: formTechnicalService?.service_type,
-    description_more_details: formTechnicalService?.description_more_details,
-    attendance_type: formTechnicalService?.attendance_type,
-    visit_date: formTechnicalService?.visit_date,
-    visit_time: formTechnicalService?.visit_time,
-    department: formTechnicalService?.department,
-    province: formTechnicalService?.province,
-    district: formTechnicalService?.district,
-    address: formTechnicalService?.address,
-    status: "new_lead",
-    terms_and_conditions: formTechnicalService?.terms_and_conditions,
-    archived: false,
-    createdBy: "user",
+    lead_type: data.lead_type,
+    client_type: data.client_type,
+    status: data.status,
+    archived: data.archived,
+
+    // Contact Information
+    contact: {
+      first_name: data.contact.first_name,
+      last_name: data.contact.last_name,
+      full_name: data.contact.full_name,
+      email: data.contact.email,
+      phone: {
+        prefix: data.contact.phone.prefix,
+        number: data.contact.phone.number,
+      },
+    },
+
+    // Document Information
+    document: data.document
+      ? {
+          type: data.document.type,
+          number: data.document.number,
+        }
+      : undefined,
+
+    // Products (equipment) - ya incluye service_type
+    products: data.products?.map((product) => ({
+      id: product.id,
+      quantity: product.quantity,
+      brand: product.brand,
+      model: product.model,
+      type: product.type,
+      service_type: product.service_type,
+    })),
+
+    // Service Details
+    service_details: data.service_details
+      ? {
+          service_type: data.service_details.service_type,
+          description: data.service_details.description,
+        }
+      : undefined,
+
+    description_more_details: data.description_more_details,
+
+    // Visit Schedule
+    visit_schedule: data.visit_schedule
+      ? {
+          preferred_date: data.visit_schedule.preferred_date,
+          preferred_time: data.visit_schedule.preferred_time,
+        }
+      : undefined,
+
+    // Address
+    address: data.address
+      ? {
+          street: data.address.street,
+          department: data.address.department,
+          province: data.address.province,
+          district: data.address.district,
+        }
+      : undefined,
+
+    // Communication
+    hostname: data.hostname,
+    terms_and_conditions: data.terms_and_conditions,
+
+    // Tracking
+    tracking: {
+      source: data.tracking.source,
+      landing_page: data.tracking.landing_page,
+    },
   });
 
   try {

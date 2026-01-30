@@ -1,7 +1,6 @@
 import React from "react";
 import * as yup from "yup";
-import { ObjectSchema } from "yup";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useForm, Resolver } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useFormUtils } from "@/hooks/useFormUtils";
 import { Form } from "@/components/ui/Form";
@@ -24,11 +23,21 @@ import {
   isValidVisitTime,
 } from "@/utils/validateDatetimeToSupportInformation";
 
-//Define Properties
+interface FormData {
+  attendance_type: string;
+  visit_date?: string;
+  visit_time?: string;
+  department?: string;
+  province?: string;
+  district?: string;
+  address?: string;
+  terms_and_conditions: boolean;
+}
+
 interface Props {
   globalStep: number;
-  repairsFormData: Partial<LeadForIubizon>;
-  setRepairsFormData: (data: Partial<LeadForIubizon>) => void;
+  repairsFormData: Partial<RepairStep3>;
+  setRepairsFormData: (data: Partial<RepairStep3>) => void;
   addLocalStorageData: (data: object) => void;
   setCurrentStepToLocalStorage: (step: number) => void;
   loading: boolean;
@@ -47,7 +56,7 @@ export const SupportInformation = ({
   const { showNotification, NotificationComponent } = useNotification();
 
   const schema = yup.object({
-    attendance_type: yup.string().required(),
+    attendance_type: yup.string().required("Debes seleccionar una opción"),
     visit_date: yup.string().when("attendance_type", {
       is: "home_visit",
       then: (schema) =>
@@ -91,44 +100,55 @@ export const SupportInformation = ({
     district: yup.string().when("attendance_type", {
       is: (value: string) =>
         value === "home_visit" || value === "send_to_store",
-      then: (schema) => schema.required(),
+      then: (schema) => schema.required("El distrito es requerido"),
       otherwise: (schema) => schema.notRequired(),
     }),
     address: yup.string().when("attendance_type", {
       is: (value: string) =>
         value === "home_visit" || value === "send_to_store",
-      then: (schema) => schema.required(),
+      then: (schema) => schema.required("La dirección es requerida"),
       otherwise: (schema) => schema.notRequired(),
     }),
     department: yup.string().when("attendance_type", {
       is: "send_to_store",
-      then: (schema) => schema.required(),
+      then: (schema) => schema.required("El departamento es requerido"),
       otherwise: (schema) => schema.notRequired(),
     }),
     province: yup.string().when("attendance_type", {
       is: "send_to_store",
-      then: (schema) => schema.required(),
+      then: (schema) => schema.required("La provincia es requerida"),
       otherwise: (schema) => schema.notRequired(),
     }),
-    terms_and_conditions: yup.boolean().required(),
-  }) as ObjectSchema<RepairStep3>;
+    terms_and_conditions: yup
+      .boolean()
+      .oneOf([true], "Debes aceptar los términos y condiciones")
+      .required(),
+  });
+
+  const getInitialValues = () => {
+    const storedData = localStorage.getItem("retail_formData");
+    const parsedData = storedData ? JSON.parse(storedData) : {};
+
+    return {
+      attendance_type: (parsedData.attendance_type as string) || "go_to_store",
+      visit_date: repairsFormData?.visit_schedule?.preferred_date || "",
+      visit_time: repairsFormData?.visit_schedule?.preferred_time || "",
+      department: repairsFormData?.address?.department || "",
+      province: repairsFormData?.address?.province || "",
+      district: repairsFormData?.address?.district || "",
+      address: repairsFormData?.address?.street || "",
+      terms_and_conditions: repairsFormData?.terms_and_conditions || false,
+    };
+  };
 
   const {
     handleSubmit,
     control,
     formState: { errors },
     watch,
-  } = useForm<RepairStep3>({
-    resolver: yupResolver(schema),
-    defaultValues: {
-      attendance_type: repairsFormData?.attendance_type || "go_to_store",
-      visit_date: repairsFormData?.visit_date || "",
-      visit_time: repairsFormData?.visit_time || "",
-      department: repairsFormData?.department || "",
-      province: repairsFormData?.province || "",
-      district: repairsFormData?.district || "",
-      address: repairsFormData?.address || "",
-    },
+  } = useForm<FormData>({
+    resolver: yupResolver(schema) as Resolver<FormData>,
+    defaultValues: getInitialValues(),
   });
 
   const { required, error, errorMessage } = useFormUtils({ errors, schema });
@@ -148,17 +168,100 @@ export const SupportInformation = ({
 
   const districtsByLimaProvince = peruUbigeo[13].provinces[0].districts;
 
-  const onSubmit = async (formData: RepairStep3) => {
+  const onSubmit = async (formData: FormData) => {
     setLoading(true);
-    setRepairsFormData({ ...repairsFormData, ...formData });
-    addLocalStorageData(formData);
 
-    const data: LeadForIubizon = JSON.parse(
-      localStorage.getItem("retail_formData") || "{}",
-    );
+    // Transformar FormData a RepairStep3
+    const completeFormData: RepairStep3 = {
+      service_details: {
+        // ServiceDetails no incluye attendance_type
+      },
+      visit_schedule:
+        formData.attendance_type === "home_visit" &&
+        formData.visit_date &&
+        formData.visit_time
+          ? {
+              preferred_date: formData.visit_date,
+              preferred_time: formData.visit_time,
+            }
+          : undefined,
+      address:
+        (formData.attendance_type === "home_visit" ||
+          formData.attendance_type === "send_to_store") &&
+        formData.address
+          ? {
+              street: formData.address,
+              department: formData.department,
+              province: formData.province,
+              district: formData.district,
+            }
+          : undefined,
+      terms_and_conditions: formData.terms_and_conditions,
+    };
+
+    setRepairsFormData({ ...repairsFormData, ...completeFormData });
+    addLocalStorageData({
+      ...completeFormData,
+      attendance_type: formData.attendance_type,
+    });
+
+    // Obtener todos los datos del localStorage
+    let fullData: Record<string, unknown>;
+    try {
+      const storedData = localStorage.getItem("retail_formData");
+      fullData = storedData ? JSON.parse(storedData) : {};
+      fullData = {
+        ...fullData,
+        ...completeFormData,
+        attendance_type: formData.attendance_type,
+      };
+    } catch (error) {
+      console.error("Error parsing stored data: ", error);
+      fullData = {
+        ...repairsFormData,
+        ...completeFormData,
+        attendance_type: formData.attendance_type,
+      };
+    }
+
+    // Construir LeadForIubizon completo
+    const leadData: Partial<LeadForIubizon> = {
+      // Core Fields
+      client_id: "gYn8QUB8g35wEAZcZz7D",
+      lead_type: "technical_service",
+      client_type: "individual",
+      status: "new",
+      archived: false,
+
+      // Contact Information
+      contact: fullData.contact as ContactInfo,
+      document: fullData.document as DocumentInfo | undefined,
+
+      // Products (equipment) - ya incluye service_type
+      products: fullData.products as ProductItem[],
+      description_more_details: fullData.description_more_details as
+        | string
+        | undefined,
+
+      // Service Details
+      service_details: completeFormData.service_details,
+      visit_schedule: completeFormData.visit_schedule,
+      address: completeFormData.address,
+
+      // Communication
+      terms_and_conditions: completeFormData.terms_and_conditions,
+      hostname: window.location.hostname,
+
+      // Tracking
+      tracking: {
+        source: "website",
+        landing_page: window.location.href,
+      },
+    };
 
     try {
-      await sendTechnicalServiceEmail(data);
+      console.log("Sending lead data: ", leadData);
+      await sendTechnicalServiceEmail(leadData as LeadForIubizon);
       setLoading(false);
       setTimeout(() => {
         setCurrentStepToLocalStorage(globalStep + 1);

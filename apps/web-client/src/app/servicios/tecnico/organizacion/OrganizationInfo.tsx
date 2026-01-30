@@ -5,8 +5,7 @@ import * as yup from "yup";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
 import { Form } from "@/components/ui/Form";
-import { ObjectSchema } from "yup";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useForm, Resolver } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useFormUtils } from "@/hooks/useFormUtils";
 import countriesISO from "@/data-list/countriesISO.json";
@@ -14,10 +13,21 @@ import { Button } from "@/components/ui/Button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { OrganizationRepairStep2 } from "@/components/ui/OrganizationsTechnicalServiceForm";
 
+interface FormData {
+  document_type: string;
+  document_number: string;
+  company_name?: string;
+  first_name?: string;
+  last_name?: string;
+  email: string;
+  phone_prefix: string;
+  phone_number: string;
+}
+
 interface Props {
   globalStep: number;
-  repairsFormData: Partial<LeadForIubizon>;
-  setRepairsFormData: (data: Partial<LeadForIubizon>) => void;
+  repairsFormData: Partial<OrganizationRepairStep2>;
+  setRepairsFormData: (data: Partial<OrganizationRepairStep2>) => void;
   addLocalStorageData: (data: object) => void;
   setCurrentStepToLocalStorage: (step: number) => void;
   current?: number;
@@ -47,20 +57,20 @@ export const OrganizationInfo = ({
         }
         return true;
       }),
-    full_name_or_social_reason: yup.string().when("document_type", {
+    company_name: yup.string().when("document_type", {
       is: "RUC",
-      then: (schema) => schema.required(),
+      then: (schema) => schema.required("La razón social es requerida"),
       otherwise: (schema) => schema.notRequired(),
     }),
     first_name: yup.string().when("document_type", {
       is: "RUC",
       then: (schema) => schema.notRequired(),
-      otherwise: (schema) => schema.required(),
+      otherwise: (schema) => schema.required("El nombre es requerido"),
     }),
     last_name: yup.string().when("document_type", {
       is: "RUC",
       then: (schema) => schema.notRequired(),
-      otherwise: (schema) => schema.required(),
+      otherwise: (schema) => schema.required("El apellido es requerido"),
     }),
     email: yup.string().email().required(),
     phone_prefix: yup.string().required(),
@@ -71,7 +81,7 @@ export const OrganizationInfo = ({
         const { phone_prefix } = this.parent;
         return regexPhoneByCountries(phone_prefix).test(value);
       }),
-  }) as ObjectSchema<OrganizationRepairStep2>;
+  });
 
   const {
     handleSubmit,
@@ -79,18 +89,17 @@ export const OrganizationInfo = ({
     formState: { errors },
     watch,
     setValue,
-  } = useForm<OrganizationRepairStep2>({
-    resolver: yupResolver(schema),
+  } = useForm<FormData>({
+    resolver: yupResolver(schema) as Resolver<FormData>,
     defaultValues: {
-      document_type: repairsFormData?.document_type || undefined,
-      document_number: repairsFormData?.document_number || "",
-      full_name_or_social_reason:
-        repairsFormData?.full_name_or_social_reason || "",
-      first_name: repairsFormData?.first_name || "",
-      last_name: repairsFormData?.last_name || "",
-      email: repairsFormData?.email || "",
-      phone_prefix: "+51",
-      phone_number: repairsFormData?.phone_number || undefined,
+      document_type: repairsFormData?.document?.type || undefined,
+      document_number: repairsFormData?.document?.number || "",
+      company_name: repairsFormData?.organization_info?.company_name || "",
+      first_name: repairsFormData?.contact?.first_name || "",
+      last_name: repairsFormData?.contact?.last_name || "",
+      email: repairsFormData?.contact?.email || "",
+      phone_prefix: repairsFormData?.contact?.phone?.prefix || "+51",
+      phone_number: repairsFormData?.contact?.phone?.number || "",
     },
   });
 
@@ -100,26 +109,20 @@ export const OrganizationInfo = ({
 
   // Limpiar campos cuando cambia el tipo de documento
   useEffect(() => {
-    // Solo limpiar si hay un cambio real (no en el primer render)
     if (previousDocType.current && previousDocType.current !== docType) {
-      // Siempre limpiar el número de documento al cambiar de tipo
       setValue("document_number", "");
 
       if (docType === "RUC") {
-        // Si cambia a RUC, limpiar campos de DNI
         setValue("first_name", "");
         setValue("last_name", "");
       } else if (docType === "DNI") {
-        // Si cambia a DNI, limpiar razón social
-        setValue("full_name_or_social_reason", "");
+        setValue("company_name", "");
       } else {
-        // Para otros tipos de documento (CE, PASSPORT, OTHER), limpiar todos
         setValue("first_name", "");
         setValue("last_name", "");
-        setValue("full_name_or_social_reason", "");
+        setValue("company_name", "");
       }
     }
-    // Actualizar el ref con el valor actual
     previousDocType.current = docType;
   }, [docType, setValue]);
 
@@ -133,15 +136,39 @@ export const OrganizationInfo = ({
     return new RegExp(regex);
   };
 
-  const onSubmit = (formData: OrganizationRepairStep2) => {
-    // Si no es RUC, concatenar first_name y last_name en full_name_or_social_reason
-    if (formData.document_type !== "RUC") {
-      formData.full_name_or_social_reason =
+  const onSubmit = (formData: FormData) => {
+    const completeFormData: OrganizationRepairStep2 = {
+      contact: {
+        first_name: formData.first_name || "",
+        last_name: formData.last_name || "",
+        email: formData.email,
+        phone: {
+          prefix: formData.phone_prefix,
+          number: formData.phone_number,
+        },
+      },
+      document: {
+        type: formData.document_type as DocumentInfo["type"],
+        number: formData.document_number,
+      },
+      client_type:
+        formData.document_type === "RUC" ? "organization" : "individual",
+    };
+
+    // Si es RUC, agregar información de organización
+    if (formData.document_type === "RUC") {
+      completeFormData.organization_info = {
+        company_name: formData.company_name,
+        tax_id: formData.document_number,
+      };
+      completeFormData.contact.social_reason = formData.company_name;
+    } else {
+      completeFormData.contact.full_name =
         `${formData.first_name} ${formData.last_name}`.trim();
     }
 
-    setRepairsFormData({ ...repairsFormData, ...formData });
-    addLocalStorageData(formData);
+    setRepairsFormData({ ...repairsFormData, ...completeFormData });
+    addLocalStorageData(completeFormData);
     setCurrentStepToLocalStorage(globalStep + 1);
   };
 
@@ -206,7 +233,7 @@ export const OrganizationInfo = ({
               {isRuc ? (
                 <div className="sm:col-span-4">
                   <Controller
-                    name="full_name_or_social_reason"
+                    name="company_name"
                     control={control}
                     render={({ field: { onChange, value, name } }) => (
                       <Input
