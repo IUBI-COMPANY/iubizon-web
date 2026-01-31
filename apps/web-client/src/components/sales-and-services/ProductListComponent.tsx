@@ -16,7 +16,7 @@ interface Props {
   hideServiceTypeField?: boolean; // NUEVO: para ocultar el campo
 }
 
-export interface TechnicalServiceProductListRef {
+export interface ProductListComponentRef {
   validate: () => boolean;
 }
 
@@ -158,10 +158,7 @@ const ProductItem = ({
   );
 };
 
-export const TechnicalServiceProductList = forwardRef<
-  TechnicalServiceProductListRef,
-  Props
->(
+export const ProductListComponent = forwardRef<ProductListComponentRef, Props>(
   (
     {
       products,
@@ -338,4 +335,4 @@ export const TechnicalServiceProductList = forwardRef<
   },
 );
 
-TechnicalServiceProductList.displayName = "TechnicalServiceProductList";
+ProductListComponent.displayName = "ProductListComponent";

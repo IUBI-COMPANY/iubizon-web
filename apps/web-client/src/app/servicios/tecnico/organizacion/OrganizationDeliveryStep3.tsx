@@ -16,7 +16,7 @@ import { Checkbox } from "@/components/ui/Checkbox";
 import { sendTechnicalServiceEmail } from "./actions";
 import { ArrowLeft, SendIcon } from "lucide-react";
 import { BusinessAddress } from "@/components/ui/BusinessAddress";
-import { OrganizationRepairStep3 } from "@/components/ui/OrganizationsTechnicalServiceForm";
+import { OrganizationRepairStep3 } from "@/app/servicios/tecnico/organizacion/OrganizationsTechnicalServiceStepsGroup";
 import { useNotification } from "@/components/ui/Notification";
 import {
   isValidVisitDate,
@@ -44,7 +44,7 @@ interface Props {
   setLoading: (loading: boolean) => void;
 }
 
-export const OrganizationSupportInformation = ({
+export const OrganizationDeliveryStep3 = ({
   globalStep,
   repairsFormData,
   setRepairsFormData,

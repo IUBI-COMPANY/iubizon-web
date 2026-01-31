@@ -6,18 +6,13 @@ import { CircleCheck, Loader2, Projector, User, Wrench } from "lucide-react";
 import Image from "next/image";
 import Confetti from "react-confetti";
 import { useRouter } from "next/navigation";
-import { OrganizationDeviceInformation } from "@/app/servicios/tecnico/organizacion/OrganizationDeviceInformation";
-import { OrganizationInfo } from "@/app/servicios/tecnico/organizacion/OrganizationInfo";
-import { OrganizationSupportInformation } from "@/app/servicios/tecnico/organizacion/OrganizationSupportInformation";
+import { DeviceInformationStep1 } from "@/app/servicios/tecnico/organizacion/DeviceInformationStep1";
+import { OrganizationInfoStep2 } from "@/app/servicios/tecnico/organizacion/OrganizationInfoStep2";
+import { OrganizationDeliveryStep3 } from "@/app/servicios/tecnico/organizacion/OrganizationDeliveryStep3";
 
 const STORAGE_KEYS = {
   currentStep: "organization_currentStep",
   formData: "organization_formData",
-};
-
-export type OrganizationRepairStep1 = {
-  products?: ProductItem[];
-  description_more_details?: string;
 };
 
 export type OrganizationRepairStep2 = {
@@ -37,8 +32,8 @@ export type OrganizationRepairStep3 = {
   terms_and_conditions: boolean;
 };
 
-export const OrganizationsTechnicalServiceForm = () => {
-  const [globalStep, setGlobalStep] = useState(0);
+export const OrganizationsTechnicalServiceStepsGroup = () => {
+  const [globalStep, setGlobalStep] = useState<number>(0);
   const [repairsFormData, setRepairsFormData] = useState<
     Partial<LeadForIubizon>
   >({});
@@ -55,7 +50,6 @@ export const OrganizationsTechnicalServiceForm = () => {
     if (stepsData !== null) {
       setCurrentStepToLocalStorage(stepsData);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -64,7 +58,6 @@ export const OrganizationsTechnicalServiceForm = () => {
     );
     setRepairsFormData(data);
     setLoading(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globalStep]);
 
   const addLocalStorageData = (data: object) => {
@@ -132,8 +125,13 @@ export const OrganizationsTechnicalServiceForm = () => {
 
       return () => clearInterval(timer);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globalStep, router]);
+
+  const normalizeProducts = (products: ProductItem[] = []) =>
+    products.map((p) => ({
+      ...p,
+      service_type: p.service_type ?? "maintenance", // Valor por defecto
+    }));
 
   return loading ? (
     <div className="w-full h-full min-h-[40svh] grid place-items-center">
@@ -148,16 +146,19 @@ export const OrganizationsTechnicalServiceForm = () => {
       />
       <div className="w-full max-w-2xl mx-auto shadow-lg  py-10 px-6 rounded-2xl bg-white border-2 border-solid border-primary">
         {globalStep === 0 && (
-          <OrganizationDeviceInformation
+          <DeviceInformationStep1
             globalStep={globalStep}
-            repairsFormData={repairsFormData}
+            repairsFormData={{
+              ...repairsFormData,
+              products: normalizeProducts(repairsFormData.products),
+            }}
             setRepairsFormData={setRepairsFormData}
             addLocalStorageData={addLocalStorageData}
             setCurrentStepToLocalStorage={setCurrentStepToLocalStorage}
           />
         )}
         {globalStep === 1 && (
-          <OrganizationInfo
+          <OrganizationInfoStep2
             globalStep={globalStep}
             repairsFormData={repairsFormData}
             setRepairsFormData={setRepairsFormData}
@@ -166,7 +167,7 @@ export const OrganizationsTechnicalServiceForm = () => {
           />
         )}
         {globalStep === 2 && (
-          <OrganizationSupportInformation
+          <OrganizationDeliveryStep3
             loading={submitting}
             setLoading={setSubmitting}
             globalStep={globalStep}

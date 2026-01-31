@@ -2,11 +2,11 @@ import { Form } from "@/components/ui/Form";
 import * as yup from "yup";
 import { Controller, Resolver, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { ArrowRight } from "lucide-react";
 import { TextArea } from "@/components/ui/TextArea";
-import { TechnicalServiceProductList } from "@/components/ui/TechnicalServiceProductList";
+import { ProductListComponent } from "@/components/sales-and-services/ProductListComponent";
 import { useNotification } from "@/components/ui/Notification";
 
 interface TechnicalServiceProduct {
@@ -36,7 +36,7 @@ interface Props {
   setCurrentStepToLocalStorage: (step: number) => void;
 }
 
-export const OrganizationDeviceInformation = ({
+export const DeviceInformationStep1 = ({
   globalStep,
   repairsFormData,
   setRepairsFormData,
@@ -114,13 +114,11 @@ export const OrganizationDeviceInformation = ({
     },
   });
 
-  // Actualizar el form cuando cambian los productos
-  React.useEffect(() => {
+  useEffect(() => {
     setValue("products", products);
   }, [products, setValue]);
 
   const onSubmit = async (formData: FormData) => {
-    // Validar productos (marca, modelo, cantidad)
     const hasEmptyProduct = products.some(
       (p) => !p.brand.trim() || !p.model.trim() || p.quantity < 1,
     );
@@ -159,9 +157,9 @@ export const OrganizationDeviceInformation = ({
         </div>
         <div className="mt-5">
           <Form onSubmit={handleSubmit(onSubmit)}>
-            <div className="grid gap-6 mx-auto">
+            <div className="grid gap-6 mx-auto max-w-xl">
               <div className="grid grid-cols-1 gap-x-8 gap-y-6">
-                <TechnicalServiceProductList
+                <ProductListComponent
                   products={products}
                   onChange={(prods: TechnicalServiceProduct[]) =>
                     setProducts(prods)
@@ -187,7 +185,6 @@ export const OrganizationDeviceInformation = ({
                   />
                 </div>
               </div>
-
               <div className="mt-2 grid grid-cols-1 gap-3">
                 <Button block variant="primary" type="submit">
                   <div className="flex gap-2 items-center justify-center">

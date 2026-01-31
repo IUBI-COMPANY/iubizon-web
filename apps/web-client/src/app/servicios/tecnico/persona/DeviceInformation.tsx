@@ -7,9 +7,9 @@ import { Button } from "@/components/ui/Button";
 import { ArrowRight } from "lucide-react";
 import { TextArea } from "@/components/ui/TextArea";
 import {
-  TechnicalServiceProductList,
+  ProductListComponent,
   TechnicalServiceProductListRef,
-} from "@/components/ui/TechnicalServiceProductList";
+} from "@/components/sales-and-services/ProductListComponent";
 
 interface TechnicalServiceProduct {
   id: string;
@@ -154,7 +154,7 @@ export const DeviceInformation = ({
           <div className="grid gap-6 mx-auto max-w-4xl">
             <div className="grid grid-cols-1 gap-x-8 gap-y-6">
               {/* Lista de Productos */}
-              <TechnicalServiceProductList
+              <ProductListComponent
                 products={products}
                 onChange={(prods: TechnicalServiceProduct[]) =>
                   setProducts(prods)

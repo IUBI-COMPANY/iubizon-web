@@ -46,7 +46,6 @@ export async function sendTechnicalServiceEmail(
       quantity: product.quantity,
       brand: product.brand,
       model: product.model,
-      type: product.type,
       service_type: product.service_type,
     })),
 

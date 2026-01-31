@@ -10,7 +10,7 @@ import { OrganizationProductStep1 } from "@/components/ui/OrganizationsProductRe
 import { ArrowRight } from "lucide-react";
 import { TextArea } from "@/components/ui/TextArea";
 import { useNotification } from "@/components/ui/Notification";
-import { TechnicalServiceProductList } from "@/components/ui/TechnicalServiceProductList";
+import { ProductListComponent } from "@/components/sales-and-services/ProductListComponent";
 import { ServiceType, TechnicalServiceProduct } from "@/types/lead";
 
 interface Props {
@@ -112,7 +112,7 @@ export const OrganizationProductInfo = ({
       <div className="mt-5">
         <Form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gap-6 mx-auto max-w-xl">
-            <TechnicalServiceProductList
+            <ProductListComponent
               products={products}
               onChange={(prods: TechnicalServiceProduct[]) =>
                 setProducts(prods)

@@ -75,8 +75,8 @@ type LostReason =
 // ==================== INTERFACES AUXILIARES ====================
 
 interface ContactInfo {
-  first_name: string;
-  last_name: string;
+  first_name?: string;
+  last_name?: string;
   full_name?: string; // Computed field: first_name + last_name
   social_reason?: string; // Para organizaciones (razón social)
   email: string;
@@ -118,7 +118,6 @@ interface ProductItem {
   model: string;
   serial_number?: string;
   condition?: "new" | "reconditioned" | "used"; // Estado del producto
-  type: "sale" | "technical_service";
   service_type?: ServiceType;
   unit_price?: number;
   total_price?: number;

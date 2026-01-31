@@ -5,7 +5,7 @@ import { CheckCircle } from "lucide-react";
 import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
-import { OrganizationsTechnicalServiceForm } from "@/components/ui/OrganizationsTechnicalServiceForm";
+import { OrganizationsTechnicalServiceStepsGroup } from "@/app/servicios/tecnico/organizacion/OrganizationsTechnicalServiceStepsGroup";
 import FAQAccordion from "@/components/ui/layout/FAQAccordion";
 import AnimateCards from "@/components/ui/AnimateCards";
 import Brands from "@/components/ui/Brands";
@@ -46,9 +46,9 @@ const breadcrumbData = {
 
 export const metadata: Metadata = {
   title:
-    "Servicio Técnico de Proyectores | Mantenimiento y Reparación Especializada | iubizon",
+    "Servicio técnico de Proyectores para instituciones y empresas en Lima, Perú | iubizon",
   description:
-    "Servicio técnico profesional de proyectores en Lima. Mantenimiento preventivo, reparaciones especializadas y soporte técnico con garantía. Técnicos expertos en todas las marcas.",
+    "Servicio técnico de mantenimiento y reparación de proyectores en Lima y todo Perú a instituciones y/o empresas. Soluciones rápidas, repuestos originales y atención personalizada. Cotiza gratis. Trabajamos con escuelas, universidades, oficinas y más.",
   keywords: [
     "mantenimiento de proyectores para empresas",
     "mantenimiento de proyectores para colegios",
@@ -64,18 +64,6 @@ export const metadata: Metadata = {
     "proyectores Optoma",
     "soporte de proyectores",
     "repuestos de proyectores",
-    "servicio técnico proyectores",
-    "reparación proyectores Lima",
-    "mantenimiento proyectores",
-    "servicio técnico Epson",
-    "reparación proyectores empresas",
-    "mantenimiento preventivo proyectores",
-    "técnico proyectores domicilio",
-    "servicio proyectores educación",
-    "reparación lámparas proyector",
-    "calibración proyectores",
-    "limpieza filtros proyector",
-    "proyectores corporativos",
   ],
   authors: [{ name: "iubizon" }],
   creator: "iubizon",
@@ -203,7 +191,7 @@ export default function OrganizationsTechnicalServicePage() {
                 </p>
               </div>
             </div>
-            <OrganizationsTechnicalServiceForm />
+            <OrganizationsTechnicalServiceStepsGroup />
           </div>
         </section>
         <WorksGallery type="organization" />

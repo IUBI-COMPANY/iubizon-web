@@ -11,7 +11,7 @@ import { useFormUtils } from "@/hooks/useFormUtils";
 import countriesISO from "@/data-list/countriesISO.json";
 import { Button } from "@/components/ui/Button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { OrganizationRepairStep2 } from "@/components/ui/OrganizationsTechnicalServiceForm";
+import { OrganizationRepairStep2 } from "@/app/servicios/tecnico/organizacion/OrganizationsTechnicalServiceStepsGroup";
 
 interface FormData {
   document_type: string;
@@ -34,7 +34,7 @@ interface Props {
   hideControls?: boolean;
 }
 
-export const OrganizationInfo = ({
+export const OrganizationInfoStep2 = ({
   globalStep,
   repairsFormData,
   setRepairsFormData,
@@ -139,8 +139,12 @@ export const OrganizationInfo = ({
   const onSubmit = (formData: FormData) => {
     const completeFormData: OrganizationRepairStep2 = {
       contact: {
-        first_name: formData.first_name || "",
-        last_name: formData.last_name || "",
+        ...(formData.document_type === "DNI"
+          ? {
+              first_name: formData.first_name || "",
+              last_name: formData.last_name || "",
+            }
+          : { social_reason: formData.company_name }),
         email: formData.email,
         phone: {
           prefix: formData.phone_prefix,
