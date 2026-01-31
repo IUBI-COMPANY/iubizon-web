@@ -1,0 +1,20 @@
+// Tipos compartidos para productos y servicios
+export type ServiceType =
+  | "maintenance"
+  | "repair"
+  | "installation"
+  | "calibration"
+  | "cleaning"
+  | "diagnosis"
+  | "warranty"
+  | "training"
+  | "other";
+
+export interface TechnicalServiceProduct {
+  id: string;
+  quantity: number;
+  brand: string;
+  model: string;
+  service_type: ServiceType;
+  type?: "sale" | "technical_service";
+}

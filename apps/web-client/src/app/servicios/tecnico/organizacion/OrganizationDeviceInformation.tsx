@@ -1,17 +1,13 @@
 import { Form } from "@/components/ui/Form";
 import * as yup from "yup";
-import { Controller, useForm, Resolver } from "react-hook-form";
+import { Controller, Resolver, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useFormUtils } from "@/hooks/useFormUtils";
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/Button";
-import { OrganizationRepairStep1 } from "@/components/ui/OrganizationsTechnicalServiceForm";
 import { ArrowRight } from "lucide-react";
 import { TextArea } from "@/components/ui/TextArea";
-import {
-  TechnicalServiceProductList,
-  TechnicalServiceProductListRef,
-} from "@/components/ui/TechnicalServiceProductList";
+import { TechnicalServiceProductList } from "@/components/ui/TechnicalServiceProductList";
+import { useNotification } from "@/components/ui/Notification";
 
 interface TechnicalServiceProduct {
   id: string;
@@ -19,6 +15,12 @@ interface TechnicalServiceProduct {
   brand: string;
   model: string;
   service_type: ServiceType;
+}
+
+// Definir el tipo localmente
+interface OrganizationRepairStep1 {
+  products: TechnicalServiceProduct[];
+  description_more_details?: string;
 }
 
 interface FormData {
@@ -41,6 +43,8 @@ export const OrganizationDeviceInformation = ({
   addLocalStorageData,
   setCurrentStepToLocalStorage,
 }: Props) => {
+  const { showNotification, NotificationComponent } = useNotification();
+
   const schema = yup.object({
     products: yup
       .array()
@@ -77,7 +81,7 @@ export const OrganizationDeviceInformation = ({
   // Inicializar productos desde repairsFormData o crear uno por defecto
   const initialProducts: TechnicalServiceProduct[] =
     repairsFormData?.products && repairsFormData.products.length > 0
-      ? repairsFormData.products.map((p) => ({
+      ? repairsFormData.products.map((p: TechnicalServiceProduct) => ({
           id: p.id || crypto.randomUUID(),
           quantity: p.quantity || 1,
           brand: p.brand || "",
@@ -97,8 +101,6 @@ export const OrganizationDeviceInformation = ({
   const [products, setProducts] =
     useState<TechnicalServiceProduct[]>(initialProducts);
 
-  const productListRef = useRef<TechnicalServiceProductListRef>(null);
-
   const {
     handleSubmit,
     control,
@@ -112,32 +114,25 @@ export const OrganizationDeviceInformation = ({
     },
   });
 
-  const { error, errorMessage } = useFormUtils({ errors, schema });
-
   // Actualizar el form cuando cambian los productos
   React.useEffect(() => {
     setValue("products", products);
   }, [products, setValue]);
 
   const onSubmit = async (formData: FormData) => {
-    console.log("📝 [ORG] onSubmit llamado con formData:", formData);
-    console.log("🔗 [ORG] productListRef.current:", productListRef.current);
+    // Validar productos (marca, modelo, cantidad)
+    const hasEmptyProduct = products.some(
+      (p) => !p.brand.trim() || !p.model.trim() || p.quantity < 1,
+    );
 
-    // Validar productos primero
-    if (productListRef.current) {
-      console.log("✅ [ORG] Llamando a validate()");
-      const isValid = productListRef.current.validate();
-      console.log("📊 [ORG] Resultado de validación:", isValid);
-
-      if (!isValid) {
-        console.log("⛔ [ORG] Validación falló, no continuando");
-        return; // No continuar si hay campos vacíos
-      }
-    } else {
-      console.warn("⚠️ [ORG] productListRef.current es null");
+    if (hasEmptyProduct) {
+      showNotification(
+        "warning",
+        "Por favor completa la marca y modelo de todos los productos antes de continuar",
+        "Productos incompletos",
+      );
+      return;
     }
-
-    console.log("✅ [ORG] Validación pasó, continuando con el submit");
 
     const completeFormData: OrganizationRepairStep1 = {
       products: formData.products.map((p) => ({
@@ -157,89 +152,55 @@ export const OrganizationDeviceInformation = ({
   };
 
   return (
-    <div className="w-full">
-      <div className="text-2xl text-center text-secondary font-semibold">
-        Datos del equipo
-      </div>
-      <div className="mt-5">
-        <Form
-          onSubmit={(e) => {
-            e.preventDefault();
-            console.log("🎯 [ORG] Form submit interceptado");
-
-            // Validar productos primero
-            if (productListRef.current) {
-              const isValid = productListRef.current.validate();
-              console.log("📊 [ORG] Resultado de validación manual:", isValid);
-
-              if (!isValid) {
-                console.log("⛔ [ORG] Validación falló, deteniendo submit");
-                return;
-              }
-            }
-
-            console.log("✅ [ORG] Validación pasó, ejecutando handleSubmit");
-            handleSubmit(onSubmit)(e);
-          }}
-        >
-          <div className="grid gap-6 mx-auto max-w-4xl">
-            <div className="grid grid-cols-1 gap-x-8 gap-y-6">
-              {/* Lista de Productos */}
-              <div>
+    <>
+      <div className="w-full">
+        <div className="text-2xl text-center text-secondary font-semibold">
+          Datos del equipo
+        </div>
+        <div className="mt-5">
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            <div className="grid gap-6 mx-auto">
+              <div className="grid grid-cols-1 gap-x-8 gap-y-6">
                 <TechnicalServiceProductList
-                  ref={productListRef}
                   products={products}
-                  onChange={setProducts}
-                  errors={
-                    errors.products
-                      ? Object.fromEntries(
-                          Object.entries(errors).map(([key, value]) => [
-                            key,
-                            value?.message,
-                          ]),
-                        )
-                      : {}
+                  onChange={(prods: TechnicalServiceProduct[]) =>
+                    setProducts(prods)
                   }
+                  hideServiceTypeField={false}
                 />
-                {errors.products && (
-                  <p className="mt-1 text-sm text-red-600">
-                    {errors.products.message}
-                  </p>
-                )}
-              </div>
-
-              {/* Descripción adicional */}
-              <div>
-                <Controller
-                  name="description_more_details"
-                  control={control}
-                  render={({ field: { onChange, value, name } }) => (
-                    <TextArea
-                      label="Describa más detalles (Opcional)"
-                      name={name}
-                      value={(value as string) || ""}
-                      error={error(name)}
-                      helperText={errorMessage(name)}
-                      rows={3}
-                      onChange={onChange}
-                      placeholder="Describa más detalles sobre el servicio que necesita"
-                    />
-                  )}
-                />
-              </div>
-            </div>
-
-            <div className="mt-2 grid grid-cols-1 gap-3">
-              <Button block variant="primary" type="submit">
-                <div className="flex gap-2 items-center justify-center">
-                  Continuar
-                  <ArrowRight className="w-4 h-4" />
+                <div>
+                  <Controller
+                    name="description_more_details"
+                    control={control}
+                    render={({ field: { onChange, value, name } }) => (
+                      <TextArea
+                        label="Describa más detalles (Opcional)"
+                        name={name}
+                        value={(value as string) || ""}
+                        error={!!errors[name]?.message}
+                        helperText={errors[name]?.message}
+                        rows={3}
+                        onChange={onChange}
+                        placeholder="Describa más detalles sobre el servicio que necesita"
+                      />
+                    )}
+                  />
                 </div>
-              </Button>
+              </div>
+
+              <div className="mt-2 grid grid-cols-1 gap-3">
+                <Button block variant="primary" type="submit">
+                  <div className="flex gap-2 items-center justify-center">
+                    Continuar
+                    <ArrowRight className="w-4 h-4" />
+                  </div>
+                </Button>
+              </div>
             </div>
-          </div>
-        </Form>
+          </Form>
+        </div>
       </div>
-    </div>
+      {NotificationComponent}
+    </>
   );
 };

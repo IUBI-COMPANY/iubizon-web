@@ -1,11 +1,9 @@
 import { Form } from "@/components/ui/Form";
 import * as yup from "yup";
-import { Controller, useForm, Resolver } from "react-hook-form";
+import { Controller, Resolver, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useFormUtils } from "@/hooks/useFormUtils";
-import React, { useState, useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
-import { RepairStep1 } from "@/components/ui/RetailTechnicalServiceForm";
 import { ArrowRight } from "lucide-react";
 import { TextArea } from "@/components/ui/TextArea";
 import {
@@ -19,6 +17,12 @@ interface TechnicalServiceProduct {
   brand: string;
   model: string;
   service_type: ServiceType;
+}
+
+// Definir RepairStep1 localmente
+interface RepairStep1 {
+  products: TechnicalServiceProduct[];
+  description_more_details?: string;
 }
 
 interface FormData {
@@ -77,7 +81,7 @@ export const DeviceInformation = ({
   // Inicializar productos desde repairsFormData o crear uno por defecto
   const initialProducts: TechnicalServiceProduct[] =
     repairsFormData?.products && repairsFormData.products.length > 0
-      ? repairsFormData.products.map((p) => ({
+      ? repairsFormData.products.map((p: TechnicalServiceProduct) => ({
           id: p.id || crypto.randomUUID(),
           quantity: p.quantity || 1,
           brand: p.brand || "",
@@ -96,7 +100,6 @@ export const DeviceInformation = ({
 
   const [products, setProducts] =
     useState<TechnicalServiceProduct[]>(initialProducts);
-
   const productListRef = useRef<TechnicalServiceProductListRef>(null);
 
   const {
@@ -112,35 +115,20 @@ export const DeviceInformation = ({
     },
   });
 
-  const { error, errorMessage } = useFormUtils({ errors, schema });
-
   // Actualizar el form cuando cambian los productos
   React.useEffect(() => {
     setValue("products", products);
   }, [products, setValue]);
 
   const onSubmit = async (formData: FormData) => {
-    console.log("📝 onSubmit llamado con formData:", formData);
-    console.log("🔗 productListRef.current:", productListRef.current);
-
     // Validar productos primero
     if (productListRef.current) {
-      console.log("✅ Llamando a validate()");
       const isValid = productListRef.current.validate();
-      console.log("📊 Resultado de validación:", isValid);
-
-      if (!isValid) {
-        console.log("⛔ Validación falló, no continuando");
-        return; // No continuar si hay campos vacíos
-      }
-    } else {
-      console.warn("⚠️ productListRef.current es null");
+      if (!isValid) return;
     }
 
-    console.log("✅ Validación pasó, continuando con el submit");
-
     const completeFormData: RepairStep1 = {
-      products: formData.products.map((p) => ({
+      products: formData.products.map((p: TechnicalServiceProduct) => ({
         id: p.id,
         quantity: p.quantity,
         brand: p.brand,
@@ -162,51 +150,17 @@ export const DeviceInformation = ({
         Datos del equipo a reparar
       </div>
       <div className="mt-5">
-        <Form
-          onSubmit={(e) => {
-            e.preventDefault();
-            console.log("🎯 Form submit interceptado");
-
-            // Validar productos primero
-            if (productListRef.current) {
-              const isValid = productListRef.current.validate();
-              console.log("📊 Resultado de validación manual:", isValid);
-
-              if (!isValid) {
-                console.log("⛔ Validación falló, deteniendo submit");
-                return;
-              }
-            }
-
-            console.log("✅ Validación pasó, ejecutando handleSubmit");
-            handleSubmit(onSubmit)(e);
-          }}
-        >
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gap-6 mx-auto max-w-4xl">
             <div className="grid grid-cols-1 gap-x-8 gap-y-6">
               {/* Lista de Productos */}
-              <div>
-                <TechnicalServiceProductList
-                  ref={productListRef}
-                  products={products}
-                  onChange={setProducts}
-                  errors={
-                    errors.products
-                      ? Object.fromEntries(
-                          Object.entries(errors).map(([key, value]) => [
-                            key,
-                            value?.message,
-                          ]),
-                        )
-                      : {}
-                  }
-                />
-                {errors.products && (
-                  <p className="mt-1 text-sm text-red-600">
-                    {errors.products.message}
-                  </p>
-                )}
-              </div>
+              <TechnicalServiceProductList
+                products={products}
+                onChange={(prods: TechnicalServiceProduct[]) =>
+                  setProducts(prods)
+                }
+                hideServiceTypeField={false}
+              />
 
               {/* Descripción adicional */}
               <div>
@@ -218,8 +172,8 @@ export const DeviceInformation = ({
                       label="Describa más detalles (Opcional)"
                       name={name}
                       value={(value as string) || ""}
-                      error={error(name)}
-                      helperText={errorMessage(name)}
+                      error={!!errors[name]?.message}
+                      helperText={errors[name]?.message}
                       rows={3}
                       onChange={onChange}
                       placeholder="Describa más detalles sobre el servicio que necesita"

@@ -4,20 +4,27 @@ import React from "react";
 import { Input } from "@/components/ui/Input";
 import * as yup from "yup";
 import { Form } from "@/components/ui/Form";
-import { ObjectSchema } from "yup";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useFormUtils } from "@/hooks/useFormUtils";
 import { Select } from "@/components/ui/Select";
 import countriesISO from "@/data-list/countriesISO.json";
 import { Button } from "@/components/ui/Button";
-import { RepairStep2 } from "@/components/ui/RetailTechnicalServiceForm";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+
+// Definir RepairStep2 localmente
+interface RepairStep2 {
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone_prefix: string;
+  phone_number: string;
+}
 
 interface Props {
   globalStep: number;
-  repairsFormData: Partial<LeadForIubizon>;
-  setRepairsFormData: (data: Partial<LeadForIubizon>) => void;
+  repairsFormData: Partial<RepairStep2>;
+  setRepairsFormData: (data: Partial<RepairStep2>) => void;
   addLocalStorageData: (data: object) => void;
   setCurrentStepToLocalStorage: (step: number) => void;
   current?: number;
@@ -31,14 +38,22 @@ export const ClientInformation = ({
   addLocalStorageData,
   setCurrentStepToLocalStorage,
 }: Props) => {
-  const schema: ObjectSchema<RepairStep2> = yup.object({
-    first_name: yup.string().required(),
-    last_name: yup.string().required(),
-    email: yup.string().email().required(),
-    phone_prefix: yup.string().required(),
+  const regexPhoneByCountries = (phone_prefix: string) => {
+    const country = countriesISO.find(
+      (country) => country.phonePrefix === phone_prefix,
+    );
+    const regex = country?.regex || "^\\d{4,}$";
+    return new RegExp(regex);
+  };
+
+  const schema = yup.object({
+    first_name: yup.string().required("Nombres requeridos"),
+    last_name: yup.string().required("Apellidos requeridos"),
+    email: yup.string().email("Email inválido").required("Email requerido"),
+    phone_prefix: yup.string().required("Prefijo requerido"),
     phone_number: yup
       .string()
-      .required()
+      .required("Teléfono requerido")
       .test("is-valid-phone", "Número de teléfono inválido", function (value) {
         const { phone_prefix } = this.parent;
         return regexPhoneByCountries(phone_prefix).test(value);
@@ -55,20 +70,12 @@ export const ClientInformation = ({
       first_name: repairsFormData?.first_name || "",
       last_name: repairsFormData?.last_name || "",
       email: repairsFormData?.email || "",
-      phone_prefix: "+51",
-      phone_number: repairsFormData?.phone_number || undefined,
+      phone_prefix: repairsFormData?.phone_prefix || "+51",
+      phone_number: repairsFormData?.phone_number || "",
     },
   });
 
   const { required, error, errorMessage } = useFormUtils({ errors, schema });
-
-  const regexPhoneByCountries = (phone_prefix: string) => {
-    const country = countriesISO.find(
-      (country) => country.phonePrefix === phone_prefix,
-    );
-    const regex = country?.regex || "^\\d{4,}$";
-    return new RegExp(regex);
-  };
 
   const onSubmit = (formData: RepairStep2) => {
     setRepairsFormData({ ...repairsFormData, ...formData });
